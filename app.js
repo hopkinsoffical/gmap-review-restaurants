@@ -6300,6 +6300,7 @@ applyMarketingTheme(getMarketingTheme());
   function getMarketingNavHtml() {
     const links = [
   { key: ROUTE_ANALYSIS_LIST, label: MARKETING_UI.navAnalysis },
+  { key: ROUTE_SERVICES, label: MARKETING_UI.navServices },
 ];
 
     return (
@@ -6314,6 +6315,9 @@ applyMarketingTheme(getMarketingTheme());
         .map(function (link) {
           var navActive = state.routeKind === link.key;
           if (link.key === ROUTE_ANALYSIS_LIST && isAnalysisRoute()) {
+            navActive = true;
+          }
+          if (link.key === ROUTE_SERVICES && state.routeKind === ROUTE_SERVICES) {
             navActive = true;
           }
           const active = navActive ? " is-active" : "";
@@ -7257,7 +7261,6 @@ applyMarketingTheme(getMarketingTheme());
       "</div>" +
       "</div>" +
       "</section>" +
-      getMarketingInsightsSectionHtml() +
       getMarketingFooterHtml() +
       "</div>" +
       '<div class="rms-overview-mobile rms-mobile-only rms-snap-wrap">' +
@@ -7342,21 +7345,13 @@ applyMarketingTheme(getMarketingTheme());
       "</strong><p>" +
       escapeHtml(MARKETING_COPY.digitalHumanOverviewStageBody || "") +
       "</p></div></div></div></div></section>" +
-      getRmsMobileScrollCueHtml("insights") +
-      "</div></section>" +
-      '<section class="rms-mobile-panel rms-mobile-panel--insights" data-rms-panel="insights">' +
-      '<div class="rms-mobile-panel-inner">' +
-      '<p class="rms-mobile-panel-label">' +
-      escapeHtml(MARKETING_UI.mobilePanelInsights) +
-      "</p>" +
-      getMarketingInsightsSectionHtml() +
       getRmsMobileScrollCueHtml("footer") +
       "</div></section>" +
       '<section class="rms-mobile-panel rms-mobile-panel--footer" data-rms-panel="footer">' +
       '<div class="rms-mobile-panel-inner">' +
       getMarketingFooterHtml() +
       "</div></section></div>" +
-      getRmsMobileDotsHtml(["lead", "story", "digital", "insights", "footer"], "lead") +
+      getRmsMobileDotsHtml(["lead", "story", "digital", "footer"], "lead") +
       "</div></div>"
     );
   }
