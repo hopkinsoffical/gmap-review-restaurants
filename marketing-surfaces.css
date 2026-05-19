@@ -1,10 +1,11 @@
 /* =========================================================
-   RankMySalon — unified marketing surfaces (light + dark)
+   RankMyRestaurant — unified marketing surfaces (light mode)
    Uses --rms-* tokens from theme.css. Load after styles.css.
 ========================================================= */
 
-html[data-theme="light"]:has(body.route-marketing) {
-  background: var(--rms-bg) !important;
+html[data-theme="light"]:has(body.route-marketing),
+html:not([data-theme]):has(body.route-marketing) {
+  background: #fffbf4 !important;
 }
 
 html[data-theme="dark"]:has(body.route-marketing) {
@@ -12,6 +13,7 @@ html[data-theme="dark"]:has(body.route-marketing) {
 }
 
 html[data-theme="light"] body.route-marketing,
+html:not([data-theme]) body.route-marketing,
 html[data-theme="dark"] body.route-marketing {
   background: var(--rms-mkt-page-bg) !important;
   color: var(--rms-text) !important;
@@ -208,7 +210,7 @@ html[data-theme="dark"] body.route-marketing button.ghost.lb-pager-btn:hover:not
 html[data-theme="light"] body.route-marketing .intel-list-cta:hover,
 html[data-theme="dark"] body.route-marketing .intel-list-cta:hover {
   background: var(--rms-ghost-hover-bg) !important;
-  border-color: rgba(212, 175, 55, 0.45) !important;
+  border-color: rgba(232, 97, 26, 0.45) !important;
   color: var(--rms-link-hover) !important;
 }
 

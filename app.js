@@ -1,5 +1,5 @@
 (function () {
-  const SITE_NAME = "RankMySalon";
+  const SITE_NAME = "RankMyRestaurant";
   /** Full salon growth report — Shopify cart checkout (xxr20030522 / ec9b72e). */
   const FULL_REPORT_SHOPIFY_CHECKOUT_URL = "https://y6y1hf-45.myshopify.com/cart/45257592176719:1";
   const ROUTE_LANDING = "overview";
@@ -303,7 +303,7 @@
       title: "About Us",
       tagline: "Strategy, creativity, and execution focused on real growth.",
       intro:
-        "RankMySalon is built by 360AI Media, a next-gen creative and digital marketing agency focused on turning attention into bookings, calls, and measurable business growth.",
+        "RankMyRestaurant is built by 360AI Media, a next-gen creative and digital marketing agency focused on turning attention into bookings, calls, and measurable business growth.",
       summary:
         "The team behind 360AI Media combines audience strategy, design, messaging, and performance execution. Instead of chasing vanity metrics, the work is built around visibility that converts and systems that keep demand moving.",
       pillars: [
@@ -321,9 +321,9 @@
         },
       ],
       storyKicker: "Who We Are",
-      storyTitle: "The operating model behind RankMySalon",
+      storyTitle: "The operating model behind RankMyRestaurant",
       storyBody:
-        "360AI Media presents itself as the place where strategy meets creativity and execution. RankMySalon applies that same mindset to salons and beauty operators: stronger reputation, smarter follow-up, and more booked clients from the attention they already earn.",
+        "360AI Media presents itself as the place where strategy meets creativity and execution. RankMyRestaurant applies that same mindset to salons and beauty operators: stronger reputation, smarter follow-up, and more diners from the attention they already earn.",
       strengthsKicker: "What We Bring",
       strengthsTitle: "A practical growth system, not disconnected tactics",
       strengths: [
@@ -413,7 +413,7 @@
       title: "关于我们",
       tagline: "用策略、创意和执行力推动真实增长。",
       intro:
-        "RankMySalon 由 360AI Media 打造。我们是一家新一代创意与数字营销机构，专注把注意力转化为预约、来电和可衡量的业务增长。",
+        "RankMyRestaurant 由 360AI Media 打造。我们是一家新一代创意与数字营销机构，专注把注意力转化为预约、来电和可衡量的业务增长。",
       summary:
         "360AI Media 团队结合用户策略、设计、信息表达和增长执行。我们不追逐虚荣指标，而是围绕能带来转化的曝光和持续推动需求的系统来工作。",
       pillars: [
@@ -431,9 +431,9 @@
         },
       ],
       storyKicker: "我们是谁",
-      storyTitle: "RankMySalon 背后的运营模型",
+      storyTitle: "RankMyRestaurant 背后的运营模型",
       storyBody:
-        "360AI Media 的核心是把策略、创意和执行结合起来。RankMySalon 将这套方法应用到沙龙和美业门店：提升口碑、优化跟进，把已经获得的曝光转化成更多到店客户。",
+        "360AI Media 的核心是把策略、创意和执行结合起来。RankMyRestaurant 将这套方法应用到沙龙和美业门店：提升口碑、优化跟进，把已经获得的曝光转化成更多到店客户。",
       strengthsKicker: "我们带来的价值",
       strengthsTitle: "这是一套实用增长系统，不是零散工具",
       strengths: [
@@ -525,13 +525,13 @@
       title: "SMS Consent & Messaging Terms",
       updatedAt: "Last updated: April 28, 2026",
       intro:
-        "This page explains how RankMySalon sends SMS messages in the United States, how consent works, and how to stop messages at any time.",
+        "This page explains how RankMyRestaurant sends SMS messages in the United States, how consent works, and how to stop messages at any time.",
       sections: [
         {
           title: "How You Opt In",
           bullets: [
             "You may opt in through our website forms, sales onboarding, or direct written confirmation.",
-            "By opting in, you agree to receive recurring service-related text messages from RankMySalon.",
+            "By opting in, you agree to receive recurring service-related text messages from RankMyRestaurant.",
             "Consent is not a condition of purchase.",
           ],
         },
@@ -578,7 +578,7 @@
         {
           title: "How We Use Information",
           bullets: [
-            "To deliver and improve RankMySalon services.",
+            "To deliver and improve RankMyRestaurant services.",
             "To provide customer support and account notifications.",
             "To send SMS messages only where valid consent exists.",
           ],
@@ -605,7 +605,7 @@
       title: "Terms of Service",
       updatedAt: "Last updated: April 28, 2026",
       intro:
-        "These Terms govern access to and use of RankMySalon services. By using the service, you agree to these Terms.",
+        "These Terms govern access to and use of RankMyRestaurant services. By using the service, you agree to these Terms.",
       sections: [
         {
           title: "Use of Service",
@@ -648,7 +648,7 @@ function getMarketingTheme() {
     return savedTheme;
   }
 
-  return "dark";
+  return "light";
 }
 
 function getMarketingThemeIcon() {
@@ -685,10 +685,10 @@ applyMarketingTheme(getMarketingTheme());
       pageTitleAbout: "About Us",
       pageTitleTalk: "Call voice agent",
       pageTitleTavusDemo: "Voice agent",
-      pageTitleAnalysisList: "Local Salon Ranking",
-      pageTitleAnalysisSalon: "Salon ranking detail",
+      pageTitleAnalysisList: "Local Restaurant Ranking",
+      pageTitleAnalysisSalon: "Restaurant ranking detail",
       pageTitleLeaderboardList: "AI Leaderboard",
-      pageTitleLeaderboardSalon: "Salon scorecard",
+      pageTitleLeaderboardSalon: "Restaurant scorecard",
       pageTitleSmsConsent: "SMS Consent",
       pageTitlePrivacy: "Privacy Policy",
       pageTitleTerms: "Terms of Service",
@@ -701,7 +701,7 @@ applyMarketingTheme(getMarketingTheme());
       navServices: "Services",
       navAbout: "About Us",
       navLeaderboard: "Leaderboard",
-      navAnalysis: "Local Salon Ranking",
+      navAnalysis: "Local Restaurant Ranking",
       navContact: "Contact Us",
       navDashboard: "Dashboard",
       navSignIn: "Sign in",
@@ -726,9 +726,9 @@ applyMarketingTheme(getMarketingTheme());
       footerSmsConsent: "SMS Consent",
       footerPrivacy: "Privacy Policy",
       footerTerms: "Terms of Service",
-      footerAddressSalon: "Salon Platform",
+      footerAddressSalon: "Restaurant Platform",
       footerAddressAutomation: "AI Growth Automation",
-      footerCopyright: "© 2026 RankMySalon. Salon-ready AI for reviews, follow-up, and voice automation.",
+      footerCopyright: "© 2026 RankMyRestaurant. Restaurant-ready AI for reviews, follow-up, and voice automation.",
       formNameLabel: "Name *",
       formNamePlaceholder: "Your full name",
       formEmailLabel: "Email *",
@@ -744,13 +744,13 @@ applyMarketingTheme(getMarketingTheme());
       formSubmit: "Send Inquiry",
       formSending: "Sending your message...",
       formSmsConsentNotice:
-        "By providing your phone number, you agree to receive recurring SMS messages from RankMySalon (service updates and follow-up). Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help.",
+        "By providing your phone number, you agree to receive recurring SMS messages from RankMyRestaurant (service updates and follow-up). Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help.",
       formSmsConsentLinksPrefix: "See our",
       formSmsConsentLinkSms: "SMS Consent",
       formSmsConsentLinkPrivacy: "Privacy Policy",
       formSmsConsentLinkTerms: "Terms",
       formSmsConsentCheckbox:
-        "I agree to receive recurring SMS messages from RankMySalon (service updates and follow-up).",
+        "I agree to receive recurring SMS messages from RankMyRestaurant (service updates and follow-up).",
       formSmsConsentRequired: "Please check the SMS consent box to continue.",
       formSuccess: "Thank you. We received your message and will follow up soon. You can also reach us at info@360AIMedia.com.",
       formFailure: "Could not save your message. Please try again or email info@360AIMedia.com.",
@@ -760,7 +760,7 @@ applyMarketingTheme(getMarketingTheme());
       heroBriefContactPlaceholder: "(555) 123-4567 or owner@salon.com",
       heroBriefSubmit: "Send my brief report",
       heroBriefSmsConsentCheckbox:
-        "If you entered a mobile number, I agree to receive SMS with my brief report and related updates from RankMySalon.",
+        "If you entered a mobile number, I agree to receive SMS with my brief report and related updates from RankMyRestaurant.",
       heroBriefFieldsRequired: "Please enter your salon name and a valid mobile number or email.",
       heroBriefInvalidEmail: "That email doesn’t look valid. Double-check or use a phone number instead.",
       heroBriefInvalidPhone: "Enter a phone number with at least 7 digits, or use your email instead.",
@@ -785,7 +785,7 @@ applyMarketingTheme(getMarketingTheme());
       pricingSummaryTitle: "Review your order before checkout",
       pricingSummaryBody:
         "You will confirm one launch fee and one monthly subscription before we send you to Shopify's secure hosted checkout.",
-      pricingSummaryPlanTitle: "RankMySalon Monthly Plan",
+      pricingSummaryPlanTitle: "RankMyRestaurant Monthly Plan",
       pricingSummaryPlanDetail: "Subscription · Billed monthly",
       pricingSummarySetupDeviceSuffix: " + NFC Device",
       pricingSummarySetupDetail: "One-time launch fee · Includes 1 NFC card",
@@ -806,20 +806,20 @@ applyMarketingTheme(getMarketingTheme());
         "Tap the button to call Ryan, our voice agent, on your phone. Your device will open the dialer.",
       assistantCallCta: "Call now",
       assistantBack: "Back to Overview",
-      leaderboardLoadingTitle: "Local salon rankings",
+      leaderboardLoadingTitle: "Local restaurant rankings",
       leaderboardLoadingBody: "Loading Supabase data...",
       leaderboardErrorTitle: "Leaderboard",
       leaderboardSetupHint:
         "Run sql/013_salon_ai_leaderboard.sql then sql/014_seed_salon_ai_leaderboard.sql in Supabase, reload schema cache if needed, and refresh.",
-      leaderboardHeroKicker: "RankMySalon.AI",
-      leaderboardHeroTitlePrefix: "Is your salon ",
+      leaderboardHeroKicker: "RankMyRestaurant.AI",
+      leaderboardHeroTitlePrefix: "Is your restaurant ",
       leaderboardHeroTitleAccent: "losing customers",
       leaderboardHeroTitleSuffix: " to competitors?",
       leaderboardHeroBody:
-        "Browse the live salon AI leaderboard for Google ranking factors: Google Maps visibility, review volume, sentiment, recency, local SEO strength, and conversion signals. Open any salon scorecard to see actions, voice agent Ryan workflow, and social media content building opportunities.",
-      leaderboardSearchPlaceholder: "Salon name, township, ZIP, or address...",
+        "Browse the live AI leaderboard for Google ranking factors: Google Maps visibility, review volume, sentiment, recency, local SEO strength, and conversion signals. Open any salon scorecard to see actions, voice agent Ryan workflow, and social media content building opportunities.",
+      leaderboardSearchPlaceholder: "Restaurant name, township, ZIP, or address...",
       leaderboardSearchButton: "Search",
-      leaderboardSearchAria: "Search by salon name, township, or address",
+      leaderboardSearchAria: "Search by restaurant name, township, or address",
       leaderboardLive: "Live · Supabase realtime",
       leaderboardLiveUpdated: "Live · updated just now",
       leaderboardPreviewLabel: "Preview:",
@@ -828,15 +828,15 @@ applyMarketingTheme(getMarketingTheme());
       leaderboardSignInFullSuffix: " for the full directory.",
       leaderboardDirectoryKicker: "Directory:",
       leaderboardDirectoryBody: "all listed salons load here with Google ranking, local SEO, review management, voice agent, and social content growth context.",
-      leaderboardDirectoryScorecardSuffix: " to open a salon scorecard.",
+      leaderboardDirectoryScorecardSuffix: " to open a restaurant scorecard.",
       leaderboardDirectorySampleHrefLabel: "Middlesex, NJ",
       leaderboardRequestListing: "Request listing",
       leaderboardRequestLead:
         "Tell us about your salon or ask for coverage in a new market. We will follow up by email.",
       leaderboardRequestType: "Request type",
-      leaderboardRequestAddSalon: "Add my salon",
+      leaderboardRequestAddSalon: "Add my restaurant",
       leaderboardRequestMoreCoverage: "More markets / salons",
-      leaderboardRequestSalonName: "Salon name",
+      leaderboardRequestSalonName: "Restaurant name",
       leaderboardRequestYourName: "Your name",
       leaderboardRequestEmail: "Email",
       leaderboardRequestPhone: "Phone",
@@ -875,7 +875,7 @@ applyMarketingTheme(getMarketingTheme());
       analysisBackAll: "Back to all salons",
       analysisTalkListing: "Can't find your salon? Talk to Ryan to be listed",
       analysisKicker: "Google Maps · Local visibility",
-      analysisTitle: "Local Salon Ranking",
+      analysisTitle: "Local Restaurant Ranking",
       analysisBody:
         "Compare salons by Google signals and marketing score. Open any row for township benchmarks, sentiment, and review highlights.",
       analysisFreshDbHint:
@@ -998,7 +998,7 @@ applyMarketingTheme(getMarketingTheme());
       navServices: "服务",
       navAbout: "关于我们",
       navLeaderboard: "排行榜",
-      navAnalysis: "本地沙龙排名",
+      navAnalysis: "本地餐厅排名",
       navContact: "联系我们",
       navDashboard: "后台",
       navSignIn: "登录",
@@ -1025,7 +1025,7 @@ applyMarketingTheme(getMarketingTheme());
       footerTerms: "服务条款",
       footerAddressSalon: "沙龙增长平台",
       footerAddressAutomation: "AI 增长自动化",
-      footerCopyright: "© 2026 RankMySalon。为沙龙打造的评论、跟进和语音自动化 AI。",
+      footerCopyright: "© 2026 RankMyRestaurant。为沙龙打造的评论、跟进和语音自动化 AI。",
       formNameLabel: "姓名 *",
       formNamePlaceholder: "请输入你的姓名",
       formEmailLabel: "邮箱 *",
@@ -1041,12 +1041,12 @@ applyMarketingTheme(getMarketingTheme());
       formSubmit: "发送咨询",
       formSending: "正在发送...",
       formSmsConsentNotice:
-        "提交手机号即表示你同意接收 RankMySalon 的短信（服务更新与跟进）。短信频率因业务而异，可能产生运营商短信/流量费用。回复 STOP 可退订，回复 HELP 获取帮助。",
+        "提交手机号即表示你同意接收 RankMyRestaurant 的短信（服务更新与跟进）。短信频率因业务而异，可能产生运营商短信/流量费用。回复 STOP 可退订，回复 HELP 获取帮助。",
       formSmsConsentLinksPrefix: "详情请查看",
       formSmsConsentLinkSms: "短信同意说明",
       formSmsConsentLinkPrivacy: "隐私政策",
       formSmsConsentLinkTerms: "服务条款",
-      formSmsConsentCheckbox: "我同意接收 RankMySalon 的短信（服务更新与跟进）。",
+      formSmsConsentCheckbox: "我同意接收 RankMyRestaurant 的短信（服务更新与跟进）。",
       formSmsConsentRequired: "请先勾选短信同意后再提交。",
       formSuccess: "谢谢，我们已收到你的信息，会尽快跟进。你也可以发邮件到 info@360AIMedia.com。",
       formFailure: "暂时无法保存你的信息。请重试，或直接发送邮件到 info@360AIMedia.com。",
@@ -1056,7 +1056,7 @@ applyMarketingTheme(getMarketingTheme());
       heroBriefContactPlaceholder: "(555) 123-4567 或 owner@salon.com",
       heroBriefSubmit: "发送简报",
       heroBriefSmsConsentCheckbox:
-        "若填写了手机号，我同意接收 RankMySalon 发来的简报短信及相关服务短信。",
+        "若填写了手机号，我同意接收 RankMyRestaurant 发来的简报短信及相关服务短信。",
       heroBriefFieldsRequired: "请填写沙龙名称，以及可用的手机号或邮箱。",
       heroBriefInvalidEmail: "邮箱格式似乎不对，请核对或改用手机号。",
       heroBriefInvalidPhone: "请输入至少 7 位数字的电话，或改用邮箱。",
@@ -1078,7 +1078,7 @@ applyMarketingTheme(getMarketingTheme());
       pricingSummaryClose: "关闭订单确认",
       pricingSummaryTitle: "结账前确认订单",
       pricingSummaryBody: "在跳转到 Shopify 安全结账页前，请确认一次性启动费和月度订阅。",
-      pricingSummaryPlanTitle: "RankMySalon 月度方案",
+      pricingSummaryPlanTitle: "RankMyRestaurant 月度方案",
       pricingSummaryPlanDetail: "订阅 · 按月计费",
       pricingSummarySetupDeviceSuffix: " + NFC 设备",
       pricingSummarySetupDetail: "一次性启动费 · 包含 1 张 NFC 卡",
@@ -1103,7 +1103,7 @@ applyMarketingTheme(getMarketingTheme());
       leaderboardErrorTitle: "排行榜",
       leaderboardSetupHint:
         "请在 Supabase 执行 sql/013_salon_ai_leaderboard.sql 和 sql/014_seed_salon_ai_leaderboard.sql，必要时刷新 schema cache 后再刷新页面。",
-      leaderboardHeroKicker: "RankMySalon.AI",
+      leaderboardHeroKicker: "RankMyRestaurant.AI",
       leaderboardHeroTitlePrefix: "你的沙龙是否正在把客户",
       leaderboardHeroTitleAccent: "输给竞争对手",
       leaderboardHeroTitleSuffix: "？",
@@ -1433,7 +1433,7 @@ applyMarketingTheme(getMarketingTheme());
       title: "拍张小票，评论更快",
       subtitle: "传一张消费小票，几秒就能挑一句顺手发。",
       landingTitle: "让 salon 的 Google 评论增长更顺手",
-      landingSubtitle: "RankMySalon 根域名后续会升级成完整产品 landing page。当前先用这个占位页承接品牌入口，门店版 review studio 继续通过规范的 store 路径访问。",
+      landingSubtitle: "RankMyRestaurant 根域名后续会升级成完整产品 landing page。当前先用这个占位页承接品牌入口，门店版 review studio 继续通过规范的 store 路径访问。",
       landingStatus: "临时首页占位",
       landingPrimaryCta: "打开 Angel Tips 门店页",
       landingSecondaryCta: "查看规范门店路径",
@@ -1556,7 +1556,7 @@ applyMarketingTheme(getMarketingTheme());
       title: "Snap your receipt. Review faster.",
       subtitle: "Upload your salon receipt and get a few lines worth posting.",
       landingTitle: "Google review growth for salons, with less awkward follow-up",
-      landingSubtitle: "RankMySalon will eventually become the full product landing page at the root domain. For now, this placeholder holds the top-level brand entry while the live store-specific review studio stays available on the canonical store path.",
+      landingSubtitle: "RankMyRestaurant will eventually become the full product landing page at the root domain. For now, this placeholder holds the top-level brand entry while the live store-specific review studio stays available on the canonical store path.",
       landingStatus: "Temporary landing page",
       landingPrimaryCta: "Open the Angel Tips store page",
       landingSecondaryCta: "View the canonical store route",
@@ -2665,7 +2665,7 @@ applyMarketingTheme(getMarketingTheme());
 
   function getPageDescription() {
     if (isStoreRoute()) {
-      return "Generate salon-ready Google reviews faster and improve your Google Maps trust signals with RankMySalon.";
+      return "Generate restaurant-ready Google reviews faster and improve your Google Maps trust signals with RankMyRestaurant.";
     }
     if (isLeaderboardRoute()) {
       return "Browse salon leaderboard insights for Google ranking improvement, local SEO optimization, review growth, voice agent Ryan automation, and social media content building.";
@@ -2676,7 +2676,7 @@ applyMarketingTheme(getMarketingTheme());
     if (isPriceRoute()) {
       return "Simple salon growth pricing: one-time setup plus monthly optimization to improve Google Maps visibility.";
     }
-    return "RankMySalon helps salons improve Google Maps visibility with AI review workflows, local SEO insights, and growth tools.";
+    return "RankMyRestaurant helps restaurants improve Google Maps visibility with AI review workflows, local SEO insights, and growth tools.";
   }
 
   function isIndexableRoute() {
@@ -2690,7 +2690,7 @@ applyMarketingTheme(getMarketingTheme());
     return {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: "RankMySalon Leaderboard",
+      name: "RankMyRestaurant Leaderboard",
       itemListOrder: "https://schema.org/ItemListOrderAscending",
       numberOfItems: rows.length,
       itemListElement: rows.map(function (row, idx) {
@@ -6299,11 +6299,7 @@ applyMarketingTheme(getMarketingTheme());
 
   function getMarketingNavHtml() {
     const links = [
-  { key: ROUTE_LANDING, label: MARKETING_UI.navOverview },
-  { key: ROUTE_LEADERBOARD_LIST, label: MARKETING_UI.navLeaderboard },
   { key: ROUTE_ANALYSIS_LIST, label: MARKETING_UI.navAnalysis },
-  { key: ROUTE_SERVICES, label: MARKETING_UI.navServices },
-  { key: ROUTE_ABOUT, label: MARKETING_UI.navAbout },
 ];
 
     return (
@@ -6311,15 +6307,12 @@ applyMarketingTheme(getMarketingTheme());
       '<div class="marketing-nav-main">' +
       '<a class="marketing-brand" href="/">' +
       '<span class="brand-part brand-part-rank">Rank</span>' +
-      '<span class="brand-part brand-part-mysalon">MySalon</span>' +
+      '<span class="brand-part brand-part-myrestaurant">MyRestaurant</span>' +
       "</a>" +
       '<nav class="marketing-nav" aria-label="Primary">' +
       links
         .map(function (link) {
           var navActive = state.routeKind === link.key;
-          if (link.key === ROUTE_LEADERBOARD_LIST && isLeaderboardRoute()) {
-            navActive = true;
-          }
           if (link.key === ROUTE_ANALYSIS_LIST && isAnalysisRoute()) {
             navActive = true;
           }
@@ -6378,7 +6371,7 @@ applyMarketingTheme(getMarketingTheme());
       '<span class="footer-logo-part footer-logo-media">Media</span>' +
       "</a>" +
       '<div class="marketing-footer-info">' +
-      '<p class="footer-company-name">RankMySalon</p>' +
+      '<p class="footer-company-name">RankMyRestaurant</p>' +
       '<p class="footer-address">' +
       escapeHtml(MARKETING_UI.footerAddressSalon) +
       "</p>" +

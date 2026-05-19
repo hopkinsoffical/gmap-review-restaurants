@@ -1,20 +1,20 @@
 @import url("/theme.css");
 
 :root {
-  --bg: #f6efe9;
-  --panel: rgba(255, 250, 246, 0.84);
-  --panel-strong: rgba(255, 248, 243, 0.94);
-  --panel-border: rgba(132, 88, 78, 0.14);
-  --text: #2f2421;
-  --muted: #7a6560;
-  --gold: #b87d6e;
-  --gold-strong: #975e54;
-  --gold-soft: rgba(184, 125, 110, 0.14);
-  --chip-bg: rgba(191, 156, 146, 0.16);
-  --danger: #c45f5f;
-  --ok: #4f9d74;
-  --working: #d39a58;
-  --shadow: 0 18px 44px rgba(104, 75, 67, 0.12);
+  --bg: #fffbf4;
+  --panel: rgba(255, 255, 255, 0.90);
+  --panel-strong: rgba(255, 253, 248, 0.96);
+  --panel-border: rgba(232, 97, 26, 0.14);
+  --text: #1c0f07;
+  --muted: #8c6440;
+  --gold: #e8611a;
+  --gold-strong: #c04a10;
+  --gold-soft: rgba(232, 97, 26, 0.12);
+  --chip-bg: rgba(245, 166, 35, 0.14);
+  --danger: #c0392b;
+  --ok: #2e7d52;
+  --working: #c07920;
+  --shadow: 0 8px 32px rgba(140, 70, 20, 0.10);
   --radius-panel: 20px;
   --radius-control: 18px;
   --radius-soft: 16px;
@@ -30,9 +30,9 @@ body {
   padding: 0;
   min-height: 100%;
   background:
-    radial-gradient(circle at 12% 18%, rgba(220, 176, 166, 0.34), transparent 28%),
-    radial-gradient(circle at 88% 12%, rgba(244, 220, 202, 0.52), transparent 24%),
-    linear-gradient(180deg, #f8f2ed 0%, #f1e7df 100%);
+    radial-gradient(circle at 8% 10%, rgba(245, 166, 35, 0.18), transparent 28%),
+    radial-gradient(circle at 88% 8%, rgba(232, 97, 26, 0.10), transparent 24%),
+    linear-gradient(180deg, #fffbf4 0%, #fff3e0 100%);
   color: var(--text);
   font-family: "Manrope", "Noto Sans SC", sans-serif;
 }
@@ -68,13 +68,13 @@ body.has-pricing-summary {
 .bg-glow-1 {
   top: -8vw;
   right: -4vw;
-  background: #d5a097;
+  background: #f5a623;
 }
 
 .bg-glow-2 {
   bottom: -10vw;
   left: -9vw;
-  background: #f0d8cb;
+  background: #e8611a;
 }
 
 .app {

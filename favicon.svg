@@ -1,32 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <linearGradient id="bg" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FBE8EE" />
-      <stop offset="1" stop-color="#F3C8D5" />
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF3E0" />
+      <stop offset="1" stop-color="#FFE0B2" />
     </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(46 18) rotate(131.987) scale(18.2773)">
-      <stop stop-color="#FFF8FA" />
-      <stop offset="1" stop-color="#FFF8FA" stop-opacity="0" />
-    </radialGradient>
+    <linearGradient id="fork" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#E8611A" />
+      <stop offset="1" stop-color="#BF4A10" />
+    </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="18" fill="url(#bg)" />
-  <circle cx="46" cy="18" r="12" fill="url(#glow)" />
-  <path
-    d="M30 14C30 13.4477 30.4477 13 31 13H33C33.5523 13 34 13.4477 34 14V18.2C34 18.4927 34.0643 18.7819 34.1884 19.047L34.8 20.35C35.1094 21.0093 34.6281 21.75 33.9 21.75H30.1C29.3719 21.75 28.8906 21.0093 29.2 20.35L29.8116 19.047C29.9357 18.7819 30 18.4927 30 18.2V14Z"
-    fill="#23404B"
-  />
-  <path
-    d="M23 28C23 24.6863 25.6863 22 29 22H35C38.3137 22 41 24.6863 41 28V37C41 42.5228 36.5228 47 31 47H33C27.4772 47 23 42.5228 23 37V28Z"
-    fill="#23404B"
-  />
-  <path
-    d="M28 33.5C29.0746 34.78 30.4132 35.42 32 35.42C33.5868 35.42 34.9254 34.78 36 33.5"
-    stroke="#FBE8EE"
-    stroke-linecap="round"
-    stroke-width="2.8"
-  />
-  <path
-    d="M47 29L48.2135 32.7865L52 34L48.2135 35.2135L47 39L45.7865 35.2135L42 34L45.7865 32.7865L47 29Z"
-    fill="#23404B"
-  />
+  <!-- Rounded square background, warm cream -->
+  <rect width="64" height="64" rx="16" fill="url(#bg)" />
+  <!-- Fork (left) -->
+  <g fill="#E8611A">
+    <rect x="17" y="10" width="3" height="12" rx="1.5" />
+    <rect x="13" y="10" width="3" height="8" rx="1.5" />
+    <rect x="21" y="10" width="3" height="8" rx="1.5" />
+    <!-- Fork handle -->
+    <rect x="17" y="22" width="3" height="22" rx="1.5" />
+    <!-- Tines connector -->
+    <rect x="13" y="17" width="11" height="3" rx="1.5" />
+  </g>
+  <!-- Knife (right) -->
+  <g fill="#E8611A">
+    <!-- Blade -->
+    <path d="M41 10 C41 10 45 12 45 20 L43 20 L43 10 Z" />
+    <!-- Handle -->
+    <rect x="43" y="20" width="2" height="24" rx="1" />
+    <rect x="41" y="20" width="2" height="24" rx="1" />
+  </g>
+  <!-- Star / rank indicator -->
+  <path d="M32 40 L33.4 44.3 L38 44.3 L34.3 46.9 L35.7 51.2 L32 48.6 L28.3 51.2 L29.7 46.9 L26 44.3 L30.6 44.3 Z"
+    fill="#E8611A" />
 </svg>
