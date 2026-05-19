@@ -1,0 +1,1007 @@
+{
+  "results": [
+    {
+      "toolCallId": "local-seed-angel-tips",
+      "result": {
+        "message": "service catalog loaded",
+        "format": {
+          "uqid": 0,
+          "n": "",
+          "zh": "",
+          "id": "",
+          "pp": 0,
+          "ingr": "service details"
+        },
+        "note": {
+          "Pricing note": "Tips are not included. Some prices vary or are add-ons."
+        },
+        "Manicure 美甲护理": [
+          {
+            "uqid": 1,
+            "n": "Regular Manicure",
+            "zh": "Regular Manicure",
+            "id": 1,
+            "pp": 18,
+            "ingr": "includes hand sanitizing, nail trim and shaping, cuticle care, light buffing, hand massage with lotion, regular polish or clear coat",
+            "aliases": [
+              "Classic manicure"
+            ],
+            "dish_type": "manicure",
+            "dish_subtype": "manicure"
+          },
+          {
+            "uqid": 2,
+            "n": "Organic Spa Manicure",
+            "zh": "Organic Spa Manicure",
+            "id": 2,
+            "pp": 36,
+            "ingr": "Regular Manicure plus organic scrub exfoliation, nourishing mask or hot towel wrap, organic lotion and oil",
+            "aliases": [
+              "Spa manicure"
+            ],
+            "dish_type": "manicure",
+            "dish_subtype": "manicure"
+          },
+          {
+            "uqid": 3,
+            "n": "Polish Change",
+            "zh": "Polish Change",
+            "id": 3,
+            "pp": 12,
+            "ingr": "remove old polish, simple reshaping without cuticle work, apply new regular polish",
+            "aliases": [
+              "Regular polish change"
+            ],
+            "dish_type": "manicure",
+            "dish_subtype": "manicure"
+          },
+          {
+            "uqid": 4,
+            "n": "French Add-On",
+            "zh": "French",
+            "id": 4,
+            "pp": 10,
+            "ingr": "French tip add-on for manicure services",
+            "aliases": [
+              "French"
+            ],
+            "dish_type": "addon",
+            "dish_subtype": "addon"
+          },
+          {
+            "uqid": 5,
+            "n": "Buffing Add-On",
+            "zh": "Buffing",
+            "id": 5,
+            "pp": 5,
+            "ingr": "buffing add-on",
+            "aliases": [
+              "Buffing"
+            ],
+            "dish_type": "addon",
+            "dish_subtype": "addon"
+          },
+          {
+            "uqid": 6,
+            "n": "Color Gel Manicure",
+            "zh": "Color Gel Manicure",
+            "id": 6,
+            "pp": 35,
+            "ingr": "basic nail prep, nail surface buffing for adhesion, base gel with UV cure, 2-3 coats of color gel, top coat with UV cure",
+            "aliases": [
+              "Gel manicure",
+              "Color gel"
+            ],
+            "dish_type": "gel_manicure",
+            "dish_subtype": "gel_manicure"
+          },
+          {
+            "uqid": 7,
+            "n": "French Gel Manicure",
+            "zh": "French Gel Manicure",
+            "id": 7,
+            "pp": 45,
+            "ingr": "Color Gel Manicure plus hand-painted French white tip design",
+            "aliases": [
+              "French gel"
+            ],
+            "dish_type": "gel_manicure",
+            "dish_subtype": "gel_manicure"
+          },
+          {
+            "uqid": 8,
+            "n": "Remove Gel Color",
+            "zh": "Remove Gel Color",
+            "id": 8,
+            "pp": 10,
+            "ingr": "gel color removal service",
+            "aliases": [
+              "Gel removal"
+            ],
+            "dish_type": "removal",
+            "dish_subtype": "removal"
+          },
+          {
+            "uqid": 9,
+            "n": "SNS Color Powder",
+            "zh": "SNS Color Powder",
+            "id": 9,
+            "pp": 45,
+            "ingr": "nail prep with cuticle care, SNS base liquid, dip or sprinkle powder 2-3 times, setting liquid, shaping and buffing, top coat seal",
+            "aliases": [
+              "SNS powder",
+              "Dip powder"
+            ],
+            "dish_type": "sns",
+            "dish_subtype": "sns"
+          },
+          {
+            "uqid": 10,
+            "n": "French SNS Powder",
+            "zh": "French SNS Powder",
+            "id": 10,
+            "pp": 55,
+            "ingr": "French style SNS powder service",
+            "aliases": [
+              "SNS french"
+            ],
+            "dish_type": "sns",
+            "dish_subtype": "sns"
+          },
+          {
+            "uqid": 11,
+            "n": "SNS Clear Powder With Gel Color",
+            "zh": "SNS Clear Powder With Gel Color",
+            "id": 11,
+            "pp": 50,
+            "ingr": "SNS clear powder for nail strengthening and thickness, finished with gel color on top",
+            "aliases": [
+              "SNS clear powder",
+              "Clear SNS with gel color"
+            ],
+            "dish_type": "sns",
+            "dish_subtype": "sns"
+          }
+        ],
+        "Artificial Nails 延长甲": [
+          {
+            "uqid": 12,
+            "n": "SNS Powder Tip Set",
+            "zh": "SNS Powder Tip Set",
+            "id": 12,
+            "pp": 55,
+            "ingr": "nail extension using SNS dip powder",
+            "aliases": [
+              "SNS tip set",
+              "SNS extension"
+            ],
+            "dish_type": "artificial",
+            "dish_subtype": "artificial"
+          },
+          {
+            "uqid": 13,
+            "n": "SNS Powder Fill-in / With Color Gel",
+            "zh": "SNS Powder Fill-in / With Color Gel",
+            "id": 13,
+            "pp": 50,
+            "ingr": "fill new growth on existing SNS nails, finished with gel color",
+            "aliases": [
+              "SNS fill in",
+              "SNS fill-in"
+            ],
+            "dish_type": "fill_in",
+            "dish_subtype": "fill_in"
+          },
+          {
+            "uqid": 14,
+            "n": "SNS Clear Powder Tips Set With Gel Color",
+            "zh": "SNS Clear Powder Tips Set With Gel Color",
+            "id": 14,
+            "pp": 60,
+            "ingr": "clear SNS powder extension for strength, finished with gel color for brighter shine",
+            "aliases": [
+              "SNS clear tips",
+              "Clear powder tips"
+            ],
+            "dish_type": "artificial",
+            "dish_subtype": "artificial"
+          },
+          {
+            "uqid": 15,
+            "n": "Acrylic Set With Gel Color",
+            "zh": "Acrylic Set With Gel Color",
+            "id": 15,
+            "pp": 70,
+            "ingr": "nail tip or form application, acrylic sculpting, shaping and buffing, finished with gel color",
+            "aliases": [
+              "Acrylic set",
+              "Acrylic full set"
+            ],
+            "dish_type": "acrylic",
+            "dish_subtype": "acrylic"
+          },
+          {
+            "uqid": 16,
+            "n": "Acrylic Fill-in / With Gel Color",
+            "zh": "Acrylic Fill-in / With Gel Color",
+            "id": 16,
+            "pp": 55,
+            "ingr": "fill new growth on existing acrylic nails, finished with gel color",
+            "aliases": [
+              "Acrylic fill in",
+              "Acrylic fill-in"
+            ],
+            "dish_type": "fill_in",
+            "dish_subtype": "fill_in"
+          },
+          {
+            "uqid": 17,
+            "n": "Soft Gel Tips With Gel Color",
+            "zh": "Soft Gel Tips With Gel Color",
+            "id": 17,
+            "pp": 80,
+            "ingr": "pre-made soft gel full cover tips with gel color",
+            "aliases": [
+              "Soft gel tips"
+            ],
+            "dish_type": "soft_gel",
+            "dish_subtype": "soft_gel"
+          },
+          {
+            "uqid": 18,
+            "n": "UV Hard Gel Set With Gel Color",
+            "zh": "UV Hard Gel Set With Gel Color",
+            "id": 18,
+            "pp": 80,
+            "ingr": "builder gel extension cured under UV/LED lamp with gel color",
+            "aliases": [
+              "UV hard gel",
+              "Hard gel set"
+            ],
+            "dish_type": "hard_gel",
+            "dish_subtype": "hard_gel"
+          },
+          {
+            "uqid": 19,
+            "n": "UV Gel Permanent French Set",
+            "zh": "UV Gel Permanent French Set",
+            "id": 19,
+            "pp": 100,
+            "ingr": "structural French tips built with white hard gel, not painted on",
+            "aliases": [
+              "Permanent french set",
+              "Permanent French"
+            ],
+            "dish_type": "hard_gel",
+            "dish_subtype": "hard_gel"
+          },
+          {
+            "uqid": 20,
+            "n": "UV Hard/Soft Gel Fill-in With Color Gel",
+            "zh": "UV Hard/Soft Gel Fill-in With Color Gel",
+            "id": 20,
+            "pp": 60,
+            "ingr": "fill new growth on existing gel extensions, finished with gel color",
+            "aliases": [
+              "Gel fill in",
+              "Gel fill-in"
+            ],
+            "dish_type": "fill_in",
+            "dish_subtype": "fill_in"
+          },
+          {
+            "uqid": 21,
+            "n": "Permanent French Gel Fill-in",
+            "zh": "Permanent French Gel Fill-in",
+            "id": 21,
+            "pp": 75,
+            "ingr": "fill and reshape existing permanent French gel nails",
+            "aliases": [
+              "Permanent french fill in"
+            ],
+            "dish_type": "fill_in",
+            "dish_subtype": "fill_in"
+          },
+          {
+            "uqid": 22,
+            "n": "Nail Design One Nail",
+            "zh": "Nail Design One Nail",
+            "id": 22,
+            "pp": 20,
+            "ingr": "custom nail design per nail; pricing varies from $5 to $20",
+            "aliases": [
+              "Nail art",
+              "Design per nail"
+            ],
+            "dish_type": "design",
+            "dish_subtype": "design"
+          },
+          {
+            "uqid": 23,
+            "n": "French Style Tropical Color",
+            "zh": "French Style Tropical Color",
+            "id": 23,
+            "pp": 15,
+            "ingr": "colorful French tips add-on instead of traditional white",
+            "aliases": [
+              "Tropical french",
+              "Colorful french"
+            ],
+            "dish_type": "addon",
+            "dish_subtype": "addon"
+          },
+          {
+            "uqid": 24,
+            "n": "Remove Acrylic Nail",
+            "zh": "Remove Acrylic Nail",
+            "id": 24,
+            "pp": 15,
+            "ingr": "acrylic nail removal service",
+            "aliases": [
+              "Acrylic removal"
+            ],
+            "dish_type": "removal",
+            "dish_subtype": "removal"
+          },
+          {
+            "uqid": 25,
+            "n": "Extra Length",
+            "zh": "Extra Length",
+            "id": 25,
+            "pp": 10,
+            "ingr": "extra length add-on for extension services",
+            "aliases": [
+              "Length add-on"
+            ],
+            "dish_type": "addon",
+            "dish_subtype": "addon"
+          }
+        ],
+        "Little Angels 儿童服务": [
+          {
+            "uqid": 26,
+            "n": "Little Angels Manicure",
+            "zh": "Manicure",
+            "id": 26,
+            "pp": 15,
+            "ingr": "children under 10 years old manicure service",
+            "aliases": [
+              "Kids manicure",
+              "Children manicure"
+            ],
+            "dish_type": "kids",
+            "dish_subtype": "kids"
+          },
+          {
+            "uqid": 27,
+            "n": "Little Angels Pedicure",
+            "zh": "Pedicure",
+            "id": 27,
+            "pp": 25,
+            "ingr": "children under 10 years old pedicure service",
+            "aliases": [
+              "Kids pedicure",
+              "Children pedicure"
+            ],
+            "dish_type": "kids",
+            "dish_subtype": "kids"
+          },
+          {
+            "uqid": 28,
+            "n": "Little Angels Polish for Toes and Nails",
+            "zh": "Polish for Toes and Nails",
+            "id": 28,
+            "pp": 25,
+            "ingr": "children under 10 years old polish service for toes and nails",
+            "aliases": [
+              "Kids polish"
+            ],
+            "dish_type": "kids",
+            "dish_subtype": "kids"
+          },
+          {
+            "uqid": 29,
+            "n": "Little Angels Manicure & Pedicure",
+            "zh": "Manicure & Pedicure",
+            "id": 29,
+            "pp": 35,
+            "ingr": "children under 10 years old manicure and pedicure combo",
+            "aliases": [
+              "Kids mani pedi",
+              "Children mani pedi"
+            ],
+            "dish_type": "kids",
+            "dish_subtype": "kids"
+          }
+        ],
+        "Pedicure 足部护理": [
+          {
+            "uqid": 30,
+            "n": "Regular Pedicure",
+            "zh": "Regular Pedicure",
+            "id": 30,
+            "pp": 30,
+            "ingr": "foot soak, toenail trimming, cuticle care, basic callus removal, foot massage, regular polish",
+            "aliases": [
+              "Classic pedicure"
+            ],
+            "dish_type": "pedicure",
+            "dish_subtype": "pedicure"
+          },
+          {
+            "uqid": 31,
+            "n": "European Pedicure",
+            "zh": "European Pedicure",
+            "id": 31,
+            "pp": 42,
+            "ingr": "Regular Pedicure plus deeper cuticle and callus treatment, extended massage, premium moisturizing products",
+            "aliases": [
+              "European pedi"
+            ],
+            "dish_type": "pedicure",
+            "dish_subtype": "pedicure"
+          },
+          {
+            "uqid": 32,
+            "n": "Sea Breeze Spa Pedicure",
+            "zh": "Sea Breeze Spa Pedicure",
+            "id": 32,
+            "pp": 52,
+            "ingr": "sea salt or seaweed scrub exfoliation, deep nourishing mask",
+            "aliases": [
+              "Sea Breeze pedi"
+            ],
+            "dish_type": "pedicure",
+            "dish_subtype": "pedicure"
+          },
+          {
+            "uqid": 33,
+            "n": "Mocha Cafe Hot Stone Spa Pedicure",
+            "zh": "Mocha Cafe Hot Stone Spa Pedicure",
+            "id": 33,
+            "pp": 62,
+            "ingr": "coffee scrub exfoliation, hot stone massage for deep relaxation",
+            "aliases": [
+              "Hot stone pedicure",
+              "Mocha pedi"
+            ],
+            "dish_type": "pedicure",
+            "dish_subtype": "pedicure"
+          },
+          {
+            "uqid": 34,
+            "n": "Organic Spa Pedicure",
+            "zh": "Organic Spa Pedicure",
+            "id": 34,
+            "pp": 72,
+            "ingr": "full organic product treatment, deep conditioning care, extended massage",
+            "aliases": [
+              "Organic pedi"
+            ],
+            "dish_type": "pedicure",
+            "dish_subtype": "pedicure"
+          },
+          {
+            "uqid": 35,
+            "n": "Dream Spa Pedicure",
+            "zh": "Dream Spa Pedicure",
+            "id": 35,
+            "pp": 92,
+            "ingr": "ultimate spa experience with hot stone, deep callus treatment, extended massage",
+            "aliases": [
+              "Dream pedi"
+            ],
+            "dish_type": "pedicure",
+            "dish_subtype": "pedicure"
+          },
+          {
+            "uqid": 36,
+            "n": "Pedicure Polish Change",
+            "zh": "Polish Change",
+            "id": 36,
+            "pp": 15,
+            "ingr": "pedicure polish change",
+            "aliases": [
+              "Toe polish change"
+            ],
+            "dish_type": "pedicure",
+            "dish_subtype": "pedicure"
+          },
+          {
+            "uqid": 37,
+            "n": "Pedicure With Color Gel",
+            "zh": "With Color Gel",
+            "id": 37,
+            "pp": 20,
+            "ingr": "color gel add-on for pedicure services",
+            "aliases": [
+              "Pedicure gel add-on",
+              "Color gel add-on"
+            ],
+            "dish_type": "addon",
+            "dish_subtype": "addon"
+          },
+          {
+            "uqid": 38,
+            "n": "Remove Gel Color Only",
+            "zh": "Remove Gel Color Only",
+            "id": 38,
+            "pp": 15,
+            "ingr": "gel color removal only service",
+            "aliases": [
+              "Remove gel color"
+            ],
+            "dish_type": "removal",
+            "dish_subtype": "removal"
+          },
+          {
+            "uqid": 39,
+            "n": "Repair One Nail",
+            "zh": "Repair One Nail",
+            "id": 39,
+            "pp": 8,
+            "ingr": "repair one nail add-on",
+            "aliases": [
+              "Nail repair"
+            ],
+            "dish_type": "repair",
+            "dish_subtype": "repair"
+          },
+          {
+            "uqid": 40,
+            "n": "Callus Treatment",
+            "zh": "Callus Treatment",
+            "id": 40,
+            "pp": 12,
+            "ingr": "callus treatment add-on",
+            "aliases": [
+              "Callus add-on"
+            ],
+            "dish_type": "addon",
+            "dish_subtype": "addon"
+          },
+          {
+            "uqid": 41,
+            "n": "10-Minute Foot Massage",
+            "zh": "10-Minute Foot Massage",
+            "id": 41,
+            "pp": 14,
+            "ingr": "ten minute foot massage add-on",
+            "aliases": [
+              "Foot massage"
+            ],
+            "dish_type": "massage",
+            "dish_subtype": "massage"
+          },
+          {
+            "uqid": 42,
+            "n": "Pedicure French Add-On",
+            "zh": "French",
+            "id": 42,
+            "pp": 10,
+            "ingr": "French add-on for pedicure services",
+            "aliases": [
+              "French pedicure"
+            ],
+            "dish_type": "addon",
+            "dish_subtype": "addon"
+          }
+        ],
+        "Waxing 脱毛": [
+          {
+            "uqid": 43,
+            "n": "Eyebrow Wax",
+            "zh": "Eyebrow",
+            "id": 43,
+            "pp": 12,
+            "ingr": "eyebrow waxing service",
+            "aliases": [
+              "Eyebrow waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 44,
+            "n": "Eyebrow Threading",
+            "zh": "Eyebrow Threading",
+            "id": 44,
+            "pp": 20,
+            "ingr": "eyebrow threading service",
+            "aliases": [
+              "Threading"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 45,
+            "n": "Lip Wax",
+            "zh": "Lip",
+            "id": 45,
+            "pp": 8,
+            "ingr": "upper lip waxing service",
+            "aliases": [
+              "Lip waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 46,
+            "n": "Chin Wax",
+            "zh": "Chin",
+            "id": 46,
+            "pp": 10,
+            "ingr": "chin waxing service",
+            "aliases": [
+              "Chin waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 47,
+            "n": "Cheek Wax",
+            "zh": "Cheek",
+            "id": 47,
+            "pp": 15,
+            "ingr": "cheek waxing service",
+            "aliases": [
+              "Cheek waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 48,
+            "n": "Full Face Wax",
+            "zh": "Full Face",
+            "id": 48,
+            "pp": 40,
+            "ingr": "full face waxing service",
+            "aliases": [
+              "Face waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 49,
+            "n": "Bikini Line Wax",
+            "zh": "Bikini Line",
+            "id": 49,
+            "pp": 25,
+            "ingr": "bikini line waxing service",
+            "aliases": [
+              "Bikini line"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 50,
+            "n": "Semi Brazilian Bikini",
+            "zh": "Semi Brazilian Bikini",
+            "id": 50,
+            "pp": 50,
+            "ingr": "semi Brazilian bikini waxing service",
+            "aliases": [
+              "Semi brazilian"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 51,
+            "n": "Brazilian Bikini",
+            "zh": "Brazilian Bikini",
+            "id": 51,
+            "pp": 55,
+            "ingr": "Brazilian bikini waxing service",
+            "aliases": [
+              "Brazilian"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 52,
+            "n": "Half Arms Wax",
+            "zh": "Half Arms",
+            "id": 52,
+            "pp": 30,
+            "ingr": "half arms waxing service",
+            "aliases": [
+              "Half arm wax"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 53,
+            "n": "Full Arms Wax",
+            "zh": "Full Arms",
+            "id": 53,
+            "pp": 40,
+            "ingr": "full arms waxing service",
+            "aliases": [
+              "Full arm wax"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 54,
+            "n": "Under Arms Wax",
+            "zh": "Under Arms",
+            "id": 54,
+            "pp": 20,
+            "ingr": "under arm waxing service",
+            "aliases": [
+              "Underarm wax"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 55,
+            "n": "Hands and Fingers Wax",
+            "zh": "Hands and Fingers",
+            "id": 55,
+            "pp": 10,
+            "ingr": "hands and fingers waxing service",
+            "aliases": [
+              "Hands wax",
+              "Fingers wax"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 56,
+            "n": "Nose Wax",
+            "zh": "Nose",
+            "id": 56,
+            "pp": 10,
+            "ingr": "nose waxing service",
+            "aliases": [
+              "Nose waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 57,
+            "n": "Half Legs Wax",
+            "zh": "Half Legs",
+            "id": 57,
+            "pp": 30,
+            "ingr": "half legs waxing service",
+            "aliases": [
+              "Half leg wax"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 58,
+            "n": "Full Legs Wax",
+            "zh": "Full Legs",
+            "id": 58,
+            "pp": 50,
+            "ingr": "full legs waxing service",
+            "aliases": [
+              "Full leg wax"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 59,
+            "n": "Chest Wax",
+            "zh": "Chest",
+            "id": 59,
+            "pp": 40,
+            "ingr": "chest waxing service",
+            "aliases": [
+              "Chest waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 60,
+            "n": "Full Back Wax",
+            "zh": "Full Back",
+            "id": 60,
+            "pp": 55,
+            "ingr": "full back waxing service",
+            "aliases": [
+              "Back waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 61,
+            "n": "Lower Back Wax",
+            "zh": "Lower Back",
+            "id": 61,
+            "pp": 30,
+            "ingr": "lower back waxing service",
+            "aliases": [
+              "Lower back waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 62,
+            "n": "Shoulder Wax",
+            "zh": "Shoulder",
+            "id": 62,
+            "pp": 30,
+            "ingr": "shoulder waxing service",
+            "aliases": [
+              "Shoulder waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 63,
+            "n": "Feet Wax",
+            "zh": "Feet",
+            "id": 63,
+            "pp": 10,
+            "ingr": "feet waxing service",
+            "aliases": [
+              "Feet waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          },
+          {
+            "uqid": 64,
+            "n": "Ears Wax",
+            "zh": "Ears",
+            "id": 64,
+            "pp": 15,
+            "ingr": "ears waxing service",
+            "aliases": [
+              "Ear waxing"
+            ],
+            "dish_type": "waxing",
+            "dish_subtype": "waxing"
+          }
+        ],
+        "Massage 按摩": [
+          {
+            "uqid": 65,
+            "n": "Deep Tissue Massage",
+            "zh": "Deep Tissue Massage",
+            "id": 65,
+            "pp": 85,
+            "ingr": "60 minute deep tissue massage",
+            "aliases": [
+              "Deep tissue"
+            ],
+            "dish_type": "massage",
+            "dish_subtype": "massage"
+          },
+          {
+            "uqid": 66,
+            "n": "Swedish Massage",
+            "zh": "Swedish Massage",
+            "id": 66,
+            "pp": 85,
+            "ingr": "60 minute Swedish massage",
+            "aliases": [
+              "Swedish"
+            ],
+            "dish_type": "massage",
+            "dish_subtype": "massage"
+          },
+          {
+            "uqid": 67,
+            "n": "Hawaii Style Four Hand Massage",
+            "zh": "Hawaii Style Four Hand Massage",
+            "id": 67,
+            "pp": 170,
+            "ingr": "60 minute four hand massage",
+            "aliases": [
+              "Four hand massage"
+            ],
+            "dish_type": "massage",
+            "dish_subtype": "massage"
+          },
+          {
+            "uqid": 68,
+            "n": "CBD Oil Aromatherapy Treatment Massage",
+            "zh": "CBD Oil Aromatherapy Treatment Massage",
+            "id": 68,
+            "pp": 125,
+            "ingr": "70 minute CBD oil aromatherapy treatment massage",
+            "aliases": [
+              "CBD massage",
+              "Aromatherapy massage"
+            ],
+            "dish_type": "massage",
+            "dish_subtype": "massage"
+          },
+          {
+            "uqid": 69,
+            "n": "Massage Package",
+            "zh": "Massage Package",
+            "id": 69,
+            "pp": 0,
+            "ingr": "Buy 5 of the same massage service and get 1 free",
+            "aliases": [
+              "Massage promo",
+              "Buy 5 get 1"
+            ],
+            "dish_type": "massage",
+            "dish_subtype": "massage"
+          }
+        ],
+        "Additional Services 其他服务": [
+          {
+            "uqid": 70,
+            "n": "Eyelash Extensions",
+            "zh": "Eyelash Extensions",
+            "id": 70,
+            "pp": 0,
+            "ingr": "available by consultation; pricing to be confirmed",
+            "aliases": [
+              "Lashes"
+            ],
+            "dish_type": "beauty",
+            "dish_subtype": "beauty"
+          },
+          {
+            "uqid": 71,
+            "n": "Skin Care / Facials",
+            "zh": "Skin Care / Facials",
+            "id": 71,
+            "pp": 0,
+            "ingr": "available by consultation; pricing to be confirmed",
+            "aliases": [
+              "Facials",
+              "Skin care"
+            ],
+            "dish_type": "beauty",
+            "dish_subtype": "beauty"
+          },
+          {
+            "uqid": 72,
+            "n": "Semi Permanent Makeup",
+            "zh": "Semi Permanent Makeup",
+            "id": 72,
+            "pp": 0,
+            "ingr": "eyebrow, eyeliner, or lip blush service; pricing to be confirmed",
+            "aliases": [
+              "Permanent makeup",
+              "Lip blush"
+            ],
+            "dish_type": "beauty",
+            "dish_subtype": "beauty"
+          },
+          {
+            "uqid": 73,
+            "n": "Head Spa",
+            "zh": "Head Spa",
+            "id": 73,
+            "pp": 0,
+            "ingr": "available by consultation; pricing to be confirmed",
+            "aliases": [
+              "Scalp spa"
+            ],
+            "dish_type": "beauty",
+            "dish_subtype": "beauty"
+          }
+        ]
+      }
+    }
+  ]
+}

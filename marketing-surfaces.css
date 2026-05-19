@@ -1,0 +1,421 @@
+/* =========================================================
+   RankMySalon — unified marketing surfaces (light + dark)
+   Uses --rms-* tokens from theme.css. Load after styles.css.
+========================================================= */
+
+html[data-theme="light"]:has(body.route-marketing) {
+  background: var(--rms-bg) !important;
+}
+
+html[data-theme="dark"]:has(body.route-marketing) {
+  background: #070b14 !important;
+}
+
+html[data-theme="light"] body.route-marketing,
+html[data-theme="dark"] body.route-marketing {
+  background: var(--rms-mkt-page-bg) !important;
+  color: var(--rms-text) !important;
+}
+
+/* ── Cards & section shells ───────────────────────────────── */
+html[data-theme="light"] body.route-marketing .card,
+html[data-theme="dark"] body.route-marketing .card,
+html[data-theme="light"] body.route-marketing .intel-report-hero.card,
+html[data-theme="dark"] body.route-marketing .intel-report-hero.card,
+html[data-theme="light"] body.route-marketing .intel-search-toolbar.card,
+html[data-theme="dark"] body.route-marketing .intel-search-toolbar.card,
+html[data-theme="light"] body.route-marketing .intel-table-card.card,
+html[data-theme="dark"] body.route-marketing .intel-table-card.card,
+html[data-theme="light"] body.route-marketing .about-page-hero.card,
+html[data-theme="dark"] body.route-marketing .about-page-hero.card,
+html[data-theme="light"] body.route-marketing .about-page-section.card,
+html[data-theme="dark"] body.route-marketing .about-page-section.card,
+html[data-theme="light"] body.route-marketing .legal-page-shell.card,
+html[data-theme="dark"] body.route-marketing .legal-page-shell.card,
+html[data-theme="light"] body.route-marketing .assistant-panel,
+html[data-theme="dark"] body.route-marketing .assistant-panel,
+html[data-theme="light"] body.route-marketing .assistant-stage,
+html[data-theme="dark"] body.route-marketing .assistant-stage,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-hero,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-hero,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-toolbar,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-toolbar,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-card,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-detail-hero,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-hero,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-detail-shell--report,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report,
+html[data-theme="light"] body.route-marketing .lb-detail-error.card,
+html[data-theme="dark"] body.route-marketing .lb-detail-error.card,
+html[data-theme="light"] body.route-marketing .intel-brief-report,
+html[data-theme="dark"] body.route-marketing .intel-brief-report,
+html[data-theme="light"] body.route-marketing .intel-brief-report.card,
+html[data-theme="dark"] body.route-marketing .intel-brief-report.card {
+  background: var(--rms-mkt-card-bg) !important;
+  border-color: var(--rms-mkt-card-border) !important;
+  box-shadow: var(--rms-mkt-card-shadow) !important;
+  color: var(--rms-text) !important;
+}
+
+/* ── Typography ───────────────────────────────────────────── */
+html[data-theme="light"] body.route-marketing .marketing-section-kicker,
+html[data-theme="dark"] body.route-marketing .marketing-section-kicker,
+html[data-theme="light"] body.route-marketing .about-page-form-label,
+html[data-theme="dark"] body.route-marketing .about-page-form-label,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-detail-kicker,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-kicker,
+html[data-theme="light"] body.route-marketing .intel-table thead th,
+html[data-theme="dark"] body.route-marketing .intel-table thead th {
+  color: var(--rms-kicker) !important;
+}
+
+html[data-theme="light"] body.route-marketing .marketing-title,
+html[data-theme="dark"] body.route-marketing .marketing-title,
+html[data-theme="light"] body.route-marketing .marketing-title-small,
+html[data-theme="dark"] body.route-marketing .marketing-title-small,
+html[data-theme="light"] body.route-marketing .legal-page-title,
+html[data-theme="dark"] body.route-marketing .legal-page-title,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-card-name,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-name,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-card-name a,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-name a,
+html[data-theme="light"] body.route-marketing .intel-brief-header h1,
+html[data-theme="dark"] body.route-marketing .intel-brief-header h1,
+html[data-theme="light"] body.route-marketing .intel-brief-overall-title,
+html[data-theme="dark"] body.route-marketing .intel-brief-overall-title,
+html[data-theme="light"] body.route-marketing .intel-brief-metric-value,
+html[data-theme="dark"] body.route-marketing .intel-brief-metric-value,
+html[data-theme="light"] body.route-marketing .intel-brief-score-num,
+html[data-theme="dark"] body.route-marketing .intel-brief-score-num,
+html[data-theme="light"] body.route-marketing .intel-brief-cta-head h2,
+html[data-theme="dark"] body.route-marketing .intel-brief-cta-head h2 {
+  color: var(--rms-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing .marketing-body,
+html[data-theme="dark"] body.route-marketing .marketing-body,
+html[data-theme="light"] body.route-marketing .marketing-body-wide,
+html[data-theme="dark"] body.route-marketing .marketing-body-wide,
+html[data-theme="light"] body.route-marketing .legal-page-intro,
+html[data-theme="dark"] body.route-marketing .legal-page-intro,
+html[data-theme="light"] body.route-marketing .legal-page-list,
+html[data-theme="dark"] body.route-marketing .legal-page-list,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-card-meta,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-meta,
+html[data-theme="light"] body.route-marketing .intel-td-address,
+html[data-theme="dark"] body.route-marketing .intel-td-address,
+html[data-theme="light"] body.route-marketing .intel-brief-overall-summary,
+html[data-theme="dark"] body.route-marketing .intel-brief-overall-summary,
+html[data-theme="light"] body.route-marketing .intel-brief-location,
+html[data-theme="dark"] body.route-marketing .intel-brief-location,
+html[data-theme="light"] body.route-marketing .intel-brief-section-label,
+html[data-theme="dark"] body.route-marketing .intel-brief-section-label,
+html[data-theme="light"] body.route-marketing .intel-brief-cta-head p,
+html[data-theme="dark"] body.route-marketing .intel-brief-cta-head p,
+html[data-theme="light"] body.route-marketing .intel-brief-cta-feature,
+html[data-theme="dark"] body.route-marketing .intel-brief-cta-feature {
+  color: var(--rms-text-soft) !important;
+}
+
+html[data-theme="light"] body.route-marketing .legal-page-updated,
+html[data-theme="dark"] body.route-marketing .legal-page-updated,
+html[data-theme="light"] body.route-marketing .intel-brief-preview,
+html[data-theme="dark"] body.route-marketing .intel-brief-preview,
+html[data-theme="light"] body.route-marketing .intel-brief-generated,
+html[data-theme="dark"] body.route-marketing .intel-brief-generated,
+html[data-theme="light"] body.route-marketing .intel-brief-cta-footnote,
+html[data-theme="dark"] body.route-marketing .intel-brief-cta-footnote {
+  color: var(--rms-text-muted) !important;
+}
+
+/* ── Links ────────────────────────────────────────────────── */
+html[data-theme="light"] body.route-marketing a.landing-link,
+html[data-theme="dark"] body.route-marketing a.landing-link,
+html[data-theme="light"] body.route-marketing a.intel-salon-link,
+html[data-theme="dark"] body.route-marketing a.intel-salon-link,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-card-menu-item--link,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-menu-item--link,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-detail-topbar .lb-back,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-topbar .lb-back {
+  color: var(--rms-link) !important;
+}
+
+html[data-theme="light"] body.route-marketing a.landing-link:hover,
+html[data-theme="dark"] body.route-marketing a.landing-link:hover,
+html[data-theme="light"] body.route-marketing a.intel-salon-link:hover,
+html[data-theme="dark"] body.route-marketing a.intel-salon-link:hover {
+  color: var(--rms-link-hover) !important;
+}
+
+/* ── Inputs & selects ─────────────────────────────────────── */
+html[data-theme="light"] body.route-marketing .intel-search-input,
+html[data-theme="dark"] body.route-marketing .intel-search-input,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-search-input,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-search-input,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-select,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-select,
+html[data-theme="light"] body.route-marketing .about-page-form-control,
+html[data-theme="dark"] body.route-marketing .about-page-form-control,
+html[data-theme="light"] body.route-marketing .about-page-form-select,
+html[data-theme="dark"] body.route-marketing .about-page-form-select {
+  background: var(--rms-input-bg) !important;
+  border-color: var(--rms-input-border) !important;
+  color: var(--rms-input-text) !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-search-input::placeholder,
+html[data-theme="dark"] body.route-marketing .intel-search-input::placeholder,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-search-input::placeholder,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-search-input::placeholder,
+html[data-theme="light"] body.route-marketing .about-page-form-control::placeholder,
+html[data-theme="dark"] body.route-marketing .about-page-form-control::placeholder {
+  color: var(--rms-input-placeholder) !important;
+}
+
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-select-wrap,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-select-wrap,
+html[data-theme="light"] body.route-marketing .intel-search-label,
+html[data-theme="dark"] body.route-marketing .intel-search-label,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-count,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-count,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-pager-meta,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-pager-meta {
+  color: var(--rms-text-muted) !important;
+}
+
+/* ── Ghost / secondary buttons ──────────────────────────── */
+html[data-theme="light"] body.route-marketing .ghost,
+html[data-theme="dark"] body.route-marketing .ghost,
+html[data-theme="light"] body.route-marketing button.ghost.lb-pager-btn,
+html[data-theme="dark"] body.route-marketing button.ghost.lb-pager-btn,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-search-btn,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-search-btn,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-hero-request,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-hero-request,
+html[data-theme="light"] body.route-marketing .intel-list-cta,
+html[data-theme="dark"] body.route-marketing .intel-list-cta {
+  background: var(--rms-ghost-bg) !important;
+  border-color: var(--rms-ghost-border) !important;
+  color: var(--rms-ghost-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing .ghost:hover:not(:disabled),
+html[data-theme="dark"] body.route-marketing .ghost:hover:not(:disabled),
+html[data-theme="light"] body.route-marketing button.ghost.lb-pager-btn:hover:not(:disabled),
+html[data-theme="dark"] body.route-marketing button.ghost.lb-pager-btn:hover:not(:disabled),
+html[data-theme="light"] body.route-marketing .intel-list-cta:hover,
+html[data-theme="dark"] body.route-marketing .intel-list-cta:hover {
+  background: var(--rms-ghost-hover-bg) !important;
+  border-color: rgba(212, 175, 55, 0.45) !important;
+  color: var(--rms-link-hover) !important;
+}
+
+/* ── Category pills ───────────────────────────────────────── */
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-cat-pill,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-cat-pill {
+  background: var(--rms-pill-bg) !important;
+  border-color: var(--rms-pill-border) !important;
+  color: var(--rms-pill-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-cat-pill.is-active,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-cat-pill.is-active {
+  background: var(--rms-pill-active-bg) !important;
+  border-color: transparent !important;
+  color: var(--rms-pill-active-text) !important;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────── */
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-tabs,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-tabs {
+  border-bottom-color: var(--rms-mkt-card-border) !important;
+}
+
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-tab,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-tab {
+  color: var(--rms-tab-muted) !important;
+}
+
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-tab.is-active,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-tab.is-active {
+  color: var(--rms-tab-active) !important;
+  border-bottom-color: var(--rms-tab-active-border) !important;
+}
+
+/* ── Leaderboard metrics & stats ──────────────────────────── */
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-metrics .lb-metric,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-metrics .lb-metric,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-metric-muted,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-metric-muted,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-stat,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-stat {
+  background: var(--rms-mkt-inset) !important;
+  border-color: var(--rms-mkt-card-border) !important;
+}
+
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-metric-val,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-metric-val,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-stat-val,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-stat-val,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-hero .marketing-title,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-hero .marketing-title {
+  color: var(--rms-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-metric-lbl,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-metric-lbl,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-stat-lbl,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-stat-lbl,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-stat-sub,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-stat-sub,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-hero-sub,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-hero-sub,
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-live-pill,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-live-pill {
+  color: var(--rms-text-soft) !important;
+}
+
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-hero-accent,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-hero-accent {
+  color: var(--rms-gold) !important;
+}
+
+/* ── Table rows ───────────────────────────────────────────── */
+html[data-theme="light"] body.route-marketing .intel-table thead th,
+html[data-theme="dark"] body.route-marketing .intel-table thead th {
+  background: var(--rms-mkt-inset) !important;
+  border-bottom-color: var(--rms-mkt-card-border) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-table tbody td,
+html[data-theme="dark"] body.route-marketing .intel-table tbody td {
+  border-bottom-color: var(--rms-mkt-card-border) !important;
+  color: var(--rms-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-table-row:hover td,
+html[data-theme="dark"] body.route-marketing .intel-table-row:hover td {
+  background: var(--rms-gold-soft) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-metric strong,
+html[data-theme="dark"] body.route-marketing .intel-metric strong {
+  color: var(--rms-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-error,
+html[data-theme="dark"] body.route-marketing .intel-error {
+  color: var(--rms-danger) !important;
+}
+
+/* ── Brief report internals ───────────────────────────────── */
+html[data-theme="light"] body.route-marketing .marketing-page-intel-brief,
+html[data-theme="dark"] body.route-marketing .marketing-page-intel-brief {
+  background: transparent !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-overall,
+html[data-theme="dark"] body.route-marketing .intel-brief-overall,
+html[data-theme="light"] body.route-marketing .intel-brief-scorecard,
+html[data-theme="dark"] body.route-marketing .intel-brief-scorecard,
+html[data-theme="light"] body.route-marketing .intel-brief-growth,
+html[data-theme="dark"] body.route-marketing .intel-brief-growth,
+html[data-theme="light"] body.route-marketing .intel-brief-competitors,
+html[data-theme="dark"] body.route-marketing .intel-brief-competitors {
+  border-color: var(--rms-mkt-card-border) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-service-row,
+html[data-theme="dark"] body.route-marketing .intel-brief-service-row {
+  background: var(--rms-mkt-inset) !important;
+  color: var(--rms-text-soft) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-bar-track,
+html[data-theme="dark"] body.route-marketing .intel-brief-bar-track {
+  background: var(--rms-mkt-inset) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-cta,
+html[data-theme="dark"] body.route-marketing .intel-brief-cta {
+  border-color: rgba(212, 175, 55, 0.35) !important;
+  background: var(--rms-mkt-card-bg) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-cta-price,
+html[data-theme="dark"] body.route-marketing .intel-brief-cta-price {
+  color: var(--rms-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-cta-actions .intel-offer-pay-btn,
+html[data-theme="dark"] body.route-marketing .intel-brief-cta-actions .intel-offer-pay-btn {
+  background: var(--rms-cta-pay-bg) !important;
+  color: var(--rms-cta-pay-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-score-label,
+html[data-theme="dark"] body.route-marketing .intel-brief-score-label {
+  color: var(--rms-text-soft) !important;
+}
+
+/* Score badge colors stay semantic in both themes */
+html[data-theme="light"] body.route-marketing .intel-brief-badge--success,
+html[data-theme="dark"] body.route-marketing .intel-brief-badge--success {
+  background: rgba(52, 211, 153, 0.15) !important;
+  color: var(--rms-score-good) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-badge--warning,
+html[data-theme="dark"] body.route-marketing .intel-brief-badge--warning {
+  background: rgba(251, 191, 36, 0.15) !important;
+  color: var(--rms-score-fair) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-badge--danger,
+html[data-theme="dark"] body.route-marketing .intel-brief-badge--danger {
+  background: rgba(248, 113, 113, 0.12) !important;
+  color: var(--rms-score-weak) !important;
+}
+
+html[data-theme="light"] body.route-marketing .intel-brief-competitors-lock,
+html[data-theme="dark"] body.route-marketing .intel-brief-competitors-lock {
+  background: color-mix(in srgb, var(--rms-bg-card) 82%, transparent) !important;
+}
+
+/* ── Popovers & menus ─────────────────────────────────────── */
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-card-menu-popover,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-menu-popover {
+  background: var(--rms-bg-card-2) !important;
+  border-color: var(--rms-mkt-card-border) !important;
+  box-shadow: var(--rms-shadow-soft) !important;
+}
+
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-card-menu-item,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-menu-item {
+  color: var(--rms-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing.route-leaderboard .lb-card-menu-item:hover,
+html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-menu-item:hover {
+  background: var(--rms-gold-soft) !important;
+}
+
+/* ── Contact modal ────────────────────────────────────────── */
+html[data-theme="light"] body.route-marketing .marketing-contact-modal-panel,
+html[data-theme="dark"] body.route-marketing .marketing-contact-modal-panel {
+  background: var(--rms-mkt-card-bg) !important;
+  border-color: var(--rms-mkt-card-border) !important;
+  color: var(--rms-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing .marketing-contact-modal-title,
+html[data-theme="dark"] body.route-marketing .marketing-contact-modal-title {
+  color: var(--rms-text) !important;
+}
+
+html[data-theme="light"] body.route-marketing .marketing-contact-modal-lead,
+html[data-theme="dark"] body.route-marketing .marketing-contact-modal-lead {
+  color: var(--rms-text-soft) !important;
+}

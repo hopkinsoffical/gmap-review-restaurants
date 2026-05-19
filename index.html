@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="darkreader-lock" />
+    <meta
+      name="description"
+      content="RankMySalon helps salons improve Google Maps visibility with AI review workflows, local SEO insights, and conversion-focused growth tools."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://rankmysalon.ai/" />
+    <meta property="og:site_name" content="RankMySalon" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="RankMySalon | Google Maps SEO for Salons" />
+    <meta
+      property="og:description"
+      content="Lift your salon's Google Maps ranking and get more booked appointments with AI-powered review and local SEO workflows."
+    />
+    <meta property="og:url" content="https://rankmysalon.ai/" />
+    <meta property="og:image" content="https://rankmysalon.ai/favicon.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RankMySalon | Google Maps SEO for Salons" />
+    <meta
+      name="twitter:description"
+      content="AI-assisted Google review and local SEO tools designed to grow salon visibility and leads."
+    />
+    <meta name="twitter:image" content="https://rankmysalon.ai/favicon.svg" />
+    <title>RankMySalon | Review Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/marketing/rankmysalon-logo.png?v=20260430-1" />
+    <link rel="shortcut icon" type="image/png" href="/assets/marketing/rankmysalon-logo.png?v=20260430-1" />
+    <link rel="apple-touch-icon" href="/assets/marketing/rankmysalon-logo.png?v=20260430-1" />
+    <meta property="og:image" content="https://rankmysalon.ai/assets/marketing/rankmysalon-logo.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://rankmysalon.ai/assets/marketing/rankmysalon-logo.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "RankMySalon",
+        "url": "https://rankmysalon.ai",
+        "logo": "https://rankmysalon.ai/assets/marketing/rankmysalon-logo.png"
+      }
+    </script>
+    <link rel="stylesheet" href="/styles.css?v=20260511-16" />
+    <link rel="stylesheet" href="/marketing-surfaces.css?v=20260519-1" />
+    <link rel="stylesheet" href="/mobile-scroll.css?v=20260519-2" />
+    <link rel="stylesheet" href="/full-report.css?v=20260519-1" />
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js"></script>
+    <script defer src="/full-report.js?v=20260519-1"></script>
+    <script src="/config.js?v=20260413-1"></script>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SLBBES9DD4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-SLBBES9DD4");
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <section style="padding: 16px; font-family: Arial, sans-serif">
+        <h1>RankMySalon Leaderboard and Review Studio</h1>
+        <p>
+          Explore the salon leaderboard and Google Maps SEO scorecards at
+          <a href="/leaderboard">/leaderboard</a>.
+        </p>
+      </section>
+    </noscript>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <main id="appShell" class="app">
+      <header id="pageHero" class="hero">
+        <div class="hero-topline">
+          <p id="brandName" class="brand">RankMySalon</p>
+          <div id="langMenu" class="lang-menu">
+            <button
+              id="langMenuToggle"
+              class="lang-globe-btn"
+              type="button"
+              aria-label="Language"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              🌐
+            </button>
+            <div id="langMenuPopover" class="lang-menu-popover hidden" role="menu" aria-label="Language options">
+              <button id="langOptionEn" type="button" class="lang-option-btn" role="menuitem">
+                English
+              </button>
+              <button id="langOptionZh" type="button" class="lang-option-btn" role="menuitem">
+                中文
+              </button>
+            </div>
+          </div>
+        </div>
+        <h1 id="title"></h1>
+        <p id="subtitle" class="subtitle"></p>
+      </header>
+
+      <section id="landingContent" class="landing-shell hidden"></section>
+      <section id="portalContent" class="portal-shell hidden"></section>
+
+      <div id="layout" class="layout single-stage">
+        <section id="intakeCard" class="card intake-card">
+          <div id="storeVisitShell" class="store-visit-shell">
+            <header class="store-visit-brand" aria-label="Store">
+              <span id="storeVisitBrandName" class="store-visit-brand-name"></span>
+              <span class="store-visit-brand-dot" aria-hidden="true"></span>
+            </header>
+
+            <div id="storeVisitServiceCard" class="store-visit-service-card hidden" aria-live="polite">
+              <span class="store-visit-service-icon" aria-hidden="true">✦</span>
+              <div class="store-visit-service-copy">
+                <p id="storeVisitServiceLabel" class="store-visit-service-label"></p>
+                <p id="storeVisitServiceName" class="store-visit-service-name"></p>
+              </div>
+            </div>
+
+            <section class="store-visit-hero" aria-labelledby="storeVisitHeroTitle">
+              <div class="store-visit-heart-wrap" aria-hidden="true">
+                <span class="store-visit-heart-ring"></span>
+                <span class="store-visit-heart">♥</span>
+              </div>
+              <h2 id="storeVisitHeroTitle" class="store-visit-hero-title"></h2>
+              <p id="storeVisitHeroLead" class="store-visit-hero-lead"></p>
+            </section>
+
+            <div class="store-visit-stars-block">
+              <div id="storeVisitStars" class="store-visit-stars" role="radiogroup" aria-label="Rating">
+                <button type="button" class="store-visit-star-tile" data-store-star="1" aria-label="1 star">★</button>
+                <button type="button" class="store-visit-star-tile" data-store-star="2" aria-label="2 stars">★</button>
+                <button type="button" class="store-visit-star-tile" data-store-star="3" aria-label="3 stars">★</button>
+                <button type="button" class="store-visit-star-tile" data-store-star="4" aria-label="4 stars">★</button>
+                <button type="button" class="store-visit-star-tile" data-store-star="5" aria-label="5 stars">★</button>
+              </div>
+              <p id="storeVisitMood" class="store-visit-mood" aria-live="polite"></p>
+              <p id="storeVisitLowStarHint" class="store-visit-low-star-hint hidden" role="note"></p>
+            </div>
+
+            <div class="store-visit-cta-stack">
+              <button type="button" id="storeGoogleReviewEntryBtn" class="store-visit-google-cta">
+                <span class="store-visit-google-cta-inner">
+                  <svg class="store-visit-google-g" width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+                    <path
+                      fill="#EA4335"
+                      d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+                    />
+                    <path
+                      fill="#4285F4"
+                      d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.21 37.01 48 31.08 48 24c0-1.64-.14-3.27-.41-4.85z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.22C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+                    />
+                    <path fill="none" d="M0 0h48v48H0z" />
+                  </svg>
+                  <span id="storeGoogleCtaLabel" class="store-visit-google-cta-text"></span>
+                  <span class="store-visit-google-cta-arrow" aria-hidden="true">→</span>
+                </span>
+              </button>
+
+              <div class="store-visit-or" role="separator" aria-label="or">
+                <span class="store-visit-or-line" aria-hidden="true"></span>
+                <span id="storeVisitOrText" class="store-visit-or-text"></span>
+                <span class="store-visit-or-line" aria-hidden="true"></span>
+              </div>
+
+              <button type="button" id="storePrivateFeedbackBtn" class="store-visit-private-cta"></button>
+
+              <button type="button" id="storeWriteOwnOutlineBtn" class="store-visit-write-own"></button>
+            </div>
+
+            <div class="store-visit-social" aria-hidden="false">
+              <div id="storeVisitAvatarCluster" class="store-visit-avatars">
+                <span class="store-visit-avatar">A</span>
+                <span class="store-visit-avatar">M</span>
+                <span class="store-visit-avatar">J</span>
+              </div>
+              <p id="storeVisitSocialProof" class="store-visit-social-proof"></p>
+            </div>
+          </div>
+
+          <div id="storeVisitReceiptBlock" class="store-visit-receipt-block">
+          <div class="section-head">
+            <h2 id="uploadTitle"></h2>
+            <p id="uploadHint" class="hint"></p>
+          </div>
+
+          <input id="receiptInput" class="hidden-input" type="file" accept="image/*" />
+
+          <div class="intake-pill-row" id="intakePillRow" role="group" aria-label="Receipt or review">
+            <button id="uploadBtn" class="intake-pill intake-pill--primary" type="button"></button>
+            <button id="retakeBtn" class="intake-pill intake-pill--primary hidden" type="button"></button>
+            <button id="writeOwnReviewBtn" class="intake-pill intake-pill--outline" type="button"></button>
+          </div>
+
+          <div id="receiptPreview" class="receipt-preview empty">
+            <p id="previewEmptyText" class="empty-text"></p>
+          </div>
+
+          <div id="receiptStatusGroup" class="receipt-status-group">
+            <p id="receiptStatus" class="status"></p>
+            <p id="receiptMeta" class="receipt-meta"></p>
+          </div>
+          </div>
+        </section>
+
+        <section id="dishesCard" class="card dishes-card hidden">
+          <div class="section-head">
+            <h2 id="dishesTitle"></h2>
+            <p id="dishesHint" class="hint"></p>
+          </div>
+
+          <div id="recognizedSummary" class="summary-chip hidden"></div>
+          <div id="recognizedList" class="recognized-list empty">
+            <p id="recognizedEmptyText" class="empty-text"></p>
+          </div>
+
+          <button id="correctionToggle" class="ghost compact action-btn hidden" type="button"></button>
+
+          <div id="correctionPanel" class="correction-block hidden">
+            <label id="correctionLabel" class="mini-label" for="dishSearch"></label>
+            <div class="correction-row">
+              <select id="dishSearch" class="text-input select-input"></select>
+            </div>
+
+            <div class="secondary-actions slim-actions">
+              <button id="retakeInlineBtn" class="ghost" type="button"></button>
+              <button id="resetBtn" class="ghost" type="button"></button>
+            </div>
+
+            <div id="uncertainWrap" class="uncertain-wrap hidden">
+              <p id="uncertainTitle" class="mini-label"></p>
+              <ul id="uncertainList" class="uncertain-list"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="reviewsCard" class="card reviews-card hidden">
+          <div class="section-head">
+            <h2 id="reviewsTitle"></h2>
+            <p id="reviewsHint" class="hint"></p>
+          </div>
+
+          <div id="reviewContextBar" class="review-context-bar hidden">
+            <button id="visitSummaryBtn" class="context-pill-btn" type="button">
+              <span class="context-pill-copy">
+                <span id="visitSummaryLabel" class="context-pill-label"></span>
+                <span id="visitSummaryText" class="context-pill-value"></span>
+              </span>
+              <span id="visitSummaryAction" class="context-pill-action"></span>
+            </button>
+
+            <div class="service-module">
+              <button id="serviceToggleBtn" class="service-toggle-btn" type="button">
+                <span class="service-toggle-copy">
+                  <span id="serviceToggleLabel" class="service-toggle-label"></span>
+                  <span id="serviceToggleText" class="service-toggle-value"></span>
+                </span>
+                <span id="serviceToggleMeta" class="service-toggle-meta"></span>
+              </button>
+
+              <div id="servicePanel" class="service-panel">
+                <label id="serviceNameLabel" class="mini-label" for="serviceStaffSelect"></label>
+                <select id="serviceStaffSelect" class="text-input select-input"></select>
+
+                <p id="servicePraiseLabel" class="mini-label"></p>
+                <div id="servicePraiseOptions" class="choice-grid"></div>
+
+                <div class="secondary-actions slim-actions">
+                  <button id="serviceClearBtn" class="ghost compact" type="button"></button>
+                  <button id="serviceApplyBtn" class="ghost compact" type="button"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p id="reviewsStatus" class="status"></p>
+          <a
+            id="manualOpenLink"
+            class="manual-open-link hidden"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          ></a>
+
+          <div id="reviewsGrid" class="reviews-grid empty">
+            <p id="reviewsEmptyText" class="empty-text"></p>
+          </div>
+
+          <button id="anotherSetBtn" class="ghost compact refresh-btn hidden" type="button"></button>
+        </section>
+      </div>
+    </main>
+
+    <div id="storePrivateFeedbackBackdrop" class="store-private-feedback-backdrop" hidden>
+      <div
+        id="storePrivateFeedbackDialog"
+        class="store-private-feedback-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="storePrivateFeedbackTitle"
+      >
+        <button
+          type="button"
+          id="storePrivateFeedbackCloseBtn"
+          class="store-private-feedback-close"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        <div id="storePrivateFeedbackFormPane">
+          <h2 id="storePrivateFeedbackTitle" class="store-private-feedback-title"></h2>
+          <p id="storePrivateFeedbackIntro" class="store-private-feedback-intro"></p>
+          <form id="storePrivateFeedbackForm" class="store-private-feedback-form" novalidate>
+            <label class="store-private-feedback-label"
+              ><span id="storePrivateLabelName"></span
+              ><input
+                id="storePrivateInputName"
+                class="text-input"
+                name="name"
+                type="text"
+                autocomplete="name"
+                maxlength="200"
+                required
+            /></label>
+            <label class="store-private-feedback-label"
+              ><span id="storePrivateLabelPhone"></span
+              ><input
+                id="storePrivateInputPhone"
+                class="text-input"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                maxlength="64"
+            /></label>
+            <label class="store-private-feedback-label"
+              ><span id="storePrivateLabelGoogle"></span
+              ><input
+                id="storePrivateInputGoogle"
+                class="text-input"
+                name="googleAccount"
+                type="email"
+                autocomplete="email"
+                maxlength="254"
+                inputmode="email"
+            /></label>
+            <label class="store-private-feedback-label store-private-feedback-label--block"
+              ><span id="storePrivateLabelMessage"></span
+              ><textarea
+                id="storePrivateInputMessage"
+                class="text-input store-private-feedback-textarea"
+                name="message"
+                rows="5"
+                maxlength="12000"
+                required
+              ></textarea>
+            </label>
+            <p id="storePrivateFeedbackFormError" class="store-private-feedback-error hidden" role="alert"></p>
+            <div class="store-private-feedback-actions">
+              <button type="button" id="storePrivateFeedbackCancelBtn" class="ghost"></button>
+              <button type="submit" id="storePrivateFeedbackSubmitBtn" class="cta"></button>
+            </div>
+          </form>
+        </div>
+
+        <div id="storePrivateFeedbackThanksPane" class="store-private-feedback-thanks hidden">
+          <h2 id="storePrivateFeedbackThanksTitle" class="store-private-feedback-title"></h2>
+          <p id="storePrivateFeedbackThanksBody" class="store-private-feedback-intro"></p>
+          <button type="button" id="storePrivateFeedbackThanksDoneBtn" class="cta"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="visitSheetBackdrop" class="sheet-backdrop">
+      <div
+        id="visitSheet"
+        class="visit-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="visitSheetTitle"
+        aria-describedby="visitSheetHint"
+      >
+        <div id="visitSheetDragZone" class="sheet-drag-zone" aria-hidden="true">
+          <div class="sheet-grabber"></div>
+        </div>
+        <h2 id="visitSheetTitle"></h2>
+        <p id="visitSheetHint" class="hint"></p>
+        <div id="visitOptions" class="visit-options"></div>
+        <button id="visitContinueBtn" class="cta" type="button"></button>
+      </div>
+    </div>
+
+    <div id="pricingSummaryBackdrop" class="pricing-summary-backdrop hidden" aria-hidden="true">
+      <div
+        id="pricingSummaryDialog"
+        class="pricing-summary-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pricingSummaryTitle"
+        aria-describedby="pricingSummaryBody"
+      >
+        <button id="pricingSummaryCloseBtn" class="pricing-summary-close" type="button" aria-label="Close order summary">
+          ×
+        </button>
+        <p class="pricing-summary-kicker">Order Summary</p>
+        <h2 id="pricingSummaryTitle"></h2>
+        <p id="pricingSummaryBody" class="pricing-summary-body"></p>
+        <div id="pricingSummaryLines" class="pricing-summary-lines"></div>
+        <div class="pricing-summary-total-card">
+          <div class="pricing-summary-total-row">
+            <span>Due today</span>
+            <strong id="pricingSummaryDueToday"></strong>
+          </div>
+          <div class="pricing-summary-total-row is-recurring">
+            <span>Recurring after checkout</span>
+            <strong id="pricingSummaryRecurring"></strong>
+          </div>
+        </div>
+        <div class="pricing-summary-actions">
+          <button id="pricingSummaryBackBtn" class="ghost pricing-summary-back-btn" type="button">Back</button>
+          <button id="pricingSummaryCheckoutBtn" class="cta pricing-summary-checkout-btn" type="button">
+            Continue to Shopify Checkout
+          </button>
+        </div>
+        <p class="pricing-summary-security-note">Secure checkout powered by Shopify.</p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/app.js?v=20260511-16"></script>
+    <script src="/portal.js?v=20260511-1"></script>
+  </body>
+</html>

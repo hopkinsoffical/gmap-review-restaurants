@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | RankMySalon</title>
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <style>
+    :root {
+      --page-bg: #050b14;
+      --panel: #0d1624;
+      --panel-2: #111c2d;
+      --line: rgba(141, 171, 224, .16);
+      --text: #f4f8ff;
+      --muted: #98aabe;
+      --gold: #e6c35f;
+      --blue: #8fb6e6;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(31,57,108,.16), transparent 28%),
+        linear-gradient(180deg,#040b16 0%,#08111d 100%);
+      color: var(--text);
+    }
+
+    .services-page {
+      width: 1180px;
+      max-width: calc(100vw - 72px);
+      margin: 24px auto 48px;
+    }
+
+    .services-page .marketing-footer {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .services-content {
+      margin: 18px 0 42px;
+    }
+
+    .services-kicker {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .services-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 36px;
+      margin-bottom: 14px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at top right, rgba(86,122,204,.14), transparent 30%),
+        linear-gradient(135deg,#0b1322 0%,#101b2d 100%);
+      box-shadow: 0 24px 70px rgba(0,0,0,.32);
+    }
+
+    .services-hero h1 {
+      margin: 0;
+      max-width: 780px;
+      color: #f7faff;
+      font-size: clamp(38px, 4.6vw, 60px);
+      font-weight: 900;
+      letter-spacing: -.055em;
+      line-height: .98;
+    }
+
+    .services-hero h1 span {
+      color: var(--gold);
+    }
+
+    .services-hero p {
+      max-width: 660px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    .tier-tabs-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .tier-tab-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 265px;
+      padding: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(117,149,208,.14);
+      background: linear-gradient(180deg,#111c2d,#0b1322);
+      color: #fff;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: 0 14px 40px rgba(0,0,0,.22);
+      transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease, background .24s ease;
+      font-family: inherit;
+    }
+
+    .tier-tab-card:hover,
+    .tier-tab-card.is-active {
+      transform: translateY(-4px);
+      border-color: rgba(230,195,95,.32);
+    }
+
+    .tier-tab-card.is-active {
+      box-shadow: 0 18px 54px rgba(230,195,95,.11);
+    }
+
+    .tier-tab-card.popular {
+      border-color: rgba(230,195,95,.36);
+      background:
+        radial-gradient(circle at top right, rgba(230,195,95,.13), transparent 38%),
+        linear-gradient(180deg,#142238,#0b1322);
+      box-shadow: 0 18px 58px rgba(230,195,95,.12);
+    }
+
+    .tier-tab-card.popular:hover,
+    .tier-tab-card.popular.is-active {
+      border-color: rgba(242,223,161,.62);
+      box-shadow:
+        0 24px 70px rgba(230,195,95,.18),
+        0 0 0 1px rgba(230,195,95,.08) inset;
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 27px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg,#e6c35f,#f2dfa1);
+      color: #07101c;
+      font-size: 9px;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 26px rgba(230,195,95,.22);
+    }
+
+    .tier-tab-card.popular::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      top: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg,#e6c35f,#f2dfa1);
+      z-index: 4;
+    }
+
+    .tab-bg {
+      position: absolute;
+      right: -18px;
+      bottom: 10px;
+      width: 76%;
+      height: 130px;
+      border-radius: 22px;
+      overflow: hidden;
+      opacity: .22;
+    }
+
+    .tier-tab-card.popular .tab-bg {
+      opacity: .34;
+    }
+
+    .tab-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tab-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,#111c2d,transparent);
+    }
+
+    .tier-tab-card.popular .tab-bg::after {
+      background:
+        linear-gradient(90deg,#142238,rgba(20,34,56,.2)),
+        linear-gradient(180deg,transparent,rgba(5,11,20,.28));
+    }
+
+    .tab-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      min-height: 229px;
+    }
+
+    .tab-tier {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(143,182,230,.13);
+      color: #a8c9f0;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .tier-tab-card.popular .tab-tier {
+      background: rgba(230,195,95,.16);
+      color: #f3dda0;
+      border: 1px solid rgba(230,195,95,.18);
+    }
+
+    .tier-tab-card h2 {
+      margin: 16px 0 8px;
+      font-size: 22px;
+      line-height: 1.04;
+      letter-spacing: -.045em;
+    }
+
+    .tier-tab-card p {
+      margin: 0;
+      max-width: 92%;
+      color: #9fb3cb;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .tab-price {
+      margin-top: auto;
+      color: #879bb1;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tab-price strong {
+      color: var(--gold);
+      font-size: 20px;
+      margin-left: 4px;
+    }
+
+    .tier-detail-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px solid rgba(117,149,208,.14);
+      background:
+        radial-gradient(circle at top right, rgba(230,195,95,.08), transparent 28%),
+        linear-gradient(135deg,#101a2b,#0b1322);
+      box-shadow: 0 18px 52px rgba(0,0,0,.24);
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .detail-title {
+      margin: 0;
+      color: #fff;
+      font-size: 34px;
+      letter-spacing: -.045em;
+      line-height: 1.02;
+    }
+
+    .detail-text {
+      margin: 12px 0 0;
+      color: #9fb3cb;
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    .detail-products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .detail-products a {
+      padding: 13px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+      color: #e8f0fb;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.35;
+      transition: .22s ease;
+    }
+
+    .detail-products a:hover {
+      transform: translateY(-3px);
+      border-color: rgba(230,195,95,.2);
+      background: rgba(255,255,255,.065);
+    }
+
+    .detail-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 18px;
+      padding: 13px 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg,#e3c465,#f2dfa1);
+      color: #07101c;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 14px 28px rgba(227,196,101,.16);
+      transition: .22s ease;
+    }
+
+    .detail-cta:hover {
+      transform: translateY(-3px);
+    }
+
+    @media(max-width: 1120px) {
+      .services-page {
+        max-width: calc(100vw - 28px);
+      }
+
+      .tier-tabs-row {
+        gap: 9px;
+      }
+
+      .tier-tab-card {
+        padding: 15px;
+      }
+
+      .tier-tab-card h2 {
+        font-size: 19px;
+      }
+
+      .popular-badge {
+        top: 12px;
+        right: 12px;
+        font-size: 8px;
+        padding: 0 8px;
+      }
+
+      .tier-detail-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width: 860px) {
+      .services-page {
+        width: auto;
+        max-width: none;
+        margin: 16px;
+      }
+
+      .services-hero {
+        padding: 28px 22px;
+      }
+
+      .services-hero h1 {
+        font-size: 40px;
+      }
+
+      .tier-tabs-row {
+        grid-template-columns: 1fr;
+      }
+
+      .tier-tab-card {
+        min-height: 220px;
+      }
+
+      .tab-content {
+        min-height: 184px;
+      }
+
+      .detail-products {
+        grid-template-columns: 1fr;
+      }
+
+      .tier-detail-panel {
+        display: none !important;
+      }
+
+      .tier-tab-card::after {
+        content: "Tap to open →";
+        position: relative;
+        z-index: 3;
+        display: inline-flex;
+        margin-top: 14px;
+        color: var(--gold);
+        font-size: 13px;
+        font-weight: 900;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="/theme.css?v=20260519-1" />
+
+  <style>
+    /*
+      Services page mobile header override.
+      Keep this after theme.css so this page matches the homepage mobile header:
+      Logo → Nav → Theme toggle + Sign in + English.
+    */
+    @media (max-width: 768px) {
+      .services-page .marketing-nav-shell {
+        width: calc(100vw - 28px) !important;
+        max-width: calc(100vw - 28px) !important;
+        height: auto !important;
+        max-height: none !important;
+        margin: 16px auto 28px !important;
+        padding: 24px 18px !important;
+        overflow: visible !important;
+      }
+
+      .services-page .marketing-nav-main {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 16px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .services-page .marketing-brand {
+        order: 1 !important;
+        display: inline-flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+        font-size: 24px !important;
+        line-height: 1.1 !important;
+      }
+
+      .services-page .marketing-nav {
+        order: 2 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: 14px 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow: visible !important;
+      }
+
+      .services-page .marketing-nav-link {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: 100% !important;
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+      }
+
+      .services-page .marketing-auth-actions {
+        order: 3 !important;
+        display: grid !important;
+        grid-template-columns: 68px minmax(0, 1fr) 124px !important;
+        grid-template-rows: 54px 54px !important;
+        gap: 12px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        overflow: visible !important;
+      }
+
+      .services-page .marketing-auth-actions .theme-toggle {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 68px !important;
+        max-width: 68px !important;
+        min-width: 68px !important;
+        height: 54px !important;
+        min-height: 54px !important;
+        padding: 0 !important;
+        border-radius: 18px !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+      }
+
+      .services-page .marketing-auth-actions #marketingContactOpen {
+        grid-column: 2 / 4 !important;
+        grid-row: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        height: 54px !important;
+        min-height: 54px !important;
+        padding: 0 18px !important;
+        border-radius: 18px !important;
+        font-size: 16px !important;
+        font-weight: 800 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .services-page .marketing-auth-actions > a.marketing-auth-link {
+        grid-column: 1 / 3 !important;
+        grid-row: 2 !important;
+      }
+
+      .services-page .marketing-lang-wrap {
+        grid-column: 3 !important;
+        grid-row: 2 !important;
+      }
+
+      .services-page .marketing-auth-link,
+      .services-page .marketing-lang-wrap,
+      .services-page .marketing-lang-toggle {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .services-page .marketing-auth-link,
+      .services-page .marketing-lang-toggle {
+        height: 54px !important;
+        min-height: 54px !important;
+        padding: 0 14px !important;
+        border-radius: 18px !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="services-page">
+
+  <header class="marketing-nav-shell">
+    <div class="marketing-nav-main">
+      <a class="marketing-brand" href="/">
+        <span class="brand-part brand-part-rank">Rank</span>
+        <span class="brand-part brand-part-mysalon">MySalon</span>
+      </a>
+
+     <nav class="marketing-nav" aria-label="Primary">
+  <a class="marketing-nav-link" href="/">Overview</a>
+  <a class="marketing-nav-link" href="/leaderboard">Leaderboard</a>
+  <a class="marketing-nav-link" href="/analysis-reports">Local Salon Ranking</a>
+  <a class="marketing-nav-link is-active" href="/services.html">Services</a>
+  <a class="marketing-nav-link" href="/about-us">About Us</a>
+</nav>
+
+    <div class="marketing-auth-actions">
+  <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme">
+    <span data-theme-icon>☾</span>
+  </button>
+
+  <button type="button" id="marketingContactOpen" class="marketing-contact-nav-btn">
+    Contact Us
+  </button>
+
+  <a class="ghost landing-link marketing-auth-link" href="/login">
+    Sign in
+  </a>
+
+  <div class="marketing-lang-wrap" data-marketing-lang-wrap>
+    <button type="button" class="ghost landing-link marketing-auth-link marketing-lang-toggle" data-marketing-lang-btn aria-haspopup="true" aria-expanded="false" id="servicesStaticLangBtn" aria-label="Language">
+      <span class="marketing-lang-btn-label">English</span><span class="marketing-lang-btn-caret" aria-hidden="true">▾</span>
+    </button>
+    <ul class="marketing-lang-menu hidden" data-marketing-lang-menu role="menu" aria-labelledby="servicesStaticLangBtn" aria-hidden="true"></ul>
+  </div>
+</div>
+    </div>
+</header>
+
+  <main class="services-content">
+
+    <section class="services-hero">
+      <p class="services-kicker">AI CLIENT ACQUISITION SYSTEMS</p>
+
+      <h1>
+        Choose the growth system that fits your salon.
+      </h1>
+
+      <p>
+        Four focused service tiers for salons that want stronger Google visibility,
+        better social presence, faster client response, and more targeted local acquisition.
+      </p>
+    </section>
+
+    <section class="tier-tabs-row" aria-label="Clickable service tiers">
+
+      <button class="tier-tab-card" type="button" data-tier="0">
+        <span class="tab-bg">
+          <img src="/images/tier1-google-growth.png" alt="">
+        </span>
+
+        <span class="tab-content">
+          <span class="tab-tier">Tier 1</span>
+          <h2>Google Client Growth</h2>
+          <p>Google Maps visibility, reviews, and conversion tools.</p>
+          <span class="tab-price">From <strong>$29</strong></span>
+        </span>
+      </button>
+
+      <button class="tier-tab-card popular is-active" type="button" data-tier="1">
+        <span class="popular-badge">Most Popular</span>
+
+        <span class="tab-bg">
+          <img src="/images/tier2-social-growth.png" alt="">
+        </span>
+
+        <span class="tab-content">
+          <span class="tab-tier">Tier 2</span>
+          <h2>Social Media Growth</h2>
+          <p>AI-assisted content systems for stronger local reach.</p>
+          <span class="tab-price">From <strong>$699</strong></span>
+        </span>
+      </button>
+
+      <button class="tier-tab-card" type="button" data-tier="2">
+        <span class="tab-bg">
+          <img src="/images/tier3-ai-front-desk.png" alt="">
+        </span>
+
+        <span class="tab-content">
+          <span class="tab-tier">Tier 3</span>
+          <h2>Phone Client Growth</h2>
+          <p>AI voice and SMS systems for missed-call recovery.</p>
+          <span class="tab-price">From <strong>$99</strong></span>
+        </span>
+      </button>
+
+      <button class="tier-tab-card" type="button" data-tier="3">
+        <span class="tab-bg">
+          <img src="/images/tier4-local-mail.png" alt="">
+        </span>
+
+        <span class="tab-content">
+          <span class="tab-tier">Tier 4</span>
+          <h2>Local Client Mail</h2>
+          <p>Direct mail campaigns for nearby high-value clients.</p>
+          <span class="tab-price">From <strong>$99</strong></span>
+        </span>
+      </button>
+
+    </section>
+
+    <section class="tier-detail-panel" id="tierDetailPanel">
+      <div>
+        <p class="services-kicker" id="detailTier">Tier 2</p>
+        <h2 class="detail-title" id="detailTitle">Social Media Growth</h2>
+        <p class="detail-text" id="detailText">
+          AI-assisted content systems for salons that need consistent visibility, better branding, and stronger local discovery.
+        </p>
+        <a class="detail-cta" id="detailCta" href="/tier-2.html">Explore this system</a>
+      </div>
+
+      <div class="detail-products" id="detailProducts"></div>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      var tiers = [
+        {
+          tier: "Tier 1",
+          title: "Google Client Growth",
+          text: "Google Maps visibility, reviews, and conversion tools for salons that want more public trust and stronger booking conversion.",
+          href: "/tier-1.html",
+          products: [
+            { name: "AI Review Generator", href: "/ai-review-generator.html" },
+            { name: "AI SMS Review Booster", href: "/ai-sms-review-booster.html" },
+            { name: "Conversion Accelerator", href: "/conversion-accelerator.html" }
+          ]
+        },
+        {
+          tier: "Tier 2",
+          title: "Social Media Growth",
+          text: "AI-assisted content systems for salons that need consistent visibility, better branding, and stronger local discovery.",
+          href: "/tier-2.html",
+          products: [
+            { name: "Starter Growth", href: "/social-media-growth-engine.html" },
+            { name: "Standard Growth", href: "/social-media-growth-engine.html" },
+            { name: "Professional Growth", href: "/social-media-growth-engine.html" }
+          ]
+        },
+        {
+          tier: "Tier 3",
+          title: "Phone Client Growth",
+          text: "AI voice and SMS systems designed to recover missed calls, answer inquiries, and improve booking response time.",
+          href: "/tier-3.html",
+          products: [
+            { name: "AI Front Desk", href: "/ai-front-desk.html" },
+            { name: "SMS Growth Suite", href: "/sms-growth-suite.html" }
+          ]
+        },
+        {
+          tier: "Tier 4",
+          title: "Local Client Mail",
+          text: "Targeted local direct-mail campaigns designed to reach nearby high-value salon clients with a premium offline touchpoint.",
+          href: "/tier-4.html",
+          products: [
+            { name: "Direct Mail Campaign", href: "/local-client-mail-campaign.html" }
+          ]
+        }
+      ];
+
+      var buttons = document.querySelectorAll("[data-tier]");
+      var tierEl = document.getElementById("detailTier");
+      var titleEl = document.getElementById("detailTitle");
+      var textEl = document.getElementById("detailText");
+      var ctaEl = document.getElementById("detailCta");
+      var productsEl = document.getElementById("detailProducts");
+
+      function render(index) {
+        var data = tiers[index];
+
+        buttons.forEach(function (btn) {
+          btn.classList.toggle("is-active", Number(btn.getAttribute("data-tier")) === index);
+        });
+
+        tierEl.textContent = data.tier;
+        titleEl.textContent = data.title;
+        textEl.textContent = data.text;
+        ctaEl.href = data.href;
+
+        productsEl.innerHTML = data.products.map(function (item) {
+          return '<a href="' + item.href + '">' + item.name + ' →</a>';
+        }).join("");
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var index = Number(btn.getAttribute("data-tier")) || 0;
+
+          if (window.matchMedia("(max-width: 860px)").matches) {
+            window.location.href = tiers[index].href;
+            return;
+          }
+
+          render(index);
+        });
+      });
+
+      render(1);
+    })();
+  </script>
+
+  <footer class="marketing-footer">
+    <div class="marketing-footer-wrapper">
+
+      <div class="marketing-footer-left">
+        <a href="/" class="marketing-footer-logo-link">
+          <span class="footer-logo-part footer-logo-360">360</span>
+          <span class="footer-logo-part footer-logo-ai">AI</span>
+          <span class="footer-logo-part footer-logo-media">Media</span>
+        </a>
+
+        <div class="marketing-footer-info">
+          <p class="footer-company-name">RankMySalon</p>
+          <p class="footer-address">Salon Platform</p>
+          <p class="footer-address">AI Growth Automation</p>
+        </div>
+      </div>
+
+      <div class="marketing-footer-right">
+
+        <div class="marketing-footer-column">
+          <h3 class="footer-column-title">PRODUCT</h3>
+
+          <ul class="footer-column-list">
+            <li class="footer-column-header">
+              <a href="https://www.rankmysalon.ai/stores/angel-tips-garwood"
+                 class="footer-link"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Review Tools
+              </a>
+            </li>
+
+            <li><a href="/price" class="footer-link">Reviews Manager</a></li>
+            <li><a href="/price" class="footer-link">Response Manager</a></li>
+            <li><a href="/price" class="footer-link">Analytics</a></li>
+            <li><a href="/price" class="footer-link">Reports</a></li>
+          </ul>
+        </div>
+
+        <div class="marketing-footer-column">
+          <h3 class="footer-column-title">FEATURES</h3>
+
+          <ul class="footer-column-list">
+            <li class="footer-column-header">Automation</li>
+            <li><a href="/button.html" class="footer-link">AI Voice Agent</a></li>
+            <li><a href="/price" class="footer-link">Smart Follow-up</a></li>
+            <li><a href="/price" class="footer-link">Client Acquisition</a></li>
+            <li><a href="/price" class="footer-link">Booking System</a></li>
+          </ul>
+        </div>
+
+        <div class="marketing-footer-column">
+          <h3 class="footer-column-title">COMPANY</h3>
+
+          <ul class="footer-column-list">
+            <li><a href="/about-us" class="footer-link">About Us</a></li>
+            <li><a href="/sms-consent" class="footer-link">SMS Consent</a></li>
+            <li><a href="/terms" class="footer-link">Terms of Service</a></li>
+            <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="marketing-footer-bottom">
+      <p class="footer-copyright">
+        © 2026 RankMySalon. Salon-ready AI for reviews, follow-up, and voice automation.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var KEY = "rankmysalon-language-v1";
+      var ORDER = ["en", "zh", "vi", "ko", "es"];
+      var LABELS = { en: "English", zh: "中文", vi: "Tiếng Việt", ko: "한국어", es: "Español" };
+
+      function readLang() {
+        try {
+          var s = localStorage.getItem(KEY);
+          return ORDER.indexOf(s) >= 0 ? s : "en";
+        } catch (e) {
+          return "en";
+        }
+      }
+
+      function saveLang(code) {
+        try {
+          localStorage.setItem(KEY, code);
+        } catch (e) {}
+      }
+
+      function setOpen(wrap, open) {
+        var menu = wrap.querySelector("[data-marketing-lang-menu]");
+        var btn = wrap.querySelector("[data-marketing-lang-btn]");
+        var lab = wrap.querySelector(".marketing-lang-btn-label");
+
+        wrap.setAttribute("data-open", open ? "true" : "false");
+
+        if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
+
+        if (menu) {
+          menu.classList.toggle("hidden", !open);
+          menu.setAttribute("aria-hidden", open ? "false" : "true");
+        }
+
+        if (lab) lab.textContent = LABELS[readLang()] || "English";
+      }
+
+      function renderMenu(wrap) {
+        var menu = wrap.querySelector("[data-marketing-lang-menu]");
+        if (!menu) return;
+
+        var cur = readLang();
+
+        menu.innerHTML = ORDER.map(function (code) {
+          var activeClass = code === cur ? " is-active" : "";
+
+          return (
+            '<li role="none"><button type="button" role="menuitemradio" class="marketing-lang-option' +
+            activeClass +
+            '" data-marketing-lang="' +
+            code +
+            '" aria-checked="' +
+            (code === cur ? "true" : "false") +
+            '">' +
+            LABELS[code] +
+            "</button></li>"
+          );
+        }).join("");
+      }
+
+      var wrap = document.querySelector("[data-marketing-lang-wrap]");
+      if (!wrap) return;
+
+      document.body.classList.add("route-marketing");
+
+      renderMenu(wrap);
+      setOpen(wrap, false);
+
+      var lab = wrap.querySelector(".marketing-lang-btn-label");
+      if (lab) lab.textContent = LABELS[readLang()] || "English";
+
+      document.addEventListener("click", function (e) {
+        var opt = e.target.closest && e.target.closest("[data-marketing-lang]");
+
+        if (opt && wrap.contains(opt)) {
+          var lang = opt.getAttribute("data-marketing-lang");
+
+          if (ORDER.indexOf(lang) >= 0) {
+            e.preventDefault();
+            saveLang(lang);
+            renderMenu(wrap);
+            setOpen(wrap, false);
+            if (lab) lab.textContent = LABELS[lang] || "English";
+          }
+
+          return;
+        }
+
+        var btn = e.target.closest && e.target.closest("[data-marketing-lang-btn]");
+
+        if (btn && wrap.contains(btn)) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          var isOpen = wrap.getAttribute("data-open") === "true";
+
+          document.querySelectorAll("[data-marketing-lang-wrap]").forEach(function (w) {
+            setOpen(w, false);
+          });
+
+          setOpen(wrap, !isOpen);
+          return;
+        }
+
+        if (!e.target.closest || !e.target.closest("[data-marketing-lang-wrap]")) {
+          setOpen(wrap, false);
+        }
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") setOpen(wrap, false);
+      });
+    })();
+  </script>
+
+</div>
+
+<script src="/theme.js"></script>
+</body>
+</html>

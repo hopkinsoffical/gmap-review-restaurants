@@ -1,0 +1,4 @@
+# Leaderboard ingestion pipeline (pipelines/ingest_salon_ai_leaderboard.py)
+supabase>=2.3.0,<3
+python-dotenv>=1.0.0,<2
+certifi>=2024.0.0

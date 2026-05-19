@@ -1,0 +1,363 @@
+/* Mobile full-viewport scroll sections (CertiK Skynet–style snap) */
+
+.rms-desktop-only {
+  display: block;
+}
+
+.rms-mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .rms-desktop-only {
+    display: none !important;
+  }
+
+  .rms-mobile-only {
+    display: block !important;
+  }
+
+  :root {
+    --rms-mobile-nav-offset: 88px;
+    --rms-mobile-panel-pad: 16px;
+  }
+
+  body.rms-viewport-mobile.route-landing .marketing-page-overview,
+  body.rms-viewport-mobile.route-analysis-salon .marketing-page-intel-brief,
+  body.rms-viewport-mobile.route-analysis-full .marketing-page-full-report {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: hidden;
+    min-height: 100dvh;
+  }
+
+  body.rms-viewport-mobile.route-landing .marketing-page-overview > .marketing-nav-shell,
+  body.rms-viewport-mobile.route-analysis-salon .marketing-page-intel-brief > .marketing-nav-shell {
+    position: sticky;
+    top: 8px;
+    z-index: 120;
+    margin: 8px var(--rms-mobile-panel-pad) 0;
+    border-radius: 18px;
+    flex-shrink: 0;
+  }
+
+  body.rms-viewport-mobile.route-analysis-full .marketing-page-intel > .marketing-nav-shell {
+    display: none !important;
+  }
+
+  body.rms-viewport-mobile.route-analysis-salon .marketing-page-intel-brief > .marketing-footer,
+  body.rms-viewport-mobile.route-analysis-full .marketing-page-full-report > .marketing-footer {
+    display: none !important;
+  }
+
+  body.rms-viewport-mobile.route-analysis-salon .intel-brief-back {
+    display: none !important;
+  }
+
+  .rms-mobile-scroll {
+    height: calc(100dvh - var(--rms-mobile-nav-offset, 88px));
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  .rms-mobile-panel {
+    min-height: calc(100dvh - var(--rms-mobile-nav-offset, 88px));
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    box-sizing: border-box;
+    padding: 12px var(--rms-mobile-panel-pad) 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .rms-mobile-panel-inner {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+  }
+
+  .rms-mobile-panel--lead {
+    justify-content: flex-start;
+    padding-top: 8px;
+  }
+
+  .rms-mobile-panel--lead .marketing-hero-section--brief {
+    margin: 0;
+    padding: clamp(16px, 4vw, 24px) !important;
+    border-radius: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rms-mobile-panel-lead-kicker {
+    margin: 0 0 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    text-align: center;
+  }
+
+  .rms-mobile-panel-lead-title {
+    margin: 0 0 8px;
+    font-family: "DM Serif Display", Georgia, serif;
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    line-height: 1.2;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.97);
+  }
+
+  .rms-mobile-panel-lead-sub {
+    margin: 0 0 16px;
+    font-size: 0.88rem;
+    line-height: 1.45;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .rms-mobile-panel--lead .marketing-hero-brief-form {
+    margin-top: auto;
+  }
+
+  .rms-mobile-panel--lead .marketing-hero-brief-consent-note {
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .rms-mobile-panel--story .marketing-hero-headline {
+    margin-bottom: 16px;
+  }
+
+  .rms-mobile-panel--story .marketing-trust-list--brief {
+    text-align: left;
+  }
+
+  .rms-mobile-panel--footer {
+    justify-content: flex-end;
+    min-height: auto;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+
+  .rms-mobile-panel--footer .marketing-footer {
+    margin: 0;
+    width: 100%;
+  }
+
+  .rms-mobile-scroll-cue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: auto;
+    padding-top: 16px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    font-family: inherit;
+  }
+
+  .rms-mobile-scroll-cue::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    animation: rmsScrollCueBounce 1.6s ease-in-out infinite;
+  }
+
+  @keyframes rmsScrollCueBounce {
+    0%,
+    100% {
+      transform: rotate(45deg) translateY(0);
+    }
+    50% {
+      transform: rotate(45deg) translateY(5px);
+    }
+  }
+
+  .rms-mobile-dots {
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 130;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 6px;
+    border-radius: 999px;
+    background: rgba(12, 18, 32, 0.55);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  html[data-theme="light"] .rms-mobile-dots {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .rms-mobile-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.28);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  html[data-theme="light"] .rms-mobile-dot {
+    background: rgba(15, 23, 42, 0.22);
+  }
+
+  .rms-mobile-dot.is-active {
+    background: #c9a227;
+    transform: scale(1.25);
+  }
+
+  .rms-mobile-panel-label {
+    margin: 0 0 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rms-mkt-muted, #6b7280);
+  }
+
+  /* Brief report snap panels */
+  .intel-brief-report--snap {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .intel-brief-report--snap .rms-mobile-scroll {
+    height: calc(100dvh - var(--rms-mobile-nav-offset, 88px) - 8px);
+  }
+
+  .intel-brief-report--snap .rms-mobile-panel {
+    justify-content: flex-start;
+    padding-top: 8px;
+  }
+
+  .intel-brief-report--snap .intel-brief-header {
+    margin-bottom: 8px;
+  }
+
+  .intel-brief-report--snap .intel-brief-section-label {
+    margin: 0 0 10px;
+    font-size: 0.72rem;
+  }
+
+  .intel-brief-report--snap .intel-brief-overall,
+  .intel-brief-report--snap .intel-brief-scorecard,
+  .intel-brief-report--snap .intel-brief-growth,
+  .intel-brief-report--snap .intel-brief-competitors,
+  .intel-brief-report--snap .intel-brief-cta {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .intel-brief-report--snap .intel-brief-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    flex: 1;
+    align-content: start;
+  }
+
+  .intel-brief-report--snap .rms-mobile-panel--brief-back {
+    min-height: auto;
+    padding: 4px var(--rms-mobile-panel-pad) 8px;
+    justify-content: flex-start;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+
+  .intel-brief-report--snap .intel-brief-back-inline {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .rms-mobile-scroll {
+    height: auto;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .rms-mobile-panel {
+    min-height: auto;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    padding: 0;
+    display: block;
+  }
+
+  .rms-mobile-panel-inner {
+    display: block;
+  }
+
+  .rms-mobile-scroll-cue,
+  .rms-mobile-dots {
+    display: none !important;
+  }
+
+  .intel-brief-report--snap .rms-mobile-scroll {
+    display: block;
+  }
+
+  .intel-brief-report--snap .rms-mobile-panel + .rms-mobile-panel {
+    margin-top: 1.25rem;
+  }
+
+  .intel-brief-report--snap .intel-brief-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin-bottom: 1.25rem;
+    flex: none;
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .intel-brief-report--snap .intel-brief-metrics {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rms-mobile-scroll {
+    scroll-behavior: auto;
+  }
+
+  .rms-mobile-scroll-cue::after {
+    animation: none;
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "headers": [
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; base-uri 'self'; form-action 'self' https:; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss:; media-src 'self' https: blob:; frame-src 'self' https:; worker-src 'self' blob:"
+        },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/sms/send-batch",
+      "schedule": "*/5 * * * *"
+    }
+  ],
+  "redirects": [
+    {
+  "source": "/services",
+  "destination": "/index.html"
+},
+    {
+      "source": "/talk-to-assistant",
+      "destination": "/button.html",
+      "permanent": false
+    },
+    {
+      "source": "/s/:slug",
+      "destination": "/stores/:slug",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/twilio/sms-link-click",
+      "destination": "/api/twilio-sms-link-click"
+    },
+    {
+      "source": "/api/sms-funnel/beacon",
+      "destination": "/api/sms-funnel-beacon"
+    },
+    {
+      "source": "/api/sms-funnel/events",
+      "destination": "/api/sms-funnel-events"
+    },
+    {
+      "source": "/api/admin/stores/:slug/services",
+      "destination": "/api/admin-store-services?slug=:slug"
+    },
+    {
+      "source": "/api/intel/salons/:slug",
+      "destination": "/api/intel-restaurants?slug=:slug"
+    },
+    {
+      "source": "/api/intel/salons",
+      "destination": "/api/intel-restaurants"
+    },
+    {
+      "source": "/api/leaderboard/salons",
+      "destination": "/api/leaderboard-restaurants"
+    },
+    {
+      "source": "/api/leaderboard/request",
+      "destination": "/api/leaderboard-listing-request"
+    },
+    {
+      "source": "/api/leaderboard/refresh-salon",
+      "destination": "/api/leaderboard-refresh-restaurant"
+    },
+    {
+      "source": "/api/tools/store-map-report",
+      "destination": "/api/store-map-report"
+    },
+    {
+      "source": "/api/stores/:slug/bootstrap",
+      "destination": "/api/store-ops?slug=:slug&op=bootstrap"
+    },
+    {
+      "source": "/api/stores/:slug/recognize",
+      "destination": "/api/store-ops?slug=:slug&op=recognize"
+    },
+    {
+      "source": "/api/stores/:slug/reviews",
+      "destination": "/api/store-ops?slug=:slug&op=reviews"
+    },
+    {
+      "source": "/api/stores/:slug/private-feedback",
+      "destination": "/api/store-private-feedback?slug=:slug"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/assets/marketing/rankmysalon-logo.png"
+    },
+    {
+      "source": "/price",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/about-us",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/sms-consent",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/talk-to-assistant",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/tavus-demo",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/analysis-reports",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/analysis-reports/:slug/full",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/analysis-reports/:slug",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/leaderboard",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/leaderboard/:slug",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/stores/:slug",
+      "destination": "/index.html"
+    }
+  ]
+}

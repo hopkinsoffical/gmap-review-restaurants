@@ -1,0 +1,16 @@
+# Meta (Facebook/Instagram) link preview — explicit allow (Share Debugger
+# may report 403 if a crawl looks blocked; see https://developers.facebook.com/docs/sharing/webmasters
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+# Default: full site. /api/og/* serves og images; a broad Allow: / above covers that too.
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /login
+
+Sitemap: https://rankmysalon.ai/sitemap.xml

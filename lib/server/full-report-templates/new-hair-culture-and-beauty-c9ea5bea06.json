@@ -1,0 +1,25 @@
+{
+  "slug": "new-hair-culture-and-beauty-c9ea5bea06",
+  "businessName": "New Hair Culture and Beauty",
+  "location": "Edison, NJ",
+  "category": "Hair salon & beauty",
+  "overallScore": 72,
+  "overallLabel": "Good",
+  "criticalIssues": 3,
+  "quickWins": 5,
+  "metrics": {
+    "rating": { "value": "4.5", "sub": "vs. avg 4.4 area", "tone": "success" },
+    "reviews": { "value": "186", "sub": "Top rival: 312", "tone": "warning" },
+    "rank": { "value": "#4", "sub": "Top 3 within reach", "tone": "warning" },
+    "photos": { "value": "42", "sub": "Leaders: 80+", "tone": "warning" }
+  },
+  "page1Alert": {
+    "title": "You're close to the top 3 — tighten booking and review velocity",
+    "body": "New Hair Culture and Beauty already has strong ratings. Adding consistent review requests and a frictionless booking path can push you into the visible Google local pack within 60 days."
+  },
+  "page3Insight": {
+    "title": "Rank #4 is beatable in 60 days",
+    "body": "Edison salons ahead of you rely on review cadence and fresh photos. Match their velocity with automated review SMS and weekly posts to capture high-intent Maps traffic near Division St."
+  },
+  "searchQuery": "hair salon near me — Edison, NJ"
+}

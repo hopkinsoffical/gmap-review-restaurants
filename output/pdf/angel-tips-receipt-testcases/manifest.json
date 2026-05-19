@@ -1,0 +1,338 @@
+[
+  {
+    "filename": "01-classic-regular-manicure-french.pdf",
+    "template": "classic",
+    "receipt_no": "AT-240401-1007",
+    "datetime": "2026-04-01 10:07 AM",
+    "staff": "Tina",
+    "customer": "LINA Z",
+    "payment": "VISA",
+    "items": [
+      {
+        "label": "REGULAR MANICURE",
+        "price": "18.00",
+        "quantity": 1,
+        "expected_service": "Regular Manicure"
+      },
+      {
+        "label": "FRENCH ADD-ON",
+        "price": "10.00",
+        "quantity": 1,
+        "expected_service": "French Add-On"
+      }
+    ],
+    "discount_label": "",
+    "discount_amount": "0.00",
+    "subtotal": "28.00",
+    "tax": "1.86",
+    "tip": "5.04",
+    "total": "34.90",
+    "note": "Walk-in guest"
+  },
+  {
+    "filename": "02-modern-color-gel-removal.pdf",
+    "template": "modern",
+    "receipt_no": "AT-240402-1134",
+    "datetime": "2026-04-02 11:34 AM",
+    "staff": "Mei",
+    "customer": "MELISSA W",
+    "payment": "MC",
+    "items": [
+      {
+        "label": "COLOR GEL MANI",
+        "price": "35.00",
+        "quantity": 1,
+        "expected_service": "Color Gel Manicure"
+      },
+      {
+        "label": "REMOVE GEL COLOR",
+        "price": "10.00",
+        "quantity": 1,
+        "expected_service": "Remove Gel Color"
+      }
+    ],
+    "discount_label": "",
+    "discount_amount": "0.00",
+    "subtotal": "45.00",
+    "tax": "2.98",
+    "tip": "8.10",
+    "total": "56.08",
+    "note": "Requested short almond shape"
+  },
+  {
+    "filename": "03-thermal-sns-design-extra-length.pdf",
+    "template": "thermal",
+    "receipt_no": "AT-240403-1416",
+    "datetime": "2026-04-03 02:16 PM",
+    "staff": "Emma",
+    "customer": "JULIA C",
+    "payment": "AMEX",
+    "items": [
+      {
+        "label": "SNS COLOR POWDER",
+        "price": "45.00",
+        "quantity": 1,
+        "expected_service": "SNS Color Powder"
+      },
+      {
+        "label": "NAIL DESIGN - 2 NAILS",
+        "price": "14.00",
+        "quantity": 1,
+        "expected_service": "Nail Design One Nail"
+      },
+      {
+        "label": "EXTRA LENGTH",
+        "price": "10.00",
+        "quantity": 1,
+        "expected_service": "Extra Length"
+      }
+    ],
+    "discount_label": "",
+    "discount_amount": "0.00",
+    "subtotal": "69.00",
+    "tax": "4.57",
+    "tip": "12.42",
+    "total": "85.99",
+    "note": "Chrome powder requested on ring fingers"
+  },
+  {
+    "filename": "04-classic-acrylic-set-tropical-french.pdf",
+    "template": "classic",
+    "receipt_no": "AT-240404-1548",
+    "datetime": "2026-04-04 03:48 PM",
+    "staff": "Karla",
+    "customer": "NORA P",
+    "payment": "DISCOVER",
+    "items": [
+      {
+        "label": "ACRYLIC SET W/GEL",
+        "price": "70.00",
+        "quantity": 1,
+        "expected_service": "Acrylic Set With Gel Color"
+      },
+      {
+        "label": "FRENCH STYLE TROPICAL",
+        "price": "15.00",
+        "quantity": 1,
+        "expected_service": "French Style Tropical Color"
+      },
+      {
+        "label": "EXTRA LENGTH",
+        "price": "10.00",
+        "quantity": 1,
+        "expected_service": "Extra Length"
+      }
+    ],
+    "discount_label": "",
+    "discount_amount": "0.00",
+    "subtotal": "95.00",
+    "tax": "6.29",
+    "tip": "17.10",
+    "total": "118.39",
+    "note": "Vacation set / bright coral tips"
+  },
+  {
+    "filename": "05-modern-regular-pedi-callus-gel.pdf",
+    "template": "modern",
+    "receipt_no": "AT-240405-1202",
+    "datetime": "2026-04-05 12:02 PM",
+    "staff": "Diana",
+    "customer": "SARA K",
+    "payment": "VISA",
+    "items": [
+      {
+        "label": "REGULAR PEDICURE",
+        "price": "30.00",
+        "quantity": 1,
+        "expected_service": "Regular Pedicure"
+      },
+      {
+        "label": "WITH COLOR GEL",
+        "price": "20.00",
+        "quantity": 1,
+        "expected_service": "Pedicure With Color Gel"
+      },
+      {
+        "label": "CALLUS TREATMENT",
+        "price": "12.00",
+        "quantity": 1,
+        "expected_service": "Callus Treatment"
+      }
+    ],
+    "discount_label": "",
+    "discount_amount": "0.00",
+    "subtotal": "62.00",
+    "tax": "4.11",
+    "tip": "11.16",
+    "total": "77.27",
+    "note": "Customer brought reference color photo"
+  },
+  {
+    "filename": "06-thermal-dream-pedi-foot-massage.pdf",
+    "template": "thermal",
+    "receipt_no": "AT-240406-1736",
+    "datetime": "2026-04-06 05:36 PM",
+    "staff": "Coco",
+    "customer": "IRENE H",
+    "payment": "CASH",
+    "items": [
+      {
+        "label": "DREAM SPA PEDICURE",
+        "price": "92.00",
+        "quantity": 1,
+        "expected_service": "Dream Spa Pedicure"
+      },
+      {
+        "label": "10 MIN FOOT MASSAGE",
+        "price": "14.00",
+        "quantity": 1,
+        "expected_service": "10-Minute Foot Massage"
+      },
+      {
+        "label": "FRENCH ADD-ON",
+        "price": "10.00",
+        "quantity": 1,
+        "expected_service": "Pedicure French Add-On"
+      }
+    ],
+    "discount_label": "",
+    "discount_amount": "0.00",
+    "subtotal": "116.00",
+    "tax": "7.69",
+    "tip": "20.88",
+    "total": "144.57",
+    "note": "Cash ticket / no change due"
+  },
+  {
+    "filename": "07-classic-waxing-multi-service.pdf",
+    "template": "classic",
+    "receipt_no": "AT-240407-1321",
+    "datetime": "2026-04-07 01:21 PM",
+    "staff": "Lily",
+    "customer": "AMY T",
+    "payment": "MC",
+    "items": [
+      {
+        "label": "EYEBROW WAX",
+        "price": "12.00",
+        "quantity": 1,
+        "expected_service": "Eyebrow Wax"
+      },
+      {
+        "label": "LIP WAX",
+        "price": "8.00",
+        "quantity": 1,
+        "expected_service": "Lip Wax"
+      },
+      {
+        "label": "CHIN WAX",
+        "price": "10.00",
+        "quantity": 1,
+        "expected_service": "Chin Wax"
+      },
+      {
+        "label": "UNDER ARMS WAX",
+        "price": "20.00",
+        "quantity": 1,
+        "expected_service": "Under Arms Wax"
+      }
+    ],
+    "discount_label": "",
+    "discount_amount": "0.00",
+    "subtotal": "50.00",
+    "tax": "3.31",
+    "tip": "9.00",
+    "total": "62.31",
+    "note": "Quick facial waxing appointment"
+  },
+  {
+    "filename": "08-modern-swedish-massage.pdf",
+    "template": "modern",
+    "receipt_no": "AT-240408-1630",
+    "datetime": "2026-04-08 04:30 PM",
+    "staff": "John",
+    "customer": "MICHELLE R",
+    "payment": "AMEX",
+    "items": [
+      {
+        "label": "SWEDISH MASSAGE 60M",
+        "price": "85.00",
+        "quantity": 1,
+        "expected_service": "Swedish Massage"
+      }
+    ],
+    "discount_label": "",
+    "discount_amount": "0.00",
+    "subtotal": "85.00",
+    "tax": "5.63",
+    "tip": "15.30",
+    "total": "105.93",
+    "note": "Quiet room requested"
+  },
+  {
+    "filename": "09-thermal-little-angels-bundle.pdf",
+    "template": "thermal",
+    "receipt_no": "AT-240409-1105",
+    "datetime": "2026-04-09 11:05 AM",
+    "staff": "Yoyo",
+    "customer": "MIA + MOM",
+    "payment": "VISA",
+    "items": [
+      {
+        "label": "LITTLE ANGELS MANI&PEDI",
+        "price": "35.00",
+        "quantity": 1,
+        "expected_service": "Little Angels Manicure & Pedicure"
+      },
+      {
+        "label": "KIDS POLISH TOES/NAILS",
+        "price": "25.00",
+        "quantity": 1,
+        "expected_service": "Little Angels Polish for Toes and Nails"
+      }
+    ],
+    "discount_label": "",
+    "discount_amount": "0.00",
+    "subtotal": "60.00",
+    "tax": "3.98",
+    "tip": "10.80",
+    "total": "74.78",
+    "note": "Child under 10 service"
+  },
+  {
+    "filename": "10-modern-spa-mani-pedi-brow-new-customer.pdf",
+    "template": "modern",
+    "receipt_no": "AT-240410-1822",
+    "datetime": "2026-04-10 06:22 PM",
+    "staff": "Christina",
+    "customer": "EVELYN S",
+    "payment": "VISA",
+    "items": [
+      {
+        "label": "ORGANIC SPA MANI",
+        "price": "36.00",
+        "quantity": 1,
+        "expected_service": "Organic Spa Manicure"
+      },
+      {
+        "label": "SEA BREEZE SPA PEDI",
+        "price": "52.00",
+        "quantity": 1,
+        "expected_service": "Sea Breeze Spa Pedicure"
+      },
+      {
+        "label": "EYEBROW WAX",
+        "price": "12.00",
+        "quantity": 1,
+        "expected_service": "Eyebrow Wax"
+      }
+    ],
+    "discount_label": "NEW CUSTOMER TEXT START",
+    "discount_amount": "10.00",
+    "subtotal": "100.00",
+    "tax": "5.96",
+    "tip": "16.20",
+    "total": "112.16",
+    "note": "New guest promo applied"
+  }
+]

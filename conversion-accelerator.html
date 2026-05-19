@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Conversion Accelerator | RankMySalon</title>
+
+  <link rel="stylesheet" href="/styles.css"/>
+
+  <style>
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at top, rgba(31,57,108,.14), transparent 28%),
+        linear-gradient(180deg,#040b16 0%, #08111d 100%);
+      color:#edf4ff;
+    }
+
+    .service-page{
+      width:100%;
+      max-width:1120px;
+      margin:24px auto 48px;
+    }
+
+    .service-page .marketing-nav-shell,
+    .service-page .marketing-footer{
+      width:100% !important;
+      max-width:100% !important;
+      margin-left:0 !important;
+      margin-right:0 !important;
+      box-sizing:border-box !important;
+    }
+
+    .service-page .marketing-footer-wrapper,
+    .service-page .marketing-footer-bottom{
+      width:100% !important;
+      max-width:100% !important;
+      box-sizing:border-box !important;
+    }
+
+    .service-page .marketing-nav-shell{
+      background:linear-gradient(180deg,#0b1322 0%, #101b2d 100%) !important;
+      border:1px solid rgba(117,149,208,.16) !important;
+      box-shadow:0 18px 50px rgba(0,0,0,.24) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:space-between !important;
+      flex-wrap:nowrap !important;
+      white-space:nowrap !important;
+      gap:12px !important;
+      overflow:visible !important;
+    }
+
+    .service-page .marketing-nav-main{
+      display:flex !important;
+      align-items:center !important;
+      justify-content:flex-start !important;
+      flex-wrap:nowrap !important;
+      white-space:nowrap !important;
+      flex:1 1 auto !important;
+      min-width:0 !important;
+      gap:20px !important;
+    }
+
+    .service-page .marketing-brand{
+      flex:0 0 auto !important;
+      white-space:nowrap !important;
+    }
+
+    .service-page .marketing-nav{
+      display:flex !important;
+      align-items:center !important;
+      justify-content:flex-start !important;
+      flex-wrap:nowrap !important;
+      white-space:nowrap !important;
+      flex:0 1 auto !important;
+      min-width:0 !important;
+      gap:13px !important;
+    }
+
+    .service-page .marketing-nav-link{
+      flex:0 0 auto !important;
+      white-space:nowrap !important;
+      color:#9daabe !important;
+    }
+
+    .service-page .marketing-auth-actions{
+      display:flex !important;
+      align-items:center !important;
+      justify-content:flex-end !important;
+      flex-wrap:nowrap !important;
+      white-space:nowrap !important;
+      flex:0 0 auto !important;
+      gap:12px !important;
+    }
+
+    .service-page .marketing-contact-nav-btn,
+    .service-page .marketing-auth-link,
+    .service-page .marketing-lang-toggle{
+      flex:0 0 auto !important;
+      white-space:nowrap !important;
+    }
+
+    .service-page .brand-part-rank{
+      color:#f5f8ff !important;
+      font-weight:700 !important;
+    }
+
+    .service-page .brand-part-mysalon{
+      background:linear-gradient(135deg,#fff0b6 0%,#e6c35f 42%,#cfa83d 100%) !important;
+      -webkit-background-clip:text !important;
+      background-clip:text !important;
+      color:transparent !important;
+      text-shadow:0 0 18px rgba(230,195,95,.18) !important;
+      font-weight:700 !important;
+    }
+
+    .service-page .marketing-nav-link:hover,
+    .service-page .marketing-nav-link.is-active{
+      color:#e6c35f !important;
+    }
+
+    .service-page .marketing-auth-link,
+    .service-page .marketing-lang-toggle{
+      background:rgba(255,255,255,.04) !important;
+      border:1px solid rgba(255,255,255,.12) !important;
+      color:#edf4ff !important;
+    }
+
+    .service-page .marketing-auth-link:hover,
+    .service-page .marketing-lang-toggle:hover{
+      background:rgba(255,255,255,.08) !important;
+      color:#ffffff !important;
+    }
+
+    .service-page .marketing-contact-nav-btn{
+      background:linear-gradient(135deg,#9f1118 0%, #d31b25 100%) !important;
+      color:#ffffff !important;
+      box-shadow:0 12px 34px rgba(211,27,37,.28) !important;
+    }
+
+    .service-page .marketing-footer{
+      background:linear-gradient(180deg,#0b1322 0%, #101b2d 100%) !important;
+      border:1px solid rgba(117,149,208,.16) !important;
+      color:#edf4ff !important;
+      box-shadow:0 18px 50px rgba(0,0,0,.24) !important;
+    }
+
+    .service-page .footer-logo-360,
+    .service-page .footer-logo-media,
+    .service-page .footer-company-name,
+    .service-page .footer-column-header{
+      color:#f5f8ff !important;
+    }
+
+    .service-page .footer-logo-ai{
+      color:#20e686 !important;
+    }
+
+    .service-page .footer-column-title{
+      color:#c7d2e6 !important;
+    }
+
+    .service-page .footer-address,
+    .service-page .footer-link,
+    .service-page .footer-copyright{
+      color:#8d9aad !important;
+    }
+
+    .service-page .footer-link:hover{
+      color:#e6c35f !important;
+    }
+
+    .service-page .marketing-footer-bottom{
+      border-top-color:rgba(117,149,208,.22) !important;
+    }
+
+    .service-content{
+      margin-top:18px;
+    }
+
+    .hero-section{
+      overflow:hidden;
+      border-radius:42px;
+      padding:72px;
+      background:
+        radial-gradient(circle at top right, rgba(86,122,204,.18), transparent 26%),
+        linear-gradient(180deg,#0b1322 0%, #101b2d 100%);
+      color:#f5f8ff;
+      border:1px solid rgba(117,149,208,.12);
+      box-shadow:0 24px 70px rgba(0,0,0,.34);
+    }
+
+    .hero-layout{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:44px;
+      align-items:center;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      padding:8px 14px;
+      border-radius:999px;
+      background:rgba(126,164,214,.12);
+      color:#8fb6e6;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+
+    .hero-title{
+      max-width:760px;
+      margin:24px 0 18px;
+      font-size:78px;
+      line-height:.88;
+      letter-spacing:-.08em;
+      font-weight:800;
+      color:#f5f8ff;
+    }
+
+    .hero-description{
+      max-width:720px;
+      margin:0;
+      font-size:18px;
+      line-height:1.9;
+      color:#9db0c8;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      margin-top:38px;
+    }
+
+    .primary-btn,
+    .secondary-btn,
+    .pricing-btn,
+    .cta-btn,
+    .outline-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:56px;
+      padding:0 30px;
+      border-radius:999px;
+      text-decoration:none;
+      font-size:15px;
+      font-weight:700;
+      transition:.2s ease;
+      cursor:pointer;
+    }
+
+    .primary-btn,
+    .pricing-btn,
+    .cta-btn{
+      background:linear-gradient(135deg,#e3c465 0%, #f2dfa1 100%);
+      color:#08111d;
+      border:0;
+      box-shadow:0 14px 28px rgba(227,196,101,.18);
+    }
+
+    .secondary-btn,
+    .outline-btn{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color:#edf4ff;
+    }
+
+    .primary-btn:hover,
+    .pricing-btn:hover,
+    .cta-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .hero-image-card{
+      padding:16px;
+      border-radius:34px;
+      background:linear-gradient(180deg,#111a2b 0%, #17243a 100%);
+      border:1px solid rgba(117,149,208,.1);
+      box-shadow:0 18px 50px rgba(0,0,0,.24);
+    }
+
+    .hero-image-card img{
+      display:block;
+      width:100%;
+      min-height:460px;
+      object-fit:cover;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at top left, rgba(104,140,219,.18), transparent 30%),
+        linear-gradient(135deg,#101a2c 0%, #17263f 100%);
+    }
+
+    .image-note{
+      margin:12px 6px 0;
+      font-size:12px;
+      line-height:1.5;
+      color:#8d9aad;
+    }
+
+    .content-section{
+      margin-top:22px;
+      padding:46px;
+      border-radius:32px;
+      background:linear-gradient(180deg,#111a2b 0%, #17243a 100%);
+      border:1px solid rgba(117,149,208,.1);
+      box-shadow:0 18px 50px rgba(0,0,0,.24);
+      backdrop-filter:blur(14px);
+    }
+
+    .section-label{
+      margin:0 0 10px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#e6c35f;
+    }
+
+    .section-title{
+      margin:0 0 18px;
+      font-size:46px;
+      line-height:.98;
+      letter-spacing:-.06em;
+      color:#f4f8ff;
+    }
+
+    .section-description{
+      max-width:800px;
+      margin:0;
+      font-size:17px;
+      line-height:1.9;
+      color:#9fb3cb;
+    }
+
+    .feature-grid,
+    .results-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:36px;
+    }
+
+    .feature-card,
+    .result-card{
+      padding:30px;
+      border-radius:26px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .feature-number{
+      margin-bottom:18px;
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.08em;
+      color:#e6c35f;
+    }
+
+    .feature-title,
+    .result-title{
+      margin:0 0 12px;
+      font-size:24px;
+      line-height:1.08;
+      letter-spacing:-.04em;
+      color:#f4f8ff;
+    }
+
+    .feature-description,
+    .result-description{
+      margin:0;
+      font-size:15px;
+      line-height:1.8;
+      color:#9fb3cb;
+    }
+
+    .pricing-section{
+      margin-top:22px;
+      padding:58px;
+      border-radius:38px;
+      background:
+        radial-gradient(circle at top right, rgba(230,195,95,.14), transparent 28%),
+        linear-gradient(180deg,#0b1322 0%, #101b2d 100%);
+      border:1px solid rgba(230,195,95,.16);
+      color:#f5f8ff;
+      box-shadow:0 24px 70px rgba(0,0,0,.34);
+    }
+
+    .pricing-card{
+      margin-top:34px;
+      padding:42px;
+      border-radius:30px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .pricing-price{
+      margin-bottom:12px;
+      font-size:90px;
+      line-height:.88;
+      letter-spacing:-.09em;
+      font-weight:800;
+      color:#f5f8ff;
+    }
+
+    .pricing-note{
+      margin-bottom:30px;
+      font-size:16px;
+      line-height:1.8;
+      color:#9fb3cb;
+    }
+
+    .pricing-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-bottom:34px;
+    }
+
+    .pricing-item{
+      font-size:14px;
+      line-height:1.7;
+      color:#9fb3cb;
+    }
+
+    .pricing-btn{
+      background:linear-gradient(135deg,#e3c465 0%, #f2dfa1 100%);
+      color:#08111d;
+    }
+
+    .cta-section{
+      margin-top:22px;
+      padding:60px;
+      border-radius:38px;
+      text-align:center;
+      background:
+        radial-gradient(circle at top right, rgba(230,195,95,.14), transparent 28%),
+        linear-gradient(180deg,#0b1322 0%, #101b2d 100%);
+      border:1px solid rgba(230,195,95,.16);
+      color:#f5f8ff;
+      box-shadow:0 24px 70px rgba(0,0,0,.34);
+    }
+
+    .cta-title{
+      margin:0 0 16px;
+      font-size:62px;
+      line-height:.9;
+      letter-spacing:-.08em;
+      color:#f5f8ff;
+    }
+
+    .cta-description{
+      max-width:760px;
+      margin:0 auto;
+      font-size:17px;
+      line-height:1.9;
+      color:#9db0c8;
+    }
+
+    .cta-actions{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      margin-top:36px;
+    }
+
+    @media(max-width:1100px){
+
+      .hero-layout,
+      .feature-grid,
+      .results-grid,
+      .pricing-list{
+        grid-template-columns:1fr;
+      }
+
+      .hero-title{
+        font-size:58px;
+      }
+    }
+
+    @media(max-width:768px){
+
+      .service-page{
+        width:auto;
+        max-width:none;
+        margin:16px;
+      }
+
+      .service-page .marketing-nav-shell,
+      .service-page .marketing-nav-main,
+      .service-page .marketing-nav,
+      .service-page .marketing-auth-actions{
+        flex-wrap:wrap !important;
+        white-space:normal !important;
+      }
+
+      .hero-section,
+      .content-section,
+      .pricing-section,
+      .cta-section{
+        padding:30px;
+      }
+
+      .hero-title{
+        font-size:42px;
+      }
+
+      .section-title{
+        font-size:36px;
+      }
+
+      .pricing-price{
+        font-size:58px;
+      }
+
+      .cta-title{
+        font-size:42px;
+      }
+
+      .hero-actions,
+      .cta-actions{
+        flex-direction:column;
+      }
+
+      .hero-image-card img{
+        min-height:280px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="/theme.css">
+
+  <style>
+    /* =========================================================
+       Page final override: homepage-style mobile header + mobile layout
+       Keep this after theme.css so it wins the cascade.
+    ========================================================= */
+
+    @media (max-width: 768px) {
+      html,
+      body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box !important;
+      }
+
+      .service-page {
+        width: calc(100vw - 28px) !important;
+        max-width: calc(100vw - 28px) !important;
+        margin: 16px auto 42px !important;
+        overflow-x: hidden !important;
+      }
+
+      .service-page .marketing-nav-shell {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        margin: 0 auto 18px !important;
+        padding: 24px 18px !important;
+        border-radius: 24px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 18px !important;
+        white-space: normal !important;
+        overflow: visible !important;
+      }
+
+      .service-page .marketing-nav-main {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 18px !important;
+        white-space: normal !important;
+        overflow: visible !important;
+      }
+
+      .service-page .marketing-brand {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+        white-space: nowrap !important;
+      }
+
+      .service-page .marketing-nav {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 14px 20px !important;
+        white-space: normal !important;
+        overflow: visible !important;
+      }
+
+      .service-page .marketing-nav-link {
+        flex: 0 0 auto !important;
+        width: auto !important;
+        max-width: 100% !important;
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+        font-weight: 700 !important;
+        white-space: nowrap !important;
+      }
+
+      .service-page .marketing-auth-actions {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        display: grid !important;
+        grid-template-columns: 54px minmax(0, 1fr) 124px !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+        justify-content: stretch !important;
+        white-space: normal !important;
+        overflow: visible !important;
+      }
+
+      .service-page .marketing-auth-actions .theme-toggle {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 54px !important;
+        min-width: 54px !important;
+        max-width: 54px !important;
+        height: 54px !important;
+        min-height: 54px !important;
+        padding: 0 !important;
+        border-radius: 18px !important;
+      }
+
+      .service-page .marketing-auth-actions #marketingContactOpen {
+        grid-column: 2 / 4 !important;
+        grid-row: 1 !important;
+      }
+
+      .service-page .marketing-auth-actions > a.marketing-auth-link {
+        grid-column: 1 / 3 !important;
+        grid-row: 2 !important;
+      }
+
+      .service-page .marketing-auth-actions .marketing-lang-wrap {
+        grid-column: 3 !important;
+        grid-row: 2 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .service-page .marketing-auth-actions a,
+      .service-page .marketing-auth-actions button,
+      .service-page .marketing-lang-toggle {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        height: 54px !important;
+        min-height: 54px !important;
+        padding: 0 14px !important;
+        border-radius: 18px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .service-page .marketing-lang-menu {
+        left: auto !important;
+        right: 0 !important;
+        min-width: 160px !important;
+        z-index: 1000 !important;
+      }
+
+      .service-content {
+        margin-top: 18px !important;
+      }
+
+      .hero-section,
+      .content-section,
+      .pricing-section,
+      .cta-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 30px 22px !important;
+        border-radius: 28px !important;
+        overflow: hidden !important;
+      }
+
+      .hero-layout,
+      .feature-grid,
+      .results-grid,
+      .pricing-list {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+      }
+
+      .hero-title {
+        max-width: 100% !important;
+        font-size: clamp(38px, 11vw, 46px) !important;
+        line-height: 1.02 !important;
+        letter-spacing: -0.055em !important;
+        overflow-wrap: normal !important;
+      }
+
+      .hero-description,
+      .section-description,
+      .feature-description,
+      .result-description,
+      .pricing-note,
+      .cta-description {
+        max-width: 100% !important;
+        font-size: 16px !important;
+        line-height: 1.65 !important;
+      }
+
+      .section-title {
+        max-width: 100% !important;
+        font-size: clamp(32px, 9vw, 38px) !important;
+        line-height: 1.08 !important;
+        letter-spacing: -0.045em !important;
+      }
+
+      .feature-card,
+      .result-card,
+      .pricing-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 24px !important;
+        border-radius: 24px !important;
+      }
+
+      .feature-title,
+      .result-title {
+        font-size: 23px !important;
+        line-height: 1.12 !important;
+      }
+
+      .pricing-price {
+        max-width: 100% !important;
+        font-size: clamp(52px, 16vw, 64px) !important;
+        line-height: .95 !important;
+        letter-spacing: -0.07em !important;
+        overflow-wrap: anywhere !important;
+      }
+
+      .pricing-item {
+        font-size: 15px !important;
+        line-height: 1.55 !important;
+      }
+
+      .cta-title {
+        max-width: 100% !important;
+        font-size: clamp(36px, 10vw, 44px) !important;
+        line-height: 1.02 !important;
+        letter-spacing: -0.055em !important;
+      }
+
+      .hero-actions,
+      .cta-actions {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+
+      .primary-btn,
+      .secondary-btn,
+      .pricing-btn,
+      .cta-btn,
+      .outline-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        height: 54px !important;
+        padding: 0 18px !important;
+        font-size: 15px !important;
+        text-align: center !important;
+      }
+
+      .hero-image-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 12px !important;
+        border-radius: 26px !important;
+      }
+
+      .hero-image-card img {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 260px !important;
+        height: auto !important;
+        border-radius: 20px !important;
+      }
+
+      .image-note {
+        font-size: 12px !important;
+        line-height: 1.45 !important;
+      }
+
+      .marketing-footer {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .service-page {
+        width: calc(100vw - 22px) !important;
+        max-width: calc(100vw - 22px) !important;
+      }
+
+      .service-page .marketing-nav-shell {
+        padding: 22px 16px !important;
+      }
+
+      .service-page .marketing-nav-link {
+        font-size: 15px !important;
+      }
+
+      .service-page .marketing-auth-actions {
+        grid-template-columns: 50px minmax(0, 1fr) 112px !important;
+        gap: 10px !important;
+      }
+
+      .service-page .marketing-auth-actions .theme-toggle {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+      }
+
+      .service-page .marketing-auth-actions a,
+      .service-page .marketing-auth-actions button,
+      .service-page .marketing-lang-toggle {
+        font-size: 15px !important;
+        padding: 0 10px !important;
+      }
+
+      .hero-section,
+      .content-section,
+      .pricing-section,
+      .cta-section {
+        padding: 28px 20px !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="service-page">
+
+<header class="marketing-nav-shell">
+
+  <div class="marketing-nav-main">
+
+    <a class="marketing-brand" href="/">
+      <span class="brand-part brand-part-rank">Rank</span>
+      <span class="brand-part brand-part-mysalon">MySalon</span>
+    </a>
+
+    <nav class="marketing-nav" aria-label="Primary">
+
+      <a class="marketing-nav-link" href="/">
+        Overview
+      </a>
+
+      <a class="marketing-nav-link" href="/leaderboard">
+        Leaderboard
+      </a>
+
+      <a class="marketing-nav-link" href="/analysis-reports">
+        Local Salon Ranking
+      </a>
+
+      <a class="marketing-nav-link is-active" href="/services.html">
+        Services
+      </a>
+
+      <a class="marketing-nav-link" href="/about-us">
+        About Us
+      </a>
+
+    </nav>
+
+  </div>
+
+  <div class="marketing-auth-actions">
+
+    <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme">
+      <span data-theme-icon>☾</span>
+    </button>
+
+    <button
+      type="button"
+      id="marketingContactOpen"
+      class="marketing-contact-nav-btn"
+    >
+      Contact Us
+    </button>
+
+    <a
+      class="ghost landing-link marketing-auth-link"
+      href="/login"
+    >
+      Sign in
+    </a>
+
+    <div class="marketing-lang-wrap" data-marketing-lang-wrap>
+
+      <button
+        type="button"
+        class="ghost landing-link marketing-auth-link marketing-lang-toggle"
+        data-marketing-lang-btn
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-label="Language · English"
+        id="marketingLangBtn"
+      >
+        <span class="marketing-lang-btn-label">English</span>
+        <span class="marketing-lang-btn-caret" aria-hidden="true">▾</span>
+      </button>
+
+      <ul
+        class="marketing-lang-menu hidden"
+        data-marketing-lang-menu
+        role="menu"
+        aria-labelledby="marketingLangBtn"
+        aria-hidden="true"
+      ></ul>
+
+    </div>
+
+  </div>
+
+</header>
+
+<main class="service-content">
+
+<section class="hero-section">
+
+  <div class="hero-layout">
+
+    <div>
+
+      <div class="hero-badge">
+        Tier 1 • Conversion Accelerator
+      </div>
+
+      <h1 class="hero-title">
+        Convert More Salon Visitors Into Paying Clients.
+      </h1>
+
+      <p class="hero-description">
+        Conversion Accelerator helps salons increase booking conversion,
+        improve customer trust,
+        and turn more website traffic into real appointments.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="#pricing" class="primary-btn">
+          Get Started
+        </a>
+
+        <a href="#features" class="secondary-btn">
+          See Features
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="hero-image-card">
+
+      <img
+        src="./images/conversion-accelerator.png"
+        alt="Conversion Accelerator preview"
+      />
+
+      <p class="image-note">
+        Replace this image by adding your image at:
+        /images/conversion-accelerator.png
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="content-section">
+
+  <p class="section-label">
+    The Problem
+  </p>
+
+  <h2 class="section-title">
+    Most salon websites lose customers before they ever book.
+  </h2>
+
+  <p class="section-description">
+    Even when salons get traffic,
+    many visitors never become appointments.
+    Conversion Accelerator improves trust,
+    user flow,
+    and conversion systems to help turn visitors into paying clients.
+  </p>
+
+</section>
+
+<section class="content-section" id="features">
+
+  <p class="section-label">
+    Features
+  </p>
+
+  <h2 class="section-title">
+    Built to maximize salon conversion rates.
+  </h2>
+
+  <div class="feature-grid">
+
+    <div class="feature-card">
+      <div class="feature-number">01</div>
+      <h3 class="feature-title">
+        Landing Page Optimization
+      </h3>
+
+      <p class="feature-description">
+        Improve customer trust and increase booking intent.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-number">02</div>
+      <h3 class="feature-title">
+        Conversion Flow Improvements
+      </h3>
+
+      <p class="feature-description">
+        Reduce friction between discovery and booking.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-number">03</div>
+      <h3 class="feature-title">
+        Trust & Authority Positioning
+      </h3>
+
+      <p class="feature-description">
+        Position your salon professionally online.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="content-section">
+
+  <p class="section-label">
+    Results
+  </p>
+
+  <h2 class="section-title">
+    Higher conversion. More bookings. Better ROI.
+  </h2>
+
+  <div class="results-grid">
+
+    <div class="result-card">
+
+      <h3 class="result-title">
+        Better Booking Rates
+      </h3>
+
+      <p class="result-description">
+        Convert more website visitors into appointments.
+      </p>
+
+    </div>
+
+    <div class="result-card">
+
+      <h3 class="result-title">
+        Improved Customer Trust
+      </h3>
+
+      <p class="result-description">
+        Make your salon feel more premium and credible online.
+      </p>
+
+    </div>
+
+    <div class="result-card">
+
+      <h3 class="result-title">
+        Increased Marketing ROI
+      </h3>
+
+      <p class="result-description">
+        Get more value from existing traffic and ad campaigns.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="pricing-section" id="pricing">
+
+  <p class="section-label">
+    Pricing
+  </p>
+
+  <h2 class="section-title">
+    Conversion Accelerator
+  </h2>
+
+  <div class="pricing-card">
+
+    <div class="pricing-price">
+      $999
+    </div>
+
+    <div class="pricing-note">
+      One-time conversion optimization package for salons.
+    </div>
+
+    <div class="pricing-list">
+
+      <div class="pricing-item">
+        ✔ Conversion optimization
+      </div>
+
+      <div class="pricing-item">
+        ✔ Landing page improvements
+      </div>
+
+      <div class="pricing-item">
+        ✔ Trust positioning
+      </div>
+
+      <div class="pricing-item">
+        ✔ User flow optimization
+      </div>
+
+      <div class="pricing-item">
+        ✔ Salon conversion systems
+      </div>
+
+      <div class="pricing-item">
+        ✔ One-time implementation
+      </div>
+
+    </div>
+
+    <a
+      href="https://y6y1hf-45.myshopify.com/cart/45173497167951:1?checkout"
+      class="pricing-btn"
+    >
+      Get Started
+    </a>
+
+  </div>
+
+</section>
+
+<section class="cta-section">
+
+  <h2 class="cta-title">
+    Your salon traffic should create revenue.
+  </h2>
+
+  <p class="cta-description">
+    Conversion Accelerator helps salons transform visitors
+    into booked appointments through better conversion systems.
+  </p>
+
+  <div class="cta-actions">
+
+    <a
+      href="https://y6y1hf-45.myshopify.com/cart/45173497167951:1?checkout"
+      class="cta-btn"
+    >
+      Start Now
+    </a>
+
+    <a
+      href="tel:8776003082"
+      class="outline-btn"
+    >
+      Call 877-600-3082
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer class="marketing-footer">
+
+  <div class="marketing-footer-wrapper">
+
+    <div class="marketing-footer-left">
+
+      <a href="/" class="marketing-footer-logo-link">
+        <span class="footer-logo-part footer-logo-360">360</span>
+        <span class="footer-logo-part footer-logo-ai">AI</span>
+        <span class="footer-logo-part footer-logo-media">Media</span>
+      </a>
+
+      <div class="marketing-footer-info">
+        <p class="footer-company-name">RankMySalon</p>
+        <p class="footer-address">Salon Platform</p>
+        <p class="footer-address">AI Growth Automation</p>
+      </div>
+
+    </div>
+
+    <div class="marketing-footer-right">
+
+      <div class="marketing-footer-column">
+
+        <h3 class="footer-column-title">
+          PRODUCT
+        </h3>
+
+        <ul class="footer-column-list">
+
+          <li class="footer-column-header">
+            <a
+              href="https://www.rankmysalon.ai/stores/angel-tips-garwood"
+              class="footer-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Review Tools
+            </a>
+          </li>
+
+          <li><a href="/price" class="footer-link">Reviews Manager</a></li>
+          <li><a href="/price" class="footer-link">Response Manager</a></li>
+          <li><a href="/price" class="footer-link">Analytics</a></li>
+          <li><a href="/price" class="footer-link">Reports</a></li>
+
+        </ul>
+
+      </div>
+
+      <div class="marketing-footer-column">
+
+        <h3 class="footer-column-title">
+          FEATURES
+        </h3>
+
+        <ul class="footer-column-list">
+
+          <li class="footer-column-header">
+            Automation
+          </li>
+
+          <li><a href="/button.html" class="footer-link">AI Voice Agent</a></li>
+          <li><a href="/price" class="footer-link">Smart Follow-up</a></li>
+          <li><a href="/price" class="footer-link">Client Acquisition</a></li>
+          <li><a href="/price" class="footer-link">Booking System</a></li>
+
+        </ul>
+
+      </div>
+
+      <div class="marketing-footer-column">
+
+        <h3 class="footer-column-title">
+          COMPANY
+        </h3>
+
+        <ul class="footer-column-list">
+
+          <li><a href="/about-us" class="footer-link">About Us</a></li>
+          <li><a href="/sms-consent" class="footer-link">SMS Consent</a></li>
+          <li><a href="/terms" class="footer-link">Terms of Service</a></li>
+          <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="marketing-footer-bottom">
+
+    <p class="footer-copyright">
+      © 2026 RankMySalon. Salon-ready AI for reviews, follow-up, and voice automation.
+    </p>
+
+  </div>
+
+</footer>
+
+</div>
+
+<script src="/theme.js"></script>
+</body>
+</html>

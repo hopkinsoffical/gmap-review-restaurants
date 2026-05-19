@@ -1,0 +1,1110 @@
+<!-- ========================================
+ Standalone Ryan conversation page
+ ======================================== -->
+<style>
+:root {
+    color-scheme: dark;
+    --vw-bg: #07111f;
+    --vw-bg-soft: rgba(12, 23, 42, 0.86);
+    --vw-surface: rgba(10, 19, 34, 0.78);
+    --vw-surface-strong: rgba(13, 27, 46, 0.96);
+    --vw-border: rgba(148, 163, 184, 0.18);
+    --vw-text: #f8fafc;
+    --vw-text-soft: rgba(226, 232, 240, 0.76);
+    --vw-accent: #7c3aed;
+    --vw-accent-2: #38bdf8;
+    --vw-success: #22c55e;
+    --vw-danger: #fb7185;
+    --vw-shadow: 0 30px 80px rgba(2, 8, 23, 0.42);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.14), transparent 28%),
+        linear-gradient(180deg, #08111f 0%, #050b15 100%);
+    color: var(--vw-text);
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#voice-widget-host {
+    min-height: 100vh;
+    padding: 18px;
+}
+
+#voice-widget-panel {
+    width: min(1480px, 100%);
+    min-height: calc(100vh - 36px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(360px, 460px) minmax(520px, 1fr);
+    background: linear-gradient(180deg, rgba(10, 18, 33, 0.92), rgba(6, 12, 24, 0.96));
+    border: 1px solid var(--vw-border);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: var(--vw-shadow);
+    backdrop-filter: blur(20px);
+}
+
+.vw-chat-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.84), rgba(7, 13, 23, 0.92));
+    border-right: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.vw-topbar {
+    padding: 28px 28px 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.vw-kicker {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #c4b5fd;
+}
+
+.vw-topbar h1 {
+    margin: 0;
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+}
+
+.vw-intro {
+    margin: 14px 0 0;
+    max-width: 38ch;
+    color: var(--vw-text-soft);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.vw-close {
+    appearance: none;
+    border: 1px solid rgba(248, 250, 252, 0.16);
+    background: rgba(148, 163, 184, 0.08);
+    color: var(--vw-text);
+    border-radius: 999px;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.vw-close:hover {
+    background: rgba(148, 163, 184, 0.16);
+    border-color: rgba(248, 250, 252, 0.28);
+    transform: translateY(-1px);
+}
+
+.vw-status-row {
+    padding: 0 28px 18px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.vw-status-pill,
+.vw-idle-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background: rgba(15, 23, 42, 0.56);
+    color: var(--vw-text-soft);
+    font-size: 13px;
+}
+
+.vw-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.6);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+}
+
+.vw-status-dot.connected {
+    background: var(--vw-success);
+    animation: vw-pulse 1.8s infinite;
+}
+
+.vw-status-dot.connecting {
+    background: #fbbf24;
+}
+
+.vw-status-dot.warning {
+    background: #fb7185;
+}
+
+@keyframes vw-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.36);
+    }
+    100% {
+        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+    }
+}
+
+.vw-actions {
+    padding: 0 28px 22px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.vw-btn {
+    appearance: none;
+    border: 1px solid transparent;
+    border-radius: 18px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.vw-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.vw-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.vw-btn-primary {
+    background: linear-gradient(135deg, var(--vw-accent), #2563eb);
+    color: #fff;
+    box-shadow: 0 16px 34px rgba(92, 46, 219, 0.32);
+}
+
+.vw-btn-secondary {
+    background: rgba(148, 163, 184, 0.08);
+    color: var(--vw-text);
+    border-color: rgba(148, 163, 184, 0.18);
+}
+
+.vw-body {
+    flex: 1;
+    min-height: 360px;
+    padding: 0 28px 28px;
+    overflow-y: auto;
+}
+
+.vw-body-inner {
+    min-height: 100%;
+    padding: 20px;
+    border-radius: 26px;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(9, 15, 27, 0.9));
+    border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.vw-empty {
+    display: grid;
+    place-items: center;
+    min-height: 100%;
+    padding: 32px 18px;
+    text-align: center;
+}
+
+.vw-empty-card {
+    max-width: 360px;
+}
+
+.vw-empty-badge {
+    display: inline-flex;
+    margin-bottom: 18px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(124, 58, 237, 0.16);
+    border: 1px solid rgba(196, 181, 253, 0.18);
+    color: #ddd6fe;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.vw-empty h2 {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+}
+
+.vw-empty p {
+    margin: 14px 0 0;
+    color: var(--vw-text-soft);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.vw-transcript-turn {
+    margin-bottom: 14px;
+    padding: 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    background: rgba(15, 23, 42, 0.74);
+    box-shadow: 0 10px 24px rgba(2, 8, 23, 0.22);
+    animation: vw-fade-in 0.28s ease;
+}
+
+@keyframes vw-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.vw-transcript-item {
+    margin-bottom: 10px;
+    padding: 14px 15px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.vw-transcript-item:last-child {
+    margin-bottom: 0;
+}
+
+.vw-transcript-item.user {
+    background: rgba(226, 232, 240, 0.1);
+    color: #e2e8f0;
+}
+
+.vw-transcript-item.bot {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.86), rgba(59, 130, 246, 0.82));
+    color: #fff;
+}
+
+.vw-transcript-label {
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.78;
+}
+
+.vw-footer {
+    padding: 18px 28px 24px;
+    color: rgba(226, 232, 240, 0.58);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.vw-stage-shell {
+    min-height: 100%;
+    padding: 28px 30px;
+    background:
+        radial-gradient(circle at top, rgba(124, 58, 237, 0.18), transparent 35%),
+        linear-gradient(180deg, rgba(8, 14, 27, 0.96), rgba(4, 8, 16, 0.96));
+}
+
+.vw-stage-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.vw-stage-badge {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(56, 189, 248, 0.16);
+    background: rgba(14, 165, 233, 0.08);
+    color: #bae6fd;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.vw-video-wrap {
+    position: relative;
+    flex: 1;
+    min-height: 620px;
+    overflow: hidden;
+    border-radius: 28px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background:
+        radial-gradient(circle at top, rgba(124, 58, 237, 0.16), transparent 32%),
+        linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.vw-stage-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.vw-video-fallback,
+.vw-video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 28px;
+}
+
+.vw-video-fallback {
+    background:
+        linear-gradient(180deg, rgba(8, 15, 29, 0.1), rgba(8, 15, 29, 0.72)),
+        radial-gradient(circle at top left, rgba(14, 165, 233, 0.2), transparent 30%),
+        linear-gradient(135deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.98));
+}
+
+.vw-video-fallback.is-hidden {
+    display: none;
+}
+
+.vw-video-overlay {
+    align-items: flex-start;
+    justify-content: flex-end;
+    background: linear-gradient(180deg, rgba(2, 6, 23, 0.1), rgba(2, 6, 23, 0.22));
+    pointer-events: none;
+}
+
+.vw-video-overlay-card {
+    max-width: 320px;
+    padding: 18px 20px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(7, 11, 21, 0.6);
+    backdrop-filter: blur(14px);
+}
+
+.vw-video-overlay-card strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+}
+
+.vw-video-overlay-card p {
+    margin: 0;
+    color: rgba(226, 232, 240, 0.76);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.vw-stage-copy h2 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: -0.03em;
+}
+
+.vw-stage-copy p {
+    margin: 12px 0 0;
+    max-width: 56ch;
+    color: var(--vw-text-soft);
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.vw-stage-copy ul {
+    margin: 16px 0 0;
+    padding-left: 18px;
+    color: rgba(226, 232, 240, 0.82);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+@media (max-width: 1080px) {
+    #voice-widget-host {
+        padding: 16px;
+    }
+
+    #voice-widget-panel {
+        min-height: calc(100vh - 32px);
+        grid-template-columns: 1fr;
+    }
+
+    .vw-chat-shell {
+        border-right: 0;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .vw-stage-shell {
+        padding-top: 12px;
+    }
+
+    .vw-video-wrap {
+        min-height: 420px;
+    }
+}
+
+@media (max-width: 720px) {
+    #voice-widget-host {
+        padding: 0;
+    }
+
+    #voice-widget-panel {
+        min-height: 100vh;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+
+    .vw-topbar,
+    .vw-status-row,
+    .vw-actions,
+    .vw-body,
+    .vw-footer,
+    .vw-stage-shell {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .vw-topbar {
+        padding-top: 22px;
+    }
+
+    .vw-video-wrap {
+        min-height: 360px;
+    }
+
+    .vw-empty h2,
+    .vw-stage-copy h2 {
+        font-size: 24px;
+    }
+}
+</style>
+
+<div id="voice-widget-host">
+    <div id="voice-widget-panel">
+        <section class="vw-chat-shell">
+            <div class="vw-topbar">
+                <div>
+                    <p class="vw-kicker">The Smartest Person in the Room</p>
+                    <h1>Meet Ryan, Your Superhuman Front Desk</h1>
+                    <p class="vw-intro">
+                        Ryan speaks like a polished front-desk closer for salons. The session only begins after you
+                        tap <strong>Start conversation</strong>, and the live transcript appears here in real time.
+                    </p>
+                </div>
+                <button id="vw-close-btn" class="vw-close" type="button">Close</button>
+            </div>
+
+            <div class="vw-status-row">
+                <div class="vw-status-pill">
+                    <span class="vw-status-dot" id="vw-status-dot"></span>
+                    <span id="vw-status-text">Ready when you are</span>
+                </div>
+                <div class="vw-idle-note" id="vw-idle-note">
+                    Ryan will check in after 60 seconds of silence.
+                </div>
+            </div>
+
+            <div class="vw-actions">
+                <button id="vw-start-btn" class="vw-btn vw-btn-primary" type="button">
+                    Start conversation
+                </button>
+                <button id="vw-end-btn" class="vw-btn vw-btn-secondary" type="button" disabled>
+                    End conversation
+                </button>
+            </div>
+
+            <div class="vw-body" id="vw-body">
+                <div class="vw-body-inner">
+                    <div class="vw-empty" id="vw-empty">
+                        <div class="vw-empty-card">
+                            <div class="vw-empty-badge">Starts on click</div>
+                            <h2>Click start when you're ready</h2>
+                            <p>
+                                Ryan will join after microphone access is granted. If the call goes quiet for
+                                one minute, he will ask whether you're still there, then automatically end the
+                                session if there is no reply.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vw-footer">
+                Microphone permission is required. This page keeps the conversation intentional: no auto-start,
+                no surprise call, and no lingering connection after silence.
+            </div>
+        </section>
+
+        <aside class="vw-stage-shell">
+            <div class="vw-stage-card">
+                <div class="vw-stage-badge">Superhuman front desk</div>
+
+                <div class="vw-video-wrap">
+                    <video
+                        id="vw-stage-video"
+                        class="vw-stage-video"
+                        src="/assets/marketing/front_desk.mp4"
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                    ></video>
+                    <div id="vw-video-fallback" class="vw-video-fallback">
+                        <div class="vw-video-overlay-card">
+                            <strong>Front desk video</strong>
+                            <p>
+                                Add `assets/marketing/front_desk.mp4` to show Ryan's visual stage on this page.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="vw-video-overlay">
+                        <div class="vw-video-overlay-card" id="vw-video-overlay-card">
+                            <strong>Conversation starts on your command</strong>
+                            <p>
+                                The stage stays idle until you press <strong>Start conversation</strong>. Once the
+                                call connects, the video begins and the live transcript updates on the left.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vw-stage-copy">
+                    <h2>See Ryan on the virtual front desk</h2>
+                    <p>
+                        This split layout keeps the conversation controls anchored on the left while Ryan owns the
+                        right-side stage, so the page feels closer to a premium AI closer demo than a basic widget.
+                        The session stays lightweight and automatically cuts off after an unanswered idle check-in.
+                    </p>
+                    <ul>
+                        <li>The page does not auto-connect.</li>
+                        <li>The video starts only after the user clicks start.</li>
+                        <li>After 60 seconds of silence, Ryan asks if you are still there.</li>
+                        <li>If there is still no reply, the conversation disconnects automatically.</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<script type="module">
+import { PipecatClient, RTVIEvent } from 'https://cdn.jsdelivr.net/npm/@pipecat-ai/client-js@1.5.0/+esm';
+import { WebSocketTransport } from 'https://cdn.jsdelivr.net/npm/@pipecat-ai/websocket-transport@1.5.0/+esm';
+
+const BACKEND_URL = 'https://voiceforce.org';
+const AGENT_ID = 'agent-humanfall';
+const LANGUAGE = 'english';
+const IDLE_CHECK_MS = 60 * 1000;
+const IDLE_CUTOFF_MS = 20 * 1000;
+const DISCONNECT_GRACE_MS = 2500;
+const IDLE_PROMPT_TEXT = "Are you still there? If you'd like to keep going, just say anything.";
+const IDLE_CUTOFF_TEXT = "I'll end this for now. Tap Start conversation when you're ready to continue.";
+
+const statusDot = document.getElementById('vw-status-dot');
+const statusText = document.getElementById('vw-status-text');
+const idleNote = document.getElementById('vw-idle-note');
+const body = document.getElementById('vw-body');
+const startBtn = document.getElementById('vw-start-btn');
+const endBtn = document.getElementById('vw-end-btn');
+const closeBtn = document.getElementById('vw-close-btn');
+const host = document.getElementById('voice-widget-host');
+const stageVideo = document.getElementById('vw-stage-video');
+const videoFallback = document.getElementById('vw-video-fallback');
+const videoOverlayCard = document.getElementById('vw-video-overlay-card');
+
+let client = null;
+let isConnected = false;
+let botAudio = null;
+let connectInFlight = false;
+let disconnectInFlight = false;
+let idleTimer = null;
+let idleCutoffTimer = null;
+let awaitingIdleReply = false;
+let disconnectReason = '';
+let videoReady = false;
+
+function getErrorMessage(error, fallback = 'Unknown error') {
+    if (!error) return fallback;
+    if (typeof error === 'string') return error;
+    if (typeof error.message === 'string' && error.message.trim()) return error.message;
+    try {
+        const serialized = JSON.stringify(error);
+        if (serialized && serialized !== '{}') return serialized;
+    } catch (_) {}
+    return fallback;
+}
+
+function updateStatus(state, text) {
+    statusDot.classList.remove('connected', 'connecting', 'warning');
+    if (state === 'connected') statusDot.classList.add('connected');
+    if (state === 'connecting') statusDot.classList.add('connecting');
+    if (state === 'warning') statusDot.classList.add('warning');
+    statusText.textContent = text;
+}
+
+function updateIdleNote(text) {
+    idleNote.textContent = text;
+}
+
+function syncActionButtons() {
+    startBtn.disabled = connectInFlight || disconnectInFlight || isConnected;
+    endBtn.disabled = disconnectInFlight || (!connectInFlight && !isConnected && !client);
+    endBtn.textContent = disconnectInFlight ? 'Ending conversation...' : 'End conversation';
+}
+
+function scrollTranscriptToBottom() {
+    body.scrollTop = body.scrollHeight;
+}
+
+function removeTranscriptEmpty() {
+    const empty = document.getElementById('vw-empty');
+    if (empty) empty.remove();
+}
+
+function getLastTranscriptTurn() {
+    return body.querySelector('.vw-transcript-turn:last-child');
+}
+
+function createTranscriptTurn(opts = {}) {
+    removeTranscriptEmpty();
+    const bodyInner = body.querySelector('.vw-body-inner') || body;
+    const turn = document.createElement('div');
+    turn.className = 'vw-transcript-turn';
+
+    const userItem = document.createElement('div');
+    userItem.className = 'vw-transcript-item user';
+    if (!opts.userText) userItem.style.display = 'none';
+    const userLabel = document.createElement('div');
+    userLabel.className = 'vw-transcript-label';
+    userLabel.textContent = 'You';
+    const userContent = document.createElement('div');
+    userContent.className = 'vw-transcript-content';
+    userContent.textContent = opts.userText || '';
+    userItem.appendChild(userLabel);
+    userItem.appendChild(userContent);
+
+    const botItem = document.createElement('div');
+    botItem.className = 'vw-transcript-item bot';
+    if (!opts.botText) botItem.style.display = 'none';
+    const botLabel = document.createElement('div');
+    botLabel.className = 'vw-transcript-label';
+    botLabel.textContent = 'Ryan';
+    const botContent = document.createElement('div');
+    botContent.className = 'vw-transcript-content';
+    botContent.textContent = opts.botText || '';
+    botItem.appendChild(botLabel);
+    botItem.appendChild(botContent);
+
+    turn.appendChild(userItem);
+    turn.appendChild(botItem);
+    bodyInner.appendChild(turn);
+    scrollTranscriptToBottom();
+    return { turn, userItem, userContent, botItem, botContent };
+}
+
+function addUserTranscript(text) {
+    if (!text || !String(text).trim()) return;
+    createTranscriptTurn({ userText: String(text).trim() });
+}
+
+function addBotTranscript(text) {
+    if (!text || !String(text).trim()) return;
+    createTranscriptTurn({ botText: String(text).trim() });
+}
+
+function appendBotTranscript(text) {
+    if (!text || !String(text).trim()) return;
+    removeTranscriptEmpty();
+    let last = getLastTranscriptTurn();
+    if (!last) {
+        addBotTranscript(text);
+        return;
+    }
+    const botItem = last.querySelector('.vw-transcript-item.bot');
+    const botContent = botItem ? botItem.querySelector('.vw-transcript-content') : null;
+    if (!botItem || !botContent) {
+        addBotTranscript(text);
+        return;
+    }
+    botItem.style.display = '';
+    const prev = botContent.textContent.trim();
+    botContent.textContent = prev ? `${prev} ${String(text).trim()}` : String(text).trim();
+    scrollTranscriptToBottom();
+}
+
+function speakPrompt(text) {
+    if (!window.speechSynthesis || !text) return;
+    try {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+        window.speechSynthesis.speak(utterance);
+    } catch (_) {
+        /* ignore local TTS issues */
+    }
+}
+
+function stopPromptSpeech() {
+    if (!window.speechSynthesis) return;
+    try {
+        window.speechSynthesis.cancel();
+    } catch (_) {
+        /* ignore */
+    }
+}
+
+function clearIdleTimers() {
+    if (idleTimer) {
+        window.clearTimeout(idleTimer);
+        idleTimer = null;
+    }
+    if (idleCutoffTimer) {
+        window.clearTimeout(idleCutoffTimer);
+        idleCutoffTimer = null;
+    }
+}
+
+function updateVideoOverlay(message, detail) {
+    if (!videoOverlayCard) return;
+    videoOverlayCard.innerHTML = `<strong>${message}</strong><p>${detail}</p>`;
+}
+
+async function syncStageVideo(shouldPlay) {
+    if (!stageVideo) return;
+    if (shouldPlay) {
+        updateVideoOverlay(
+            'Ryan is live',
+            'The transcript will keep updating on the left while the stage stays visible here.'
+        );
+        if (!videoReady) return;
+        try {
+            await stageVideo.play();
+        } catch (_) {
+            /* autoplay can still fail on some devices */
+        }
+        return;
+    }
+
+    stageVideo.pause();
+    try {
+        stageVideo.currentTime = 0;
+    } catch (_) {
+        /* ignore seek errors */
+    }
+}
+
+async function finalizeDisconnect(reason) {
+    if (!disconnectInFlight && !client && !isConnected) return;
+
+    isConnected = false;
+    connectInFlight = false;
+    awaitingIdleReply = false;
+    clearIdleTimers();
+    stopPromptSpeech();
+
+    if (botAudio) {
+        botAudio.pause();
+        botAudio.srcObject = null;
+    }
+
+    if (reason === 'idle') {
+        updateStatus('warning', 'Session ended after no reply');
+        updateIdleNote('Session closed after the idle follow-up was unanswered.');
+        updateVideoOverlay(
+            'Session closed',
+            'Tap Start conversation whenever you want Ryan to rejoin.'
+        );
+    } else if (reason === 'manual-close') {
+        updateStatus('offline', 'Session closed');
+        updateIdleNote('The conversation has been closed.');
+        updateVideoOverlay(
+            'Conversation closed',
+            'Reopen the page or tap Start conversation to begin again.'
+        );
+    } else if (reason === 'manual-end') {
+        updateStatus('offline', 'Conversation ended');
+        updateIdleNote('The connection has been ended manually.');
+        updateVideoOverlay(
+            'Conversation ended',
+            'Tap Start conversation to reconnect Ryan.'
+        );
+    } else {
+        updateStatus('offline', 'Ryan disconnected');
+        updateIdleNote('The live connection has stopped.');
+        updateVideoOverlay(
+            'Ryan is offline',
+            'Tap Start conversation to reconnect the live session.'
+        );
+    }
+
+    await syncStageVideo(false);
+    client = null;
+    disconnectReason = '';
+    disconnectInFlight = false;
+    syncActionButtons();
+}
+
+function scheduleIdleTimers() {
+    clearIdleTimers();
+    if (!isConnected) return;
+
+    idleTimer = window.setTimeout(async () => {
+        if (!isConnected) return;
+        awaitingIdleReply = true;
+        updateStatus('warning', 'Ryan is checking whether you are still there...');
+        updateIdleNote('Idle detected. Reply within 20 seconds to keep the call open.');
+        addBotTranscript(IDLE_PROMPT_TEXT);
+        speakPrompt(IDLE_PROMPT_TEXT);
+
+        idleCutoffTimer = window.setTimeout(async () => {
+            if (!isConnected || !awaitingIdleReply) return;
+            addBotTranscript(IDLE_CUTOFF_TEXT);
+            updateIdleNote('No reply detected. Ending the session now.');
+            await disconnect('idle');
+        }, IDLE_CUTOFF_MS);
+    }, IDLE_CHECK_MS);
+}
+
+function registerConversationActivity() {
+    if (!isConnected) return;
+    const wasAwaitingIdleReply = awaitingIdleReply;
+    awaitingIdleReply = false;
+    clearIdleTimers();
+    stopPromptSpeech();
+    updateStatus('connected', 'Ryan is listening...');
+    updateIdleNote(
+        wasAwaitingIdleReply
+            ? 'Reply received. Idle timer has been reset.'
+            : 'Ryan will check in after 60 seconds of silence.'
+    );
+    scheduleIdleTimers();
+}
+
+function setupAudioTrack(track) {
+    if (!botAudio) {
+        botAudio = document.createElement('audio');
+        botAudio.autoplay = true;
+        document.body.appendChild(botAudio);
+    }
+    botAudio.srcObject = new MediaStream([track]);
+    botAudio.play().catch((error) => {
+        console.error('Audio error:', error);
+    });
+}
+
+async function connect() {
+    if (isConnected || connectInFlight) return;
+    connectInFlight = true;
+    syncActionButtons();
+    updateStatus('connecting', 'Connecting to Ryan...');
+    updateIdleNote('Waiting for microphone access and live connection...');
+    updateVideoOverlay(
+        'Joining Ryan now',
+        'Grant microphone access to start the live conversation and stage playback.'
+    );
+
+    try {
+        const connectEndpoint =
+            `${BACKEND_URL}/webcall/connect?agent_id=${encodeURIComponent(AGENT_ID)}` +
+            `&language=${encodeURIComponent(LANGUAGE)}`;
+
+        const transport = new WebSocketTransport();
+        client = new PipecatClient({
+            transport,
+            enableMic: true,
+            enableCam: false,
+            callbacks: {
+                onConnected: async () => {
+                    isConnected = true;
+                    disconnectReason = '';
+                    updateStatus('connected', 'Ryan is live');
+                    updateIdleNote('Ryan will check in after 60 seconds of silence.');
+                    syncActionButtons();
+                    await syncStageVideo(true);
+                    scheduleIdleTimers();
+                },
+                onDisconnected: async () => {
+                    const reason = disconnectReason || 'disconnected';
+                    await finalizeDisconnect(reason);
+                },
+                onBotReady: () => {
+                    updateStatus('connected', 'Ryan is listening...');
+                    registerConversationActivity();
+                },
+                onUserTranscript: (data) => {
+                    if (data && data.final && data.text) {
+                        addUserTranscript(data.text);
+                        registerConversationActivity();
+                    }
+                },
+                onBotOutput: (data) => {
+                    if (data && data.text && data.spoken === false) {
+                        appendBotTranscript(data.text);
+                        registerConversationActivity();
+                    }
+                },
+                onError: (error) => {
+                    if (disconnectInFlight) {
+                        void finalizeDisconnect(disconnectReason || 'manual-end');
+                        return;
+                    }
+                    connectInFlight = false;
+                    syncActionButtons();
+                    updateStatus('warning', 'Ryan connection error');
+                    updateIdleNote('Connection failed. Retry after checking microphone permissions.');
+                    updateVideoOverlay(
+                        'Connection issue',
+                        'Ryan could not join. Try again after confirming microphone access.'
+                    );
+                    alert('Connection failed: ' + getErrorMessage(error, 'Please retry.'));
+                },
+            },
+        });
+
+        client.on(RTVIEvent.TrackStarted, (track, participant) => {
+            if (!participant?.local && track.kind === 'audio') {
+                setupAudioTrack(track);
+            }
+        });
+
+        await client.initDevices();
+        await client.startBotAndConnect({ endpoint: connectEndpoint });
+    } catch (error) {
+        connectInFlight = false;
+        client = null;
+        updateStatus('warning', 'Failed to connect to Ryan');
+        updateIdleNote('Please check microphone permissions and try again.');
+        updateVideoOverlay(
+            'Unable to connect',
+            'Ryan could not join the call. Try again after checking microphone access.'
+        );
+        syncActionButtons();
+        alert('Failed to connect: ' + getErrorMessage(error, 'Please check mic permissions and retry.'));
+        console.error('Connection error:', error);
+    } finally {
+        connectInFlight = false;
+        syncActionButtons();
+    }
+}
+
+async function disconnect(reason = 'manual-end') {
+    if (disconnectInFlight) return;
+
+    const activeClient = client;
+    disconnectReason = reason;
+    disconnectInFlight = true;
+    clearIdleTimers();
+    stopPromptSpeech();
+    connectInFlight = false;
+    updateStatus('warning', reason === 'manual-close' ? 'Closing session...' : 'Ending conversation...');
+    updateIdleNote('Disconnecting Ryan now...');
+    updateVideoOverlay(
+        'Ending session',
+        'Please wait while Ryan disconnects from the live conversation.'
+    );
+    syncActionButtons();
+
+    if (!activeClient) {
+        await finalizeDisconnect(reason);
+        return;
+    }
+
+    try {
+        await Promise.race([
+            activeClient.disconnect(),
+            new Promise((resolve) => window.setTimeout(resolve, DISCONNECT_GRACE_MS)),
+        ]);
+    } catch (error) {
+        console.warn('Disconnect fallback triggered:', error);
+    }
+
+    if (client === activeClient || disconnectInFlight) {
+        await finalizeDisconnect(reason);
+    }
+}
+
+if (stageVideo) {
+    stageVideo.addEventListener('loadeddata', () => {
+        videoReady = true;
+        videoFallback.classList.add('is-hidden');
+    });
+
+    stageVideo.addEventListener('error', () => {
+        videoReady = false;
+        videoFallback.classList.remove('is-hidden');
+    });
+}
+
+startBtn.addEventListener('click', async () => {
+    await connect();
+});
+
+endBtn.addEventListener('click', async () => {
+    if (!client && !isConnected) return;
+    await disconnect('manual-end');
+});
+
+closeBtn.addEventListener('click', async () => {
+    try {
+        if (isConnected || client) {
+            await disconnect('manual-close');
+        }
+    } finally {
+        if (window.history.length > 1) {
+            window.history.back();
+        } else if (host) {
+            window.location.href = '/';
+        }
+    }
+});
+
+window.addEventListener('beforeunload', () => {
+    clearIdleTimers();
+    stopPromptSpeech();
+    if (client) {
+        disconnectReason = 'manual-close';
+        client.disconnect().catch(() => {
+            /* ignore unload disconnect errors */
+        });
+    }
+});
+
+syncActionButtons();
+updateStatus('offline', 'Ready when you are');
+updateIdleNote('Ryan will check in after 60 seconds of silence.');
+updateVideoOverlay(
+    'Conversation starts on your command',
+    'The stage stays idle until you press Start conversation. Once connected, the video begins and the transcript updates on the left.'
+);
+</script>
+<!-- ========================================
+ End standalone Ryan conversation page
+ ======================================== -->

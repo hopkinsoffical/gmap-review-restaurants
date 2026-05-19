@@ -1,0 +1,59 @@
+{
+  "name": "angel-tips-review-studio",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Salon-focused Google review helper with Vercel Functions and Supabase",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "playwright:install": ".venv/bin/playwright install chromium",
+    "dev:vercel": "vercel dev",
+    "seed:menu": "node scripts/seed-menu-snapshot.js",
+    "generate:qr": "node scripts/generate-qr.js",
+    "generate:leaderboard-seed": "node scripts/generate-leaderboard-seed-sql.js",
+    "ingest:leaderboard": "node scripts/ingest-salon-ai-leaderboard.js",
+    "ingest:leaderboard:js": "node scripts/ingest-salon-ai-leaderboard.js",
+    "ingest:leaderboard:py": ".venv/bin/python3 pipelines/ingest_salon_ai_leaderboard.py",
+    "ingest:edison:py": ".venv/bin/python3 pipelines/fetch_ingest_edison_nj_salons.py",
+    "ingest:nj-townships:py": ".venv/bin/python3 pipelines/fetch_ingest_nj_townships_salons.py",
+    "ingest:pa-townships:py": ".venv/bin/python3 pipelines/fetch_ingest_pa_townships_salons.py",
+    "ingest:md-townships:py": ".venv/bin/python3 pipelines/fetch_ingest_md_townships_salons_crawler.py",
+    "ingest:va-townships:py": ".venv/bin/python3 pipelines/fetch_ingest_va_townships_salons_crawler.py",
+    "ingest:me-townships:py": ".venv/bin/python3 pipelines/fetch_ingest_me_townships_salons_crawler.py",
+    "generate:zipcode-targets:east-west:py": ".venv/bin/python3 scripts/generate_zipcode_targets_east_to_west.py",
+    "fetch:ma-zipcode-salon-list:py": ".venv/bin/python3 pipelines/fetch_ingest_ma_zipcode_salon_list.py",
+    "fetch:me-zipcode-salon-list:py": ".venv/bin/python3 pipelines/fetch_ingest_me_zipcode_salon_list.py",
+    "ingest:ma-townships:py": ".venv/bin/python3 pipelines/fetch_ingest_ma_townships_salons_crawler.py",
+    "ingest:nj-medical-spas:py": ".venv/bin/python3 pipelines/fetch_ingest_nj_medical_spas.py",
+    "ingest:nyc-medical-spas:py": ".venv/bin/python3 pipelines/fetch_ingest_nyc_medical_spas.py",
+    "ingest:nyc-flushing:py": ".venv/bin/python3 pipelines/fetch_ingest_nyc_flushing_salons_crawler.py",
+    "scrape:zipcodes:me-remaining:py": ".venv/bin/python3 scripts/parallel_zipcode_salon_google_reviews.py --zipcodes-file data/me_zipcodes_salon_targets_remaining.txt --parallel 8 --workers-per-zipcode 2 --include-spa --resume --list-only --format csv --scroll-pause 1.0 --output-dir data/me_zipcode_salon_list_reviews --checkpoint-dir data/me_zipcode_list_scrape_checkpoints --ingest-at-end ME --ingest-chunk-size 50",
+    "scrape:zipcodes:ma:py": ".venv/bin/python3 scripts/parallel_zipcode_salon_google_reviews.py --zipcodes-file data/ma_zipcodes_salon_targets.txt --parallel 8 --workers-per-zipcode 2 --include-spa --resume --list-only --format csv --scroll-pause 1.0 --output-dir data/ma_zipcode_salon_list_reviews --checkpoint-dir data/ma_zipcode_list_scrape_checkpoints --ingest-at-end MA --ingest-chunk-size 50",
+    "scrape:zipcodes:me-full-reviews:py": ".venv/bin/python3 scripts/parallel_zipcode_salon_google_reviews.py --zipcodes-file data/me_zipcodes_salon_targets_remaining.txt --parallel 5 --workers-per-zipcode 1 --include-spa --resume --output-dir data/me_zipcode_salon_reviews --checkpoint-dir data/me_zipcode_scrape_checkpoints --ingest-at-end ME --ingest-chunk-size 50",
+    "scrape:zipcodes:ma-full-reviews:py": ".venv/bin/python3 scripts/parallel_zipcode_salon_google_reviews.py --zipcodes-file data/ma_zipcodes_salon_targets.txt --parallel 5 --workers-per-zipcode 1 --include-spa --resume --output-dir data/ma_zipcode_salon_reviews --checkpoint-dir data/ma_zipcode_scrape_checkpoints --ingest-at-end MA --ingest-chunk-size 50",
+    "ingest:zipcode-me-csv:py": ".venv/bin/python3 pipelines/ingest_zipcode_salon_reviews_to_leaderboard.py --output-dir data/me_zipcode_salon_reviews --state ME --all-csvs --chunk-size 50",
+    "ingest:zipcode-ma-csv:py": ".venv/bin/python3 pipelines/ingest_zipcode_salon_reviews_to_leaderboard.py --output-dir data/ma_zipcode_salon_reviews --state MA --all-csvs --chunk-size 50",
+    "ingest:zipcode-me-list-csv:py": ".venv/bin/python3 pipelines/ingest_zipcode_salon_reviews_to_leaderboard.py --output-dir data/me_zipcode_salon_list_reviews --state ME --all-csvs --chunk-size 50",
+    "ingest:zipcode-ma-list-csv:py": ".venv/bin/python3 pipelines/ingest_zipcode_salon_reviews_to_leaderboard.py --output-dir data/ma_zipcode_salon_list_reviews --state MA --all-csvs --chunk-size 50",
+    "scrape:zipcodes:throughput:py": ".venv/bin/python3 scripts/parallel_zipcode_salon_google_reviews.py --preset throughput --include-spa --resume",
+    "ingest:zipcode-leaderboard:py": ".venv/bin/python3 pipelines/ingest_zipcode_salon_reviews_to_leaderboard.py",
+    "leaderboard:export:csv": ".venv/bin/python3 scripts/leaderboard_assessment_csv_tool.py export -o data/leaderboard_for_levels.csv",
+    "leaderboard:recalc:csv": ".venv/bin/python3 scripts/leaderboard_assessment_csv_tool.py recalc -i data/leaderboard_for_levels.csv --mode strict -o data/leaderboard_levels_preview.csv --sql data/leaderboard_levels_updates.sql",
+    "recompute:leaderboard": "node scripts/recompute-leaderboard-scores.js",
+    "recompute:leaderboard:dry": "node scripts/recompute-leaderboard-scores.js --dry-run",
+    "twilio:lookup": "node scripts/twilio-lookup-line-type.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
+    "twilio": "^5.4.5",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/og": "^0.6.8",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "twilio": "^5.13.1"
+  },
+  "devDependencies": {
+    "vercel": "^54.1.0"
+  }
+}
