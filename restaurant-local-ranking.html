@@ -201,6 +201,7 @@ var params = new URLSearchParams(location.search);
 var PLACE_ID = params.get("placeId") || "";
 var CAMIS    = params.get("camis") || "";
 var BIZ_NAME = params.get("businessName") || "";
+var SLUG     = params.get("slug") || "";
 
 /* ══════════════════════════════════════════════════════════════════
    SCORING ENGINE (mirrors restaurant-scoring.js)
@@ -650,38 +651,69 @@ function showError(msg){
 }
 
 async function main(){
-  if(!PLACE_ID&&!CAMIS&&!BIZ_NAME){
-    showError("No restaurant identifier in the URL. Add ?placeId=... or ?camis=...");
+  if(!SLUG&&!PLACE_ID&&!CAMIS&&!BIZ_NAME){
+    showError("No restaurant identifier in the URL. Use ?slug=... or ?placeId=... or ?camis=...");
     return;
   }
   try {
-    var profileQuery={limit:1};
-    if(PLACE_ID) profileQuery["place_id=eq."+""] || (profileQuery.place_id="eq."+PLACE_ID);
-    else if(CAMIS) profileQuery["camis=eq."+""] || (profileQuery.camis="eq."+CAMIS);
+    var profile=null, restaurant={};
 
-    var profiles=await supabaseGet("info_gather_google_profiles",
-      PLACE_ID?{place_id:"eq."+PLACE_ID,limit:1}:{camis:"eq."+CAMIS,limit:1});
-
-    if(!profiles||!profiles.length){
-      // Try searching by name if provided
-      if(BIZ_NAME){
-        var byName=await supabaseGet("info_gather_restaurants",{name:"ilike."+encodeURIComponent("%"+BIZ_NAME+"%"),limit:1});
-        if(byName&&byName.length){
-          var camis2=byName[0].camis;
-          profiles=await supabaseGet("info_gather_google_profiles",{camis:"eq."+camis2,limit:1});
+    // ── Path 1: slug → restaurant_leaderboard (pre-scored, fastest) ──
+    if(SLUG){
+      var lbRows=await supabaseGet("restaurant_leaderboard",{slug:"eq."+SLUG,limit:1});
+      if(lbRows&&lbRows.length){
+        var lb=lbRows[0];
+        // Use leaderboard pre-computed dims directly for speed
+        // Also fetch full profile for rich data (opening hours, service options, etc.)
+        if(lb.place_id){
+          var fullProfiles=await supabaseGet("info_gather_google_profiles",{place_id:"eq."+lb.place_id,limit:1});
+          profile=fullProfiles&&fullProfiles.length?fullProfiles[0]:null;
         }
+        if(!profile){
+          // Build minimal profile from leaderboard row
+          profile={
+            title:lb.name, rating:lb.rating, reviews_count:lb.review_count,
+            place_id:lb.place_id, camis:lb.camis, address:lb.address,
+            city:lb.city, category_name:lb.category, phone:lb.phone,
+            website:lb.website, image_url:lb.image_url,
+            reviews_distribution:lb.reviews_distribution,
+          };
+        }
+        if(lb.camis){
+          var restRows=await supabaseGet("info_gather_restaurants",{camis:"eq."+lb.camis,limit:1});
+          restaurant=restRows&&restRows.length?restRows[0]:{};
+        }
+        document.title=(lb.name||BIZ_NAME||"Restaurant")+" — Local Ranking Report";
+        render(profile,restaurant);
+        return;
       }
-      if(!profiles||!profiles.length){showError("No data found for this restaurant. It may not be in our database yet.");return;}
+      // slug not in leaderboard yet — fall through to placeId/name lookup
     }
 
-    var profile=profiles[0];
-    var restaurants=await supabaseGet("info_gather_restaurants",{camis:"eq."+profile.camis,limit:1});
-    var restaurant=restaurants&&restaurants.length?restaurants[0]:{};
+    // ── Path 2: placeId / camis / name direct lookup ──────────────────
+    var profiles=[];
+    if(PLACE_ID){
+      profiles=await supabaseGet("info_gather_google_profiles",{place_id:"eq."+PLACE_ID,limit:1});
+    } else if(CAMIS){
+      profiles=await supabaseGet("info_gather_google_profiles",{camis:"eq."+CAMIS,limit:1});
+    } else if(BIZ_NAME){
+      var byName=await supabaseGet("info_gather_restaurants",
+        {name:"ilike."+encodeURIComponent("%"+BIZ_NAME+"%"),limit:1});
+      if(byName&&byName.length){
+        profiles=await supabaseGet("info_gather_google_profiles",{camis:"eq."+byName[0].camis,limit:1});
+      }
+    }
 
-    // Update page title
-    var bname=BIZ_NAME||profile.title||"Restaurant";
-    document.title=bname+" — Local Ranking Report";
+    if(!profiles||!profiles.length){
+      showError("Restaurant not found in our database. It may not have been indexed yet.");
+      return;
+    }
 
+    profile=profiles[0];
+    var restRows=await supabaseGet("info_gather_restaurants",{camis:"eq."+profile.camis,limit:1});
+    restaurant=restRows&&restRows.length?restRows[0]:{};
+
+    document.title=(BIZ_NAME||profile.title||"Restaurant")+" — Local Ranking Report";
     render(profile,restaurant);
   } catch(e){
     showError("Failed to load data: "+e.message);
