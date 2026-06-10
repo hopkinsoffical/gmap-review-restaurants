@@ -47,7 +47,7 @@ create index if not exists restaurant_info_gather_zipcode_idx
 
 create table if not exists public.restaurant_google_profiles (
   id                          uuid primary key,
-  restaurant_id               uuid references public.restaurant_info_gather(id) on delete cascade,
+  restaurant_id               uuid references public.restaurant_info_gather(id) on delete set null deferrable initially deferred,
   camis                       text,
   place_id                    text,
   cid                         text,
@@ -92,7 +92,8 @@ create table if not exists public.restaurant_google_profiles (
   updated_at                  timestamptz not null default now()
 );
 
-create unique index if not exists restaurant_google_profiles_place_id_idx
+-- place_id is NOT unique: same Google business can map to multiple CAMIS records
+create index if not exists restaurant_google_profiles_place_id_idx
   on public.restaurant_google_profiles (place_id)
   where place_id is not null;
 

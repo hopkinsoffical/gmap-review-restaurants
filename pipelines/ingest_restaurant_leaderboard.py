@@ -62,17 +62,33 @@ def fetch_all(table, params=None, page_size=500):
 
 
 def upsert_rows(rows, batch_size=200):
+    """Upsert to RDS via psycopg2 (restaurant_leaderboard lives in RDS, not Supabase)."""
+    import psycopg2, psycopg2.extras as extras, json as _json
+    rds_dsn = os.getenv(
+        "RDS_DATABASE_URL",
+        "postgresql://vforce_app:testapp123@localhost:15432/vforce?sslmode=require",
+    )
+    conn = psycopg2.connect(rds_dsn, connect_timeout=15)
+    conn.autocommit = False
+    cur = conn.cursor()
     for i in range(0, len(rows), batch_size):
         batch = rows[i: i + batch_size]
-        resp = requests.post(
-            f"{SUPABASE_URL}/rest/v1/restaurant_leaderboard",
-            headers={**HEADERS, "Prefer": "resolution=merge-duplicates,return=minimal"},
-            json=batch,
-            timeout=60,
+        cols = list(batch[0].keys())
+        col_list = ", ".join(f'"{c}"' for c in cols)
+        placeholders = ", ".join(["%s"] * len(cols))
+        update_set = ", ".join(f'"{c}" = EXCLUDED."{c}"' for c in cols if c != "slug")
+        sql = (
+            f'INSERT INTO public.restaurant_leaderboard ({col_list}) VALUES ({placeholders}) '
+            f'ON CONFLICT (slug) DO UPDATE SET {update_set}'
         )
-        if not resp.ok:
-            raise RuntimeError(f"Upsert failed: {resp.status_code} {resp.text[:200]}")
+        data = [
+            [_json.dumps(v) if isinstance(v, (dict, list)) else v for v in [r.get(c) for c in cols]]
+            for r in batch
+        ]
+        extras.execute_batch(cur, sql, data, page_size=100)
+        conn.commit()
         print(f"  upserted {min(i+batch_size, len(rows)):,}/{len(rows):,}", end="\r")
+    conn.close()
     print()
 
 
