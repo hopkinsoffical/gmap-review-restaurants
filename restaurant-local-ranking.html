@@ -2,268 +2,651 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>Restaurant Local Ranking Report</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <style>
-/* ── Design tokens (mirrors full-report.css) ── */
+/* ── Zoca Design Tokens ── */
 :root {
-  --c-info:    #185fa5;
-  --c-success: #0f6e56;
-  --c-warning: #ba7517;
-  --c-danger:  #a32d2d;
-  --c-border:  rgba(0,0,0,0.08);
-  --c-bg:      #fff;
-  --c-bg2:     #f9fafb;
-  --c-text:    #111827;
-  --c-muted:   #6b7280;
-  --c-accent:  #e8572a;   /* restaurant warm orange */
-  --c-accent2: #1e7c5a;   /* healthy green */
+  --primary-100: #f3edfd;
+  --primary-200: #e5ccff;
+  --primary-300: #d2a6ff;
+  --primary-400: #9e6bf2;
+  --primary-500: #7338d3;
+  --primary-600: #4f2495;
+  --primary-700: #361768;
+
+  --neutral-bg:     #f4f5f5;
+  --neutral-white:  #fcfdfd;
+  --neutral-100:    #f4f5f5;
+  --neutral-200:    #dcdfe0;
+  --neutral-300:    #bcc1c2;
+  --neutral-600:    #687173;
+  --neutral-700:    #505758;
+  --neutral-800:    #272a2b;
+  --neutral-black:  #232323;
+  --neutral-border: #dcdfe0;
+
+  --success-light:  #d3f6cf;
+  --success:        #0d7a7a;
+  --success-dark:   #0f5c5c;
+  --warning-light:  #ffebb7;
+  --warning:        #fcba3a;
+  --warning-dark:   #da9021;
+  --danger-light:   #ffe0e0;
+  --danger:         #f15656;
+  --danger-dark:    #c83448;
+  --info-light:     #bfe2fc;
+  --info:           #0a75c3;
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.08);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,.10);
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Manrope',system-ui,sans-serif;color:var(--c-text);background:#f3f4f6;min-height:100vh}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--neutral-bg); }
+body {
+  font-family: var(--font);
+  color: var(--neutral-800);
+  background: var(--neutral-bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* ── Top bar ── */
-.topbar{background:#fff;border-bottom:1px solid var(--c-border);padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
-.topbar-logo{font-size:16px;font-weight:800;color:var(--c-accent);text-decoration:none;letter-spacing:-0.3px}
-.topbar-cta{background:var(--c-accent);color:#fff;border:none;padding:7px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;font-family:inherit}
+/* ── Top Navigation ── */
+.nav {
+  background: var(--neutral-white);
+  border-bottom: 1px solid var(--neutral-border);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--primary-500);
+  text-decoration: none;
+  letter-spacing: -0.4px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.nav-logo-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--primary-400);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+}
+.nav-cta {
+  background: var(--primary-400);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font);
+  transition: background .15s;
+}
+.nav-cta:hover { background: var(--primary-500); }
 
 /* ── Page shell ── */
-.page{max-width:720px;margin:0 auto;padding:20px 16px 60px}
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 80px;
+}
 
-/* ── Hero ── */
-.hero{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;border:1px solid var(--c-border);display:flex;gap:16px;align-items:flex-start}
-.hero-body{flex:1;min-width:0}
-.hero-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.bdg{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.01em}
-.bdg-orange{background:rgba(232,87,42,.12);color:var(--c-accent)}
-.bdg-danger{background:rgba(163,45,45,.12);color:var(--c-danger)}
-.bdg-warn{background:rgba(186,117,23,.12);color:var(--c-warning)}
-.bdg-success{background:rgba(15,110,86,.12);color:var(--c-success)}
-.bdg-info{background:rgba(24,95,165,.12);color:var(--c-info)}
-.hero-name{font-size:20px;font-weight:800;line-height:1.2;margin-bottom:4px}
-.hero-meta{font-size:13px;color:var(--c-muted);margin-bottom:12px}
-.hero-grade{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:8px;background:var(--c-bg2);border:1px solid var(--c-border)}
-.hero-score{flex-shrink:0;text-align:center}
-.score-ring-wrap{display:inline-block}
-.score-label{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
-.score-sub{font-size:10px;color:var(--c-muted)}
+/* ── Score Hero ── */
+.hero {
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-xl);
+  padding: 28px 24px 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.hero-top {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.hero-info { flex: 1; min-width: 0; }
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: .01em;
+}
+.badge-purple { background: var(--primary-100); color: var(--primary-500); }
+.badge-success { background: var(--success-light); color: var(--success-dark); }
+.badge-warning { background: var(--warning-light); color: var(--warning-dark); }
+.badge-danger  { background: var(--danger-light);  color: var(--danger-dark); }
+.badge-neutral { background: var(--neutral-100); color: var(--neutral-700); }
+
+.hero-name {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--neutral-black);
+  margin-bottom: 4px;
+  letter-spacing: -.3px;
+}
+.hero-meta {
+  font-size: 13px;
+  color: var(--neutral-600);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.hero-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--neutral-700);
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-border);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+/* Score ring */
+.hero-score { flex-shrink: 0; text-align: center; }
+.score-ring-wrap { display: inline-block; position: relative; }
+.score-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 5px;
+  display: block;
+}
+.score-sub { font-size: 10px; color: var(--neutral-600); margin-top: 2px; }
+
+/* ── 4 stat grid ── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+@media (max-width: 480px) { .stat-grid { grid-template-columns: repeat(2,1fr); } }
+.stat-card {
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+.stat-label { font-size: 11px; color: var(--neutral-600); font-weight: 500; margin-bottom: 4px; }
+.stat-value { font-size: 20px; font-weight: 800; line-height: 1.2; letter-spacing: -.3px; }
+.stat-sub { font-size: 11px; color: var(--neutral-600); margin-top: 3px; }
+.c-success { color: var(--success); }
+.c-warning { color: var(--warning-dark); }
+.c-danger  { color: var(--danger); }
+.c-purple  { color: var(--primary-400); }
+.c-info    { color: var(--info); }
+.c-neutral { color: var(--neutral-700); }
 
 /* ── Alert callout ── */
-.callout{border-radius:12px;padding:14px 16px;margin-bottom:16px;border-left:4px solid}
-.callout--danger{background:rgba(163,45,45,.06);border-color:var(--c-danger)}
-.callout--warn{background:rgba(186,117,23,.06);border-color:var(--c-warning)}
-.callout--success{background:rgba(15,110,86,.06);border-color:var(--c-success)}
-.callout--info{background:rgba(24,95,165,.06);border-color:var(--c-info)}
-.callout-title{font-size:14px;font-weight:700;margin-bottom:4px}
-.callout p{font-size:13px;color:var(--c-muted);line-height:1.6}
+.callout {
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  border: 1px solid;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.callout--success { background: #f0fdf8; border-color: #a7f3d0; }
+.callout--warning { background: #fffbeb; border-color: #fde68a; }
+.callout--danger  { background: #fff5f5; border-color: #fecaca; }
+.callout--purple  { background: var(--primary-100); border-color: var(--primary-200); }
+.callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.callout-body { flex: 1; }
+.callout-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--neutral-black); }
+.callout-text  { font-size: 13px; color: var(--neutral-700); line-height: 1.6; }
 
-/* ── Stat grid (4 up) ── */
-.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
-@media(max-width:480px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
-.stat-card{background:#fff;border-radius:12px;padding:12px 14px;border:1px solid var(--c-border)}
-.stat-label{font-size:11px;color:var(--c-muted);margin-bottom:4px;font-weight:600}
-.stat-val{font-size:22px;font-weight:800;line-height:1.2}
-.stat-sub{font-size:11px;color:var(--c-muted);margin-top:3px}
-.c-danger{color:var(--c-danger)}
-.c-warn{color:var(--c-warning)}
-.c-success{color:var(--c-success)}
-.c-info{color:var(--c-info)}
-.c-accent{color:var(--c-accent)}
+/* ── Section header ── */
+.sec-head {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--neutral-600);
+  margin: 24px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-head::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--neutral-border);
+}
 
-/* ── Section heading ── */
-.sec-head{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c-muted);margin:20px 0 10px}
+/* ── 6 Dimension Cards ── */
+.dim-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 4px;
+}
+@media (max-width: 520px) { .dim-grid { grid-template-columns: repeat(2,1fr); } }
 
-/* ── 6-Dimension cards ── */
-.dim-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
-@media(max-width:500px){.dim-grid{grid-template-columns:repeat(2,1fr)}}
-.dim-card{background:#fff;border-radius:14px;padding:14px;border:1px solid var(--c-border);position:relative;overflow:hidden;transition:box-shadow .2s}
-.dim-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08)}
-.dim-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
-.dim-card.excellent::before{background:var(--c-success)}
-.dim-card.good::before{background:var(--c-info)}
-.dim-card.moderate::before{background:var(--c-warning)}
-.dim-card.low::before,.dim-card.risky::before{background:var(--c-danger)}
-.dim-icon{font-size:22px;margin-bottom:6px}
-.dim-name{font-size:11px;font-weight:700;color:var(--c-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
-.dim-score-row{display:flex;align-items:baseline;gap:4px;margin-bottom:6px}
-.dim-score{font-size:28px;font-weight:800;line-height:1}
-.dim-total{font-size:12px;color:var(--c-muted)}
-.dim-bar-bg{height:5px;background:var(--c-bg2);border-radius:3px;overflow:hidden}
-.dim-bar-fill{height:100%;border-radius:3px;transition:width .8s ease}
-.dim-bar-fill.excellent{background:var(--c-success)}
-.dim-bar-fill.good{background:var(--c-info)}
-.dim-bar-fill.moderate{background:var(--c-warning)}
-.dim-bar-fill.low,.dim-bar-fill.risky{background:var(--c-danger)}
-.dim-hint{font-size:10px;color:var(--c-muted);margin-top:6px;line-height:1.5}
+.dim-card {
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  position: relative;
+  transition: box-shadow .2s, border-color .2s;
+  overflow: hidden;
+}
+.dim-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-300);
+}
+.dim-card::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.dim-card.green::after  { background: var(--success); }
+.dim-card.blue::after   { background: var(--info); }
+.dim-card.yellow::after { background: var(--warning); }
+.dim-card.red::after    { background: var(--danger); }
 
-/* ── Detail breakdown (expand) ── */
-.breakdown-card{background:#fff;border-radius:14px;border:1px solid var(--c-border);margin-bottom:16px;overflow:hidden}
-.breakdown-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--c-border)}
-.breakdown-row:last-child{border-bottom:none}
-.breakdown-name{flex:1;font-size:13px;font-weight:600}
-.breakdown-sub{font-size:11px;color:var(--c-muted)}
-.breakdown-bar-wrap{width:100px;flex-shrink:0}
-.breakdown-bar-bg{height:6px;background:var(--c-bg2);border-radius:3px;overflow:hidden}
-.breakdown-bar-fill{height:100%;border-radius:3px}
-.breakdown-num{font-size:14px;font-weight:700;width:36px;text-align:right;flex-shrink:0}
+.dim-icon { font-size: 20px; margin-bottom: 8px; }
+.dim-name {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--neutral-600);
+  margin-bottom: 8px;
+}
+.dim-score-wrap { display: flex; align-items: baseline; gap: 3px; margin-bottom: 8px; }
+.dim-score-num  { font-size: 30px; font-weight: 800; letter-spacing: -.5px; line-height: 1; }
+.dim-score-denom{ font-size: 12px; color: var(--neutral-600); }
 
-/* ── Service prescription ── */
-.svc-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
-.svc-card{background:#fff;border-radius:14px;border:1px solid var(--c-border);padding:16px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s,box-shadow .2s;text-decoration:none;color:inherit}
-.svc-card:hover{border-color:var(--c-accent);box-shadow:0 4px 20px rgba(232,87,42,.1)}
-.svc-card--featured{border-color:var(--c-accent);background:linear-gradient(135deg,#fff 0%,rgba(232,87,42,.03) 100%)}
-.svc-rank{width:32px;height:32px;border-radius:50%;background:var(--c-accent);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.svc-card--featured .svc-rank{background:var(--c-accent)}
-.svc-body{flex:1;min-width:0}
-.svc-name{font-size:14px;font-weight:700;margin-bottom:2px}
-.svc-why{font-size:12px;color:var(--c-muted);margin-bottom:8px;line-height:1.5}
-.svc-dims{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
-.svc-dim-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--c-bg2);color:var(--c-muted)}
-.svc-dim-tag.up{background:rgba(15,110,86,.1);color:var(--c-success)}
-.svc-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.svc-lift{font-size:11px;font-weight:700;color:var(--c-success);background:rgba(15,110,86,.1);padding:2px 8px;border-radius:20px}
-.svc-cta{font-size:12px;font-weight:700;color:var(--c-accent);text-decoration:none}
+.dim-bar-track  { height: 5px; background: var(--neutral-200); border-radius: 3px; overflow: hidden; }
+.dim-bar-fill   { height: 100%; border-radius: 3px; transition: width .8s cubic-bezier(.4,0,.2,1); }
+.dim-bar-fill.green  { background: var(--success); }
+.dim-bar-fill.blue   { background: var(--info); }
+.dim-bar-fill.yellow { background: var(--warning); }
+.dim-bar-fill.red    { background: var(--danger); }
+
+.dim-desc { font-size: 11px; color: var(--neutral-600); margin-top: 7px; line-height: 1.5; }
+
+/* ── Breakdown table ── */
+.breakdown-table {
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--neutral-100);
+  transition: background .15s;
+}
+.breakdown-row:last-child { border-bottom: none; }
+.breakdown-row:hover { background: var(--neutral-100); }
+.breakdown-left { flex: 1; min-width: 0; }
+.breakdown-name { font-size: 13px; font-weight: 600; color: var(--neutral-800); }
+.breakdown-sub  { font-size: 11px; color: var(--neutral-600); margin-top: 2px; }
+.breakdown-bar-wrap { width: 90px; flex-shrink: 0; }
+.breakdown-bar-track { height: 6px; background: var(--neutral-200); border-radius: 3px; overflow: hidden; }
+.breakdown-bar-fill  { height: 100%; border-radius: 3px; }
+.breakdown-num { font-size: 14px; font-weight: 700; width: 32px; text-align: right; flex-shrink: 0; }
+.breakdown-wt  { font-size: 10px; color: var(--neutral-600); width: 28px; text-align: right; flex-shrink: 0; }
 
 /* ── Checklist ── */
-.checklist{background:#fff;border-radius:14px;border:1px solid var(--c-border);overflow:hidden;margin-bottom:16px}
-.check-row{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-bottom:1px solid var(--c-border)}
-.check-row:last-child{border-bottom:none}
-.check-icon{width:22px;height:22px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
-.check-ok{background:rgba(15,110,86,.12);color:var(--c-success)}
-.check-warn{background:rgba(186,117,23,.12);color:var(--c-warning)}
-.check-bad{background:rgba(163,45,45,.12);color:var(--c-danger)}
-.check-body{flex:1}
-.check-title{font-size:13px;font-weight:600;margin-bottom:2px}
-.check-detail{font-size:11px;color:var(--c-muted);line-height:1.5}
+.checklist {
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.check-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--neutral-100);
+  transition: background .15s;
+}
+.check-row:last-child { border-bottom: none; }
+.check-row:hover { background: var(--neutral-100); }
+.check-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.check-ok   { background: var(--success-light); color: var(--success-dark); }
+.check-warn { background: var(--warning-light); color: var(--warning-dark); }
+.check-bad  { background: var(--danger-light);  color: var(--danger-dark);  }
+.check-body { flex: 1; }
+.check-title  { font-size: 13px; font-weight: 600; color: var(--neutral-800); margin-bottom: 2px; }
+.check-detail { font-size: 11px; color: var(--neutral-600); line-height: 1.5; }
 
-/* ── Score comparison bar ── */
-.compare-bar{background:#fff;border-radius:14px;border:1px solid var(--c-border);padding:16px;margin-bottom:16px}
-.compare-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.compare-row:last-child{margin-bottom:0}
-.compare-name{font-size:12px;font-weight:600;width:90px;flex-shrink:0}
-.compare-track{flex:1;height:10px;background:var(--c-bg2);border-radius:5px;overflow:visible;position:relative}
-.compare-fill{height:10px;border-radius:5px;position:relative}
-.compare-val{font-size:11px;font-weight:700;position:absolute;right:-28px;top:50%;transform:translateY(-50%);white-space:nowrap}
-.compare-you{background:var(--c-accent)}
-.compare-area{background:#d1d5db}
+/* ── Service recommendation cards ── */
+.svc-list { display: flex; flex-direction: column; gap: 10px; }
+.svc-card {
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .2s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
+}
+.svc-card:hover {
+  border-color: var(--primary-300);
+  box-shadow: var(--shadow-md);
+}
+.svc-card--top {
+  border-color: var(--primary-300);
+  background: linear-gradient(135deg, var(--neutral-white) 0%, var(--primary-100) 100%);
+}
+.svc-card--top::before {
+  content: '⭐ Best Match';
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--primary-400);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-bottom-left-radius: var(--radius-sm);
+}
+.svc-rank {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--primary-100);
+  color: var(--primary-500);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.svc-card--top .svc-rank {
+  background: var(--primary-400);
+  color: #fff;
+}
+.svc-body { flex: 1; min-width: 0; }
+.svc-name { font-size: 15px; font-weight: 700; color: var(--neutral-black); margin-bottom: 3px; }
+.svc-tagline { font-size: 12px; color: var(--neutral-600); margin-bottom: 10px; line-height: 1.5; }
+.svc-dims { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.svc-dim-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--success-light);
+  color: var(--success-dark);
+}
+.svc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.svc-lift {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary-500);
+  background: var(--primary-100);
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+.svc-cta-link {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary-500);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+.svc-cta-link::after { content: '→'; }
+
+/* ── Score comparison ── */
+.compare-block {
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 4px;
+}
+.compare-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.compare-row:last-child { margin-bottom: 0; }
+.compare-name { font-size: 12px; font-weight: 600; width: 100px; flex-shrink: 0; color: var(--neutral-700); }
+.compare-track { flex: 1; height: 10px; background: var(--neutral-200); border-radius: 5px; overflow: hidden; position: relative; }
+.compare-fill { height: 100%; border-radius: 5px; }
+.compare-you  { background: var(--primary-400); }
+.compare-area { background: var(--neutral-300); }
+.compare-val  { font-size: 12px; font-weight: 700; width: 30px; text-align: right; flex-shrink: 0; }
 
 /* ── Bottom CTA ── */
-.cta-banner{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);border-radius:16px;padding:28px 24px;text-align:center;color:#fff;margin-top:24px}
-.cta-title{font-size:20px;font-weight:800;margin-bottom:8px;line-height:1.3}
-.cta-sub{font-size:14px;opacity:.75;margin-bottom:20px;line-height:1.6}
-.cta-btn{display:inline-block;background:var(--c-accent);color:#fff;padding:13px 28px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:opacity .2s}
-.cta-btn:hover{opacity:.88}
-.cta-note{font-size:11px;opacity:.5;margin-top:12px}
+.cta-section {
+  background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-500) 50%, var(--primary-400) 100%);
+  border-radius: var(--radius-xl);
+  padding: 36px 28px;
+  text-align: center;
+  color: #fff;
+  margin-top: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .7;
+  margin-bottom: 10px;
+}
+.cta-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  letter-spacing: -.3px;
+}
+.cta-subtitle {
+  font-size: 14px;
+  opacity: .8;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  color: var(--primary-600);
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity .2s, transform .2s;
+  letter-spacing: -.1px;
+}
+.cta-btn:hover { opacity: .92; transform: translateY(-1px); }
+.cta-note { font-size: 11px; opacity: .55; margin-top: 12px; }
 
-/* ── Loading skeleton ── */
-.skeleton{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:8px}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+/* ── Loading / Error ── */
+.loading-wrap {
+  text-align: center;
+  padding: 80px 20px;
+}
+.spinner {
+  width: 44px; height: 44px;
+  border: 3px solid var(--neutral-200);
+  border-top-color: var(--primary-400);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  margin: 0 auto 16px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 14px; color: var(--neutral-600); }
 
-/* ── Error ── */
-.error-box{text-align:center;padding:60px 20px;background:#fff;border-radius:16px;border:1px solid var(--c-border)}
-.error-icon{font-size:40px;margin-bottom:12px}
-.error-title{font-size:18px;font-weight:700;margin-bottom:8px}
-.error-msg{font-size:13px;color:var(--c-muted)}
+.error-wrap {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-xl);
+}
+.error-icon  { font-size: 36px; margin-bottom: 12px; }
+.error-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.error-msg   { font-size: 13px; color: var(--neutral-600); }
 
-/* PDF */
-@media print{.topbar,.topbar-cta,.cta-banner{display:none}.page{padding:0}}
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .hero-top { flex-direction: column-reverse; gap: 12px; }
+  .hero-score { display: flex; align-items: center; gap: 12px; }
+  .score-label, .score-sub { display: inline; margin-left: 4px; }
+}
 </style>
 </head>
 <body>
 
-<nav class="topbar">
-  <a class="topbar-logo" href="/">🍽 Restaurant Ranking</a>
-  <a class="topbar-cta" href="/services.html">Get Free Analysis</a>
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">🍽</div>
+    Restaurant Ranking
+  </a>
+  <a href="/services.html" class="nav-cta">Get Free Analysis</a>
 </nav>
 
 <div class="page" id="app">
-  <!-- JS renders here -->
-  <div id="loading" style="padding:60px 0;text-align:center">
-    <div style="width:48px;height:48px;border:4px solid #f3f3f3;border-top:4px solid var(--c-accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px"></div>
-    <p style="color:var(--c-muted);font-size:14px">Analyzing your restaurant's Google presence…</p>
+  <div class="loading-wrap" id="loading">
+    <div class="spinner"></div>
+    <p class="loading-text">Analyzing your restaurant's Google presence…</p>
   </div>
-  <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
 </div>
 
 <script>
 (function(){
 "use strict";
 
-/* ── Config ───────────────────────────────────────────────────────── */
+/* ── Config ── */
 var SUPABASE_URL = "https://supabase.360ai.link";
 var SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaXNzIjoic3VwYWJhc2UiLCJpYXQiOjE3NjI0MDUyMDAsImV4cCI6MTkyMDE3MTYwMH0.0Scyjnrqt727pMYFEP5n-MBF3OcL2SyDUhgUTSLHLCE";
 
-/* ── URL params ───────────────────────────────────────────────────── */
-var params = new URLSearchParams(location.search);
+var params   = new URLSearchParams(location.search);
+var SLUG     = params.get("slug") || "";
 var PLACE_ID = params.get("placeId") || "";
 var CAMIS    = params.get("camis") || "";
 var BIZ_NAME = params.get("businessName") || "";
-var SLUG     = params.get("slug") || "";
 
-/* ══════════════════════════════════════════════════════════════════
-   SCORING ENGINE (mirrors restaurant-scoring.js)
-   ══════════════════════════════════════════════════════════════════ */
-
+/* ══ SCORING ENGINE ════════════════════════════════════════════════════ */
 function clamp(v,lo,hi){return Math.max(lo||0,Math.min(hi||100,Number(v)||0))}
 function r1(v){return Math.round(clamp(v)*10)/10}
 
-function ratingScore(rating){
-  var r=clamp(rating,1,5);
-  return r1(Math.max(0,(r-3.5)/1.5)*100);
-}
-function volumeScore(n){
-  n=Math.max(0,Math.floor(Number(n)||0));
-  return r1(Math.log10(n+1)/Math.log10(2000)*100);
-}
+function ratingScore(rating){return r1(Math.max(0,(clamp(rating,1,5)-3.5)/1.5)*100)}
+function volumeScore(n){n=Math.max(0,Math.floor(Number(n)||0));return r1(Math.log10(n+1)/Math.log10(2000)*100)}
 function sentimentScore(dist,rating){
   var d=dist||{};
-  var one=Number(d.oneStar)||0,two=Number(d.twoStar)||0,
-      three=Number(d.threeStar)||0,four=Number(d.fourStar)||0,five=Number(d.fiveStar)||0;
+  var one=Number(d.oneStar)||0,two=Number(d.twoStar)||0,three=Number(d.threeStar)||0,four=Number(d.fourStar)||0,five=Number(d.fiveStar)||0;
   var total=one+two+three+four+five;
-  var raw = total>0 ? ((one+two*2+three*3+four*4+five*5)/total-1)/4*100
-                    : (clamp(rating,1,5)-1)/4*100;
-  if(one>=3) raw=Math.min(raw,45);
-  else if(one>=1) raw=Math.min(raw,60);
+  var raw=total>0?((one+two*2+three*3+four*4+five*5)/total-1)/4*100:(clamp(rating,1,5)-1)/4*100;
+  if(one>=3)raw=Math.min(raw,45); else if(one>=1)raw=Math.min(raw,60);
   return r1(clamp(raw));
 }
 function foodSafetyScore(grade,score){
   var base={A:100,B:70,C:40,Z:50,N:50}[String(grade||"").toUpperCase()]||50;
   var doh=Number(score);
-  var pen=Number.isFinite(doh)&&doh>0?Math.max(0,doh-13)*0.8:0;
-  return r1(clamp(base-pen));
+  return r1(clamp(base-(Number.isFinite(doh)&&doh>0?Math.max(0,doh-13)*0.8:0)));
 }
 function profileScore(p){
   function has(v){return v!=null&&String(v).trim().length>0}
-  return r1(
-    (has(p.best_menu_url)?22:0)+(has(p.phone)?18:0)+(has(p.website)?16:0)+
-    (has(p.opening_hours)?16:0)+(has(p.price)?14:0)+
-    ((p.categories&&p.categories.length)?8:0)+(has(p.image_url)?6:0)
-  );
+  return r1((has(p.best_menu_url)?22:0)+(has(p.phone)?18:0)+(has(p.website)?16:0)+
+    (has(p.opening_hours)?16:0)+(has(p.price)?14:0)+((p.categories&&p.categories.length)?8:0)+(has(p.image_url)?6:0));
 }
 function serviceScore(ai){
-  function flag(sec,key){
-    var items=(ai||{})[sec]||[];
-    if(!Array.isArray(items))return null;
-    for(var i=0;i<items.length;i++){if(items[i]&&key in items[i])return items[i][key]===true}
-    return null;
-  }
-  var del=flag("Service options","Delivery"),tak=flag("Service options","Takeout"),
-      din=flag("Service options","Dine-in"),tbl=flag("Dining options","Table service"),
-      res=flag("Planning","Accepts reservations")||flag("Planning","Reservations recommended");
+  function flag(s,k){var items=((ai||{})[s]||[]);if(!Array.isArray(items))return null;for(var i=0;i<items.length;i++){if(items[i]&&k in items[i])return items[i][k]===true}return null}
+  var del=flag("Service options","Delivery"),tak=flag("Service options","Takeout"),din=flag("Service options","Dine-in"),tbl=flag("Dining options","Table service"),res=flag("Planning","Accepts reservations")||flag("Planning","Reservations recommended");
   var s=0;
-  s+=del===true?25:del===null?12:0;
-  s+=tak===true?20:tak===null?10:0;
-  s+=din===true?25:din===null?12:0;
-  s+=tbl===true?15:tbl===null?7:0;
-  s+=res===true?15:res===null?7:0;
+  s+=del===true?25:del===null?12:0; s+=tak===true?20:tak===null?10:0; s+=din===true?25:din===null?12:0;
+  s+=tbl===true?15:tbl===null?7:0;  s+=res===true?15:res===null?7:0;
   return r1(clamp(s));
 }
 function valueScore(price,rating){
-  var rs=ratingScore(rating)/100;
-  var p=String(price||"").trim();
+  var rs=ratingScore(rating)/100,p=String(price||"").trim();
   var m=p==="$"||/^\$1/.test(p)?1.20:p==="$$"?1.00:p==="$$$"?0.80:p==="$$$$"?0.65:1.00;
   return r1(clamp(rs*m*100));
 }
@@ -280,113 +663,76 @@ function conversionScore(p){
   function has(v){return v!=null&&String(v).trim().length>0}
   return r1((has(p.phone)?50:0)+(has(p.best_menu_url)?30:0)+(has(p.reserve_table_url)?20:0));
 }
-
-var WEIGHTS={D1:0.20,D2:0.15,D3:0.15,D4:0.15,D5:0.12,D6:0.10,D7:0.08,D8:0.03,D9:0.02};
-
+var WEIGHTS={D1:.20,D2:.15,D3:.15,D4:.15,D5:.12,D6:.10,D7:.08,D8:.03,D9:.02};
 function calcScore(dims,n){
-  var blend=dims.D1*WEIGHTS.D1+dims.D2*WEIGHTS.D2+dims.D3*WEIGHTS.D3+dims.D4*WEIGHTS.D4+
-            dims.D5*WEIGHTS.D5+dims.D6*WEIGHTS.D6+dims.D7*WEIGHTS.D7+dims.D8*WEIGHTS.D8+dims.D9*WEIGHTS.D9;
-  n=Math.max(0,Number(n)||0);
-  var conf=1-Math.exp(-n/80),prior=0.50;
-  return Math.round(clamp((prior+(blend/100-prior)*(0.30+0.70*conf))*100)*10)/10;
+  var b=dims.D1*WEIGHTS.D1+dims.D2*WEIGHTS.D2+dims.D3*WEIGHTS.D3+dims.D4*WEIGHTS.D4+dims.D5*WEIGHTS.D5+dims.D6*WEIGHTS.D6+dims.D7*WEIGHTS.D7+dims.D8*WEIGHTS.D8+dims.D9*WEIGHTS.D9;
+  n=Math.max(0,Number(n)||0);var conf=1-Math.exp(-n/80),prior=0.50;
+  return Math.round(clamp((prior+(b/100-prior)*(0.30+0.70*conf))*100)*10)/10;
 }
 
-/* ── 6 Customer dimensions (9→6 merge) ──────────────────────────── */
-function buildSixDims(dims){
+/* ── 6 Customer Dimensions ── */
+function sixDims(dims){
   return [
-    { id:"reputation", icon:"⭐", name:"Reputation Score",
-      score: r1(dims.D1*0.57+dims.D3*0.43),
-      sub:"Stars & Review Sentiment",
-      hint:"How positively diners rate your food and experience on Google.",
-      detail:[
-        {label:"Star Rating",    val:dims.D1, sub:"Google avg star score"},
-        {label:"Review Sentiment",val:dims.D3, sub:"Positive vs negative balance"}
-      ]
-    },
-    { id:"reviews",    icon:"💬", name:"Review Power",
-      score: dims.D2,
-      sub:"Review Volume & Velocity",
-      hint:"The total weight of reviews powering your local search rank.",
-      detail:[{label:"Review Volume", val:dims.D2, sub:"vs. 2 000 reviews plateau"}]
-    },
-    { id:"safety",     icon:"🏥", name:"Health & Safety",
-      score: dims.D4,
-      sub:"NYC DOH Inspection Grade",
-      hint:"Your latest NYC health department grade and inspection score.",
-      detail:[{label:"DOH Safety Grade", val:dims.D4, sub:"A=100 · B=70 · C=40"}]
-    },
-    { id:"visibility", icon:"📍", name:"Google Visibility",
-      score: r1(dims.D5*0.80+dims.D8*0.20),
-      sub:"Profile Completeness & Activity",
-      hint:"How complete and active your Google Business Profile is.",
-      detail:[
-        {label:"Profile Completeness", val:dims.D5, sub:"Menu, hours, photos, price"},
-        {label:"Operational Activity",  val:dims.D8, sub:"Open status, peak hours data"}
-      ]
-    },
-    { id:"appeal",     icon:"🍽", name:"Dining Appeal",
-      score: r1(dims.D6*0.55+dims.D7*0.45),
-      sub:"Service Breadth & Value",
-      hint:"How many ways diners can enjoy your restaurant and perceive its value.",
-      detail:[
-        {label:"Service Options",  val:dims.D6, sub:"Dine-in, delivery, takeout, table service"},
-        {label:"Price-Value Ratio",val:dims.D7, sub:"Value perception for your price tier"}
-      ]
-    },
-    { id:"booking",    icon:"📞", name:"Booking Readiness",
-      score: dims.D9,
-      sub:"Phone · Menu · Reservation",
-      hint:"How easy it is for a new customer to contact or book your restaurant.",
-      detail:[{label:"Conversion Readiness", val:dims.D9, sub:"Phone + online menu + reservation link"}]
-    }
+    {id:"reputation",icon:"⭐",name:"Reputation Score",score:r1(dims.D1*.57+dims.D3*.43),sub:"Stars & Review Sentiment",
+     tone:tone(r1(dims.D1*.57+dims.D3*.43)),
+     detail:"Based on your Google star rating and the sentiment across your review histogram."},
+    {id:"reviews",icon:"💬",name:"Review Power",score:dims.D2,sub:"Review Volume",
+     tone:tone(dims.D2),
+     detail:"The total weight of your reviews in Google's local ranking algorithm."},
+    {id:"safety",icon:"🏥",name:"Health & Safety",score:dims.D4,sub:"NYC DOH Inspection",
+     tone:tone(dims.D4),
+     detail:"Your latest NYC Health Department grade and inspection score."},
+    {id:"visibility",icon:"📍",name:"Google Visibility",score:r1(dims.D5*.80+dims.D8*.20),sub:"Profile Completeness",
+     tone:tone(r1(dims.D5*.80+dims.D8*.20)),
+     detail:"How complete and active your Google Business Profile is."},
+    {id:"appeal",icon:"🍽",name:"Dining Appeal",score:r1(dims.D6*.55+dims.D7*.45),sub:"Service & Value",
+     tone:tone(r1(dims.D6*.55+dims.D7*.45)),
+     detail:"Dine-in, delivery, takeout, and your price-to-quality ratio."},
+    {id:"booking",icon:"📞",name:"Booking Readiness",score:dims.D9,sub:"Phone · Menu · Reservation",
+     tone:tone(dims.D9),
+     detail:"How easy it is for new diners to contact or book your restaurant."}
   ];
 }
+function tone(s){return s>=80?"green":s>=60?"blue":s>=40?"yellow":"red"}
+function toneColor(t){return t==="green"?"var(--success)":t==="blue"?"var(--info)":t==="yellow"?"var(--warning-dark)":"var(--danger)"}
+function levelFromScore(s){
+  if(s>=80)return{label:"EXCELLENT",tone:"green"};
+  if(s>=65)return{label:"GOOD",tone:"blue"};
+  if(s>=48)return{label:"MODERATE",tone:"yellow"};
+  if(s>=32)return{label:"LOW",tone:"yellow"};
+  return{label:"RISKY",tone:"red"};
+}
+function badgeClass(t){return t==="green"?"badge-success":t==="blue"?"badge-purple":t==="yellow"?"badge-warning":"badge-danger"}
 
-/* ── Service prescription ─────────────────────────────────────────── */
+/* ── Score Ring SVG ── */
+function scoreRing(score,color,size){
+  size=size||90;
+  var r=(size-12)/2,circ=2*Math.PI*r,offset=circ-(circ*(score/100));
+  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">'
+    +'<circle cx="'+(size/2)+'" cy="'+(size/2)+'" r="'+r+'" fill="none" stroke="var(--neutral-200)" stroke-width="8"/>'
+    +'<circle cx="'+(size/2)+'" cy="'+(size/2)+'" r="'+r+'" fill="none" stroke="'+esc(color)+'" stroke-width="8"'
+    +' stroke-dasharray="'+circ+'" stroke-dashoffset="'+offset+'" stroke-linecap="round" transform="rotate(-90 '+(size/2)+' '+(size/2)+')"/>'
+    +'<text x="'+(size/2)+'" y="'+(size/2+7)+'" text-anchor="middle" font-size="20" font-weight="800" fill="'+esc(color)+'" font-family="Inter,sans-serif">'+Math.round(score)+'</text>'
+    +'</svg>';
+}
+
+/* ── Services ── */
 var SERVICES=[
-  { id:"review_booster", name:"AI Review Booster",
-    tagline:"Turn happy diners into 5-star Google reviews — automatically.",
-    impacts:{D2:40,D1:20,D3:20}, pricing:"Starting at $29/yr",
-    cta:"Start getting more reviews →", path:"/ai-review-generator.html",
-    icon:"⭐"
-  },
-  { id:"sms_booster", name:"SMS Review Booster",
-    tagline:"Post-visit texts that capture reviews before diners forget you.",
-    impacts:{D3:25,D2:25,D9:10}, pricing:"Starting at $49/mo",
-    cta:"Automate review follow-up →", path:"/ai-sms-review-booster.html",
-    icon:"💬"
-  },
-  { id:"front_desk", name:"AI Front-Desk Agent",
-    tagline:"24/7 AI phone agent — every reservation captured, zero missed calls.",
-    impacts:{D9:45,D6:20}, pricing:"Starting at $99/yr",
-    cta:"Add 24/7 AI receptionist →", path:"/ai-front-desk.html",
-    icon:"📞"
-  },
-  { id:"profile_opt", name:"Google Profile Optimisation",
-    tagline:"Fully optimised GBP — rank above competitors in local map results.",
-    impacts:{D5:35,D6:20,D8:15}, pricing:"One-time setup",
-    cta:"Optimise your profile →", path:"/services.html",
-    icon:"📍"
-  },
-  { id:"website", name:"Website & Conversion",
-    tagline:"High-converting restaurant site that turns browsers into diners.",
-    impacts:{D5:20,D9:35,D7:20}, pricing:"Custom quote",
-    cta:"Get a conversion website →", path:"/conversion-accelerator.html",
-    icon:"🌐"
-  },
-  { id:"social_media", name:"Social Media Operation",
-    tagline:"Consistent content that builds a local audience and drives walk-ins.",
-    impacts:{D1:12,D2:18,D7:25}, pricing:"$699–$1,499/mo",
-    cta:"Grow your social presence →", path:"/social-media-growth-engine.html",
-    icon:"📱"
-  }
+  {id:"review_booster",name:"AI Review Booster",tagline:"Turn happy diners into 5-star Google reviews — automatically.",
+   impacts:{D2:40,D1:20,D3:20},pricing:"Starting $29/yr",cta:"Start getting more reviews",path:"/ai-review-generator.html",icon:"⭐"},
+  {id:"sms_booster",name:"SMS Review Booster",tagline:"Post-visit texts that capture reviews before diners forget you.",
+   impacts:{D3:25,D2:25,D9:10},pricing:"Starting $49/mo",cta:"Automate review follow-up",path:"/ai-sms-review-booster.html",icon:"💬"},
+  {id:"front_desk",name:"AI Front-Desk Agent",tagline:"24/7 AI phone agent — every reservation captured, zero missed calls.",
+   impacts:{D9:45,D6:20},pricing:"Starting $99/yr",cta:"Add 24/7 AI receptionist",path:"/ai-front-desk.html",icon:"📞"},
+  {id:"profile_opt",name:"Google Profile Optimisation",tagline:"Fully optimised GBP — rank above competitors in local map results.",
+   impacts:{D5:35,D6:20,D8:15},pricing:"One-time setup",cta:"Optimise your profile",path:"/services.html",icon:"📍"},
+  {id:"website",name:"Website & Conversion",tagline:"High-converting restaurant site that turns browsers into diners.",
+   impacts:{D5:20,D9:35,D7:20},pricing:"Custom quote",cta:"Get a conversion website",path:"/conversion-accelerator.html",icon:"🌐"},
+  {id:"social_media",name:"Social Media Operation",tagline:"Consistent content that builds a local audience and drives walk-ins.",
+   impacts:{D1:12,D2:18,D7:25},pricing:"$699–$1,499/mo",cta:"Grow your social presence",path:"/social-media-growth-engine.html",icon:"📱"}
 ];
-
-function prescribe(dims,reviewCount,max){
-  max=max||3;
-  var n=Number(reviewCount)||0;
-  var conf=1-Math.exp(-n/80);
-  var factor=0.30+0.70*conf;
+function prescribe(dims,n,max){
+  max=max||3;var conf=1-Math.exp(-n/80),factor=.30+.70*conf;
   var ranked=SERVICES.map(function(svc){
     var liftScore=0,totalLift=0,affected=[];
     Object.keys(svc.impacts).forEach(function(k){
@@ -401,327 +747,197 @@ function prescribe(dims,reviewCount,max){
   return ranked.slice(0,max);
 }
 
-/* ── Helpers ───────────────────────────────────────────────────────── */
-var DIM_NAMES={D1:"Star Rating",D2:"Review Volume",D3:"Sentiment",D4:"Health & Safety",
-               D5:"Profile",D6:"Services",D7:"Value",D8:"Ops",D9:"Booking"};
+var DIM_LABELS={D1:"Star Rating",D2:"Review Volume",D3:"Sentiment",D4:"Health & Safety",D5:"Profile",D6:"Services",D7:"Value",D8:"Ops",D9:"Booking"};
 
-function scoreColor(s){
-  if(s>=80)return"var(--c-success)";
-  if(s>=60)return"var(--c-info)";
-  if(s>=40)return"var(--c-warning)";
-  return"var(--c-danger)";
-}
-function scoreTone(s){
-  if(s>=80)return"excellent";
-  if(s>=60)return"good";
-  if(s>=40)return"moderate";
-  return"low";
-}
-function levelFromScore(s){
-  if(s>=80)return{label:"EXCELLENT",cls:"c-success"};
-  if(s>=65)return{label:"GOOD",cls:"c-info"};
-  if(s>=48)return{label:"MODERATE",cls:"c-warn"};
-  if(s>=32)return{label:"LOW",cls:"c-accent"};
-  return{label:"RISKY",cls:"c-danger"};
-}
+/* ── Escaping ── */
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 
-/* ── Score ring SVG ────────────────────────────────────────────────── */
-function scoreRing(score,color,size){
-  size=size||80;
-  var r=(size-12)/2,circ=2*Math.PI*r;
-  var offset=circ-(circ*(score/100));
-  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">'
-    +'<circle cx="'+(size/2)+'" cy="'+(size/2)+'" r="'+r+'" fill="none" stroke="currentColor" opacity=".1" stroke-width="8"/>'
-    +'<circle cx="'+(size/2)+'" cy="'+(size/2)+'" r="'+r+'" fill="none" stroke="'+esc(color)+'" stroke-width="8"'
-    +' stroke-dasharray="'+circ+'" stroke-dashoffset="'+offset+'"'
-    +' stroke-linecap="round" transform="rotate(-90 '+(size/2)+' '+(size/2)+')"/>'
-    +'<text x="'+(size/2)+'" y="'+(size/2+6)+'" text-anchor="middle" font-size="'+(size===80?18:14)+'"'
-    +' font-weight="800" fill="currentColor">'+Math.round(score)+'</text></svg>';
-}
-
-/* ── Checklist from dims ─────────────────────────────────────────── */
-function buildChecklist(p,r,dims){
-  var checks=[];
-  function item(ok,warn,title,detail){
-    return{status:ok?"ok":warn?"warn":"bad",title:title,detail:detail};
-  }
-  checks.push(item(p.phone,false,"Phone number listed",p.phone?"✓ "+String(p.phone):"Missing — diners can't call you directly"));
-  checks.push(item(p.best_menu_url,false,"Menu URL available",p.best_menu_url?"✓ Online menu found":"No menu link — add it to your GBP"));
-  checks.push(item(p.website,false,"Website linked",p.website?"✓ "+String(p.website).replace(/^https?:\/\//,"").split("/")[0]:"No website — you're losing search clicks"));
-  checks.push(item(p.opening_hours&&p.opening_hours.length>0,false,"Opening hours set",p.opening_hours?"✓ "+p.opening_hours.length+" days listed":"Hours missing — customers may skip you"));
-  checks.push(item(r.latest_grade==="A",r.latest_grade==="B","NYC DOH Grade",r.latest_grade?"Grade "+r.latest_grade+(r.latest_score?" · Score "+r.latest_score:""):"No inspection data found"));
-  checks.push(item(dims.D3>=70,dims.D3>=50,"Positive review sentiment",dims.D3>=70?"Strong positive sentiment ("+Math.round(dims.D3)+"/100)":dims.D3>=50?"Mixed reviews present — address negatives":"High negative review rate — urgent attention needed"));
-  checks.push(item(!!p.reserve_table_url,false,"Online reservation link",p.reserve_table_url?"✓ Reservation link found":"No reservation link — add OpenTable or Resy"));
-  checks.push(item(p.popular_times_histogram&&Object.keys(p.popular_times_histogram||{}).length>0,false,"Popular times data","Peak hour data "+(p.popular_times_histogram&&Object.keys(p.popular_times_histogram||{}).length>0?"visible on Google":"not showing — low traffic signal")));
-  return checks;
-}
-
-/* ══════════════════════════════════════════════════════════════════
-   RENDER
-   ══════════════════════════════════════════════════════════════════ */
-
+/* ══ RENDER ════════════════════════════════════════════════════════════ */
 function render(profile, restaurant){
   var p=profile||{}, r=restaurant||{};
   var name=BIZ_NAME||p.title||"Your Restaurant";
-
-  // Compute all 9 raw dims
-  var dims={
-    D1:ratingScore(p.rating),
-    D2:volumeScore(p.reviews_count),
-    D3:sentimentScore(p.reviews_distribution,p.rating),
-    D4:foodSafetyScore(r.latest_grade,r.latest_score),
-    D5:profileScore(p),
-    D6:serviceScore(p.additional_info),
-    D7:valueScore(p.price,p.rating),
-    D8:opsScore(p),
-    D9:conversionScore(p)
-  };
-
+  var dims={D1:ratingScore(p.rating),D2:volumeScore(p.reviews_count),D3:sentimentScore(p.reviews_distribution,p.rating),
+            D4:foodSafetyScore(r.latest_grade,r.latest_score),D5:profileScore(p),D6:serviceScore(p.additional_info),
+            D7:valueScore(p.price,p.rating),D8:opsScore(p),D9:conversionScore(p)};
   var totalScore=calcScore(dims,p.reviews_count);
   var lvl=levelFromScore(totalScore);
-  var color=scoreColor(totalScore);
-  var six=buildSixDims(dims);
+  var color=toneColor(lvl.tone);
+  var six=sixDims(dims);
   var recs=prescribe(dims,p.reviews_count,3);
-  var checks=buildChecklist(p,r,dims);
   var ceiling=Math.min(100,Math.round(totalScore+recs.reduce(function(s,x){return s+x.scoreLift},0)));
-
-  // Weak + strong summary
-  var sortedDims=six.slice().sort(function(a,b){return a.score-b.score});
-  var weakDim=sortedDims[0];
-  var strongDim=sortedDims[sortedDims.length-1];
-
-  // Alert tone
-  var alertTone=totalScore>=65?"info":totalScore>=45?"warn":"danger";
-
+  var n=Number(p.reviews_count)||0;
   var html="";
 
-  /* ── Hero ─────────────────────────────────────────────────────── */
+  /* Hero */
+  var gradeBadge=r.latest_grade?'<span class="badge '+(r.latest_grade==="A"?"badge-success":"badge-warning")+'">DOH Grade '+esc(r.latest_grade)+'</span>':"";
   html+='<div class="hero">'
-    +'<div class="hero-body">'
-    +'<div class="hero-badges">'
-    +'<span class="bdg bdg-orange">Local Ranking Report</span>'
-    +(r.latest_grade?'<span class="bdg '+(r.latest_grade==="A"?"bdg-success":"bdg-warn")+'">DOH Grade '+esc(r.latest_grade)+'</span>':"")
-    +'<span class="bdg '+lvl.cls.replace("c-","bdg-").replace("accent","orange")+'">'+lvl.label+'</span>'
+    +'<div class="hero-top"><div class="hero-info">'
+    +'<div class="hero-badges"><span class="badge badge-purple">Local Ranking Report</span>'+gradeBadge
+    +'<span class="badge '+badgeClass(lvl.tone)+'">'+lvl.label+'</span></div>'
+    +'<h1 class="hero-name">'+esc(name)+'</h1>'
+    +'<div class="hero-meta">'+(p.address?esc(p.address):"")+(p.category_name?"&nbsp;·&nbsp;"+esc(p.category_name):"")+'</div>'
+    +((p.categories&&p.categories.length)?'<div class="hero-category">🍽 '+esc(p.categories[0])+'</div>':"")
     +'</div>'
-    +'<div class="hero-name">'+esc(name)+'</div>'
-    +'<div class="hero-meta">'+(p.address||"")+(p.category_name?" · "+esc(p.category_name):"")+'</div>'
-    +(p.categories&&p.categories.length?'<div class="hero-grade">🍽 '+esc(p.categories[0])+'</div>':"")
-    +'</div>'
-    +'<div class="hero-score">'
-    +'<div class="score-ring-wrap">'+scoreRing(totalScore,color,88)+'</div>'
+    +'<div class="hero-score">'+scoreRing(totalScore,color,92)
     +'<div class="score-label" style="color:'+esc(color)+'">'+lvl.label+'</div>'
     +'<div class="score-sub">out of 100</div>'
-    +'</div>'
-    +'</div>';
+    +'</div></div>';
 
-  /* ── Top-4 stats ─────────────────────────────────────────────── */
-  var n=Number(p.reviews_count)||0;
-  var ratingTone=Number(p.rating)>=4.5?"c-success":Number(p.rating)>=4.0?"c-info":"c-warn";
-  var volTone=n>=300?"c-success":n>=100?"c-info":"c-warn";
+  /* 4 stats */
+  var ratingTone=Number(p.rating)>=4.5?"c-success":Number(p.rating)>=4.0?"c-info":"c-warning";
+  var volTone=n>=300?"c-success":n>=100?"c-info":"c-warning";
   html+='<div class="stat-grid">'
-    +'<div class="stat-card"><div class="stat-label">Google Rating</div>'
-    +'<div class="stat-val '+esc(ratingTone)+'">'+esc(p.rating||"—")+'★</div>'
-    +'<div class="stat-sub">out of 5.0</div></div>'
-    +'<div class="stat-card"><div class="stat-label">Total Reviews</div>'
-    +'<div class="stat-val '+esc(volTone)+'">'+n.toLocaleString()+'</div>'
-    +'<div class="stat-sub">on Google Maps</div></div>'
-    +'<div class="stat-card"><div class="stat-label">Health Grade</div>'
-    +'<div class="stat-val '+(r.latest_grade==="A"?"c-success":r.latest_grade?"c-warn":"c-muted")+'">'+(r.latest_grade||"N/A")+'</div>'
-    +'<div class="stat-sub">'+(r.latest_score?"Score "+r.latest_score:"NYC DOH")+'</div></div>'
-    +'<div class="stat-card"><div class="stat-label">Score Ceiling</div>'
-    +'<div class="stat-val c-info">'+ceiling+'</div>'
-    +'<div class="stat-sub">with our services</div></div>'
-    +'</div>';
+    +'<div class="stat-card"><div class="stat-label">Google Rating</div><div class="stat-value '+esc(ratingTone)+'">'+esc(p.rating||"—")+'★</div><div class="stat-sub">out of 5.0</div></div>'
+    +'<div class="stat-card"><div class="stat-label">Total Reviews</div><div class="stat-value '+esc(volTone)+'">'+n.toLocaleString()+'</div><div class="stat-sub">on Google Maps</div></div>'
+    +'<div class="stat-card"><div class="stat-label">Health Grade</div><div class="stat-value '+(r.latest_grade==="A"?"c-success":r.latest_grade?"c-warning":"c-neutral")+'">'+(r.latest_grade||"N/A")+'</div><div class="stat-sub">'+(r.latest_score?"Score "+r.latest_score:"NYC DOH")+'</div></div>'
+    +'<div class="stat-card"><div class="stat-label">Score Potential</div><div class="stat-value c-purple">'+ceiling+'</div><div class="stat-sub">with our services</div></div>'
+    +'</div></div>';
 
-  /* ── Alert callout ───────────────────────────────────────────── */
-  var alertMsg=totalScore>=65
-    ? {title:"You're in good shape — let's push to the top",
-       body:'<strong>'+esc(name)+'</strong> scores '+totalScore+'/100. Your strongest area is <strong>'+esc(strongDim.name)+'</strong>. The fastest path to higher ranking is improving <strong>'+esc(weakDim.name)+'</strong> (currently '+Math.round(weakDim.score)+'/100).'}
-    : totalScore>=45
-    ? {title:'⚠ Moderate presence — competitors may be outranking you',
-       body:'<strong>'+esc(name)+'</strong> scores '+totalScore+'/100. <strong>'+esc(weakDim.name)+'</strong> is your critical gap at '+Math.round(weakDim.score)+'/100. Fixing this can add up to <strong>+'+(ceiling-Math.round(totalScore))+' points</strong> to your score.'}
-    : {title:'🚨 Significant gaps — urgent improvements needed',
-       body:'<strong>'+esc(name)+'</strong> scores only '+totalScore+'/100, meaning local competitors likely rank above you. Your biggest gap is <strong>'+esc(weakDim.name)+'</strong> ('+Math.round(weakDim.score)+'/100). Take action now.'};
-  html+='<div class="callout callout--'+alertTone+'"><div class="callout-title">'+alertMsg.title+'</div><p>'+alertMsg.body+'</p></div>';
+  /* Callout */
+  var co=totalScore>=65
+    ?{icon:"✅",cls:"callout--success",title:"You're performing well — let's push to the top",text:'<strong>'+esc(name)+'</strong> scores '+totalScore+'/100. Strongest area: <strong>'+six.slice().sort(function(a,b){return b.score-a.score})[0].name+'</strong>. Fastest win: improve <strong>'+six.slice().sort(function(a,b){return a.score-b.score})[0].name+'</strong>.'}
+    :totalScore>=45
+    ?{icon:"⚠️",cls:"callout--warning",title:"Moderate presence — competitors may be outranking you",text:'<strong>'+esc(name)+'</strong> scores '+totalScore+'/100. Addressing your gaps could add <strong>+'+(ceiling-Math.round(totalScore))+' points</strong> to your score.'}
+    :{icon:"🚨",cls:"callout--danger",title:"Significant gaps — urgent improvements needed",text:'<strong>'+esc(name)+'</strong> scores only '+totalScore+'/100. Local competitors likely rank above you. Take action now.'};
+  html+='<div class="callout '+co.cls+'"><div class="callout-icon">'+co.icon+'</div><div class="callout-body"><div class="callout-title">'+co.title+'</div><div class="callout-text">'+co.text+'</div></div></div>';
 
-  /* ── 6 Dimension score cards ─────────────────────────────────── */
-  html+='<div class="sec-head">6 Ranking Dimensions</div>';
-  html+='<div class="dim-grid">';
+  /* 6 dimension cards */
+  html+='<div class="sec-head">6 Ranking Dimensions</div><div class="dim-grid">';
   six.forEach(function(dim){
-    var tone=scoreTone(dim.score);
-    var c=scoreColor(dim.score);
-    html+='<div class="dim-card '+tone+'">'
+    var c=toneColor(dim.tone);
+    html+='<div class="dim-card '+dim.tone+'">'
       +'<div class="dim-icon">'+dim.icon+'</div>'
       +'<div class="dim-name">'+esc(dim.name)+'</div>'
-      +'<div class="dim-score-row"><span class="dim-score" style="color:'+esc(c)+'">'+Math.round(dim.score)+'</span><span class="dim-total">/100</span></div>'
-      +'<div class="dim-bar-bg"><div class="dim-bar-fill '+tone+'" style="width:'+Math.round(dim.score)+'%"></div></div>'
-      +'<div class="dim-hint">'+esc(dim.sub)+'</div>'
+      +'<div class="dim-score-wrap"><span class="dim-score-num" style="color:'+esc(c)+'">'+Math.round(dim.score)+'</span><span class="dim-score-denom">/100</span></div>'
+      +'<div class="dim-bar-track"><div class="dim-bar-fill '+dim.tone+'" style="width:'+Math.round(dim.score)+'%"></div></div>'
+      +'<div class="dim-desc">'+esc(dim.sub)+'</div>'
       +'</div>';
   });
   html+='</div>';
 
-  /* ── Breakdown (all 9 raw indicators) ───────────────────────── */
-  html+='<div class="sec-head">Detailed Indicator Breakdown</div>';
-  html+='<div class="breakdown-card">';
-  [
-    {key:"D1",label:"Star Rating Quality",    sub:"Calibrated for restaurant range (3.5–5.0)"},
-    {key:"D2",label:"Review Volume",           sub:"log-weighted, plateau at 2 000 reviews"},
-    {key:"D3",label:"Review Sentiment",        sub:"Star histogram analysis (1★ penalty applied)"},
-    {key:"D4",label:"Health & Safety (DOH)",   sub:"NYC inspection grade + score"},
-    {key:"D5",label:"Profile Completeness",    sub:"Menu · phone · hours · price · photos"},
-    {key:"D6",label:"Service Breadth",         sub:"Dine-in · delivery · takeout · table · reserve"},
-    {key:"D7",label:"Price-Value Ratio",       sub:"Price tier vs. star quality perception"},
-    {key:"D8",label:"Operational Activity",    sub:"Open status · peak hours visibility"},
-    {key:"D9",label:"Booking Readiness",       sub:"Phone + menu link + reservation"}
+  /* Indicator breakdown */
+  html+='<div class="sec-head">Indicator Breakdown</div><div class="breakdown-table">';
+  [{key:"D1",name:"Star Rating Quality",sub:"Calibrated 3.5→0 / 5.0→100",wt:"20%"},
+   {key:"D2",name:"Review Volume",sub:"Log-weighted, 2 000 review plateau",wt:"15%"},
+   {key:"D3",name:"Review Sentiment",sub:"Star histogram analysis",wt:"15%"},
+   {key:"D4",name:"Health & Safety (DOH)",sub:"NYC inspection grade + score",wt:"15%"},
+   {key:"D5",name:"Profile Completeness",sub:"Menu · phone · hours · price · photos",wt:"12%"},
+   {key:"D6",name:"Service Breadth",sub:"Dine-in · delivery · takeout · reserve",wt:"10%"},
+   {key:"D7",name:"Price-Value Ratio",sub:"Price tier vs. star quality",wt:"8%"},
+   {key:"D8",name:"Operational Activity",sub:"Open status · peak hours data",wt:"3%"},
+   {key:"D9",name:"Booking Readiness",sub:"Phone + menu + reservation link",wt:"2%"}
   ].forEach(function(item){
-    var v=dims[item.key];
-    var c=scoreColor(v);
+    var v=dims[item.key],t=tone(v),c=toneColor(t);
     html+='<div class="breakdown-row">'
-      +'<div class="breakdown-name">'+esc(item.label)+'<br><span class="breakdown-sub">'+esc(item.sub)+'</span></div>'
-      +'<div class="breakdown-bar-wrap"><div class="breakdown-bar-bg"><div class="breakdown-bar-fill" style="width:'+Math.round(v)+'%;background:'+esc(c)+';height:6px;border-radius:3px"></div></div></div>'
+      +'<div class="breakdown-left"><div class="breakdown-name">'+esc(item.name)+'</div><div class="breakdown-sub">'+esc(item.sub)+'</div></div>'
+      +'<div class="breakdown-bar-wrap"><div class="breakdown-bar-track"><div class="breakdown-bar-fill" style="width:'+Math.round(v)+'%;background:'+esc(c)+';height:6px;border-radius:3px;"></div></div></div>'
       +'<div class="breakdown-num" style="color:'+esc(c)+'">'+Math.round(v)+'</div>'
+      +'<div class="breakdown-wt">'+esc(item.wt)+'</div>'
       +'</div>';
   });
   html+='</div>';
 
-  /* ── Profile checklist ───────────────────────────────────────── */
-  html+='<div class="sec-head">Profile Health Checklist</div>';
-  html+='<div class="checklist">';
+  /* Profile checklist */
+  var checks=[
+    {s:!!p.phone,w:false,t:"Phone number listed",d:p.phone?"✓ "+String(p.phone):"Missing — diners can't call you"},
+    {s:!!p.best_menu_url,w:false,t:"Menu URL available",d:p.best_menu_url?"✓ Online menu found":"No menu link — add it to your GBP"},
+    {s:!!p.website,w:false,t:"Website linked",d:p.website?"✓ "+String(p.website).replace(/^https?:\/\//,"").split("/")[0]:"No website linked"},
+    {s:!!(p.opening_hours&&(Array.isArray(p.opening_hours)?p.opening_hours.length>0:true)),w:false,t:"Opening hours set",d:p.opening_hours?"✓ Hours listed":"Hours missing — affects local ranking"},
+    {s:r.latest_grade==="A",w:r.latest_grade==="B",t:"NYC Health Grade",d:r.latest_grade?"Grade "+r.latest_grade+(r.latest_score?" · Score "+r.latest_score:""):"No inspection data"},
+    {s:dims.D3>=70,w:dims.D3>=50,t:"Positive review sentiment",d:dims.D3>=70?"Strong sentiment ("+Math.round(dims.D3)+"/100)":dims.D3>=50?"Mixed reviews — address negatives":"High negative review rate — urgent"},
+    {s:!!p.reserve_table_url,w:false,t:"Online reservation link",d:p.reserve_table_url?"✓ Reservation link found":"No reservation link"},
+    {s:!!(p.popular_times_histogram&&Object.keys(p.popular_times_histogram||{}).length>0),w:false,t:"Popular times data visible",d:p.popular_times_histogram&&Object.keys(p.popular_times_histogram||{}).length>0?"✓ Peak hours showing":"Not showing — low traffic signal"}
+  ];
+  html+='<div class="sec-head">Profile Health Checklist</div><div class="checklist">';
   checks.forEach(function(c){
-    var icon=c.status==="ok"?"✓":c.status==="warn"?"!":"✕";
-    html+='<div class="check-row">'
-      +'<div class="check-icon check-'+c.status+'">'+icon+'</div>'
-      +'<div class="check-body"><div class="check-title">'+esc(c.title)+'</div>'
-      +'<div class="check-detail">'+esc(c.detail)+'</div></div>'
-      +'</div>';
+    var icon=c.s?"✓":c.w?"!":"✕",cls=c.s?"check-ok":c.w?"check-warn":"check-bad";
+    html+='<div class="check-row"><div class="check-icon '+cls+'">'+icon+'</div><div class="check-body"><div class="check-title">'+esc(c.t)+'</div><div class="check-detail">'+esc(c.d)+'</div></div></div>';
   });
   html+='</div>';
 
-  /* ── Service recommendations ─────────────────────────────────── */
-  html+='<div class="sec-head">Recommended Services — Prioritised by Impact</div>';
-  html+='<div class="svc-cards">';
+  /* Service recommendations */
+  html+='<div class="sec-head">Recommended Services — Highest Impact First</div><div class="svc-list">';
   recs.forEach(function(svc,i){
-    var featured=i===0;
-    html+='<a class="svc-card'+(featured?" svc-card--featured":"")+'" href="'+esc(svc.path)+'">'
-      +'<div class="svc-rank">'+esc(svc.icon||"#"+(i+1))+'</div>'
+    var top=i===0;
+    html+='<a class="svc-card'+(top?" svc-card--top":"")+'" href="'+esc(svc.path)+'">'
+      +'<div class="svc-rank">'+esc(svc.icon)+'</div>'
       +'<div class="svc-body">'
       +'<div class="svc-name">'+esc(svc.name)+'</div>'
-      +'<div class="svc-why">'+esc(svc.tagline)+'</div>';
+      +'<div class="svc-tagline">'+esc(svc.tagline)+'</div>';
     if(svc.affected&&svc.affected.length){
       html+='<div class="svc-dims">';
-      svc.affected.forEach(function(d){
-        html+='<span class="svc-dim-tag up">'+esc(DIM_NAMES[d.key])+' '+d.cur+'→'+(d.cur+d.lift)+'</span>';
-      });
+      svc.affected.forEach(function(d){html+='<span class="svc-dim-tag">'+esc(DIM_LABELS[d.key])+' '+d.cur+' → '+(d.cur+d.lift)+'</span>';});
       html+='</div>';
     }
-    html+='<div class="svc-footer">'
-      +'<span class="svc-lift">+'+svc.scoreLift+' pts estimated</span>'
-      +'<span class="svc-cta">'+esc(svc.cta)+'</span>'
-      +'</div>'
+    html+='<div class="svc-footer"><span class="svc-lift">+'+svc.scoreLift+' pts estimated</span>'
+      +'<span class="svc-cta-link">'+esc(svc.cta)+'</span></div>'
       +'</div></a>';
   });
   html+='</div>';
 
-  /* ── CTA banner ──────────────────────────────────────────────── */
-  html+='<div class="cta-banner">'
-    +'<div class="cta-title">Ready to take your restaurant to the top?</div>'
-    +'<div class="cta-sub">Our team will review your profile, build a custom growth plan,<br>and implement the highest-impact changes — fast.</div>'
-    +'<a class="cta-btn" href="/services.html">Get My Free Growth Plan</a>'
+  /* CTA */
+  html+='<div class="cta-section">'
+    +'<div class="cta-eyebrow">Free Growth Strategy</div>'
+    +'<div class="cta-title">Ready to rank above your competitors?</div>'
+    +'<div class="cta-subtitle">Our team will audit your profile, build a custom growth plan, and implement the highest-impact changes — fast.</div>'
+    +'<a class="cta-btn" href="/services.html">Get My Free Growth Plan →</a>'
     +'<div class="cta-note">No credit card required · Free 30-min strategy call</div>'
     +'</div>';
 
   document.getElementById("app").innerHTML=html;
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   DATA FETCH
-   ══════════════════════════════════════════════════════════════════ */
-
+/* ══ DATA FETCH ════════════════════════════════════════════════════════ */
 function supabaseGet(table,params){
-  var url=SUPABASE_URL+"/rest/v1/"+table;
-  if(params&&Object.keys(params).length) url+="?"+new URLSearchParams(params).toString();
+  var url=SUPABASE_URL+"/rest/v1/"+table+"?"+new URLSearchParams(params).toString();
   return fetch(url,{headers:{apikey:SUPABASE_KEY,Authorization:"Bearer "+SUPABASE_KEY}}).then(function(r){return r.json()});
 }
-
 function showError(msg){
-  document.getElementById("app").innerHTML=
-    '<div class="error-box"><div class="error-icon">⚠️</div><div class="error-title">Restaurant not found</div><div class="error-msg">'+esc(msg)+'</div>'
-    +'<p style="margin-top:16px"><a href="/services.html" style="color:var(--c-accent);font-weight:700">← Browse all services</a></p></div>';
+  document.getElementById("app").innerHTML='<div class="error-wrap"><div class="error-icon">⚠️</div><div class="error-title">Restaurant not found</div><div class="error-msg">'+esc(msg)+'</div><p style="margin-top:16px"><a href="/services.html" style="color:var(--primary-500);font-weight:600">← Browse all services</a></p></div>';
 }
 
 async function main(){
   if(!SLUG&&!PLACE_ID&&!CAMIS&&!BIZ_NAME){
-    showError("No restaurant identifier in the URL. Use ?slug=... or ?placeId=... or ?camis=...");
+    showError("No restaurant specified. Add ?slug=... or ?placeId=... or ?camis=... to the URL.");
     return;
   }
-  try {
-    var profile=null, restaurant={};
+  try{
+    var profile=null,restaurant={};
 
-    // ── Path 1: slug → restaurant_leaderboard (pre-scored, fastest) ──
+    /* Path 1: slug → leaderboard (pre-scored) */
     if(SLUG){
-      var lbRows=await supabaseGet("restaurant_leaderboard",{slug:"eq."+SLUG,limit:1});
-      if(lbRows&&lbRows.length){
-        var lb=lbRows[0];
-        // Use leaderboard pre-computed dims directly for speed
-        // Also fetch full profile for rich data (opening hours, service options, etc.)
-        if(lb.place_id){
-          var fullProfiles=await supabaseGet("info_gather_google_profiles",{place_id:"eq."+lb.place_id,limit:1});
-          profile=fullProfiles&&fullProfiles.length?fullProfiles[0]:null;
+      var lb=await supabaseGet("restaurant_leaderboard",{slug:"eq."+SLUG,limit:1});
+      if(lb&&lb.length){
+        var lbRow=lb[0];
+        if(lbRow.place_id){
+          var fp=await supabaseGet("info_gather_google_profiles",{place_id:"eq."+lbRow.place_id,limit:1});
+          profile=fp&&fp.length?fp[0]:null;
         }
-        if(!profile){
-          // Build minimal profile from leaderboard row
-          profile={
-            title:lb.name, rating:lb.rating, reviews_count:lb.review_count,
-            place_id:lb.place_id, camis:lb.camis, address:lb.address,
-            city:lb.city, category_name:lb.category, phone:lb.phone,
-            website:lb.website, image_url:lb.image_url,
-            reviews_distribution:lb.reviews_distribution,
-          };
-        }
-        if(lb.camis){
-          var restRows=await supabaseGet("info_gather_restaurants",{camis:"eq."+lb.camis,limit:1});
-          restaurant=restRows&&restRows.length?restRows[0]:{};
-        }
-        document.title=(lb.name||BIZ_NAME||"Restaurant")+" — Local Ranking Report";
+        if(!profile) profile={title:lbRow.name,rating:lbRow.rating,reviews_count:lbRow.review_count,place_id:lbRow.place_id,camis:lbRow.camis,address:lbRow.address,city:lbRow.city,category_name:lbRow.category,phone:lbRow.phone,website:lbRow.website,image_url:lbRow.image_url,reviews_distribution:lbRow.reviews_distribution};
+        if(lbRow.camis){var rr=await supabaseGet("info_gather_restaurants",{camis:"eq."+lbRow.camis,limit:1});restaurant=rr&&rr.length?rr[0]:{};}
+        document.title=(lbRow.name||"Restaurant")+" — Local Ranking Report";
         render(profile,restaurant);
         return;
       }
-      // slug not in leaderboard yet — fall through to placeId/name lookup
     }
 
-    // ── Path 2: placeId / camis / name direct lookup ──────────────────
+    /* Path 2: placeId / camis / name */
     var profiles=[];
-    if(PLACE_ID){
-      profiles=await supabaseGet("info_gather_google_profiles",{place_id:"eq."+PLACE_ID,limit:1});
-    } else if(CAMIS){
-      profiles=await supabaseGet("info_gather_google_profiles",{camis:"eq."+CAMIS,limit:1});
-    } else if(BIZ_NAME){
-      var byName=await supabaseGet("info_gather_restaurants",
-        {name:"ilike."+encodeURIComponent("%"+BIZ_NAME+"%"),limit:1});
-      if(byName&&byName.length){
-        profiles=await supabaseGet("info_gather_google_profiles",{camis:"eq."+byName[0].camis,limit:1});
-      }
+    if(PLACE_ID) profiles=await supabaseGet("info_gather_google_profiles",{place_id:"eq."+PLACE_ID,limit:1});
+    else if(CAMIS) profiles=await supabaseGet("info_gather_google_profiles",{camis:"eq."+CAMIS,limit:1});
+    else if(BIZ_NAME){
+      var bn=await supabaseGet("info_gather_restaurants",{name:"ilike."+encodeURIComponent("%"+BIZ_NAME+"%"),limit:1});
+      if(bn&&bn.length) profiles=await supabaseGet("info_gather_google_profiles",{camis:"eq."+bn[0].camis,limit:1});
     }
-
-    if(!profiles||!profiles.length){
-      showError("Restaurant not found in our database. It may not have been indexed yet.");
-      return;
-    }
-
+    if(!profiles||!profiles.length){showError("Restaurant not found in our database.");return;}
     profile=profiles[0];
-    var restRows=await supabaseGet("info_gather_restaurants",{camis:"eq."+profile.camis,limit:1});
-    restaurant=restRows&&restRows.length?restRows[0]:{};
-
+    var rl=await supabaseGet("info_gather_restaurants",{camis:"eq."+profile.camis,limit:1});
+    restaurant=rl&&rl.length?rl[0]:{};
     document.title=(BIZ_NAME||profile.title||"Restaurant")+" — Local Ranking Report";
     render(profile,restaurant);
-  } catch(e){
-    showError("Failed to load data: "+e.message);
-  }
+  }catch(e){showError("Failed to load data: "+e.message);}
 }
-
 main();
-
 })();
 </script>
 </body>
