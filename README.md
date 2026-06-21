@@ -1,4 +1,4 @@
-# Angel Tips Review Studio - AI Agent Handoff
+# RankMyRestaurant Review Studio - AI Agent Handoff
 
 This README is for AI agents, not end users.
 

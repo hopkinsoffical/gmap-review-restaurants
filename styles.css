@@ -6704,7 +6704,7 @@ textarea.portal-input {
   text-align: center;
 }
 
-/* ── AI Leaderboard (RankMySalon) ───────────────────────────────────────── */
+/* ── AI Leaderboard (RankMyRestaurant) ───────────────────────────────────────── */
 .route-leaderboard .app {
   min-height: 100vh;
 }
@@ -11160,7 +11160,7 @@ html[data-theme="light"] body .marketing-lang-option {
 
 /* =========================================================
    EMERGENCY MOBILE OVERFLOW + HEADER FIX
-   RankMySalon
+   RankMyRestaurant
    Put this at the very bottom of theme.css or styles.css
 ========================================================= */
 
@@ -11474,7 +11474,7 @@ html[data-theme="light"] body .marketing-lang-option {
 }
 
 /* =========================================================
-   RankMySalon Mobile Fix - Marketing Pages
+   RankMyRestaurant Mobile Fix - Marketing Pages
    Fix overflow for Overview / Landing mobile layout
 ========================================================= */
 
@@ -11762,4 +11762,33 @@ html[data-theme="light"] body .marketing-lang-option {
   .marketing-hero-urgency {
     font-size: 16px !important;
   }
+}
+/* AI review booster — loyalty promo capture (ported from rankmysalon) */
+.loyalty-promo-panel {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid rgba(120, 120, 160, 0.28);
+  border-radius: 14px;
+  background: rgba(125, 130, 255, 0.06);
+}
+.loyalty-promo-panel.hidden { display: none; }
+.loyalty-promo-intro { margin: 0 0 12px; font-weight: 600; line-height: 1.4; }
+.loyalty-promo-form { display: flex; flex-direction: column; gap: 10px; }
+.loyalty-promo-form.hidden { display: none; }
+.loyalty-promo-consent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+.loyalty-promo-consent input { margin-top: 3px; }
+.loyalty-promo-result { display: flex; flex-direction: column; gap: 12px; }
+.loyalty-promo-result.hidden { display: none; }
+.loyalty-promo-code {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }

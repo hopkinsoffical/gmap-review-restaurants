@@ -25,7 +25,7 @@
       /* ignore */
     }
     try {
-      var saved = localStorage.getItem("rankmysalon-language-v1");
+      var saved = localStorage.getItem("rankmyrestaurant-language-v1");
       if (saved === "zh" || saved === "en") return saved;
     } catch (e2) {
       /* ignore */
@@ -35,7 +35,7 @@
 
   const PORTAL_LOGIN_I18N = {
     en: {
-      docTitleLogin: "RankMySalon | Sign in",
+      docTitleLogin: "RankMyRestaurant | Sign in",
       langSwitch: "中文",
       heroKicker: "Account access",
       heroTitle: "Admin portal sign-in",
@@ -68,7 +68,7 @@
       errNoSession: "Missing session after verification.",
       errVerifyGeneric: "Could not sign in.",
       errNotAdmin: "Signed in, but this account is not an admin.",
-      docTitleRecovery: "RankMySalon | Reset password",
+      docTitleRecovery: "RankMyRestaurant | Reset password",
       recoveryKicker: "Password reset",
       recoveryTitle: "Choose a new password",
       recoveryBody:
@@ -136,7 +136,7 @@
       backHome: "Back to homepage",
     },
     zh: {
-      docTitleLogin: "RankMySalon | 登录",
+      docTitleLogin: "RankMyRestaurant | 登录",
       langSwitch: "English",
       heroKicker: "账户入口",
       heroTitle: "管理后台登录",
@@ -169,7 +169,7 @@
       errNoSession: "验证后未获取到登录会话。",
       errVerifyGeneric: "无法完成登录。",
       errNotAdmin: "已登录，但该账号不是管理员。",
-      docTitleRecovery: "RankMySalon | 重置密码",
+      docTitleRecovery: "RankMyRestaurant | 重置密码",
       recoveryKicker: "密码重置",
       recoveryTitle: "设置新密码",
       recoveryBody:
@@ -378,20 +378,20 @@
       return;
     }
     if (state.route.kind === ROUTE_ADMIN) {
-      document.title = "RankMySalon | Admin";
+      document.title = "RankMyRestaurant | Admin";
       return;
     }
     if (state.route.kind === ROUTE_ADMIN_STORES) {
-      document.title = "RankMySalon | Admin Stores";
+      document.title = "RankMyRestaurant | Admin Stores";
       return;
     }
     if (state.route.kind === ROUTE_ADMIN_STORE) {
       const store = state.storeDetails && state.storeDetails.store;
       const label = store ? store.nameEn || store.nameZh || store.slug : "Store Editor";
-      document.title = "RankMySalon | " + label;
+      document.title = "RankMyRestaurant | " + label;
     }
     if (state.route.kind === ROUTE_ADMIN_SMS) {
-      document.title = "RankMySalon | SMS campaigns";
+      document.title = "RankMyRestaurant | SMS campaigns";
     }
   }
 
@@ -620,7 +620,7 @@
     return (
       '<section class="portal-page">' +
       '<article class="portal-card portal-card-hero">' +
-      '<p class="portal-kicker">RankMySalon Portal</p>' +
+      '<p class="portal-kicker">RankMyRestaurant Portal</p>' +
       '<h1 class="portal-title">' +
       escapeHtml(title) +
       "</h1>" +
@@ -1023,9 +1023,9 @@
       "</div>" +
       '<div class="portal-note">Slug becomes the URL path for this store and stays fixed in v1. New stores should usually stay inactive until a published service catalog exists.</div>' +
       '<div class="portal-form-grid">' +
-      '<label class="portal-label">Store slug<input class="portal-input" type="text" name="slug" placeholder="angel-tips-garwood" autocomplete="off" required /></label>' +
-      '<label class="portal-label">Chinese/store name<input class="portal-input" type="text" name="nameZh" placeholder="Angel Tips Nail Spa" required /></label>' +
-      '<label class="portal-label">English name<input class="portal-input" type="text" name="nameEn" placeholder="Angel Tips Nail Spa" required /></label>' +
+      '<label class="portal-label">Store slug<input class="portal-input" type="text" name="slug" placeholder="xiebao-edison" autocomplete="off" required /></label>' +
+      '<label class="portal-label">Chinese/store name<input class="portal-input" type="text" name="nameZh" placeholder="蟹宝 Edison" required /></label>' +
+      '<label class="portal-label">English name<input class="portal-input" type="text" name="nameEn" placeholder="Xiebao Edison" required /></label>' +
       '<label class="portal-label">Google review URL<input class="portal-input" type="url" name="googleReviewUrl" placeholder="https://maps.app.goo.gl/..." /></label>' +
       '<label class="portal-label">Fallback review URL<input class="portal-input" type="url" name="googleReviewFallbackUrl" placeholder="https://maps.app.goo.gl/..." /></label>' +
       '<label class="portal-label">Google Place ID<input class="portal-input" type="text" name="googlePlaceId" placeholder="ChIJ… (optional)" autocomplete="off" /></label>' +
@@ -1115,7 +1115,7 @@
       blastForm +
       '<article class="portal-card">' +
       '<div class="portal-section-head">' +
-      '<div><p class="portal-kicker">Admin Console</p><h1 class="portal-title portal-title-small">SMS campaigns</h1><p class="portal-body">RankMySalon bulk SMS via Twilio Messaging Service. Metrics aggregate <code>sms_messages</code> and opt-outs on <code>sms_leads</code>.</p></div>' +
+      '<div><p class="portal-kicker">Admin Console</p><h1 class="portal-title portal-title-small">SMS campaigns</h1><p class="portal-body">RankMyRestaurant bulk SMS via Twilio Messaging Service. Metrics aggregate <code>sms_messages</code> and opt-outs on <code>sms_leads</code>.</p></div>' +
       '<div class="portal-actions portal-actions-tight">' +
       '<a class="ghost landing-link" href="/admin">Back to dashboard</a>' +
       '<button class="ghost" type="button" data-action="sign-out">Sign out</button>' +
@@ -2363,7 +2363,7 @@
         /* ignore */
       }
       try {
-        localStorage.setItem("rankmysalon-language-v1", state.portalLocale);
+        localStorage.setItem("rankmyrestaurant-language-v1", state.portalLocale);
       } catch (e2) {
         /* ignore */
       }

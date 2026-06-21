@@ -311,6 +311,32 @@
             <p id="reviewsEmptyText" class="empty-text"></p>
           </div>
 
+          <div id="loyaltyPromoPanel" class="loyalty-promo-panel hidden">
+            <p id="loyaltyPromoIntro" class="loyalty-promo-intro"></p>
+            <div id="loyaltyPromoForm" class="loyalty-promo-form">
+              <input
+                id="loyaltyPromoPhone"
+                class="text-input"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel"
+              />
+              <label class="loyalty-promo-consent">
+                <input id="loyaltyPromoConsent" type="checkbox" />
+                <span id="loyaltyPromoConsentText"></span>
+              </label>
+              <div class="secondary-actions slim-actions">
+                <button id="loyaltyPromoSkipBtn" class="ghost compact" type="button"></button>
+                <button id="loyaltyPromoSubmitBtn" class="primary compact" type="button"></button>
+              </div>
+            </div>
+            <div id="loyaltyPromoResult" class="loyalty-promo-result hidden">
+              <p id="loyaltyPromoCodeText" class="loyalty-promo-code"></p>
+              <button id="loyaltyPromoContinueBtn" class="primary compact" type="button"></button>
+            </div>
+            <p id="loyaltyPromoStatus" class="status"></p>
+          </div>
+
           <button id="anotherSetBtn" class="ghost compact refresh-btn hidden" type="button"></button>
         </section>
       </div>
