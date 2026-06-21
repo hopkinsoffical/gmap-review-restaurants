@@ -655,12 +655,12 @@
 
   function pdfFilename(el) {
     var nameEl = el.querySelector(".fr-rpt-header-copy p");
-    var name = nameEl && nameEl.textContent ? nameEl.textContent.trim() : "rankmysalon";
+    var name = nameEl && nameEl.textContent ? nameEl.textContent.trim() : "rankmyrestaurant";
     return (
       name
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "") || "rankmysalon"
+        .replace(/^-+|-+$/g, "") || "rankmyrestaurant"
     );
   }
 

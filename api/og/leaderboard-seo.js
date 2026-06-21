@@ -2,7 +2,7 @@ const { getServerEnv } = require("../../lib/server/env");
 const { methodNotAllowed, sendError } = require("../../lib/server/http");
 const { getLeaderboardSalonBySlug } = require("../../lib/server/leaderboard-repo");
 
-const SITE = "RankMySalon.AI";
+const SITE = "RankMyRestaurant.AI";
 
 /**
  * Public absolute origin for og:url and og:image. Prefer request Host; if missing (some proxies),
@@ -162,7 +162,7 @@ module.exports = async function handler(req, res) {
         desc = escapeAttr(
           locPref === "zh"
             ? "打开链接查看该沙龙的 AI 分与评价摘要。"
-            : "Open the link to load this salon’s AI score and reviews on RankMySalon.",
+            : "Open the link to load this salon’s AI score and reviews on RankMyRestaurant.",
         );
       }
     }
@@ -190,7 +190,7 @@ module.exports = async function handler(req, res) {
 <meta name="twitter:image" content="${escapeAttr(imageUrl)}" />
 </head>
 <body>
-<p><a href="${escapeAttr(can)}">RankMySalon</a></p>
+<p><a href="${escapeAttr(can)}">RankMyRestaurant</a></p>
 <noscript>
 <meta http-equiv="refresh" content="0;url=${escapeAttr(can)}" />
 </noscript>

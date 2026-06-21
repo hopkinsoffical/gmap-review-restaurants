@@ -115,7 +115,7 @@
     var fBare = f.replace(/\s+Township$/i, "").trim();
     return rBare !== "" && fBare !== "" && rBare === fBare;
   }
-  const LANGUAGE_STORAGE_KEY = "rankmysalon-language-v1";
+  const LANGUAGE_STORAGE_KEY = "rankmyrestaurant-language-v1";
   /** Public marketing site: single control cycles these (store/portal still zh|en only). */
   const SITE_LANG_ORDER = ["en", "zh", "vi", "ko", "es"];
   const SITE_LANG_LABELS = {
@@ -134,9 +134,9 @@
   };
 
   const defaultConfig = {
-    restaurantNameZh: "Angel Tips Nail Spa",
-    restaurantNameEn: "Angel Tips Nail Spa",
-    defaultStoreSlug: "",
+    restaurantNameZh: "蟹宝 Edison",
+    restaurantNameEn: "Xiebao Edison",
+    defaultStoreSlug: "xiebao-edison",
     googleReviewUrl: "",
     googleReviewFallbackUrl: "",
   };
@@ -1435,14 +1435,14 @@ applyMarketingTheme(getMarketingTheme());
       landingTitle: "让 salon 的 Google 评论增长更顺手",
       landingSubtitle: "RankMyRestaurant 根域名后续会升级成完整产品 landing page。当前先用这个占位页承接品牌入口，门店版 review studio 继续通过规范的 store 路径访问。",
       landingStatus: "临时首页占位",
-      landingPrimaryCta: "打开 Angel Tips 门店页",
+      landingPrimaryCta: "打开 蟹宝 Edison 门店页",
       landingSecondaryCta: "查看规范门店路径",
       landingCardOneTitle: "当前能做什么",
       landingCardOneBody: "上传消费小票，确认这次来店情况，再拿到 3 条更像真人会发的 Google 评论。",
       landingCardTwoTitle: "接下来的正式结构",
       landingCardTwoBody: "根域名会升级成完整产品站，门店体验统一放到 /stores/:slug，短链接 /s/:slug 继续保留。",
       landingCardThreeTitle: "当前生产示例",
-      landingCardThreeBody: "Angel Tips 是第一家上线的门店示例，后续应继续沿用真实 store slug，而不是手写短别名。",
+      landingCardThreeBody: "蟹宝 Edison 是第一家上线的门店示例，后续应继续沿用真实 store slug，而不是手写短别名。",
       uploadTitle: "先传一张小票",
       uploadHint: "上传消费小票照片。可拍照，也可选相册。",
       uploadBtn: "拍/选小票",
@@ -1558,14 +1558,14 @@ applyMarketingTheme(getMarketingTheme());
       landingTitle: "Google review growth for salons, with less awkward follow-up",
       landingSubtitle: "RankMyRestaurant will eventually become the full product landing page at the root domain. For now, this placeholder holds the top-level brand entry while the live store-specific review studio stays available on the canonical store path.",
       landingStatus: "Temporary landing page",
-      landingPrimaryCta: "Open the Angel Tips store page",
+      landingPrimaryCta: "Open the Xiebao Edison store page",
       landingSecondaryCta: "View the canonical store route",
       landingCardOneTitle: "What works today",
       landingCardOneBody: "Upload a receipt, confirm the visit context, and get three short Google review options that still sound like a real client.",
       landingCardTwoTitle: "Where the product is going",
       landingCardTwoBody: "The root domain becomes the main marketing site, store-specific experiences live under /stores/:slug, and /s/:slug stays as the short link.",
       landingCardThreeTitle: "Current production example",
-      landingCardThreeBody: "Angel Tips is the live store example today, and the long-form slug should stay aligned with the real backend store identifier.",
+      landingCardThreeBody: "Xiebao Edison is the live store example today, and the long-form slug should stay aligned with the real backend store identifier.",
       uploadTitle: "Start with a receipt",
       uploadHint: "Upload a salon receipt photo. Take one now or pick it from your library.",
       uploadBtn: "Snap / choose",
@@ -1748,6 +1748,8 @@ applyMarketingTheme(getMarketingTheme());
     isGenerating: false,
     isCorrectionOpen: false,
     hasAttemptedReviewOpen: false,
+    loyaltyPromoDone: false,
+    pendingReviewUrl: null,
     assistant: {
       initialized: false,
     },
@@ -1876,6 +1878,18 @@ applyMarketingTheme(getMarketingTheme());
     manualOpenLink: document.getElementById("manualOpenLink"),
     reviewsGrid: document.getElementById("reviewsGrid"),
     reviewsEmptyText: document.getElementById("reviewsEmptyText"),
+    loyaltyPromoPanel: document.getElementById("loyaltyPromoPanel"),
+    loyaltyPromoIntro: document.getElementById("loyaltyPromoIntro"),
+    loyaltyPromoForm: document.getElementById("loyaltyPromoForm"),
+    loyaltyPromoPhone: document.getElementById("loyaltyPromoPhone"),
+    loyaltyPromoConsent: document.getElementById("loyaltyPromoConsent"),
+    loyaltyPromoConsentText: document.getElementById("loyaltyPromoConsentText"),
+    loyaltyPromoSkipBtn: document.getElementById("loyaltyPromoSkipBtn"),
+    loyaltyPromoSubmitBtn: document.getElementById("loyaltyPromoSubmitBtn"),
+    loyaltyPromoResult: document.getElementById("loyaltyPromoResult"),
+    loyaltyPromoCodeText: document.getElementById("loyaltyPromoCodeText"),
+    loyaltyPromoContinueBtn: document.getElementById("loyaltyPromoContinueBtn"),
+    loyaltyPromoStatus: document.getElementById("loyaltyPromoStatus"),
     anotherSetBtn: document.getElementById("anotherSetBtn"),
     visitSheetBackdrop: document.getElementById("visitSheetBackdrop"),
     visitSheet: document.getElementById("visitSheet"),
@@ -2642,9 +2656,9 @@ applyMarketingTheme(getMarketingTheme());
   function getPreferredOrigin() {
     if (typeof location !== "undefined" && location.origin) {
       if (/vercel\.app$/i.test(location.hostname || "")) return location.origin;
-      return "https://rankmysalon.ai";
+      return "https://rankmyrestaurant.ai";
     }
-    return "https://rankmysalon.ai";
+    return "https://rankmyrestaurant.ai";
   }
 
   function getCanonicalPath() {
@@ -6391,7 +6405,7 @@ applyMarketingTheme(getMarketingTheme());
       "</h3>" +
       '<ul class="footer-column-list">' +
       '<li class="footer-column-header">' +
-      '<a href="https://www.rankmysalon.ai/stores/angel-tips-garwood" class="footer-link" target="_blank" rel="noopener noreferrer">' +
+      '<a href="https://www.rankmyrestaurant.ai/stores/xiebao-edison" class="footer-link" target="_blank" rel="noopener noreferrer">' +
       escapeHtml(MARKETING_UI.footerProductHeader) +
       "</a></li>" +
       '<li><a href="/price" class="footer-link">' +
@@ -11114,11 +11128,122 @@ function renderServicesContent() {
       await navigator.clipboard.writeText(String(text || "").trim());
       state.hasAttemptedReviewOpen = true;
       setStatus(el.reviewsStatus, t("copiedAndGoing"), "working", fallbackUrl);
+      // New post-review step: offer a next-visit promo code in exchange for a
+      // phone number (+ SMS consent), then continue to Google. Falls back to the
+      // original redirect if the loyalty panel is absent or already completed.
+      if (el.loyaltyPromoPanel && !state.loyaltyPromoDone) {
+        state.pendingReviewUrl = targetUrl;
+        revealLoyaltyPromo();
+        return;
+      }
       setTimeout(function () {
         window.location.href = targetUrl;
       }, 320);
     } catch (err) {
       setStatus(el.reviewsStatus, t("copyFail"), "error", fallbackUrl);
+    }
+  }
+
+  var LOYALTY_PROMO_COPY = {
+    en: {
+      intro: "✅ Review copied! Leave your number and we’ll text you a promo code for your next visit.",
+      phonePlaceholder: "Your mobile number",
+      consent:
+        "Text me a one-time promo code and occasional offers. Msg & data rates may apply. Reply STOP to opt out.",
+      skip: "No thanks — continue to Google",
+      submit: "Get my promo code",
+      sending: "Sending your code…",
+      invalidPhone: "Enter a mobile number with at least 7 digits.",
+      needConsent: "Please check the box so we can text your code.",
+      failed: "Could not save right now — you can still continue to Google.",
+      codePrefix: "Your next-visit promo code:",
+      continueGoogle: "Continue to Google review",
+    },
+    zh: {
+      intro: "✅ 评价已复制！留下手机号，我们会把下次到店的优惠码发短信给你。",
+      phonePlaceholder: "你的手机号",
+      consent: "同意接收一次性优惠码及不定期优惠短信。可能产生信息费。回复 STOP 退订。",
+      skip: "暂不需要 — 继续前往 Google",
+      submit: "获取我的优惠码",
+      sending: "正在发送优惠码…",
+      invalidPhone: "请输入至少 7 位的手机号。",
+      needConsent: "请勾选同意，我们才能把优惠码发给你。",
+      failed: "暂时无法保存 — 你仍可继续前往 Google。",
+      codePrefix: "你的下次到店优惠码：",
+      continueGoogle: "继续前往 Google 评价",
+    },
+  };
+
+  function loyaltyCopy() {
+    return LOYALTY_PROMO_COPY[state.lang === "zh" ? "zh" : "en"];
+  }
+
+  function goToPendingReview() {
+    var url = state.pendingReviewUrl;
+    if (url) window.location.href = url;
+  }
+
+  function revealLoyaltyPromo() {
+    if (!el.loyaltyPromoPanel) {
+      goToPendingReview();
+      return;
+    }
+    var c = loyaltyCopy();
+    if (el.loyaltyPromoIntro) el.loyaltyPromoIntro.textContent = c.intro;
+    if (el.loyaltyPromoPhone) el.loyaltyPromoPhone.placeholder = c.phonePlaceholder;
+    if (el.loyaltyPromoConsentText) el.loyaltyPromoConsentText.textContent = c.consent;
+    if (el.loyaltyPromoSkipBtn) el.loyaltyPromoSkipBtn.textContent = c.skip;
+    if (el.loyaltyPromoSubmitBtn) el.loyaltyPromoSubmitBtn.textContent = c.submit;
+    if (el.loyaltyPromoForm) el.loyaltyPromoForm.classList.remove("hidden");
+    if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.add("hidden");
+    setStatus(el.loyaltyPromoStatus, "", "", "");
+    el.loyaltyPromoPanel.classList.remove("hidden");
+    try {
+      el.loyaltyPromoPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  async function submitLoyaltyPromo() {
+    if (!el.loyaltyPromoPhone) return;
+    var c = loyaltyCopy();
+    var phone = String(el.loyaltyPromoPhone.value || "").trim();
+    var digits = phone.replace(/\D/g, "");
+    var consent = !!(el.loyaltyPromoConsent && el.loyaltyPromoConsent.checked);
+    if (digits.length < 7) {
+      setStatus(el.loyaltyPromoStatus, c.invalidPhone, "error");
+      return;
+    }
+    if (!consent) {
+      setStatus(el.loyaltyPromoStatus, c.needConsent, "error");
+      return;
+    }
+    if (el.loyaltyPromoSubmitBtn) el.loyaltyPromoSubmitBtn.disabled = true;
+    setStatus(el.loyaltyPromoStatus, c.sending, "working");
+    try {
+      var data = await fetchJson("/api/loyalty-signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phone: phone,
+          smsConsent: true,
+          storeSlug: state.storeSlug || "",
+          placeId: (state.store && (state.store.placeId || state.store.googlePlaceId)) || null,
+          lang: state.lang,
+        }),
+      });
+      state.loyaltyPromoDone = true;
+      var code = (data && data.promoCode) || "";
+      if (el.loyaltyPromoForm) el.loyaltyPromoForm.classList.add("hidden");
+      if (el.loyaltyPromoCodeText) el.loyaltyPromoCodeText.textContent = c.codePrefix + " " + code;
+      if (el.loyaltyPromoContinueBtn) el.loyaltyPromoContinueBtn.textContent = c.continueGoogle;
+      if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.remove("hidden");
+      setStatus(el.loyaltyPromoStatus, "", "", "");
+    } catch (err) {
+      setStatus(el.loyaltyPromoStatus, c.failed, "error");
+    } finally {
+      if (el.loyaltyPromoSubmitBtn) el.loyaltyPromoSubmitBtn.disabled = false;
     }
   }
 
@@ -11236,6 +11361,27 @@ function renderServicesContent() {
         console.error("Another set generation failed", err);
       });
     });
+
+    if (el.loyaltyPromoSubmitBtn) {
+      el.loyaltyPromoSubmitBtn.addEventListener("click", function () {
+        trackEvent("loyalty_promo_submit_clicked", analyticsParams());
+        submitLoyaltyPromo().catch(function (err) {
+          console.error("Loyalty promo signup failed", err);
+        });
+      });
+    }
+    if (el.loyaltyPromoSkipBtn) {
+      el.loyaltyPromoSkipBtn.addEventListener("click", function () {
+        trackEvent("loyalty_promo_skipped", analyticsParams());
+        goToPendingReview();
+      });
+    }
+    if (el.loyaltyPromoContinueBtn) {
+      el.loyaltyPromoContinueBtn.addEventListener("click", function () {
+        trackEvent("loyalty_promo_continue_clicked", analyticsParams());
+        goToPendingReview();
+      });
+    }
 
     el.visitSummaryBtn.addEventListener("click", function () {
       trackEvent("visit_sheet_opened", analyticsParams({

@@ -5,7 +5,7 @@ const { getLeaderboardAssessmentVisual, getLevelLabel } = require("../../lib/lea
 const { rankSalonInCounty } = require("../../lib/leaderboard-og-rank");
 const { methodNotAllowed } = require("../../lib/server/http");
 
-const SITE = "RankMySalon.AI";
+const SITE = "RankMyRestaurant.AI";
 const W = 1200;
 const H = 630;
 

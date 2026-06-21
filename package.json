@@ -1,5 +1,5 @@
 {
-  "name": "angel-tips-review-studio",
+  "name": "rankmyrestaurant-review-studio",
   "private": true,
   "version": "0.1.0",
   "description": "Salon-focused Google review helper with Vercel Functions and Supabase",
