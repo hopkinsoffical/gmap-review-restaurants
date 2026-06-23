@@ -1306,9 +1306,9 @@ applyMarketingTheme(getMarketingTheme());
         "This review must only talk about the food or drink itself, such as flavor, texture, portion, presentation, freshness, or how the meal came out. Do not mention staff, ambiance, atmosphere, decor, or the restaurant space.",
     },
     service: {
-      zhLabel: "提staff",
-      enLabel: "staff mention",
-      zhRule: "这一条必须提staff热情、上菜快、沟通顺、服务周到之类，但完全不要提环境、氛围、装修。",
+      zhLabel: "提服务",
+      enLabel: "staff or service mention",
+      zhRule: "这一条必须提服务员或staff热情、上菜快、沟通顺、服务周到之类，但完全不要提环境、氛围、装修。",
       enRule:
         "This review must clearly praise the staff, attentiveness, speed, hospitality, or communication, but must not mention ambiance, atmosphere, decor, or the restaurant space.",
     },
@@ -3056,7 +3056,7 @@ applyMarketingTheme(getMarketingTheme());
     if (t.indexOf("low review") >= 0 || t.indexOf("review volume") >= 0) return "评论数量与更新节奏";
     if (t.indexOf("booking") >= 0) return "在线预约与转化路径";
     if (t.indexOf("composite") >= 0 || t.indexOf("below market") >= 0) return "综合 AI 分与曝光排位";
-    if (t.indexOf("specialist") >= 0) return "技师专长展示与差异化";
+    if (t.indexOf("specialist") >= 0) return "招牌菜、服务亮点与差异化";
     return "Google 门店信任证据";
   }
 
@@ -10285,7 +10285,7 @@ function renderServicesContent() {
 
     const servicePattern =
       state.lang === "zh"
-        ? /服务|staff|店员|服务员|前台|接待|态度|热情|耐心|细心|认真|沟通|照顾周到|上菜快|出餐快|招呼|推荐|安排|点单| hospitality/i
+        ? /服务|staff|店员|服务员|前台|接待|态度|热情|耐心|细心|认真|沟通|照顾周到|上菜快|出餐快|招呼|推荐|安排|点单|hospitality/i
         : /\bservice\b|\bstaff\b|\bserver\b|\bwaiter\b|\bwaitress\b|\bhost\b|\bhostess\b|\bteam\b|\battentive\b|\bpatient\b|\bfriendly\b|\bkind\b|\bcommunicat(?:ion|e|ive)\b|\bhospitality\b|\bhelpful\b|took care of us|well taken care of|easy to communicate with|quick service|fast service/i;
     const environmentPattern =
       state.lang === "zh"
