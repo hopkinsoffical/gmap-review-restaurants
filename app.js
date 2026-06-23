@@ -178,30 +178,30 @@
     en: {
       navBrand: SITE_NAME,
       rating: "4.9 out of 5",
-      heroTitleLead: "50% to 70% New Clients",
+      heroTitleLead: "50% to 70% New Diners",
       heroTitleMiddle: "Find You Through",
       heroTitleAccent: "Google Maps.",
-      heroBody: "You Might Be Losing Clients on Google Right Now",
-      primaryCtaLabel: "Get your Rank",
-      trustTitle: "We Help Salons Get",
+      heroBody: "You Might Be Losing Diners on Google Right Now",
+      primaryCtaLabel: "Get your restaurant rank",
+      trustTitle: "We Help Restaurants Get",
       trustPoints: [
         "More 5-Star Reviews on Google",
-        "More Bookings from Your Profile",
-        "More Clients from Social Media",
-        "More Calls Turned into Customers",
+        "More Reservations from Your Profile",
+        "More Diners from Social Media",
+        "More Calls Turned into Tables",
       ],
       digitalHumanOverviewKicker: "The Smartest Person in the Room",
       digitalHumanOverviewTitle: "Meet Ryan, Your Growth Advisor",
-      digitalHumanOverviewHeading: "You Might Be Losing Clients on Google Right Now",
+      digitalHumanOverviewHeading: "You Might Be Losing Diners on Google Right Now",
       digitalHumanOverviewBody:
         "Open Ryan's live conversation page to see the front desk video, real-time transcript, and next-step coaching in one place.",
       digitalHumanOverviewPoints: [
         "Live voice + transcript",
-        "Front desk video stage",
+        "Host stand video stage",
         "Starts only when clicked",
       ],
-      digitalHumanOverviewStageLabel: "Superhuman front desk",
-      digitalHumanOverviewStageTitle: "Ryan feels more like a premium AI closer than a chatbot.",
+      digitalHumanOverviewStageLabel: "Superhuman host stand",
+      digitalHumanOverviewStageTitle: "Ryan feels more like a premium AI host and local growth closer than a chatbot.",
       digitalHumanOverviewStageBody:
         "Open the live conversation page to start voice, video, and transcript together.",
       digitalHumanPhoneLabel: "Or Call/Text 877-600-3082",
@@ -212,7 +212,7 @@
         "Your always-on, top revenue producer with perfect recall and empathy. Qualifies leads. Pitches your services. Runs demos. And goes for the close.",
       digitalHumanCtaLabel: "Talk to Ryan",
       insightsTitle: "Insights",
-      insightsSubtitle: "Video picks for Google Maps visibility, reviews, and salon growth.",
+      insightsSubtitle: "Video picks for Google Maps visibility, reviews, and restaurant growth.",
       insightsVideoLabel: "Featured clip",
       priceTitle: "Simple Pricing:",
       pricingAmount: "$29",
@@ -221,7 +221,7 @@
       pricingAnnualPeriod: "/ Year",
       pricingAnnualSaveNote: "Save over $140/yr",
       pricingGuarantees: ["NO Contract", "NO Hidden Fees", "CANCEL Anytime"],
-      pricingCtaLabel: "Start attracting new customers today!",
+      pricingCtaLabel: "Start attracting new diners today!",
       pricingSetupNote: "(* $199 One-time Professional Setup + NFC Device)",
       pricingSetupTitle: "Professional Setup",
       pricingSetupAmount: "$199",
@@ -230,38 +230,38 @@
       pricingExtraDeviceTitle: "Extra NFC Review Card",
       pricingExtraDeviceAmount: "$15",
       pricingExtraDeviceBadge: "Add-on",
-      pricingExtraDeviceCopy: "Additional tap-to-review cards for more stations.",
+      pricingExtraDeviceCopy: "Additional tap-to-review cards for host stands, tables, and checkout areas.",
       aboutTitle: "About Us",
       aboutBody:
-        "Placeholder about page. Use this route for the final brand story, salon positioning, trust points, and direct contact details.",
+        "Placeholder about page. Use this route for the final brand story, restaurant positioning, trust points, and direct contact details.",
     },
     zh: {
       navBrand: SITE_NAME,
       rating: "4.9 / 5",
-      heroTitleLead: "50% 到 70% 的顾客",
+      heroTitleLead: "50% 到 70% 的新食客",
       heroTitleMiddle: "通过",
       heroTitleAccent: "Google Maps 找到你。",
-      heroBody: "你现在可能正在 Google 上流失客户",
-      primaryCtaLabel: "查看我的排名",
-      trustTitle: "我们帮助沙龙获得",
+      heroBody: "你现在可能正在 Google 上流失食客",
+      primaryCtaLabel: "查看餐厅排名",
+      trustTitle: "我们帮助餐厅获得",
       trustPoints: [
         "获得更多 Google 五星评论",
-        "让门店主页带来更多预约",
-        "从社交媒体带来更多新客",
-        "把来电变成真实到店客户",
+        "让门店主页带来更多订位",
+        "从社交媒体带来更多食客",
+        "把来电变成真实到店餐桌",
       ],
       digitalHumanOverviewKicker: "房间里最聪明的前台",
       digitalHumanOverviewTitle: "认识 Ryan，你的增长顾问",
-      digitalHumanOverviewHeading: "你现在可能正在 Google 上流失客户",
+      digitalHumanOverviewHeading: "你现在可能正在 Google 上流失食客",
       digitalHumanOverviewBody:
         "打开 Ryan 的实时对话页，在一个页面里看到 front desk 视频、聊天记录和下一步增长建议。",
       digitalHumanOverviewPoints: [
         "实时语音 + 聊天记录",
-        "前台视频展示",
+        "餐厅接待视频展示",
         "点击后才开始",
       ],
-      digitalHumanOverviewStageLabel: "Superhuman 前台",
-      digitalHumanOverviewStageTitle: "Ryan 更像高级 AI 前台，而不是普通聊天机器人。",
+      digitalHumanOverviewStageLabel: "Superhuman 餐厅接待",
+      digitalHumanOverviewStageTitle: "Ryan 更像高级 AI 接待与本地增长顾问，而不是普通聊天机器人。",
       digitalHumanOverviewStageBody:
         "打开实时对话页后，就能把语音、视频和聊天记录放在同一个页面里。",
       digitalHumanPhoneLabel: "也可电话/短信 877-600-3082",
@@ -281,7 +281,7 @@
       pricingAnnualPeriod: "/ 年",
       pricingAnnualSaveNote: "每年节省超过 $140",
       pricingGuarantees: ["无合约", "无隐藏费用", "随时取消"],
-      pricingCtaLabel: "现在开始吸引新客户",
+      pricingCtaLabel: "现在开始吸引新食客",
       pricingSetupNote: "（* $199 一次性专业设置费 + NFC 设备）",
       pricingSetupTitle: "专业设置",
       pricingSetupAmount: "$199",
@@ -290,9 +290,9 @@
       pricingExtraDeviceTitle: "额外 NFC 评论卡",
       pricingExtraDeviceAmount: "$15",
       pricingExtraDeviceBadge: "可加购",
-      pricingExtraDeviceCopy: "可为更多工位增加轻触评价卡。",
+      pricingExtraDeviceCopy: "可为前台、餐桌与结账区增加轻触评价卡。",
       aboutTitle: "关于我们",
-      aboutBody: "这里用于呈现最终品牌故事、沙龙定位、信任点和联系方式。",
+      aboutBody: "这里用于呈现最终品牌故事、餐厅定位、信任点和联系方式。",
     },
   };
   const MARKETING_COPY = createLocalizedProxy(MARKETING_COPY_I18N);
@@ -323,7 +323,7 @@
       storyKicker: "Who We Are",
       storyTitle: "The operating model behind RankMyRestaurant",
       storyBody:
-        "360AI Media presents itself as the place where strategy meets creativity and execution. RankMyRestaurant applies that same mindset to salons and beauty operators: stronger reputation, smarter follow-up, and more diners from the attention they already earn.",
+        "360AI Media presents itself as the place where strategy meets creativity and execution. RankMyRestaurant applies that same mindset to restaurants: stronger reputation, smarter follow-up, and more diners from the attention they already earn.",
       strengthsKicker: "What We Bring",
       strengthsTitle: "A practical growth system, not disconnected tactics",
       strengths: [
@@ -389,22 +389,22 @@
         },
       ],
       ctaKicker: "Start The Conversation",
-      ctaTitle: "Turn local attention into booked appointments.",
+      ctaTitle: "Turn local attention into booked tables.",
       ctaBody:
-        "If demand is leaking between Google discovery and actual bookings, we can help you identify the bottleneck and recommend the next practical fix.",
-      ctaNote: "Most salon teams ask us about:",
+        "If demand is leaking between Google discovery and actual reservations, we can help you identify the bottleneck and recommend the next practical fix.",
+      ctaNote: "Most restaurant teams ask us about:",
       ctaHighlights: [
         "Google Maps visibility and ranking",
         "Review growth and reputation lift",
-        "Missed-call recovery and smart follow-up",
+        "Missed-call recovery, reservations, and smart follow-up",
       ],
       serviceOptions: [
         "Google ranking and visibility",
         "Review capture and reputation",
-        "AI receptionist / voice agent",
+        "AI host / voice agent",
         "Lead follow-up automation",
-        "Rebooking and retention",
-        "Website / booking conversion",
+        "Repeat visits and diner retention",
+        "Website / reservation conversion",
         "Not sure yet",
       ],
     },
@@ -433,7 +433,7 @@
       storyKicker: "我们是谁",
       storyTitle: "RankMyRestaurant 背后的运营模型",
       storyBody:
-        "360AI Media 的核心是把策略、创意和执行结合起来。RankMyRestaurant 将这套方法应用到沙龙和美业门店：提升口碑、优化跟进，把已经获得的曝光转化成更多到店客户。",
+        "360AI Media 的核心是把策略、创意和执行结合起来。RankMyRestaurant 将这套方法应用到餐饮门店：提升口碑、优化跟进，把已经获得的曝光转化成更多到店食客。",
       strengthsKicker: "我们带来的价值",
       strengthsTitle: "这是一套实用增长系统，不是零散工具",
       strengths: [
@@ -499,22 +499,22 @@
         },
       ],
       ctaKicker: "开始沟通",
-      ctaTitle: "把本地曝光变成真实预约。",
+      ctaTitle: "把本地曝光变成真实订位和到店。",
       ctaBody:
-        "如果客户从 Google 发现你到真正预约之间正在流失，我们可以帮你找出瓶颈，并给出下一步可执行的修复建议。",
-      ctaNote: "多数沙龙团队会问我们：",
+        "如果食客从 Google 发现你到真正订位/到店之间正在流失，我们可以帮你找出瓶颈，并给出下一步可执行的修复建议。",
+      ctaNote: "多数餐厅团队会问我们：",
       ctaHighlights: [
         "Google Maps 曝光和排名",
         "评论增长和口碑提升",
-        "未接来电挽回和智能跟进",
+        "未接来电挽回、订位和智能跟进",
       ],
       serviceOptions: [
         "Google 排名和曝光",
         "评论获取和口碑管理",
-        "AI 前台 / 语音顾问",
+        "AI 接待 / 语音顾问",
         "线索跟进自动化",
-        "复购和留客",
-        "网站 / 预约转化",
+        "复购、回头客和会员留存",
+        "网站 / 订位转化",
         "暂时不确定",
       ],
     },
@@ -680,7 +680,7 @@ applyMarketingTheme(getMarketingTheme());
 
   const MARKETING_UI_I18N = {
     en: {
-      pageTitleLanding: "AI Growth for Salons",
+      pageTitleLanding: "AI Growth for Restaurants",
       pageTitlePricing: "Pricing",
       pageTitleAbout: "About Us",
       pageTitleTalk: "Call voice agent",
@@ -736,7 +736,7 @@ applyMarketingTheme(getMarketingTheme());
       formPhoneLabel: "Phone *",
       formPhonePlaceholder: "Best number to reach you",
       formCompanyLabel: "Company",
-      formCompanyPlaceholder: "Salon or company name",
+      formCompanyPlaceholder: "Restaurant or company name",
       formServiceLabel: "What Do You Need Help With?",
       formServicePlaceholder: "Choose the closest fit",
       formMessageLabel: "Message *",
@@ -754,14 +754,14 @@ applyMarketingTheme(getMarketingTheme());
       formSmsConsentRequired: "Please check the SMS consent box to continue.",
       formSuccess: "Thank you. We received your message and will follow up soon. You can also reach us at info@360AIMedia.com.",
       formFailure: "Could not save your message. Please try again or email info@360AIMedia.com.",
-      heroBriefSalonLabel: "Salon name *",
+      heroBriefSalonLabel: "Restaurant name *",
       heroBriefSalonPlaceholder: "As shown on Google Maps",
       heroBriefContactLabel: "Mobile or email *",
-      heroBriefContactPlaceholder: "(555) 123-4567 or owner@salon.com",
-      heroBriefSubmit: "Send my brief report",
+      heroBriefContactPlaceholder: "(555) 123-4567 or owner@restaurant.com",
+      heroBriefSubmit: "Send my restaurant brief",
       heroBriefSmsConsentCheckbox:
         "If you entered a mobile number, I agree to receive SMS with my brief report and related updates from RankMyRestaurant.",
-      heroBriefFieldsRequired: "Please enter your salon name and a valid mobile number or email.",
+      heroBriefFieldsRequired: "Please enter your restaurant name and a valid mobile number or email.",
       heroBriefInvalidEmail: "That email doesn’t look valid. Double-check or use a phone number instead.",
       heroBriefInvalidPhone: "Enter a phone number with at least 7 digits, or use your email instead.",
       heroBriefSuccess:
@@ -771,7 +771,7 @@ applyMarketingTheme(getMarketingTheme());
       contactModalLead:
         "Tell us how we can help. Your details are sent securely to our team; we typically reply within one business day.",
       pricingKicker: "Pricing",
-      pricingBody: "One clean plan for salons that want faster reviews, follow-up, and bookings.",
+      pricingBody: "One clean plan for restaurants that want faster reviews, follow-up, and reservations.",
       pricingMonthly: "Monthly",
       pricingAnnual: "Annual",
       pricingOr: "or",
@@ -816,7 +816,7 @@ applyMarketingTheme(getMarketingTheme());
       leaderboardHeroTitleAccent: "losing customers",
       leaderboardHeroTitleSuffix: " to competitors?",
       leaderboardHeroBody:
-        "Browse the live AI leaderboard for Google ranking factors: Google Maps visibility, review volume, sentiment, recency, local SEO strength, and conversion signals. Open any salon scorecard to see actions, voice agent Ryan workflow, and social media content building opportunities.",
+        "Browse the live AI leaderboard for Google ranking factors: Google Maps visibility, review volume, sentiment, recency, local SEO strength, and conversion signals. Open any restaurant scorecard to see actions, voice agent Ryan workflow, and social media content building opportunities.",
       leaderboardSearchPlaceholder: "Restaurant name, township, ZIP, or address...",
       leaderboardSearchButton: "Search",
       leaderboardSearchAria: "Search by restaurant name, township, or address",
@@ -827,15 +827,15 @@ applyMarketingTheme(getMarketingTheme());
       leaderboardSignInFull: "Sign in",
       leaderboardSignInFullSuffix: " for the full directory.",
       leaderboardDirectoryKicker: "Directory:",
-      leaderboardDirectoryBody: "all listed salons load here with Google ranking, local SEO, review management, voice agent, and social content growth context.",
+      leaderboardDirectoryBody: "all listed restaurants load here with Google ranking, local SEO, review management, voice agent, and social content growth context.",
       leaderboardDirectoryScorecardSuffix: " to open a restaurant scorecard.",
       leaderboardDirectorySampleHrefLabel: "Middlesex, NJ",
       leaderboardRequestListing: "Request listing",
       leaderboardRequestLead:
-        "Tell us about your salon or ask for coverage in a new market. We will follow up by email.",
+        "Tell us about your restaurant or ask for coverage in a new market. We will follow up by email.",
       leaderboardRequestType: "Request type",
       leaderboardRequestAddSalon: "Add my restaurant",
-      leaderboardRequestMoreCoverage: "More markets / salons",
+      leaderboardRequestMoreCoverage: "More markets / restaurants",
       leaderboardRequestSalonName: "Restaurant name",
       leaderboardRequestYourName: "Your name",
       leaderboardRequestEmail: "Email",
@@ -855,9 +855,9 @@ applyMarketingTheme(getMarketingTheme());
       leaderboardState: "State",
       leaderboardCounty: "County",
       leaderboardTownship: "Township",
-      leaderboardSalonCount: "salons",
+      leaderboardSalonCount: "restaurants",
       leaderboardScorecardLoading: "Loading scorecard...",
-      leaderboardNotFound: "Salon not found.",
+      leaderboardNotFound: "Restaurant not found.",
       leaderboardBack: "Back to leaderboard",
       leaderboardPreviewStrip: "Public preview",
       leaderboardTopLink: "Leaderboard",
@@ -872,49 +872,49 @@ applyMarketingTheme(getMarketingTheme());
         "This might take a moment, we are pulling in a lot of data..",
       analysisDetailLoading:
         "This might take a moment, we are pulling in a lot of data..",
-      analysisBackAll: "Back to all salons",
-      analysisTalkListing: "Can't find your salon? Talk to Ryan to be listed",
+      analysisBackAll: "Back to all restaurants",
+      analysisTalkListing: "Can't find your restaurant? Talk to Ryan to be listed",
       analysisKicker: "Google Maps · Local visibility",
       analysisTitle: "Local Restaurant Ranking",
       analysisBody:
-        "Compare salons by Google signals and marketing score. Open any row for township benchmarks, sentiment, and review highlights.",
+        "Compare restaurants by Google signals and marketing score. Open any row for local benchmarks, sentiment, and review highlights.",
       analysisFreshDbHint:
         "If this is a fresh database, run sql/009_intel_market_columns.sql in Supabase SQL Editor, then reload.",
-      analysisSearchLabel: "Search salons",
+      analysisSearchLabel: "Search restaurants",
       analysisSearchPlaceholder: "Name, address, city, or township",
-      analysisSearchEmptyHint: "Type at least 2 characters to search listed salons.",
-      analysisSearchLoading: "Searching salons…",
-      analysisTableLabel: "Scraped nail salons",
-      analysisThSalon: "Salon",
+      analysisSearchEmptyHint: "Type at least 2 characters to search listed restaurants.",
+      analysisSearchLoading: "Searching restaurants...",
+      analysisTableLabel: "Restaurant listings",
+      analysisThSalon: "Restaurant",
       analysisThAddress: "Address",
       analysisThRating: "Google rating",
       analysisThReviews: "Google reviews",
       analysisThScore: "Marketing score",
-      analysisReportKicker: "Salon report",
+      analysisReportKicker: "Restaurant report",
       analysisReportUnavailable: "Report unavailable",
-      analysisReportLoadFailed: "This salon could not be loaded.",
+      analysisReportLoadFailed: "This restaurant could not be loaded.",
       analysisTownshipCity: "Township / city",
-      analysisSalonsInSample: "salons in sample",
+      analysisSalonsInSample: "restaurants in sample",
       analysisAvgGoogleRating: "Avg Google rating",
       analysisMedian: "Median:",
       analysisAvgReviewCount: "Avg review count",
       analysisAvg: "avg",
       analysisRatingBenchmark: "Rating benchmark",
-      analysisThisSalon: "This salon",
+      analysisThisSalon: "This restaurant",
       analysisTownshipAverage: "Township average",
       analysisTownshipMedian: "Township median",
       analysisReviewVolumeBenchmark: "Review volume benchmark",
       analysisTownshipAvg: "Township avg",
       analysisSentimentBenchmark: "Sentiment benchmark",
       analysisSentimentDefaultNote: "Positive-tone share vs township sample (from scraped review summaries).",
-      analysisThisSalonPositive: "This salon (positive)",
+      analysisThisSalonPositive: "This restaurant (positive)",
       analysisTownshipBenchmark: "Township benchmark",
-      analysisReviewSentiment: "Review sentiment (this salon)",
+      analysisReviewSentiment: "Review sentiment (this restaurant)",
       analysisPositive: "Positive",
       analysisNeutral: "Neutral",
       analysisNegative: "Negative",
-      analysisAllSalons: "All salons",
-      analysisIntelligence: "Salon intelligence",
+      analysisAllSalons: "All restaurants",
+      analysisIntelligence: "Restaurant intelligence",
       analysisGoogleReviews: "Google reviews",
       analysisInTownship: "In township (marketing score)",
       analysisTopFiveTownship: "Top 5 in this township",
@@ -922,10 +922,10 @@ applyMarketingTheme(getMarketingTheme());
       analysisShouldImprove: "What should be improved",
       analysisNoNarrative: "No narrative yet.",
       analysisLetMeHelp: "Let me help",
-      analysisReviewsThisSalon: "Reviews · this salon",
+      analysisReviewsThisSalon: "Reviews · this restaurant",
       analysisNoSampleLines: "No sample lines yet.",
       analysisTopTownshipReviews: "Top township reviews",
-      analysisReviewHint: "Salon name, review date, and highlight text.",
+      analysisReviewHint: "Restaurant name, review date, and highlight text.",
       analysisNoTownshipHighlights: "No township highlights yet.",
       briefReportKicker: "Business Brief",
       briefReportPreview: "Free Preview",
@@ -969,23 +969,23 @@ applyMarketingTheme(getMarketingTheme());
       briefPotentialMedium: "Medium potential",
       briefPotentialLow: "Competitive",
       mobileScrollCue: "Scroll to explore",
-      mobilePanelLeadTitle: "Free salon brief report",
-      mobilePanelLeadSub: "Enter your salon — we’ll email or text your Google Maps snapshot.",
+      mobilePanelLeadTitle: "Free restaurant brief report",
+      mobilePanelLeadSub: "Enter your restaurant — we’ll email or text your Google Maps snapshot.",
       mobilePanelStory: "Why it matters",
       mobilePanelDigital: "Meet Ryan",
       mobilePanelInsights: "Insights",
     },
     zh: {
-      pageTitleLanding: "沙龙 AI 增长",
+      pageTitleLanding: "餐厅 AI 增长",
       pageTitlePricing: "价格",
       pageTitleAbout: "关于我们",
       pageTitleTalk: "拨打语音顾问",
       pageTitleTavusDemo: "语音顾问",
-      pageTitleAnalysisList: "本地沙龙排名",
-      pageTitleAnalysisSalon: "沙龙排名详情",
+      pageTitleAnalysisList: "本地餐厅排名",
+      pageTitleAnalysisSalon: "餐厅排名详情",
       pageTitleAnalysisFull: "完整增长报告",
       pageTitleLeaderboardList: "AI 排行榜",
-      pageTitleLeaderboardSalon: "沙龙评分卡",
+      pageTitleLeaderboardSalon: "餐厅评分卡",
       pageTitleSmsConsent: "短信同意说明",
       pageTitlePrivacy: "隐私政策",
       pageTitleTerms: "服务条款",
@@ -1023,9 +1023,9 @@ applyMarketingTheme(getMarketingTheme());
       footerSmsConsent: "短信同意说明",
       footerPrivacy: "隐私政策",
       footerTerms: "服务条款",
-      footerAddressSalon: "沙龙增长平台",
+      footerAddressSalon: "餐厅增长平台",
       footerAddressAutomation: "AI 增长自动化",
-      footerCopyright: "© 2026 RankMyRestaurant。为沙龙打造的评论、跟进和语音自动化 AI。",
+      footerCopyright: "© 2026 RankMyRestaurant。为餐厅打造的评论、跟进和语音自动化 AI。",
       formNameLabel: "姓名 *",
       formNamePlaceholder: "请输入你的姓名",
       formEmailLabel: "邮箱 *",
@@ -1033,7 +1033,7 @@ applyMarketingTheme(getMarketingTheme());
       formPhoneLabel: "电话 *",
       formPhonePlaceholder: "方便联系你的号码",
       formCompanyLabel: "公司 / 门店",
-      formCompanyPlaceholder: "沙龙或公司名称",
+      formCompanyPlaceholder: "餐厅或公司名称",
       formServiceLabel: "你最需要哪方面帮助？",
       formServicePlaceholder: "选择最接近的一项",
       formMessageLabel: "留言 *",
@@ -1050,14 +1050,14 @@ applyMarketingTheme(getMarketingTheme());
       formSmsConsentRequired: "请先勾选短信同意后再提交。",
       formSuccess: "谢谢，我们已收到你的信息，会尽快跟进。你也可以发邮件到 info@360AIMedia.com。",
       formFailure: "暂时无法保存你的信息。请重试，或直接发送邮件到 info@360AIMedia.com。",
-      heroBriefSalonLabel: "沙龙名称 *",
+      heroBriefSalonLabel: "餐厅名称 *",
       heroBriefSalonPlaceholder: "与 Google Maps 上显示一致",
       heroBriefContactLabel: "手机或邮箱 *",
-      heroBriefContactPlaceholder: "(555) 123-4567 或 owner@salon.com",
-      heroBriefSubmit: "发送简报",
+      heroBriefContactPlaceholder: "(555) 123-4567 或 owner@restaurant.com",
+      heroBriefSubmit: "发送餐厅简报",
       heroBriefSmsConsentCheckbox:
         "若填写了手机号，我同意接收 RankMyRestaurant 发来的简报短信及相关服务短信。",
-      heroBriefFieldsRequired: "请填写沙龙名称，以及可用的手机号或邮箱。",
+      heroBriefFieldsRequired: "请填写餐厅名称，以及可用的手机号或邮箱。",
       heroBriefInvalidEmail: "邮箱格式似乎不对，请核对或改用手机号。",
       heroBriefInvalidPhone: "请输入至少 7 位数字的电话，或改用邮箱。",
       heroBriefSuccess: "已收到 — 简报将尽快发出。若使用邮箱，请留意垃圾箱。",
@@ -1065,7 +1065,7 @@ applyMarketingTheme(getMarketingTheme());
       contactModalClose: "关闭弹窗",
       contactModalLead: "告诉我们你需要什么帮助。信息会安全发送给团队，我们通常会在一个工作日内回复。",
       pricingKicker: "价格",
-      pricingBody: "一套清晰方案，帮助沙龙更快获得评论、完成跟进并带来预约。",
+      pricingBody: "一套清晰方案，帮助餐厅更快获得评论、完成跟进并带来订位。",
       pricingMonthly: "月付",
       pricingAnnual: "年付",
       pricingOr: "或",
@@ -1098,20 +1098,20 @@ applyMarketingTheme(getMarketingTheme());
       assistantVoiceIntro: "点击下方按钮，通过手机拨打语音顾问 Ryan。系统将打开手机拨号界面。",
       assistantCallCta: "立即拨打",
       assistantBack: "返回首页",
-      leaderboardLoadingTitle: "本地沙龙排名",
+      leaderboardLoadingTitle: "本地餐厅排名",
       leaderboardLoadingBody: "正在加载 Supabase 数据...",
       leaderboardErrorTitle: "排行榜",
       leaderboardSetupHint:
         "请在 Supabase 执行 sql/013_salon_ai_leaderboard.sql 和 sql/014_seed_salon_ai_leaderboard.sql，必要时刷新 schema cache 后再刷新页面。",
       leaderboardHeroKicker: "RankMyRestaurant.AI",
-      leaderboardHeroTitlePrefix: "你的沙龙是否正在把客户",
+      leaderboardHeroTitlePrefix: "你的餐厅是否正在把食客",
       leaderboardHeroTitleAccent: "输给竞争对手",
       leaderboardHeroTitleSuffix: "？",
       leaderboardHeroBody:
-        "查看实时沙龙 AI 排行榜，聚焦 Google 排名关键因子：Google Maps 曝光、评论数量、情绪、近期活跃度、本地 SEO 强度与转化信号。点开任意沙龙评分卡可看到可执行动作、语音顾问 Ryan 流程和社媒内容建设机会。",
-      leaderboardSearchPlaceholder: "沙龙名称、township、邮编或地址...",
+        "查看实时餐厅 AI 排行榜，聚焦 Google 排名关键因子：Google Maps 曝光、评论数量、情绪、近期活跃度、本地 SEO 强度与转化信号。点开任意餐厅评分卡可看到可执行动作、语音顾问 Ryan 流程和社媒内容建设机会。",
+      leaderboardSearchPlaceholder: "餐厅名称、城市、邮编或地址...",
       leaderboardSearchButton: "搜索",
-      leaderboardSearchAria: "按沙龙名称、township 或地址搜索",
+      leaderboardSearchAria: "按餐厅名称、城市或地址搜索",
       leaderboardLive: "实时 · Supabase 同步",
       leaderboardLiveUpdated: "实时 · 刚刚更新",
       leaderboardPreviewLabel: "预览：",
@@ -1119,15 +1119,15 @@ applyMarketingTheme(getMarketingTheme());
       leaderboardSignInFull: "登录",
       leaderboardSignInFullSuffix: "查看完整目录。",
       leaderboardDirectoryKicker: "目录：",
-      leaderboardDirectoryBody: "此处加载目录内全部沙龙，并结合 Google 排名、本地 SEO、评论管理、语音顾问与社媒内容增长语境。",
-      leaderboardDirectoryScorecardSuffix: " 即可打开沙龙评分卡。",
+      leaderboardDirectoryBody: "此处加载目录内全部餐厅，并结合 Google 排名、本地 SEO、评论管理、语音顾问与社媒内容增长语境。",
+      leaderboardDirectoryScorecardSuffix: " 即可打开餐厅评分卡。",
       leaderboardDirectorySampleHrefLabel: "新泽西 Middlesex 县",
       leaderboardRequestListing: "申请收录",
-      leaderboardRequestLead: "告诉我们你的沙龙信息，或申请覆盖新的市场。我们会通过邮箱跟进。",
+      leaderboardRequestLead: "告诉我们你的餐厅信息，或申请覆盖新的市场。我们会通过邮箱跟进。",
       leaderboardRequestType: "申请类型",
-      leaderboardRequestAddSalon: "添加我的沙龙",
-      leaderboardRequestMoreCoverage: "更多市场 / 沙龙",
-      leaderboardRequestSalonName: "沙龙名称",
+      leaderboardRequestAddSalon: "添加我的餐厅",
+      leaderboardRequestMoreCoverage: "更多市场 / 餐厅",
+      leaderboardRequestSalonName: "餐厅名称",
       leaderboardRequestYourName: "你的姓名",
       leaderboardRequestEmail: "邮箱",
       leaderboardRequestPhone: "电话",
@@ -1146,9 +1146,9 @@ applyMarketingTheme(getMarketingTheme());
       leaderboardState: "州",
       leaderboardCounty: "县",
       leaderboardTownship: "镇区（Township）",
-      leaderboardSalonCount: "家沙龙",
+      leaderboardSalonCount: "家餐厅",
       leaderboardScorecardLoading: "正在加载评分卡...",
-      leaderboardNotFound: "未找到该沙龙。",
+      leaderboardNotFound: "未找到该餐厅。",
       leaderboardBack: "返回排行榜",
       leaderboardPreviewStrip: "公开预览",
       leaderboardTopLink: "排行榜",
@@ -1161,28 +1161,28 @@ applyMarketingTheme(getMarketingTheme());
       analysisLoadingTitle: "分析报告",
       analysisLoadingBody: "可能需要稍等片刻，我们正在拉取大量数据……",
       analysisDetailLoading: "可能需要稍等片刻，我们正在拉取大量数据……",
-      analysisBackAll: "返回全部沙龙",
-      analysisTalkListing: "找不到你的沙龙？和 Ryan 对话申请收录",
+      analysisBackAll: "返回全部餐厅",
+      analysisTalkListing: "找不到你的餐厅？和 Ryan 对话申请收录",
       analysisKicker: "Google Maps · 本地可见度",
-      analysisTitle: "本地沙龙排名",
+      analysisTitle: "本地餐厅排名",
       analysisBody:
-        "按 Google 信号与营销评分浏览美甲沙龙。打开任意一行可查看地区基准、情绪与评论亮点。",
+        "按 Google 信号与营销评分浏览本地餐厅。打开任意一行可查看地区基准、情绪与评论亮点。",
       analysisFreshDbHint: "如果这是新数据库，请在 Supabase SQL Editor 中执行 sql/009_intel_market_columns.sql，然后重新加载。",
-      analysisSearchLabel: "搜索沙龙",
+      analysisSearchLabel: "搜索餐厅",
       analysisSearchPlaceholder: "名称、地址、城市或 township",
-      analysisSearchEmptyHint: "请输入至少 2 个字符以搜索已上架沙龙。",
-      analysisSearchLoading: "正在搜索沙龙…",
-      analysisTableLabel: "抓取的美甲沙龙",
-      analysisThSalon: "沙龙",
+      analysisSearchEmptyHint: "请输入至少 2 个字符以搜索已上架餐厅。",
+      analysisSearchLoading: "正在搜索餐厅...",
+      analysisTableLabel: "餐厅列表",
+      analysisThSalon: "餐厅",
       analysisThAddress: "地址",
       analysisThRating: "Google 评分",
       analysisThReviews: "Google 评论数",
       analysisThScore: "营销评分",
-      analysisReportKicker: "沙龙报告",
+      analysisReportKicker: "餐厅报告",
       analysisReportUnavailable: "报告暂不可用",
-      analysisReportLoadFailed: "无法加载该沙龙。",
+      analysisReportLoadFailed: "无法加载该餐厅。",
       analysisTownshipCity: "Township / 城市",
-      analysisSalonsInSample: "家沙龙样本",
+      analysisSalonsInSample: "家餐厅样本",
       analysisAvgGoogleRating: "Google 平均评分",
       analysisMedian: "中位数：",
       analysisAvgReviewCount: "平均评论数",
@@ -1201,8 +1201,8 @@ applyMarketingTheme(getMarketingTheme());
       analysisPositive: "正向",
       analysisNeutral: "中性",
       analysisNegative: "负向",
-      analysisAllSalons: "全部沙龙",
-      analysisIntelligence: "沙龙情报",
+      analysisAllSalons: "全部餐厅",
+      analysisIntelligence: "餐厅情报",
       analysisGoogleReviews: "Google 评论",
       analysisInTownship: "地区排名（营销评分）",
       analysisTopFiveTownship: "本地区前 5 名",
@@ -1213,7 +1213,7 @@ applyMarketingTheme(getMarketingTheme());
       analysisReviewsThisSalon: "本店评论",
       analysisNoSampleLines: "暂无样本文字。",
       analysisTopTownshipReviews: "地区热门评论",
-      analysisReviewHint: "沙龙名称、评论日期和亮点文字。",
+      analysisReviewHint: "餐厅名称、评论日期和亮点文字。",
       analysisNoTownshipHighlights: "暂无地区评论亮点。",
       briefReportKicker: "商业简报",
       briefReportPreview: "免费预览",
@@ -1256,8 +1256,8 @@ applyMarketingTheme(getMarketingTheme());
       briefPotentialMedium: "中等潜力",
       briefPotentialLow: "竞争激烈",
       mobileScrollCue: "向下滑动浏览",
-      mobilePanelLeadTitle: "免费沙龙简报",
-      mobilePanelLeadSub: "填写沙龙信息，我们将通过短信或邮件发送 Google 地图快照。",
+      mobilePanelLeadTitle: "免费餐厅简报",
+      mobilePanelLeadSub: "填写餐厅信息，我们将通过短信或邮件发送 Google 地图快照。",
       mobilePanelStory: "为什么重要",
       mobilePanelDigital: "认识 Ryan",
       mobilePanelInsights: "精选洞察",
@@ -1272,8 +1272,8 @@ applyMarketingTheme(getMarketingTheme());
       enLabel: "Easy pick",
       zhSubLabel: "",
       enSubLabel: "",
-      zhRule: "语气最朴实、最自然，像顾客刚做完项目随手写下来的评价。",
-      enRule: "Keep it the most plainspoken and natural, like a real client writing right after the appointment.",
+      zhRule: "语气最朴实、最自然，像顾客刚吃完或刚离店随手写下来的评价。",
+      enRule: "Keep it the most plainspoken and natural, like a real diner writing right after the visit.",
     },
     {
       key: "review_b",
@@ -1291,7 +1291,7 @@ applyMarketingTheme(getMarketingTheme());
       zhSubLabel: "",
       enSubLabel: "",
       zhRule: "最有记忆点，允许略微夸张一点点，但仍然要像真实顾客，不要浮夸到像广告。",
-      enRule: "Make it the most memorable. A touch more amplified is fine, but it still has to sound like a real salon client, not an ad.",
+      enRule: "Make it the most memorable. A touch more amplified is fine, but it still has to sound like a real diner, not an ad.",
     },
   ];
 
@@ -1301,23 +1301,23 @@ applyMarketingTheme(getMarketingTheme());
     none: {
       zhLabel: "只写项目效果",
       enLabel: "service result only",
-      zhRule: "这一条只写做的项目本身，比如颜色、细致度、成品效果、保持度，完全不要提staff、环境、氛围。",
+      zhRule: "这一条只写菜品或饮品本身，比如味道、口感、分量、摆盘、温度，完全不要提staff、环境、氛围。",
       enRule:
-        "This review must only talk about the service result itself, such as color, finish, detail, shape, comfort, or how the final look came out. Do not mention staff, ambiance, atmosphere, decor, or the salon space.",
+        "This review must only talk about the food or drink itself, such as flavor, texture, portion, presentation, freshness, or how the meal came out. Do not mention staff, ambiance, atmosphere, decor, or the restaurant space.",
     },
     service: {
       zhLabel: "提staff",
       enLabel: "staff mention",
-      zhRule: "这一条必须提staff细心、耐心、沟通顺、做事认真之类，但完全不要提环境、氛围、装修。",
+      zhRule: "这一条必须提staff热情、上菜快、沟通顺、服务周到之类，但完全不要提环境、氛围、装修。",
       enRule:
-        "This review must clearly praise the staff, attentiveness, communication, care, or technique, but must not mention ambiance, atmosphere, decor, or the salon space.",
+        "This review must clearly praise the staff, attentiveness, speed, hospitality, or communication, but must not mention ambiance, atmosphere, decor, or the restaurant space.",
     },
     environment: {
       zhLabel: "提环境",
       enLabel: "atmosphere mention",
-      zhRule: "这一条必须提环境、氛围、空间、装修或整体待着舒服，但完全不要提staff。",
+      zhRule: "这一条必须提环境、氛围、空间、装修、干净或整体用餐舒服，但完全不要提staff。",
       enRule:
-        "This review must clearly praise the atmosphere, cleanliness, decor, comfort, or overall salon setting, but must not mention staff or attentiveness.",
+        "This review must clearly praise the atmosphere, cleanliness, decor, comfort, or overall restaurant setting, but must not mention staff or attentiveness.",
     },
   };
 
@@ -1327,8 +1327,8 @@ applyMarketingTheme(getMarketingTheme());
       zhLabel: "第一次来",
       enLabel: "First time here",
       zhPrompt: "三条都要自然带出是第一次来，但说法别一样，像刚做完项目顺手发出去的短评。",
-      enPrompt: "All three should naturally sound like a first visit, but vary the wording so they read like quick post-appointment reactions.",
-      zhPrefixes: ["第一次来，感觉不错。", "头回来做，印象很好。", "第一次来，比想的更满意。"],
+      enPrompt: "All three should naturally sound like a first visit, but vary the wording so they read like quick post-meal reactions.",
+      zhPrefixes: ["第一次来，感觉不错。", "头回来吃，印象很好。", "第一次来，比想的更满意。"],
       enPrefixes: ["First time here, and I liked it right away.", "My first visit here was an easy yes.", "New here, but the result left a strong first impression."],
       zhPattern: /第一次|头一回|头一次/,
       enPattern: /\bfirst time\b|\bfirst visit\b|\bnew here\b/i,
@@ -1337,9 +1337,9 @@ applyMarketingTheme(getMarketingTheme());
       key: "few_times",
       zhLabel: "之前来过",
       enLabel: "Been back before",
-      zhPrompt: "三条都要带出不是第一次来，这次也还是愿意继续来做，语气要轻松。",
+      zhPrompt: "三条都要带出不是第一次来，这次也还是愿意继续来吃，语气要轻松。",
       enPrompt: "All three should make it clear this is a return visit, while still sounding casual and current.",
-      zhPrefixes: ["之前来过，这次也很满意。", "不是头回来了，还是做得稳。", "又来做了，结果还是很喜欢。"],
+      zhPrefixes: ["之前来过，这次也很满意。", "不是头回来了，还是很稳。", "又来吃了，结果还是很喜欢。"],
       enPrefixes: ["I've been back before, and it still lands well.", "Not my first time here, and it still feels worth it.", "I've come by before, and this visit still came out great."],
       zhPattern: /来过|不是第一次|之前来过|又来/,
       enPattern: /\bbeen back\b|\bnot my first time\b|\bcome by before\b|\bback before\b/i,
@@ -1374,9 +1374,9 @@ applyMarketingTheme(getMarketingTheme());
     },
     {
       key: "detailed",
-      zhLabel: "做得细致",
+      zhLabel: "很细心",
       enLabel: "very detailed",
-      zhPhrase: "做得细致",
+      zhPhrase: "细心",
       enPhrase: "very detailed",
     },
     {
@@ -1388,18 +1388,18 @@ applyMarketingTheme(getMarketingTheme());
     },
     {
       key: "gentle",
-      zhLabel: "手法很温柔",
-      enLabel: "gentle and careful",
-      zhPhrase: "手法很温柔",
-      enPhrase: "gentle and careful",
+      zhLabel: "服务很舒服",
+      enLabel: "smooth and careful",
+      zhPhrase: "服务很舒服",
+      enPhrase: "smooth and careful",
     },
   ];
 
   const REVIEW_SPICE_BANK = {
-    zh: ["这次做得值", "会想再来", "颜色很好看", "成品很干净", "朋友也夸", "比预期更好", "做完整个人都舒服", "看着就很顺眼"],
+    zh: ["这次吃得值", "会想再来", "味道很在线", "出品很稳", "朋友也夸", "比预期更好", "吃完整个人都舒服", "看着就很有食欲"],
     en: [
       "would come back for this",
-      "glad I booked this",
+      "glad I tried this",
       "the result really worked for me",
       "better than I expected",
       "easy one to recommend",
@@ -1432,7 +1432,7 @@ applyMarketingTheme(getMarketingTheme());
     zh: {
       title: "拍张小票，评论更快",
       subtitle: "传一张消费小票，几秒就能挑一句顺手发。",
-      landingTitle: "让 salon 的 Google 评论增长更顺手",
+      landingTitle: "让餐厅的 Google 评论增长更顺手",
       landingSubtitle: "RankMyRestaurant 根域名后续会升级成完整产品 landing page。当前先用这个占位页承接品牌入口，门店版 review studio 继续通过规范的 store 路径访问。",
       landingStatus: "临时首页占位",
       landingPrimaryCta: "打开 蟹宝 Edison 门店页",
@@ -1450,11 +1450,11 @@ applyMarketingTheme(getMarketingTheme());
       retakeBtn: "换一张照片",
       retakeInlineBtn: "重新上传一张",
       previewEmpty: "上传后会显示在这里",
-      dishesTitle: "确认项目",
+      dishesTitle: "确认菜品",
       dishesHint: "识别不对就补加或删除，下面的评价会自动重算。",
-      correctionLabel: "补加或修改项目",
-      dishSearchPlaceholder: "选择要补加的项目",
-      addDishBtn: "补加项目",
+      correctionLabel: "补加或修改菜品",
+      dishSearchPlaceholder: "选择要补加的菜品",
+      addDishBtn: "补加菜品",
       resetBtn: "清空重来",
       reviewsTitle: "点你喜欢的文字",
       reviewsHint: "挑一句顺手的，就能去 Google Maps 发出。",
@@ -1480,8 +1480,8 @@ applyMarketingTheme(getMarketingTheme());
       receiptWorking: "正在整理内容，请稍候…",
       receiptDone: "小票识别完成。",
       receiptDetectedSingle: "识别到：{dish}",
-      receiptDetectedMulti: "已识别 {count} 个项目",
-      receiptDetectedNone: "这张小票还没认出明确项目",
+      receiptDetectedMulti: "已识别 {count} 个菜品",
+      receiptDetectedNone: "这张小票还没认出明确菜品",
       receiptDetectedUncertain: "小票有读出文字，但未对上目录，请在下方手选项目",
       receiptFailed: "小票识别失败，请换一张更清楚的小票。",
       routeReceipt: "正在整理内容，请稍候…",
@@ -1494,7 +1494,7 @@ applyMarketingTheme(getMarketingTheme());
       noReceipt: "请先上传小票。",
       noDishes: "还没认出项目，换张更清楚的小票试试。",
       receiptUnmatchedOnly:
-        "小票上读到的品名与当前门店服务目录对不上，下面已列出识别文字，请点「从目录添加项目」手选最相近的；若是饭店小票在美甲店，请用本店真实消费小票或先在后台把目录改成与你店一致的品项。",
+        "小票上读到的品名与当前餐厅菜单目录对不上，下面已列出识别文字，请点「从目录添加菜品」手选最相近的；如目录仍是示例内容，请先在后台把菜单改成与你店一致的品项。",
       noUrl: "未配置 Google 跳转链接。",
       copiedAndGoing: "已复制评价，正在打开 Google...",
       copyFail: "复制失败，请手动复制后再打开 Google。",
@@ -1502,26 +1502,26 @@ applyMarketingTheme(getMarketingTheme());
       manualOpenMaps: "优先试 Google Maps",
       manualOpenBrowser: "改用浏览器评论页",
       addDishFail: "没找到这个项目，请换个写法或从下拉建议里选。",
-      addDishSuccess: "已补加项目。",
-      removeDishSuccess: "已移除项目。",
+      addDishSuccess: "已补加菜品。",
+      removeDishSuccess: "已移除菜品。",
       correctionChanged: "正在整理内容，请稍候…",
       uncertainTitle: "这些字样不太确定",
-      recognizedCount: "识别到 {count} 个项目",
-      recognizedEmpty: "还没识别到项目，换张更清楚的小票试试。",
+      recognizedCount: "识别到 {count} 个菜品",
+      recognizedEmpty: "还没识别到菜品，换张更清楚的小票试试。",
       reviewCardHint: "",
-      correctionToggleClosed: "识别不对？修改项目",
-      correctionToggleOpen: "收起项目修改",
+      correctionToggleClosed: "识别不对？修改菜品",
+      correctionToggleOpen: "收起菜品修改",
       localHistoryHint: "尽量换个说法，别和刚才那组太像。",
       startOverDone: "已清空。",
       visitRequired: "先选一下这是第几次来。",
       storeNotAvailable: "门店未启用或不存在。请在后台勾选「Active immediately」或开启 Active 后刷新。",
       storeMenuNotPublished:
-        "门店还没有可用的服务目录。请在后台该门店的「Service catalog」添加服务项目并保存，然后刷新本页。",
-      storeServiceCatalogEmpty: "已发布的服务目录为空，请在后台补充服务项目。",
+        "门店还没有可用的菜单目录。请在后台该门店的「Service catalog」添加菜品并保存，然后刷新本页。",
+      storeServiceCatalogEmpty: "已发布的菜单目录为空，请在后台补充菜品。",
       storeCatalogDefaultHint:
-        "当前使用通用示例服务，拍照写评价可以正常使用。在后台保存本店服务目录后，会自动切换为你店自己的项目。",
+        "当前使用通用示例菜单，拍照写评价可以正常使用。在后台保存本店菜单目录后，会自动切换为你店自己的菜品。",
       storeBootstrapGeneric: "门店页面加载失败，请稍后重试。",
-      storeVisitServiceLabel: "今日服务",
+      storeVisitServiceLabel: "今日菜品",
       storeVisitHeroTitle: "今天在 {name} 的体验怎么样？",
       storeVisitHeroLead: "你的真实感受能帮助其他顾客找到好店家。",
       storeVisitMoodPick: "点选星星告诉我们今天的感受",
@@ -1534,7 +1534,7 @@ applyMarketingTheme(getMarketingTheme());
       storeVisitOr: "或",
       storeVisitPrivateCta: "私下向我们反馈",
       storeVisitLowStarHint: "如果星级较低或暂时不想公开评价，建议先私下留言，我们会认真阅读并跟进。",
-      storeVisitSocialProof: "已有 {count} 位满意客户留下评价",
+      storeVisitSocialProof: "已有 {count} 位满意食客留下评价",
       storeVisitWriteOwnOutline: "自己写评论",
       storeReceiptScanHint: "点上方深色按钮，拍摄或从相册选择一张清晰的小票照片。",
       storePrivateModalTitle: "私下反馈给店家",
@@ -1554,8 +1554,8 @@ applyMarketingTheme(getMarketingTheme());
     },
     en: {
       title: "Snap your receipt. Review faster.",
-      subtitle: "Upload your salon receipt and get a few lines worth posting.",
-      landingTitle: "Google review growth for salons, with less awkward follow-up",
+      subtitle: "Upload your restaurant receipt and get a few lines worth posting.",
+      landingTitle: "Google review growth for restaurants, with less awkward follow-up",
       landingSubtitle: "RankMyRestaurant will eventually become the full product landing page at the root domain. For now, this placeholder holds the top-level brand entry while the live store-specific review studio stays available on the canonical store path.",
       landingStatus: "Temporary landing page",
       landingPrimaryCta: "Open the Xiebao Edison store page",
@@ -1567,17 +1567,17 @@ applyMarketingTheme(getMarketingTheme());
       landingCardThreeTitle: "Current production example",
       landingCardThreeBody: "Xiebao Edison is the live store example today, and the long-form slug should stay aligned with the real backend store identifier.",
       uploadTitle: "Start with a receipt",
-      uploadHint: "Upload a salon receipt photo. Take one now or pick it from your library.",
+      uploadHint: "Upload a restaurant receipt photo. Take one now or pick it from your library.",
       uploadBtn: "Snap / choose",
       writeOwnReviewBtn: "Write my own",
       retakeBtn: "Use another photo",
       retakeInlineBtn: "Upload another photo",
       previewEmpty: "It will appear here after upload",
-      dishesTitle: "Check the services",
-      dishesHint: "Add or remove services if needed. The reviews below will refresh automatically.",
-      correctionLabel: "Add or fix services",
-      dishSearchPlaceholder: "Choose a service to add",
-      addDishBtn: "Add service",
+      dishesTitle: "Check the dishes",
+      dishesHint: "Add or remove dishes if needed. The reviews below will refresh automatically.",
+      correctionLabel: "Add or fix dishes",
+      dishSearchPlaceholder: "Choose a dish to add",
+      addDishBtn: "Add dish",
       resetBtn: "Clear all",
       reviewsTitle: "Tap a line you like",
       reviewsHint: "Pick one that feels right, and post it on Google Maps.",
@@ -1603,8 +1603,8 @@ applyMarketingTheme(getMarketingTheme());
       receiptWorking: "Preparing everything. Please wait...",
       receiptDone: "Receipt processed.",
       receiptDetectedSingle: "Detected: {dish}",
-      receiptDetectedMulti: "{count} services detected",
-      receiptDetectedNone: "No matching services on this receipt yet.",
+      receiptDetectedMulti: "{count} dishes detected",
+      receiptDetectedNone: "No matching dishes on this receipt yet.",
       receiptDetectedUncertain: "We read lines on the receipt but they don’t match the catalog — pick services below.",
       receiptFailed: "Receipt reading failed. Try a clearer receipt photo.",
       routeReceipt: "Preparing everything. Please wait...",
@@ -1617,36 +1617,36 @@ applyMarketingTheme(getMarketingTheme());
       noReceipt: "Upload a receipt first.",
       noDishes: "No service found yet. Try a clearer receipt photo.",
       receiptUnmatchedOnly:
-        "We read these lines, but they don’t match the store’s current catalog. Add items manually from the list, or if this is a restaurant receipt for a salon profile, use a real salon receipt or update the catalog. See the uncertain lines below.",
+        "We read these lines, but they do not match the restaurant catalog yet. Add dishes manually from the list, or update the catalog in admin so it matches your menu. See the uncertain lines below.",
       noUrl: "Google link is not configured.",
       copiedAndGoing: "Review copied. Opening Google...",
       copyFail: "Copy failed. Please copy manually, then open Google.",
       manualOpen: "Didn't open? Try the other route",
       manualOpenMaps: "Try Google Maps",
       manualOpenBrowser: "Open browser review page",
-      addDishFail: "Service not found. Try another spelling or use a suggestion.",
-      addDishSuccess: "Service added.",
-      removeDishSuccess: "Service removed.",
+      addDishFail: "Dish not found. Try another spelling or use a suggestion.",
+      addDishSuccess: "Dish added.",
+      removeDishSuccess: "Dish removed.",
       correctionChanged: "Preparing everything. Please wait...",
       uncertainTitle: "These items need a quick check",
-      recognizedCount: "Detected {count} services",
-      recognizedEmpty: "No services detected yet. Try a clearer receipt photo.",
+      recognizedCount: "Detected {count} dishes",
+      recognizedEmpty: "No dishes detected yet. Try a clearer receipt photo.",
       reviewCardHint: "",
-      correctionToggleClosed: "Wrong service? Edit the services",
-      correctionToggleOpen: "Hide service edits",
+      correctionToggleClosed: "Wrong dish? Edit the dishes",
+      correctionToggleOpen: "Hide dish edits",
       localHistoryHint: "Keep the wording varied so the next set does not feel recycled.",
       startOverDone: "Cleared.",
       visitRequired: "Pick the visit count first.",
       storeNotAvailable: "This store is inactive or missing. Turn on Active in admin and refresh.",
       storeMenuNotPublished:
-        "No service catalog is available for this store yet. Add services under this store’s Service catalog in admin, save, then reload this page.",
-      storeServiceCatalogEmpty: "Published service catalog is empty. Add services in admin.",
+        "No menu catalog is available for this store yet. Add dishes under this store’s Service catalog in admin, save, then reload this page.",
+      storeServiceCatalogEmpty: "Published menu catalog is empty. Add dishes in admin.",
       storeCatalogDefaultHint:
         "Using a generic sample list for now — receipts and reviews still work. Save your own catalog in admin to match your real menu.",
       storeBootstrapGeneric: "Could not load this store. Please try again.",
-      storeVisitServiceLabel: "Today's service",
+      storeVisitServiceLabel: "Today's dish",
       storeVisitHeroTitle: "How was your visit with {name}?",
-      storeVisitHeroLead: "Your honest take helps other clients find great salons.",
+      storeVisitHeroLead: "Your honest take helps other diners find great restaurants.",
       storeVisitMoodPick: "Tap a star to tell us how it went.",
       storeVisitMood1: "Room to improve",
       storeVisitMood2: "It was okay",
@@ -1658,10 +1658,10 @@ applyMarketingTheme(getMarketingTheme());
       storeVisitPrivateCta: "Share feedback privately with us",
       storeVisitLowStarHint:
         "If your experience was below 4 stars, consider sharing private feedback first — we read every note and it helps us follow up without pressure.",
-      storeVisitSocialProof: "{count} happy clients have already reviewed us",
+      storeVisitSocialProof: "{count} happy diners have already reviewed us",
       storeVisitWriteOwnOutline: "Write my own review",
       storeReceiptScanHint: "Tap the dark button above, then snap or pick a clear photo of your receipt.",
-      storePrivateModalTitle: "Private note to the salon",
+      storePrivateModalTitle: "Private note to the restaurant",
       storePrivateModalIntro:
         "This goes straight to the team behind the scenes — it is never posted on Google. We read every message.",
       storePrivateFieldName: "Your name",
@@ -2640,8 +2640,8 @@ applyMarketingTheme(getMarketingTheme());
     if (isAnalysisListRoute()) return SITE_NAME + " | " + MARKETING_UI.pageTitleAnalysisList;
     if (isAnalysisSalonRoute()) return SITE_NAME + " | " + MARKETING_UI.pageTitleAnalysisSalon;
     if (isAnalysisFullRoute()) return SITE_NAME + " | " + MARKETING_UI.pageTitleAnalysisFull;
-    if (isLeaderboardListRoute()) return "Salon AI Leaderboard | Google Maps SEO Rankings | " + SITE_NAME;
-    if (isLeaderboardSalonRoute()) return "Salon Scorecard & Google Maps SEO Audit | " + SITE_NAME;
+    if (isLeaderboardListRoute()) return "Restaurant AI Leaderboard | Google Maps SEO Rankings | " + SITE_NAME;
+    if (isLeaderboardSalonRoute()) return "Restaurant Scorecard & Google Maps SEO Audit | " + SITE_NAME;
     if (isSmsConsentRoute()) return SITE_NAME + " | " + MARKETING_UI.pageTitleSmsConsent;
     if (isPrivacyRoute()) return SITE_NAME + " | " + MARKETING_UI.pageTitlePrivacy;
     if (isTermsRoute()) return SITE_NAME + " | " + MARKETING_UI.pageTitleTerms;
@@ -2682,13 +2682,13 @@ applyMarketingTheme(getMarketingTheme());
       return "Generate restaurant-ready Google reviews faster and improve your Google Maps trust signals with RankMyRestaurant.";
     }
     if (isLeaderboardRoute()) {
-      return "Browse salon leaderboard insights for Google ranking improvement, local SEO optimization, review growth, voice agent Ryan automation, and social media content building.";
+      return "Browse restaurant leaderboard insights for Google ranking improvement, local SEO optimization, review growth, voice agent Ryan automation, and social media content building.";
     }
     if (isAnalysisRoute()) {
-      return "See AI-powered Google Maps analysis reports for salons and identify practical next steps to improve rankings.";
+      return "See AI-powered Google Maps analysis reports for restaurants and identify practical next steps to improve rankings.";
     }
     if (isPriceRoute()) {
-      return "Simple salon growth pricing: one-time setup plus monthly optimization to improve Google Maps visibility.";
+      return "Simple restaurant growth pricing: one-time setup plus monthly optimization to improve Google Maps visibility.";
     }
     return "RankMyRestaurant helps restaurants improve Google Maps visibility with AI review workflows, local SEO insights, and growth tools.";
   }
@@ -2710,7 +2710,7 @@ applyMarketingTheme(getMarketingTheme());
       itemListElement: rows.map(function (row, idx) {
         var item = {
           "@type": "LocalBusiness",
-          name: String(row.name || "").trim() || "Salon",
+          name: String(row.name || "").trim() || "Restaurant",
           address: String(row.address || "").trim(),
           telephone: String(row.phone || "").trim(),
         };
@@ -2725,8 +2725,8 @@ applyMarketingTheme(getMarketingTheme());
     var salon = state.leaderboardDetail;
     var schema = {
       "@context": "https://schema.org",
-      "@type": "NailSalon",
-      name: String(salon.name || "").trim() || "Salon",
+      "@type": "Restaurant",
+      name: String(salon.name || "").trim() || "Restaurant",
       address: String(salon.address || "").trim(),
       telephone: String(salon.phone || "").trim(),
       url: getPreferredOrigin() + "/leaderboard/" + encodeURIComponent(String(salon.slug || state.storeSlug || "").trim()),
@@ -2949,7 +2949,7 @@ applyMarketingTheme(getMarketingTheme());
       var emptyMsg = state.intelListSearchLoading
         ? MARKETING_UI.analysisSearchLoading
         : hasQuery
-          ? "No salons match your search. Try another name, street, city, or township."
+          ? "No restaurants match your search. Try another name, street, city, or town."
           : MARKETING_UI.analysisSearchEmptyHint;
       rows =
         '<tr><td colspan="5" class="intel-table-empty">' + escapeHtml(emptyMsg) + "</td></tr>";
@@ -2984,13 +2984,13 @@ applyMarketingTheme(getMarketingTheme());
         var msg =
           payload && payload.error && payload.error.message
             ? payload.error.message
-            : "Could not search salons (" + response.status + ").";
+            : "Could not search restaurants (" + response.status + ").";
         throw new Error(msg);
       }
       state.intelSalons = Array.isArray(payload && payload.salons) ? payload.salons : [];
     } catch (err) {
       console.error(err);
-      state.intelError = (err && err.message) || "Unexpected error searching salons.";
+      state.intelError = (err && err.message) || "Unexpected error searching restaurants.";
       state.intelSalons = [];
     } finally {
       state.intelListSearchLoading = false;
@@ -3065,7 +3065,7 @@ applyMarketingTheme(getMarketingTheme());
   function generateLeaderboardAiSummaryHtml(salon, ranked, issues, assessmentVisual, locale) {
     var lang = locale === "zh" ? "zh" : "en";
     var a = assessmentVisual || getLeaderboardAssessmentVisual(salon);
-    var name = String((salon && salon.name) || (lang === "zh" ? "本店" : "This salon")).trim();
+    var name = String((salon && salon.name) || (lang === "zh" ? "本店" : "This restaurant")).trim();
     var county = String((salon && salon.county) || (lang === "zh" ? "本区域" : "your market")).trim();
     var town = String((salon && salon.town) || "").trim();
     var loc = lang === "zh" ? (town ? town + " · " + county : county) : town ? town + ", " + county : county;
@@ -3101,7 +3101,7 @@ applyMarketingTheme(getMarketingTheme());
           name +
           " 在 " +
           county +
-          " 仍有不少预约被「信任证据更强」的同行截走。值得庆幸的是美甲美睫赛道对 Google 信任反应很快——只要抢在下一轮评论周期前行动，地图上的故事就会改写。";
+          " 仍有不少订位、来电和到店被「信任证据更强」的同行截走。餐饮市场对 Google 信任反应很快——只要抢在下一轮评论周期前行动，地图上的故事就会改写。";
       }
     } else {
       if (level === "EXCELLENT" || score >= 84) {
@@ -3114,7 +3114,7 @@ applyMarketingTheme(getMarketingTheme());
         encourage =
           "There is a lot to like about " +
           name +
-          ": guests see a credible salon with real social proof. The next chapter is tightening the few levers that separate 'busy weekends' from 'fully booked weeks'—and that is where most owners leave money on the table.";
+          ": guests see a credible restaurant with real social proof. The next chapter is tightening the few levers that separate 'busy weekends' from 'fully booked weeks'—and that is where most owners leave money on the table.";
       } else if (score >= 56) {
         encourage =
           name +
@@ -3123,9 +3123,9 @@ applyMarketingTheme(getMarketingTheme());
         encourage =
           "The data is direct: " +
           name +
-          " is leaving bookings on the table versus salons with fresher proof signals in " +
+          " is leaving reservations, calls, and visits on the table versus restaurants with fresher proof signals in " +
           county +
-          ". The encouraging part is that nail and spa markets respond quickly when Google trust catches up—if you move before the next review cycle reshuffles the map.";
+          ". The encouraging part is that restaurant markets respond quickly when Google trust catches up—if you move before the next review cycle reshuffles the map.";
       }
     }
 
@@ -3179,16 +3179,16 @@ applyMarketingTheme(getMarketingTheme());
         fomo =
           "You are inside the top three in " +
           county +
-          " on this live leaderboard—exactly where comparison shoppers short-list salons. The salons above you are not pausing; if they widen their review lead or rating edge, you feel it in empty chairs within weeks, not quarters.";
+          " on this live leaderboard—exactly where comparison diners short-list restaurants. The restaurants above you are not pausing; if they widen their review lead or rating edge, you feel it in empty tables within weeks, not quarters.";
       } else if (rank > 3 && total > rank) {
         fomo =
           String(rank - 1) +
-          " salons in " +
+          " restaurants in " +
           county +
           " currently sit ahead on the same public scorecard prospects skim before they tap 'Call' or 'Directions.' That gap is not theoretical—it is walk-ins and deposits your profile is not winning tonight.";
       } else {
         fomo =
-          "This index updates as ratings, volume, sentiment, and recency move. Salons that treat the next 30 days like a launch window pull ahead quietly—then everyone else plays catch-up at a higher cost.";
+          "This index updates as ratings, volume, sentiment, and recency move. Restaurants that treat the next 30 days like a launch window pull ahead quietly—then everyone else plays catch-up at a higher cost.";
       }
     }
 
@@ -3267,7 +3267,7 @@ applyMarketingTheme(getMarketingTheme());
         detail:
           "A " +
           rating +
-          "★ rating puts you below Google's Local Pack threshold. Salons above 4.5★ receive 2× more search impressions and walk-in traffic.",
+          "★ rating puts you below Google's Local Pack threshold. Restaurants above 4.5★ receive more search impressions, direction taps, and table intent.",
         fix: "Identify your 1–2★ reviewers and reach out with a personal recovery offer. One resolved complaint can become a 5★ update.",
       });
     }
@@ -3279,7 +3279,7 @@ applyMarketingTheme(getMarketingTheme());
         bg: "#FEF2F2",
         title: "Low Review Volume — Invisible to New Customers",
         detail: "Only " + reviews + " reviews makes your profile appear inactive.",
-        fix: "Send a direct Google review link via SMS to your last 100 clients.",
+        fix: "Send a direct Google review link via SMS to recent diners after checkout or reservation follow-up.",
       });
     } else if (reviews < 300) {
       issues.push({
@@ -3289,7 +3289,7 @@ applyMarketingTheme(getMarketingTheme());
         bg: "#FFFBEB",
         title: "Review Volume Gap vs. Market Leaders",
         detail: reviews + " reviews is solid but market leaders in your area have 500–1,200+.",
-        fix: "Target 10 new reviews per week via a post-service QR code at checkout or automated SMS follow-up.",
+        fix: "Target 10 new reviews per week via table QR, receipt QR, or automated SMS follow-up.",
       });
     }
     issues.push({
@@ -3297,10 +3297,10 @@ applyMarketingTheme(getMarketingTheme());
       sev: "MEDIUM",
       sevColor: "#D97706",
       bg: "#FFFBEB",
-      title: "No Online Booking Link Detected",
+      title: "No Reservation / Order Link Detected",
       detail:
-        "New customers who find you on Google expect to book instantly. Every extra friction step loses first-time inquiries to competitors who offer instant booking.",
-      fix: "Add a booking link to your Google Business profile. Vagaro, Square, or StyleSeat take under 1 hour to set up.",
+        "New diners who find you on Google expect to reserve, call, or order instantly. Every extra friction step loses high-intent searches to competitors with clearer actions.",
+      fix: "Add reservation, order, menu, or direct-call actions to your Google Business profile and landing page.",
     });
     if (score < 70) {
       issues.push({
@@ -3319,10 +3319,10 @@ applyMarketingTheme(getMarketingTheme());
       sev: "LOW",
       sevColor: "#2563EB",
       bg: "#EFF6FF",
-      title: "No Designated Specialist Promotion",
+      title: "No Signature Dish or Occasion Promotion",
       detail:
-        "Customers searching for nail art, lash services, or specific treatments can't identify your best technicians online.",
-      fix: "Feature 1–2 specialist technicians on your Google profile and Instagram with their specialty clearly labeled.",
+        "Diners searching for signature dishes, catering, private dining, or special occasions can't quickly see what makes you worth choosing.",
+      fix: "Feature 1–2 signature dishes, chef specials, or event offers on your Google profile, menu photos, and social channels.",
     });
     return issues.slice(0, 4);
   }
@@ -3922,7 +3922,7 @@ applyMarketingTheme(getMarketingTheme());
     var meta =
       '<span class="lb-pager-meta">' +
       escapeHtml(String(totalCount)) +
-      " salons" +
+      " restaurants" +
       (totalPages > 1 ? " · Page " + page + " / " + totalPages : "") +
       "</span>";
     if (totalPages <= 1) {
@@ -4026,7 +4026,7 @@ applyMarketingTheme(getMarketingTheme());
     if (!total) {
       return (
         '<div id="leaderboardListBlock" class="lb-list-block">' +
-        '<p class="lb-empty">No salons match these filters.</p>' +
+        '<p class="lb-empty">No restaurants match these filters.</p>' +
         "</div>"
       );
     }
@@ -4131,7 +4131,7 @@ applyMarketingTheme(getMarketingTheme());
         heroSub =
           "顾客在 Google 上会用同一张榜单做对比。评论与新鲜度一旦落后，流失不是按季度算，而是按周算。";
       } else {
-        heroTitle = escapeHtml(String(salon.name || "Your salon")) + "：高意向顾客正在从指缝溜走";
+        heroTitle = escapeHtml(String(salon.name || "Your restaurant")) + "：高意向食客正在从指缝溜走";
         heroSub =
           "这不是「仪表盘」，而是一份增长诊断：把星级、评论量与 AI 综合分，翻译成可预约的现金流。";
       }
@@ -4142,14 +4142,14 @@ applyMarketingTheme(getMarketingTheme());
           escapeHtml(String(salon.county || "your county")) +
           " — But You're Still Losing Customers You Don't See";
         heroSub =
-          "Top salons in this market often capture 20–40 more bookings per month by maintaining review velocity and freshness. When competitors accelerate, your invisible demand walks away first.";
+          "Top restaurants in this market often capture 20–40 more high-intent actions per month by maintaining review velocity and freshness. When competitors accelerate, your invisible demand walks away first.";
       } else if (rk > 0 && rk <= 3) {
-        heroTitle = "You're in the Top 3 — Competitors Are Buying the Bookings You Miss";
+        heroTitle = "You're in the Top 3 — Competitors Are Capturing the Diners You Miss";
         heroSub =
-          "Shoppers compare salons on the same live signals you see here. When review cadence slips, the loss shows up in chairs — not quarters.";
+          "Diners compare restaurants on the same live signals you see here. When review cadence slips, the loss shows up in tables — not quarters.";
       } else {
         heroTitle =
-          escapeHtml(String(salon.name || "Your salon")) + ": High-Intent Customers Are Slipping Through";
+          escapeHtml(String(salon.name || "Your restaurant")) + ": High-Intent Diners Are Slipping Through";
         heroSub =
           "This is not a dashboard — it's a revenue diagnosis: we translate stars, volume, and composite AI score into money left on the table.";
       }
@@ -4173,7 +4173,7 @@ applyMarketingTheme(getMarketingTheme());
       '</p><p class="lb-rep-stat-sub">' +
       (z
         ? "区间为示意参考，不同门店会有差异，不构成效果或收入承诺。"
-        : "Illustrative range; results vary by salon. Not a performance or revenue guarantee.") +
+        : "Illustrative range; results vary by restaurant. Not a performance or revenue guarantee.") +
       "</p></div>";
     var stat2 =
       '<div class="lb-rep-stat card lb-rep-stat--warn"><p class="lb-rep-stat-k">' +
@@ -4197,7 +4197,7 @@ applyMarketingTheme(getMarketingTheme());
       "</p></div>";
 
     var scoreHintText =
-      "AI ranks salons using v2 weighted blend: rating×31% + review volume×33% + sentiment×22% + recency×14%, then applies evidence confidence shrinkage for low-review profiles.";
+      "AI ranks restaurants using v2 weighted blend: rating×31% + review volume×33% + sentiment×22% + recency×14%, then applies evidence confidence shrinkage for low-review profiles.";
     var ratingPct = Math.max(0, Math.min(100, Math.round((Number(salon.rating) / 5) * 100)));
     var scorePct = Math.max(0, Math.min(100, Math.round(Number(salon.score) || 0)));
     var dimReviews = Math.max(0, Math.min(100, Math.round(Number(salon.dimReviewsScore != null ? salon.dimReviewsScore : salon.dim_reviews_score) || 0)));
@@ -4273,7 +4273,7 @@ applyMarketingTheme(getMarketingTheme());
       '</p><div class="lb-rep-score-rank">' +
       (z ? "共 " : "of ") +
       escapeHtml(String(ranked.total || 0)) +
-      (z ? " 家" : " salons") +
+      (z ? " 家" : " restaurants") +
       "</div><p class=\"lb-rep-score-sub\">" +
       (z ? "排名越靠前，电话与导航点击越集中。" : "Higher rank concentrates calls and direction taps.") +
       "</p></article></div></div></section>";
@@ -4449,7 +4449,7 @@ applyMarketingTheme(getMarketingTheme());
         ? "以下为同县榜单中的参考门店，以及基于公开数据推算的评论节奏示意指数*。"
         : "Leaderboard peers in your county, plus a directional review-cadence index from public data*.") +
       '</p><div class="lb-rep-table-wrap card"><table class="lb-rep-table"><thead><tr><th>' +
-      (z ? "门店" : "Salon") +
+      (z ? "门店" : "Restaurant") +
       "</th><th>AI</th><th>" +
       (z ? "评论" : "Reviews") +
       "</th><th>" +
@@ -4517,7 +4517,7 @@ applyMarketingTheme(getMarketingTheme());
         ? "颜色越深，代表该项在顾客眼中越强。先追平热区，再冲击前 3。"
         : "Darker cells mean stronger proof at the moment of choice. Match these heat zones first, then push for top 3.") +
       '</p><div class="lb-rep-heat-wrap card"><table class="lb-rep-heat"><thead><tr><th>' +
-      (z ? "门店" : "Salon") +
+      (z ? "门店" : "Restaurant") +
       "</th><th>" +
       (z ? "星级热度" : "Star heat") +
       "</th><th>" +
@@ -4537,8 +4537,8 @@ applyMarketingTheme(getMarketingTheme());
         var ht = String(iss.title || "");
         if (ht.indexOf("Booking") >= 0) {
           revLine = z
-            ? "约 62%+ 的美甲美睫预约偏好「一键预约」。缺链路的每一次曝光，都是把订单让给有预约按钮的隔壁店。"
-            : "~62%+ of local beauty bookings prefer one-tap booking. Every impression without a link leaks conversions to salons that remove friction.";
+            ? "高意向食客偏好一键订位、点餐或致电。缺链路的每一次曝光，都是把订单让给动作更清楚的隔壁店。"
+            : "High-intent diners prefer one-tap reservations, calls, or ordering. Every impression without a clear action leaks conversions to restaurants that remove friction.";
         } else if (ht.indexOf("Review") >= 0 || ht.indexOf("Volume") >= 0) {
           revLine = z
             ? "评论速度=地图信任速度。慢 30 天，排名与来电会被重新分配。"
@@ -4574,16 +4574,16 @@ applyMarketingTheme(getMarketingTheme());
       '<section class="lb-rep-section"><h2 class="lb-rep-h">📈 ' +
       (z ? "30 天进攻路线（预告）" : "30-Day Offensive (Teaser)") +
       '</h2><ol class="lb-rep-ol card"><li>' +
-      (z ? "锁定 2 个最高 ROI 的 Google 证据杠杆（评论/预约/星级）。" : "Pick the 2 highest-ROI Google proof levers (reviews / booking / stars).") +
+      (z ? "锁定 2 个最高 ROI 的 Google 证据杠杆（评论/订位/星级）。" : "Pick the 2 highest-ROI Google proof levers (reviews / reservations / stars).") +
       "</li><li>" +
-      (z ? "建立每周可执行的评论节奏（二维码+短信+前台话术）。" : "Install a weekly review cadence (QR + SMS + front-desk script).") +
+      (z ? "建立每周可执行的评论节奏（餐桌二维码+短信+接待话术）。" : "Install a weekly review cadence (table QR + SMS + host script).") +
       "</li><li>" +
-      (z ? "把「榜单分数」翻译成「到店与定金」的跟踪表。" : "Translate leaderboard movement into booked visits + deposits tracked weekly.") +
+      (z ? "把「榜单分数」翻译成「订位、来电与到店」的跟踪表。" : "Translate leaderboard movement into reservations, calls, and visits tracked weekly.") +
       "</li></ol></section>";
     var solutionCatalog = [
       {
         id: "google-growth",
-        service: "Google Client Growth System",
+        service: "Google Diner Growth System",
         titleZh: "解决：排名和评论量落后",
         titleEn: "Solves: rank and review deficits",
         detailZh: "部署评论获取节奏、关键词优化和门店内容更新，让你在地图结果里持续上浮。",
@@ -4598,10 +4598,10 @@ applyMarketingTheme(getMarketingTheme());
       {
         id: "social-growth",
         service: "Social Media Growth Engine",
-        titleZh: "解决：有作品但缺少稳定获客入口",
+        titleZh: "解决：有菜品亮点但缺少稳定获客入口",
         titleEn: "Solves: good work but weak discovery flow",
-        detailZh: "把美甲案例转成短视频和图文流，持续引流到预约页和电话。",
-        detailEn: "Turns nail design proof into repeatable short-form traffic that feeds booking links and calls.",
+        detailZh: "把招牌菜、环境与顾客场景转成短视频和图文流，持续引流到订位页、电话和点餐入口。",
+        detailEn: "Turns signature dishes, dining moments, and guest proof into repeatable short-form traffic that feeds reservation links, calls, and orders.",
         impactZh: "目标结果：增加主动咨询和新客发现流量",
         impactEn: "Target outcome: more discovery traffic and DM-to-booking intent",
         weight:
@@ -4612,12 +4612,12 @@ applyMarketingTheme(getMarketingTheme());
       {
         id: "conversion-system",
         service: "Phone + Local Mail Conversion System",
-        titleZh: "解决：有流量但预约转化低",
-        titleEn: "Solves: traffic exists, bookings stay low",
+        titleZh: "解决：有流量但订位/来电转化低",
+        titleEn: "Solves: traffic exists, reservations stay low",
         detailZh: "通过电话脚本、未接回拨、落地页与周边邮寄触达，把曝光变成可落座订单。",
-        detailEn: "Combines phone scripts, missed-call recovery, landing-page fixes, and local mail campaigns to convert attention into paid visits.",
-        impactZh: "目标结果：提升预约率与客单收入",
-        impactEn: "Target outcome: higher booking rate and per-chair revenue",
+        detailEn: "Combines phone scripts, missed-call recovery, landing-page fixes, and local mail campaigns to convert attention into reservations, orders, and visits.",
+        impactZh: "目标结果：提升订位率、来电和客单收入",
+        impactEn: "Target outcome: higher reservation rate, calls, and per-table revenue",
         weight: Math.max(0, 100 - dimConversion) * 0.7 + Math.max(0, 100 - dimSentiment) * 0.3,
       },
     ];
@@ -4656,11 +4656,11 @@ applyMarketingTheme(getMarketingTheme());
 
     var social =
       '<section class="lb-rep-section lb-rep-section--proof"><h2 class="lb-rep-h">💰 ' +
-      (z ? "同类门店已在赢" : "Salons Like Yours Are Already Winning") +
+      (z ? "同类餐厅已在赢" : "Restaurants Like Yours Are Already Winning") +
       '</h2><div class="lb-rep-ba card"><div class="lb-rep-ba-col"><p class="lb-rep-ba-k">Before</p><p class="lb-rep-ba-v">120 reviews · #5</p></div><div class="lb-rep-ba-arrow">→</div><div class="lb-rep-ba-col"><p class="lb-rep-ba-k">After</p><p class="lb-rep-ba-v">340 reviews · #1</p></div></div><p class="lb-rep-quote">“We treated Maps like a sales funnel, not a brochure. Calls changed in two weeks.”</p><p class="lb-rep-disclaim">' +
       (z
         ? "*示例结果，非本店个案；基于聚合项目成果的教育性展示。"
-        : "*Illustrative example — not this salon; educational aggregate outcome.") +
+        : "*Illustrative example — not this restaurant; educational aggregate outcome.") +
       "</p></section>";
 
     var talk = getPagePath(ROUTE_TALK);
@@ -4672,7 +4672,7 @@ applyMarketingTheme(getMarketingTheme());
       '<p class="lb-rep-cta-scarcity">⏳ ' +
       (z
         ? "本季度每个区域深度陪跑名额有限（每区约 3 家），通常很快满额。"
-        : "We only run deep hands-on optimization for ~3 salons per area each quarter, and spots fill fast.") +
+        : "We only run deep hands-on optimization for ~3 restaurants per area each quarter, and spots fill fast.") +
       '</p><p class="lb-rep-cta-fomo">' +
       (z
         ? "你的同行正在持续累积评论与排名优势；再延迟 30 天，获客成本通常更高。"
@@ -5266,7 +5266,7 @@ applyMarketingTheme(getMarketingTheme());
       } else {
         var slug = String(state.storeSlug || "").trim();
         if (!slug) {
-          throw new Error("Missing salon.");
+          throw new Error("Missing restaurant.");
         }
         var slugUrl = "/api/leaderboard/salons?slug=" + encodeURIComponent(slug);
         var r2 = await fetch(slugUrl, { cache: "no-store" });
@@ -5276,10 +5276,10 @@ applyMarketingTheme(getMarketingTheme());
         if (!r2.ok) {
           var code = p2 && p2.error && p2.error.code ? String(p2.error.code) : "";
           var msg2 =
-            p2 && p2.error && p2.error.message ? p2.error.message : "Could not load salon (" + r2.status + ").";
+            p2 && p2.error && p2.error.message ? p2.error.message : "Could not load restaurant (" + r2.status + ").";
           if (code === "LEADERBOARD_PREVIEW_ONLY" || r2.status === 404) {
             throw new Error(
-              state.lang === "zh" ? "未在榜单上找到该沙龙。请从排行榜返回或更换链接。" : "We could not load this scorecard. Go back to the leaderboard or try another link.",
+              state.lang === "zh" ? "未在榜单上找到该餐厅。请从排行榜返回或更换链接。" : "We could not load this scorecard. Go back to the leaderboard or try another link.",
             );
           }
           throw new Error(msg2);
@@ -5687,7 +5687,7 @@ applyMarketingTheme(getMarketingTheme());
       } else if (isAnalysisSalonRoute() || isAnalysisFullRoute()) {
         const slug = String(state.storeSlug || "").trim();
         if (!slug) {
-          throw new Error("Missing salon slug.");
+          throw new Error("Missing restaurant slug.");
         }
         const response = await fetch("/api/intel/salons/" + encodeURIComponent(slug), { cache: "no-store" });
         const payload = await response.json().catch(function () {
@@ -5697,7 +5697,7 @@ applyMarketingTheme(getMarketingTheme());
           const msg =
             payload && payload.error && payload.error.message
               ? payload.error.message
-              : "Could not load salon report (" + response.status + ").";
+              : "Could not load restaurant report (" + response.status + ").";
           throw new Error(msg);
         }
         state.intelDetail = payload;
@@ -7378,9 +7378,9 @@ function renderServicesContent() {
 
     '<section class="services-hero">' +
       '<div class="services-hero-inner">' +
-        '<p class="services-kicker">AI CLIENT ACQUISITION SYSTEMS</p>' +
-        '<h1 class="services-main-title">Scale Your Salon With Automated Client Growth</h1>' +
-        '<p class="services-subtitle">AI-powered review systems, social media growth, phone automation, and direct mail campaigns designed to increase bookings and dominate local markets.</p>' +
+        '<p class="services-kicker">AI DINER ACQUISITION SYSTEMS</p>' +
+        '<h1 class="services-main-title">Scale Your Restaurant With Automated Diner Growth</h1>' +
+        '<p class="services-subtitle">AI-powered review systems, social media growth, phone automation, and direct mail campaigns designed to increase reservations, calls, orders, and local visibility.</p>' +
       '</div>' +
     '</section>' +
 
@@ -7395,7 +7395,7 @@ function renderServicesContent() {
         '<div class="tier-header">' +
           '<span class="tier-badge">Tier 1</span>' +
           '<h2>Google Client Growth System</h2>' +
-          '<p>Turn Google Maps into your #1 client acquisition channel.</p>' +
+          '<p>Turn Google Maps into your #1 diner acquisition channel.</p>' +
         '</div>' +
 
         '<div class="services-grid">' +
@@ -7422,7 +7422,7 @@ function renderServicesContent() {
               '<span class="monthly-price">$99/mo</span>' +
               '<span class="annual-price">$999/year</span>' +
             '</div>' +
-            '<p class="service-description">Automatically text customers after appointments and boost your Google ranking with more reviews.</p>' +
+            '<p class="service-description">Automatically text diners after visits, reservations, or orders and boost your Google ranking with more reviews.</p>' +
             '<button class="service-btn">Learn More</button>' +
           '</div>' +
 
@@ -7433,7 +7433,7 @@ function renderServicesContent() {
             '<div class="pricing-row">' +
               '<span class="one-time-price">$999 one time</span>' +
             '</div>' +
-            '<p class="service-description">High-converting website, booking optimization, and conversion improvements built for salons.</p>' +
+            '<p class="service-description">High-converting website, menu, reservation, and ordering improvements built for restaurants.</p>' +
             '<button class="service-btn">Learn More</button>' +
           '</div>' +
 
@@ -7450,7 +7450,7 @@ function renderServicesContent() {
         '<div class="tier-header">' +
           '<span class="tier-badge">Tier 2</span>' +
           '<h2>Social Media Growth Engine</h2>' +
-          '<p>Dominate Instagram, TikTok, and short-form salon marketing.</p>' +
+          '<p>Dominate Instagram, TikTok, and short-form restaurant marketing.</p>' +
         '</div>' +
 
         '<div class="services-grid">' +
@@ -7461,7 +7461,7 @@ function renderServicesContent() {
               '<span class="monthly-price">$699/mo</span>' +
               '<span class="annual-price">$6999/year</span>' +
             '</div>' +
-            '<p class="service-description">Entry-level social media growth system for salons ready to scale.</p>' +
+            '<p class="service-description">Entry-level social media growth system for restaurants ready to scale.</p>' +
             '<button class="service-btn">Learn More</button>' +
           '</div>' +
 
@@ -7471,7 +7471,7 @@ function renderServicesContent() {
               '<span class="monthly-price">$999/mo</span>' +
               '<span class="annual-price">$9999/year</span>' +
             '</div>' +
-            '<p class="service-description">Higher content volume, platform management, and aggressive salon growth strategy.</p>' +
+            '<p class="service-description">Higher content volume, platform management, and aggressive restaurant growth strategy.</p>' +
             '<button class="service-btn">Learn More</button>' +
           '</div>' +
 
@@ -7481,7 +7481,7 @@ function renderServicesContent() {
               '<span class="monthly-price">$1499/mo</span>' +
               '<span class="annual-price">$14999/year</span>' +
             '</div>' +
-            '<p class="service-description">Full-scale salon brand growth engine with premium strategy and execution.</p>' +
+            '<p class="service-description">Full-scale restaurant brand growth engine with premium strategy and execution.</p>' +
             '<button class="service-btn">Learn More</button>' +
           '</div>' +
 
@@ -7498,7 +7498,7 @@ function renderServicesContent() {
         '<div class="tier-header">' +
           '<span class="tier-badge">Tier 3</span>' +
           '<h2>Phone Client Growth System</h2>' +
-          '<p>Automate calls, lead follow-up, and salon customer communication.</p>' +
+          '<p>Automate calls, lead follow-up, reservation questions, and diner communication.</p>' +
         '</div>' +
 
         '<div class="services-grid">' +
@@ -7512,7 +7512,7 @@ function renderServicesContent() {
               '<span class="monthly-price">$99/mo</span>' +
               '<span class="annual-price">$999/year</span>' +
             '</div>' +
-            '<p class="service-description">AI receptionist that answers calls, books appointments, and captures leads automatically.</p>' +
+            '<p class="service-description">AI host that answers calls, handles common questions, captures leads, and routes reservations or orders.</p>' +
             '<button class="service-btn">Learn More</button>' +
           '</div>' +
 
@@ -9628,9 +9628,9 @@ function renderServicesContent() {
   function buildImageAnalysisMessages() {
     return {
       system:
-        "You classify salon-related uploads and extract structured visual clues. First decide whether the image is mainly a receipt or another salon-related photo. If it is not a receipt, focus only on the dominant service result or beauty subject. Extract only what is visually supported. Do not guess a final catalog item yet. Return JSON only.",
+        "You classify restaurant-related uploads and extract structured visual clues. First decide whether the image is mainly a receipt or another restaurant-related photo. If it is not a receipt, focus only on the dominant dish, drink, menu item, dining scene, or hospitality subject. Extract only what is visually supported. Do not guess a final catalog item yet. Return JSON only.",
       user:
-        "Salon: " +
+        "Restaurant: " +
         config.restaurantNameZh +
         " / " +
         config.restaurantNameEn +
@@ -9655,9 +9655,9 @@ function renderServicesContent() {
     const candidateCatalog = buildPhotoCandidateCatalog(candidates);
     return {
       system:
-        "You choose the single closest service catalog item for the dominant beauty subject in a salon photo. You must pick from the candidate list only. If the image contains multiple possible subjects, choose the dominant one only. Even when confidence is low, pick the closest candidate and explain briefly. Return JSON only.",
+        "You choose the single closest menu/catalog item for the dominant restaurant subject in a photo. You must pick from the candidate list only. If the image contains multiple possible subjects, choose the dominant one only. Even when confidence is low, pick the closest candidate and explain briefly. Return JSON only.",
       user:
-        "Salon: " +
+        "Restaurant: " +
         config.restaurantNameZh +
         " / " +
         config.restaurantNameEn +
@@ -9702,7 +9702,7 @@ function renderServicesContent() {
     const catalogText = buildCatalogText();
     return {
       system:
-        "You read an itemized business receipt and map purchasable line items to the store catalog. The business may be a **salon/spa, restaurant/cafe, barbershop, or other retail** — 饭店/餐厅/饮品/套餐/小吃小票 is valid. " +
+        "You read an itemized restaurant receipt and map purchasable line items to the store menu/catalog. 饭店/餐厅/饮品/套餐/小吃小票 is valid. " +
         "Line items include services, food, drinks, set meals, combos, and add-ons. Do NOT treat a restaurant-style receipt as wrong. " +
         "Fuzzy, cross-line, and cross-language matching. Ignore only tax/total/tip/payment lines. " +
         "Unmatched but readable lines MUST go in uncertain_texts, including 饭店/餐厅 rows when the catalog is unrelated. Return JSON only.",
@@ -9718,11 +9718,11 @@ function renderServicesContent() {
         "Matching guidance:\n" +
         "- No exact string match required.\n" +
         "- Restaurant/饭店: map 菜品, 飲品, 套餐, 小食, combo when the catalog has matching rows.\n" +
-        "- Salon/美甲: use service and add-on names.\n" +
+        "- If the catalog still contains non-restaurant demo services, map only when truly plausible and list unmatched food lines for manual selection.\n" +
         "- Merge wrapped lines; use descriptive text, not just item codes (A1/B2).\n" +
         "- In `dishes`, you may return high, medium, or *low* confidence; never use a dish_id that is not in the catalog list.\n" +
         "- Use uncertain_texts for any printed line you cannot map.\n\n" +
-        "Analyze the receipt; map to catalog when plausible, and list unmatched lines in uncertain_texts (including restaurant food lines when the catalog is salon-only).",
+        "Analyze the receipt; map to catalog when plausible, and list unmatched restaurant food lines in uncertain_texts for manual selection.",
       imageDataUrl: imageDataUrl,
     };
   }
@@ -9852,9 +9852,9 @@ function renderServicesContent() {
 
     return {
       system:
-        "You write short Google Maps reviews that feel like something a real salon client would post. Follow every style and focus rule exactly and return JSON only.",
+        "You write short Google Maps reviews that feel like something a real restaurant diner would post. Follow every style and focus rule exactly and return JSON only.",
       user:
-        "Salon: " +
+        "Restaurant: " +
         config.restaurantNameEn +
         "\n" +
         "Output language: English\n\n" +
@@ -10306,7 +10306,7 @@ function renderServicesContent() {
       }
 
       if (review.focus === "none" && (hasService || hasEnvironment)) {
-        throw new Error("Results-only review mentioned staff or salon environment");
+        throw new Error("Results-only review mentioned staff or restaurant environment");
       }
 
       if (review.focus === "service" && (!hasService || hasEnvironment)) {

@@ -2,7 +2,7 @@
   "name": "rankmyrestaurant-review-studio",
   "private": true,
   "version": "0.1.0",
-  "description": "Salon-focused Google review helper with Vercel Functions and Supabase",
+  "description": "Restaurant-focused Google review helper with Vercel Functions and Supabase",
   "engines": {
     "node": "24.x"
   },

@@ -1,20 +1,20 @@
 @import url("/theme.css");
 
 :root {
-  --bg: #fffbf4;
+  --bg: #fff9ef;
   --panel: rgba(255, 255, 255, 0.90);
-  --panel-strong: rgba(255, 253, 248, 0.96);
-  --panel-border: rgba(232, 97, 26, 0.14);
-  --text: #1c0f07;
-  --muted: #8c6440;
-  --gold: #e8611a;
-  --gold-strong: #c04a10;
-  --gold-soft: rgba(232, 97, 26, 0.12);
-  --chip-bg: rgba(245, 166, 35, 0.14);
+  --panel-strong: rgba(255, 250, 242, 0.96);
+  --panel-border: rgba(217, 75, 31, 0.15);
+  --text: #241007;
+  --muted: #7a5433;
+  --gold: #d94b1f;
+  --gold-strong: #b43f18;
+  --gold-soft: rgba(217, 75, 31, 0.12);
+  --chip-bg: rgba(242, 165, 26, 0.15);
   --danger: #c0392b;
   --ok: #2e7d52;
   --working: #c07920;
-  --shadow: 0 8px 32px rgba(140, 70, 20, 0.10);
+  --shadow: 0 8px 32px rgba(105, 48, 18, 0.11);
   --radius-panel: 20px;
   --radius-control: 18px;
   --radius-soft: 16px;
@@ -30,9 +30,9 @@ body {
   padding: 0;
   min-height: 100%;
   background:
-    radial-gradient(circle at 8% 10%, rgba(245, 166, 35, 0.18), transparent 28%),
-    radial-gradient(circle at 88% 8%, rgba(232, 97, 26, 0.10), transparent 24%),
-    linear-gradient(180deg, #fffbf4 0%, #fff3e0 100%);
+    radial-gradient(circle at 8% 10%, rgba(242, 165, 26, 0.18), transparent 28%),
+    radial-gradient(circle at 88% 8%, rgba(217, 75, 31, 0.12), transparent 24%),
+    linear-gradient(180deg, #fff9ef 0%, #fff0d8 100%);
   color: var(--text);
   font-family: "Manrope", "Noto Sans SC", sans-serif;
 }
@@ -68,13 +68,13 @@ body.has-pricing-summary {
 .bg-glow-1 {
   top: -8vw;
   right: -4vw;
-  background: #f5a623;
+  background: #f2a51a;
 }
 
 .bg-glow-2 {
   bottom: -10vw;
   left: -9vw;
-  background: #e8611a;
+  background: #d94b1f;
 }
 
 .app {
@@ -1382,7 +1382,8 @@ h1 {
   color: #000000 !important;
 }
 
-.brand-part-mysalon {
+.brand-part-mysalon,
+.brand-part-myrestaurant {
   color: #000000 !important;
 }
 
@@ -1420,12 +1421,12 @@ h1 {
   position: relative;
   overflow: hidden;
   border-radius: 32px;
-  border: 1px solid rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(242, 165, 26, 0.16);
   background:
-    radial-gradient(circle at top left, rgba(124, 58, 237, 0.24), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.16), transparent 24%),
-    linear-gradient(135deg, #08111f 0%, #0b1730 44%, #050c17 100%);
-  box-shadow: 0 28px 80px rgba(10, 18, 33, 0.24);
+    radial-gradient(circle at top left, rgba(242, 165, 26, 0.18), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(217, 75, 31, 0.18), transparent 24%),
+    linear-gradient(135deg, #160d09 0%, #2a150d 44%, #0f0705 100%);
+  box-shadow: 0 28px 80px rgba(43, 18, 8, 0.28);
 }
 
 .marketing-digital-human::after {
@@ -1435,7 +1436,7 @@ h1 {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: rgba(124, 58, 237, 0.18);
+  background: rgba(217, 75, 31, 0.18);
   filter: blur(64px);
   pointer-events: none;
 }
@@ -1623,12 +1624,12 @@ h1 {
   justify-content: flex-end;
 }
 
-/* Homepage hero — brief report lead (navy + gold, rankmysalon-inspired) */
+/* Homepage hero — brief report lead (espresso + saffron, restaurant-focused) */
 .marketing-hero-section--brief.card {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border: 1px solid rgba(99, 179, 237, 0.12);
+  background: linear-gradient(145deg, #150b07 0%, #2a150d 48%, #0f0705 100%);
+  border: 1px solid rgba(242, 165, 26, 0.16);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.46),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   padding: clamp(22px, 4vw, 40px);
   overflow: hidden;
@@ -1640,8 +1641,9 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(212, 160, 24, 0.09), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(99, 179, 237, 0.08), transparent 50%);
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(242, 165, 26, 0.16), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(217, 75, 31, 0.14), transparent 50%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 44%);
   pointer-events: none;
 }
 
@@ -1660,7 +1662,7 @@ h1 {
 
 .marketing-hero-section--brief .marketing-rating-row--brief {
   justify-content: center;
-  color: #c9a227;
+  color: #f2a51a;
   margin-bottom: 12px;
 }
 
@@ -1726,11 +1728,11 @@ h1 {
   font-size: clamp(2rem, 5.2vw, 3.25rem);
   font-weight: 400;
   line-height: 1.05;
-  background: linear-gradient(118deg, #fff6d4 0%, #f0d78c 38%, #c9a227 85%);
+  background: linear-gradient(118deg, #fff6d4 0%, #f2c66b 38%, #f2a51a 64%, #ff7043 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 2px 24px rgba(201, 162, 39, 0.28));
+  filter: drop-shadow(0 2px 24px rgba(242, 165, 26, 0.32));
 }
 
 .marketing-hero-urgency {
@@ -1739,9 +1741,9 @@ h1 {
   box-sizing: border-box;
   padding: 16px 22px;
   border-radius: 16px;
-  border: 1px solid rgba(252, 165, 165, 0.28);
-  background: linear-gradient(135deg, rgba(127, 29, 29, 0.38) 0%, rgba(30, 27, 75, 0.48) 100%);
-  color: #fecdd3;
+  border: 1px solid rgba(255, 112, 67, 0.32);
+  background: linear-gradient(135deg, rgba(124, 45, 18, 0.48) 0%, rgba(64, 26, 12, 0.56) 100%);
+  color: #ffd9c7;
   font-family: "Manrope", system-ui, sans-serif;
   font-size: clamp(0.94rem, 1.55vw, 1.12rem);
   font-weight: 700;
@@ -1757,8 +1759,8 @@ h1 {
   gap: 14px;
   padding: 22px 22px 20px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 248, 238, 0.055);
+  border: 1px solid rgba(255, 231, 199, 0.12);
   backdrop-filter: blur(12px);
 }
 
@@ -1795,7 +1797,7 @@ h1 {
   padding: 12px 14px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(10, 18, 32, 0.65);
+  background: rgba(22, 13, 9, 0.68);
   color: #f8fafc;
   font-family: var(--font-sans, "Manrope", system-ui, sans-serif);
   font-size: 0.95rem;
@@ -1807,8 +1809,8 @@ h1 {
 
 .marketing-hero-brief-input:focus {
   outline: none;
-  border-color: rgba(212, 160, 36, 0.55);
-  box-shadow: 0 0 0 3px rgba(212, 160, 36, 0.15);
+  border-color: rgba(242, 165, 26, 0.58);
+  box-shadow: 0 0 0 3px rgba(242, 165, 26, 0.16);
 }
 
 .marketing-hero-brief-consent {
@@ -1836,7 +1838,7 @@ h1 {
 }
 
 .marketing-hero-brief-inline-link {
-  color: #93c5fd;
+  color: #ffd166;
   text-decoration: none;
 }
 
@@ -1854,9 +1856,9 @@ h1 {
   font-size: 1rem;
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: #1a1520;
-  background: linear-gradient(135deg, #f0d78c 0%, #c9a227 55%, #b8941f 100%);
-  box-shadow: 0 14px 32px rgba(201, 162, 39, 0.35);
+  color: #241007;
+  background: linear-gradient(135deg, #ffd166 0%, #f2a51a 48%, #d94b1f 100%);
+  box-shadow: 0 14px 32px rgba(217, 75, 31, 0.32);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
@@ -1864,7 +1866,7 @@ h1 {
 
 .marketing-hero-brief-submit:hover {
   transform: translateY(-1px);
-  box-shadow: 0 18px 36px rgba(201, 162, 39, 0.42);
+  box-shadow: 0 18px 36px rgba(217, 75, 31, 0.4);
 }
 
 .marketing-hero-brief-feedback {
@@ -1906,7 +1908,7 @@ h1 {
 }
 
 .marketing-hero-section--brief .marketing-trust-item::before {
-  color: #c9a227;
+  color: #f2a51a;
 }
 
 .marketing-report-shell {
@@ -1926,13 +1928,13 @@ h1 {
   min-height: 34px;
   padding: 7px 14px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #f15d4f 0%, #f2886b 100%);
+  background: linear-gradient(135deg, #d94b1f 0%, #ff7043 100%);
   color: #fffaf8;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  box-shadow: 0 12px 26px rgba(232, 91, 79, 0.24);
+  box-shadow: 0 12px 26px rgba(217, 75, 31, 0.25);
 }
 
 .marketing-report-card {
@@ -1940,17 +1942,17 @@ h1 {
   gap: 16px;
   padding-bottom: 18px;
   border-radius: 30px;
-  border: 1px solid rgba(73, 42, 101, 0.12);
+  border: 1px solid rgba(123, 63, 0, 0.14);
   background:
-    radial-gradient(circle at top right, rgba(255, 220, 212, 0.48), transparent 34%),
-    linear-gradient(180deg, rgba(255, 250, 247, 0.98), rgba(255, 245, 240, 0.95));
-  box-shadow: 0 26px 56px rgba(77, 56, 72, 0.18);
+    radial-gradient(circle at top right, rgba(255, 211, 166, 0.5), transparent 34%),
+    linear-gradient(180deg, rgba(255, 250, 242, 0.98), rgba(255, 240, 216, 0.95));
+  box-shadow: 0 26px 56px rgba(80, 35, 12, 0.18);
   overflow: hidden;
 }
 
 .marketing-report-card-head {
   padding: 20px 20px 18px;
-  background: linear-gradient(135deg, #35225d 0%, #4c327e 100%);
+  background: linear-gradient(135deg, #241007 0%, #7c2d12 100%);
   color: #fff;
 }
 
@@ -1963,7 +1965,7 @@ h1 {
 
 .marketing-report-store-address {
   margin: 8px 0 0;
-  color: rgba(241, 233, 255, 0.9);
+  color: rgba(255, 238, 218, 0.9);
   font-size: 0.84rem;
   line-height: 1.5;
 }
@@ -1979,7 +1981,7 @@ h1 {
 .marketing-report-rating-card,
 .marketing-report-section {
   border-radius: 22px;
-  border: 1px solid rgba(86, 55, 107, 0.1);
+  border: 1px solid rgba(123, 63, 0, 0.12);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
@@ -1997,7 +1999,7 @@ h1 {
 
 .marketing-report-summary-label {
   margin: 0;
-  color: #6a4e90;
+  color: #9a4a16;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2006,7 +2008,7 @@ h1 {
 
 .marketing-report-position-value {
   margin: 0;
-  color: #d84535;
+  color: #d94b1f;
   font-size: clamp(2rem, 3vw, 2.8rem);
   line-height: 1;
   font-weight: 900;
@@ -2014,8 +2016,8 @@ h1 {
 }
 
 .marketing-report-rating-card {
-  background: linear-gradient(180deg, rgba(255, 245, 244, 0.98), rgba(255, 250, 249, 0.94));
-  border-color: rgba(231, 108, 86, 0.18);
+  background: linear-gradient(180deg, rgba(255, 242, 232, 0.98), rgba(255, 250, 246, 0.94));
+  border-color: rgba(217, 75, 31, 0.18);
 }
 
 .marketing-report-rating-line {
@@ -2026,14 +2028,14 @@ h1 {
 }
 
 .marketing-report-rating-value {
-  color: #d84535;
+  color: #d94b1f;
   font-size: 1.6rem;
   line-height: 1;
   font-weight: 900;
 }
 
 .marketing-report-stars {
-  color: #f6a527;
+  color: #f2a51a;
   letter-spacing: 0.08em;
   font-size: 0.78rem;
   white-space: nowrap;
@@ -2065,7 +2067,7 @@ h1 {
 
 .marketing-report-section-title {
   margin: 0 0 12px;
-  color: #5b4090;
+  color: #8a3a12;
   font-size: 0.76rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2105,7 +2107,7 @@ h1 {
   height: 9px;
   border-radius: 999px;
   overflow: hidden;
-  background: rgba(95, 62, 114, 0.08);
+  background: rgba(123, 63, 0, 0.09);
 }
 
 .marketing-report-bar-fill {
@@ -2115,15 +2117,15 @@ h1 {
 }
 
 .marketing-report-bar-fill-you {
-  background: linear-gradient(90deg, #d43f36 0%, #e96053 100%);
+  background: linear-gradient(90deg, #b43f18 0%, #d94b1f 100%);
 }
 
 .marketing-report-bar-fill-median {
-  background: linear-gradient(90deg, #c390ff 0%, #d2a4ff 100%);
+  background: linear-gradient(90deg, #b8762b 0%, #d59a3c 100%);
 }
 
 .marketing-report-bar-fill-top {
-  background: linear-gradient(90deg, #f39f13 0%, #ffbb48 100%);
+  background: linear-gradient(90deg, #f2a51a 0%, #ffd166 100%);
 }
 
 .marketing-report-nearby-section {
@@ -2241,11 +2243,11 @@ h1 {
 .marketing-digital-media {
   margin-bottom: 0;
   min-height: 520px;
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 231, 199, 0.1);
   background:
-    radial-gradient(circle at top, rgba(124, 58, 237, 0.22), transparent 32%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
-  box-shadow: 0 26px 60px rgba(2, 8, 23, 0.32);
+    radial-gradient(circle at top, rgba(242, 165, 26, 0.2), transparent 32%),
+    linear-gradient(180deg, rgba(36, 16, 7, 0.96), rgba(13, 7, 5, 0.98));
+  box-shadow: 0 26px 60px rgba(22, 9, 4, 0.34);
 }
 
 .marketing-digital-copy {
@@ -2263,7 +2265,7 @@ h1 {
 }
 
 .marketing-digital-human .marketing-section-kicker {
-  color: #c4b5fd;
+  color: #ffd166;
 }
 
 .marketing-digital-human .marketing-section-title,
@@ -2290,9 +2292,9 @@ h1 {
   min-height: 38px;
   padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  background: rgba(148, 163, 184, 0.1);
-  color: #e2e8f0;
+  border: 1px solid rgba(255, 209, 102, 0.2);
+  background: rgba(255, 209, 102, 0.1);
+  color: #ffe9c7;
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.01em;
@@ -2300,14 +2302,14 @@ h1 {
 
 .marketing-digital-human .cta {
   border-color: transparent;
-  background: linear-gradient(135deg, #8b5cf6 0%, #2563eb 100%);
-  color: #fff;
-  box-shadow: 0 18px 34px rgba(59, 130, 246, 0.24);
+  background: linear-gradient(135deg, #d94b1f 0%, #f2a51a 100%);
+  color: #241007;
+  box-shadow: 0 18px 34px rgba(217, 75, 31, 0.26);
 }
 
 .marketing-digital-human .cta:hover,
 .marketing-digital-human .cta:focus-visible {
-  box-shadow: 0 22px 40px rgba(59, 130, 246, 0.28);
+  box-shadow: 0 22px 40px rgba(217, 75, 31, 0.34);
 }
 
 .marketing-digital-alt-link {
@@ -2316,9 +2318,9 @@ h1 {
   min-height: 50px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid rgba(248, 250, 252, 0.16);
-  background: rgba(148, 163, 184, 0.08);
-  color: #f8fafc;
+  border: 1px solid rgba(255, 231, 199, 0.18);
+  background: rgba(255, 231, 199, 0.08);
+  color: #fff8ef;
   font-size: 0.92rem;
   font-weight: 700;
   text-decoration: none;
@@ -2356,9 +2358,9 @@ h1 {
   align-items: center;
   padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(8, 15, 29, 0.52);
-  color: #e0e7ff;
+  border: 1px solid rgba(255, 209, 102, 0.2);
+  background: rgba(36, 16, 7, 0.58);
+  color: #ffd166;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -2371,7 +2373,7 @@ h1 {
   padding: 18px 20px;
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(7, 11, 21, 0.56);
+  background: rgba(22, 9, 4, 0.62);
   backdrop-filter: blur(16px);
   box-shadow: 0 16px 44px rgba(2, 8, 23, 0.28);
 }
@@ -5284,7 +5286,7 @@ textarea.portal-input {
 }
 
 .intel-growth-insight-card--conv .intel-growth-insight-ico {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: linear-gradient(135deg, #d94b1f, #f2a51a);
 }
 
 .intel-insight-eyebrow {
@@ -6766,11 +6768,11 @@ textarea.portal-input {
 
 .lb-search-btn:hover {
   background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(99, 179, 237, 0.45);
+  border-color: rgba(242, 165, 26, 0.45);
 }
 
 .lb-search-btn:focus-visible {
-  outline: 2px solid rgba(99, 179, 237, 0.7);
+  outline: 2px solid rgba(242, 165, 26, 0.7);
   outline-offset: 2px;
 }
 
@@ -7129,7 +7131,7 @@ textarea.portal-input {
 }
 
 .lb-card-menu-btn:focus-visible {
-  outline: 2px solid var(--accent, #2563eb);
+  outline: 2px solid var(--accent, #d94b1f);
   outline-offset: 2px;
 }
 
@@ -7609,7 +7611,7 @@ textarea.portal-input {
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #ec4899, #f97316);
+  background: linear-gradient(90deg, #d94b1f, #f2a51a);
 }
 
 .lb-rep-score-sub {
@@ -8693,34 +8695,35 @@ textarea.portal-input {
   gap: 6px;
 }
 
-/* ── Marketing routes: navy + gold surface (matches homepage hero section) ── */
+/* ── Marketing routes: espresso + saffron surface (matches homepage hero section) ── */
 
 html[data-theme="dark"] html:has(body.route-marketing) {
-  background: #070b14;
+  background: #0d0705;
 }
 
 html[data-theme="dark"] body.route-marketing {
   background:
-    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(99, 179, 237, 0.14), transparent 52%),
-    linear-gradient(180deg, #070b14 0%, #0f172a 38%, #0b101c 100%);
+    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(217, 75, 31, 0.16), transparent 52%),
+    radial-gradient(ellipse 70% 45% at 90% 8%, rgba(242, 165, 26, 0.12), transparent 48%),
+    linear-gradient(180deg, #100805 0%, #1a0e09 38%, #0d0705 100%);
   color: rgba(248, 250, 252, 0.92);
 }
 
 html[data-theme="dark"] body.route-marketing .bg-glow-1 {
-  background: rgba(99, 179, 237, 0.55);
+  background: rgba(242, 165, 26, 0.55);
   opacity: 0.16;
 }
 
 html[data-theme="dark"] body.route-marketing .bg-glow-2 {
-  background: rgba(201, 162, 39, 0.48);
+  background: rgba(217, 75, 31, 0.52);
   opacity: 0.12;
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-nav-shell {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border: 1px solid rgba(99, 179, 237, 0.14);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 48%, #120906 100%);
+  border: 1px solid rgba(242, 165, 26, 0.16);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.46),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -8735,8 +8738,9 @@ html[data-theme="dark"] body.route-marketing .brand-part-rank {
   color: rgba(255, 255, 255, 0.96) !important;
 }
 
-html[data-theme="dark"] body.route-marketing .brand-part-mysalon {
-  background: linear-gradient(118deg, #fff6d4 0%, #f0d78c 40%, #c9a227 88%);
+html[data-theme="dark"] body.route-marketing .brand-part-mysalon,
+html[data-theme="dark"] body.route-marketing .brand-part-myrestaurant {
+  background: linear-gradient(118deg, #fff6d4 0%, #ffd166 40%, #f2a51a 70%, #ff7043 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent !important;
@@ -8749,7 +8753,7 @@ html[data-theme="dark"] body.route-marketing .marketing-nav-link {
 html[data-theme="dark"] body.route-marketing .marketing-nav-link.is-active,
 html[data-theme="dark"] body.route-marketing .marketing-nav-link:hover,
 html[data-theme="dark"] body.route-marketing .marketing-nav-link:focus-visible {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-auth-actions .ghost.landing-link {
@@ -8774,8 +8778,8 @@ html[data-theme="dark"] body.route-marketing .marketing-lang-toggle {
 
 html[data-theme="dark"] body.route-marketing .marketing-lang-menu {
   z-index: 11951;
-  background: linear-gradient(180deg, #152238 0%, #0c1220 100%);
-  border-color: rgba(99, 179, 237, 0.22);
+  background: linear-gradient(180deg, #28150e 0%, #160d09 100%);
+  border-color: rgba(242, 165, 26, 0.22);
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
 }
 
@@ -8794,16 +8798,16 @@ html[data-theme="dark"] body.route-marketing .marketing-lang-option.is-active {
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-footer {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border: 1px solid rgba(99, 179, 237, 0.12);
-  border-top: 1px solid rgba(99, 179, 237, 0.12);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border: 1px solid rgba(242, 165, 26, 0.12);
+  border-top: 1px solid rgba(242, 165, 26, 0.12);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.35),
+    0 24px 64px rgba(33, 12, 4, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-footer-bottom {
-  border-top-color: rgba(99, 179, 237, 0.14);
+  border-top-color: rgba(242, 165, 26, 0.14);
 }
 
 html[data-theme="dark"] body.route-marketing .footer-logo-360,
@@ -8834,14 +8838,14 @@ html[data-theme="dark"] body.route-marketing .footer-link {
 
 html[data-theme="dark"] body.route-marketing .footer-link:hover,
 html[data-theme="dark"] body.route-marketing .footer-link:focus-visible {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-digital-human.card {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border: 1px solid rgba(99, 179, 237, 0.12);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border: 1px solid rgba(242, 165, 26, 0.12);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -8856,8 +8860,8 @@ html[data-theme="dark"] body.route-marketing .marketing-digital-body {
 
 html[data-theme="dark"] body.route-marketing .marketing-digital-media {
   background: rgba(0, 0, 0, 0.38);
-  border-color: rgba(99, 179, 237, 0.18);
-  box-shadow: 0 18px 44px rgba(8, 15, 35, 0.42);
+  border-color: rgba(242, 165, 26, 0.18);
+  box-shadow: 0 18px 44px rgba(33, 12, 4, 0.42);
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-digital-alt-link {
@@ -8866,15 +8870,15 @@ html[data-theme="dark"] body.route-marketing .marketing-digital-alt-link {
 
 html[data-theme="dark"] body.route-marketing .marketing-digital-alt-link:hover,
 html[data-theme="dark"] body.route-marketing .marketing-digital-alt-link:focus-visible {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 /* Insights section: same surface as hero / Ryan — fixes light .card bg vs light text */
 html[data-theme="dark"] body.route-marketing .marketing-insights.card {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border: 1px solid rgba(99, 179, 237, 0.12);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border: 1px solid rgba(242, 165, 26, 0.12);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -8888,12 +8892,12 @@ html[data-theme="dark"] body.route-marketing .marketing-insights-lead {
 
 html[data-theme="dark"] body.route-marketing .marketing-insights-card {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(99, 179, 237, 0.2);
-  box-shadow: 0 14px 40px rgba(8, 15, 35, 0.42);
+  border-color: rgba(242, 165, 26, 0.2);
+  box-shadow: 0 14px 40px rgba(33, 12, 4, 0.42);
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-insights-card:hover {
-  box-shadow: 0 18px 48px rgba(8, 15, 35, 0.5);
+  box-shadow: 0 18px 48px rgba(33, 12, 4, 0.5);
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-insights-caption {
@@ -8901,10 +8905,10 @@ html[data-theme="dark"] body.route-marketing .marketing-insights-caption {
 }
 
 html[data-theme="dark"] body.route-marketing .pricing-page-shell {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 48%, #0a1628 100%);
-  border: 1px solid rgba(99, 179, 237, 0.12);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 48%, #120906 100%);
+  border: 1px solid rgba(242, 165, 26, 0.12);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   color: rgba(248, 250, 252, 0.94);
 }
@@ -8925,7 +8929,7 @@ html[data-theme="dark"] body.route-marketing .about-page-pillar-card,
 html[data-theme="dark"] body.route-marketing .about-page-info-card,
 html[data-theme="dark"] body.route-marketing .about-page-team-card {
   background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(99, 179, 237, 0.14);
+  border-color: rgba(242, 165, 26, 0.14);
   box-shadow: none;
 }
 
@@ -8935,8 +8939,8 @@ html[data-theme="dark"] body.route-marketing .about-page-info-card h4 {
 }
 
 html[data-theme="dark"] body.route-marketing .about-page-cta.card {
-  background: linear-gradient(145deg, rgba(12, 18, 32, 0.98) 0%, rgba(21, 34, 56, 0.95) 100%);
-  border-color: rgba(99, 179, 237, 0.14);
+  background: linear-gradient(145deg, rgba(22, 13, 9, 0.98) 0%, rgba(42, 21, 13, 0.95) 100%);
+  border-color: rgba(242, 165, 26, 0.14);
 }
 
 /* About — final CTA section: titles/links were still using salon (--text) browns */
@@ -8949,12 +8953,12 @@ html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-c
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-cta-note {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-cta-highlight-item {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(99, 179, 237, 0.2);
+  border-color: rgba(242, 165, 26, 0.2);
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-cta-highlight-text {
@@ -8964,7 +8968,7 @@ html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-c
 html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-cta-link {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(201, 162, 39, 0.4);
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-cta-link:hover,
@@ -8975,8 +8979,8 @@ html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-c
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-cta-form-shell {
-  background: linear-gradient(165deg, rgba(12, 22, 40, 0.94) 0%, rgba(8, 14, 26, 0.98) 100%);
-  border-color: rgba(99, 179, 237, 0.22);
+  background: linear-gradient(165deg, rgba(36, 16, 7, 0.94) 0%, rgba(22, 9, 4, 0.98) 100%);
+  border-color: rgba(242, 165, 26, 0.22);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
@@ -9002,12 +9006,12 @@ html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-t
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-page-about .about-page-team-role {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing .legal-page-shell.card {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border-color: rgba(99, 179, 237, 0.14);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border-color: rgba(242, 165, 26, 0.14);
 }
 
 html[data-theme="dark"] body.route-marketing .legal-page-updated {
@@ -9028,12 +9032,12 @@ html[data-theme="dark"] body.route-marketing .legal-page-title {
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-contact-modal-panel {
-  border-color: rgba(99, 179, 237, 0.22);
+  border-color: rgba(242, 165, 26, 0.22);
   background:
-    radial-gradient(circle at top right, rgba(99, 179, 237, 0.12), transparent 42%),
-    linear-gradient(180deg, #152238 0%, #0c1220 100%);
+    radial-gradient(circle at top right, rgba(242, 165, 26, 0.12), transparent 42%),
+    linear-gradient(180deg, #28150e 0%, #160d09 100%);
   box-shadow:
-    0 28px 70px rgba(8, 15, 35, 0.55),
+    0 28px 70px rgba(33, 12, 4, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
@@ -9058,10 +9062,10 @@ html[data-theme="dark"] body.route-marketing .marketing-contact-modal-close:focu
 
 html[data-theme="dark"] body.route-marketing .assistant-panel,
 html[data-theme="dark"] body.route-marketing .assistant-stage {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border-color: rgba(99, 179, 237, 0.14);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border-color: rgba(242, 165, 26, 0.14);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -9076,8 +9080,8 @@ html[data-theme="dark"] body.route-marketing .marketing-page .marketing-title-sm
 
 html[data-theme="dark"] body.route-marketing .assistant-call-visual {
   background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(99, 179, 237, 0.14);
-  box-shadow: 0 18px 44px rgba(8, 15, 35, 0.35);
+  border: 1px solid rgba(242, 165, 26, 0.14);
+  box-shadow: 0 18px 44px rgba(33, 12, 4, 0.35);
 }
 
 html[data-theme="dark"] body.route-marketing .about-page-form-label {
@@ -9086,8 +9090,8 @@ html[data-theme="dark"] body.route-marketing .about-page-form-label {
 
 html[data-theme="dark"] body.route-marketing .about-page-form-control,
 html[data-theme="dark"] body.route-marketing .about-page-form-select {
-  background: rgba(10, 18, 32, 0.82);
-  border-color: rgba(99, 179, 237, 0.22);
+  background: rgba(22, 13, 9, 0.82);
+  border-color: rgba(242, 165, 26, 0.22);
   color: rgba(248, 250, 252, 0.95);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
@@ -9104,15 +9108,15 @@ html[data-theme="dark"] body.route-marketing .about-page-form-control:focus {
 /* About Us — section shells match homepage hero surfaces */
 html[data-theme="dark"] body.route-marketing .about-page-hero.card,
 html[data-theme="dark"] body.route-marketing .about-page-section.card {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border: 1px solid rgba(99, 179, 237, 0.12);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border: 1px solid rgba(242, 165, 26, 0.12);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-page-about .marketing-section-kicker {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing .marketing-page-about .marketing-title,
@@ -9127,16 +9131,16 @@ html[data-theme="dark"] body.route-marketing .marketing-page-about .marketing-bo
 
 /* Leaderboard — toolbar + cards on navy page background */
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-hero {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border: 1px solid rgba(99, 179, 237, 0.12);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border: 1px solid rgba(242, 165, 26, 0.12);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-toolbar {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(99, 179, 237, 0.14);
+  border: 1px solid rgba(242, 165, 26, 0.14);
   border-radius: 16px;
   padding: 1rem 1.15rem;
 }
@@ -9146,8 +9150,8 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-select-wrap {
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-select {
-  background: rgba(10, 18, 32, 0.85);
-  border-color: rgba(99, 179, 237, 0.22);
+  background: rgba(22, 13, 9, 0.85);
+  border-color: rgba(242, 165, 26, 0.22);
   color: rgba(248, 250, 252, 0.92);
 }
 
@@ -9157,20 +9161,20 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-count {
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-cat-pill {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(99, 179, 237, 0.18);
+  border-color: rgba(242, 165, 26, 0.18);
   color: rgba(248, 250, 252, 0.85);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-cat-pill.is-active {
-  background: linear-gradient(135deg, #f0d78c 0%, #c9a227 100%);
-  color: #1a1520;
+  background: linear-gradient(135deg, #ffd166 0%, #d94b1f 100%);
+  color: #241007;
   border-color: transparent;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card {
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(99, 179, 237, 0.14);
-  box-shadow: 0 14px 36px rgba(8, 15, 35, 0.35);
+  border: 1px solid rgba(242, 165, 26, 0.14);
+  box-shadow: 0 14px 36px rgba(33, 12, 4, 0.38);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-name,
@@ -9192,8 +9196,8 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-menu-btn
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-menu-popover {
-  background: linear-gradient(180deg, #152238 0%, #0c1220 100%);
-  border-color: rgba(99, 179, 237, 0.22);
+  background: linear-gradient(180deg, #28150e 0%, #160d09 100%);
+  border-color: rgba(242, 165, 26, 0.22);
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
 }
 
@@ -9206,7 +9210,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-menu-ite
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-menu-item--link {
-  color: #93c5fd;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-metric-muted {
@@ -9223,7 +9227,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-metric-muted 
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-metrics .lb-metric {
   background: rgba(255, 255, 255, 0.07) !important;
-  border: 1px solid rgba(99, 179, 237, 0.14);
+  border: 1px solid rgba(242, 165, 26, 0.14);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-metrics .lb-metric:first-child .lb-metric-val {
@@ -9245,7 +9249,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-card-cta {
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard button.ghost.lb-pager-btn {
-  border-color: rgba(99, 179, 237, 0.28);
+  border-color: rgba(242, 165, 26, 0.28);
   background: rgba(255, 255, 255, 0.06);
   color: rgba(248, 250, 252, 0.9);
 }
@@ -9253,7 +9257,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard button.ghost.lb-p
 html[data-theme="dark"] body.route-marketing.route-leaderboard button.ghost.lb-pager-btn:hover:not(:disabled) {
   border-color: rgba(201, 162, 39, 0.45);
   background: rgba(255, 255, 255, 0.1);
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard button.ghost.lb-pager-btn:disabled {
@@ -9265,12 +9269,12 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-pager-meta {
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-hero {
-  background: linear-gradient(165deg, rgba(21, 34, 56, 0.96) 0%, rgba(12, 18, 32, 0.98) 100%);
-  border-bottom-color: rgba(99, 179, 237, 0.14);
+  background: linear-gradient(165deg, rgba(42, 21, 13, 0.96) 0%, rgba(22, 13, 9, 0.98) 100%);
+  border-bottom-color: rgba(242, 165, 26, 0.14);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-kicker {
-  color: #93c5fd;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-address,
@@ -9281,7 +9285,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-zip {
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-tabs {
-  border-bottom-color: rgba(99, 179, 237, 0.14);
+  border-bottom-color: rgba(242, 165, 26, 0.14);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-tab {
@@ -9289,12 +9293,12 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-tab {
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-tab.is-active {
-  color: #f0d78c;
-  border-bottom-color: #f0d78c;
+  color: #ffd166;
+  border-bottom-color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-grid3 {
-  background: rgba(99, 179, 237, 0.12);
+  background: rgba(242, 165, 26, 0.12);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-stat {
@@ -9314,27 +9318,27 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-stat-sub {
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border-color: rgba(99, 179, 237, 0.14);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border-color: rgba(242, 165, 26, 0.14);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-topbar {
-  border-bottom-color: rgba(99, 179, 237, 0.14);
-  background: rgba(8, 14, 26, 0.55);
+  border-bottom-color: rgba(242, 165, 26, 0.14);
+  background: rgba(22, 9, 4, 0.55);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-topbar .lb-back {
   color: rgba(226, 232, 240, 0.85);
-  border-color: rgba(99, 179, 237, 0.22);
+  border-color: rgba(242, 165, 26, 0.22);
   background: rgba(255, 255, 255, 0.06);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-topbar .lb-back:hover,
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-topbar .lb-back:focus-visible {
-  color: #f0d78c;
+  color: #ffd166;
   border-color: rgba(201, 162, 39, 0.45);
   background: rgba(255, 255, 255, 0.1);
 }
@@ -9344,8 +9348,8 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-date {
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-locale-bar {
-  background: rgba(12, 18, 32, 0.75);
-  border-bottom-color: rgba(99, 179, 237, 0.12);
+  background: rgba(22, 13, 9, 0.75);
+  border-bottom-color: rgba(242, 165, 26, 0.12);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-locale-label {
@@ -9354,7 +9358,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-locale-label 
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-locale-seg {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(99, 179, 237, 0.2);
+  border-color: rgba(242, 165, 26, 0.2);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-locale-btn {
@@ -9367,24 +9371,24 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-locale-btn:ho
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-locale-btn.is-active {
-  background: linear-gradient(135deg, #f0d78c 0%, #c9a227 100%);
-  color: #1a1520;
+  background: linear-gradient(135deg, #ffd166 0%, #d94b1f 100%);
+  color: #241007;
 }
 
-/* Leaderboard salon detail — scorecard / report tab (dark marketing theme) */
+/* Leaderboard restaurant detail — scorecard / report tab (dark marketing theme) */
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-hero {
-  border-color: rgba(99, 179, 237, 0.14);
+  border-color: rgba(242, 165, 26, 0.14);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
-  background: linear-gradient(165deg, rgba(21, 34, 56, 0.96) 0%, rgba(12, 18, 32, 0.98) 100%) !important;
+  background: linear-gradient(165deg, rgba(42, 21, 13, 0.96) 0%, rgba(22, 13, 9, 0.98) 100%) !important;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-kicker {
-  color: #93c5fd;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-badge {
-  background: rgba(12, 22, 40, 0.85);
-  border-color: rgba(99, 179, 237, 0.28);
+  background: rgba(36, 16, 7, 0.85);
+  border-color: rgba(242, 165, 26, 0.28);
   color: rgba(226, 232, 240, 0.88);
 }
 
@@ -9419,20 +9423,20 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-stat--risk {
-  background: linear-gradient(135deg, rgba(127, 29, 29, 0.35), rgba(12, 18, 32, 0.92));
+  background: linear-gradient(135deg, rgba(127, 29, 29, 0.35), rgba(22, 13, 9, 0.92));
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-stat--warn {
-  background: linear-gradient(135deg, rgba(146, 64, 14, 0.38), rgba(12, 18, 32, 0.92));
+  background: linear-gradient(135deg, rgba(146, 64, 14, 0.38), rgba(22, 13, 9, 0.92));
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-stat--money {
-  background: linear-gradient(135deg, rgba(22, 101, 52, 0.35), rgba(12, 18, 32, 0.92));
+  background: linear-gradient(135deg, rgba(22, 101, 52, 0.35), rgba(22, 13, 9, 0.92));
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-score {
   border-color: rgba(240, 215, 140, 0.22);
-  background: linear-gradient(145deg, rgba(21, 34, 56, 0.55) 0%, rgba(12, 18, 32, 0.78) 100%);
+  background: linear-gradient(145deg, rgba(42, 21, 13, 0.55) 0%, rgba(22, 13, 9, 0.78) 100%);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-h {
@@ -9444,7 +9448,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-score-kpi {
-  border-color: rgba(99, 179, 237, 0.18);
+  border-color: rgba(242, 165, 26, 0.18);
   background: rgba(255, 255, 255, 0.06);
 }
 
@@ -9469,7 +9473,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-metric {
-  border-color: rgba(99, 179, 237, 0.14);
+  border-color: rgba(242, 165, 26, 0.14);
   background: rgba(255, 255, 255, 0.05);
 }
 
@@ -9491,17 +9495,17 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-tone-warn {
   border-top-color: #fbbf24;
-  background: linear-gradient(180deg, rgba(146, 64, 14, 0.35), rgba(12, 18, 32, 0.92));
+  background: linear-gradient(180deg, rgba(146, 64, 14, 0.35), rgba(22, 13, 9, 0.92));
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-tone-bad {
   border-top-color: #f87171;
-  background: linear-gradient(180deg, rgba(127, 29, 29, 0.38), rgba(12, 18, 32, 0.92));
+  background: linear-gradient(180deg, rgba(127, 29, 29, 0.38), rgba(22, 13, 9, 0.92));
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-table th,
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-table td {
-  border-bottom-color: rgba(99, 179, 237, 0.12);
+  border-bottom-color: rgba(242, 165, 26, 0.12);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-table th {
@@ -9521,13 +9525,13 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-radar {
-  border-color: rgba(99, 179, 237, 0.18);
-  background: linear-gradient(145deg, rgba(21, 34, 56, 0.55) 0%, rgba(12, 18, 32, 0.85) 100%);
+  border-color: rgba(242, 165, 26, 0.18);
+  background: linear-gradient(145deg, rgba(42, 21, 13, 0.55) 0%, rgba(22, 13, 9, 0.85) 100%);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-heat th,
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-heat td {
-  border-bottom-color: rgba(99, 179, 237, 0.12);
+  border-bottom-color: rgba(242, 165, 26, 0.12);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-heat th {
@@ -9539,18 +9543,18 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-heat-cell {
-  border-color: rgba(99, 179, 237, 0.18);
+  border-color: rgba(242, 165, 26, 0.18);
   color: rgba(255, 255, 255, 0.92);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-ai-summary {
-  background: linear-gradient(145deg, rgba(21, 34, 56, 0.65) 0%, rgba(12, 18, 32, 0.88) 100%);
-  border-color: rgba(99, 179, 237, 0.16);
+  background: linear-gradient(145deg, rgba(42, 21, 13, 0.65) 0%, rgba(22, 13, 9, 0.88) 100%);
+  border-color: rgba(242, 165, 26, 0.16);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-ai-summary-kicker {
-  color: #93c5fd;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-ai-summary-lead {
@@ -9562,7 +9566,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-ai-summary-focus-label {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-ai-summary-fomo {
@@ -9576,12 +9580,12 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-ai-summary-cta-link {
-  color: #93c5fd;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-miss {
-  border-color: rgba(99, 179, 237, 0.16);
-  border-left-color: #60a5fa;
+  border-color: rgba(242, 165, 26, 0.16);
+  border-left-color: #f2a51a;
   background: rgba(255, 255, 255, 0.04);
 }
 
@@ -9604,12 +9608,12 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-sol {
-  border-color: rgba(99, 179, 237, 0.14);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(12, 18, 32, 0.5));
+  border-color: rgba(242, 165, 26, 0.14);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(22, 13, 9, 0.5));
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-sol-tag {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-sol h3 {
@@ -9625,7 +9629,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-sol-priority {
-  color: #f0d78c !important;
+  color: #ffd166 !important;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-table-wrap.card,
@@ -9633,7 +9637,7 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-ol.card,
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-ba.card {
   background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(99, 179, 237, 0.16) !important;
+  border: 1px solid rgba(242, 165, 26, 0.16) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -9654,8 +9658,8 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-cta-inner.card {
-  background: linear-gradient(145deg, rgba(21, 34, 56, 0.75) 0%, rgba(12, 18, 32, 0.92) 100%) !important;
-  border-color: rgba(99, 179, 237, 0.22) !important;
+  background: linear-gradient(145deg, rgba(42, 21, 13, 0.75) 0%, rgba(22, 13, 9, 0.92) 100%) !important;
+  border-color: rgba(242, 165, 26, 0.22) !important;
   box-shadow:
     0 18px 48px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -9674,14 +9678,14 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-cta-sec {
-  border-color: rgba(99, 179, 237, 0.28);
+  border-color: rgba(242, 165, 26, 0.28);
   background: rgba(255, 255, 255, 0.06);
   color: rgba(248, 250, 252, 0.9);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-cta-sec:hover {
   border-color: rgba(201, 162, 39, 0.45);
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-rep-td-hot {
@@ -9693,14 +9697,14 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell-
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-stat-hint-icon {
-  border-color: rgba(99, 179, 237, 0.28);
+  border-color: rgba(242, 165, 26, 0.28);
   background: rgba(255, 255, 255, 0.06);
   color: rgba(226, 232, 240, 0.75);
 }
 
 html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-shell--report .lb-stat-hint-pop {
-  background: linear-gradient(180deg, #152238 0%, #0c1220 100%);
-  border-color: rgba(99, 179, 237, 0.2);
+  background: linear-gradient(180deg, #28150e 0%, #160d09 100%);
+  border-color: rgba(242, 165, 26, 0.2);
   color: rgba(226, 232, 240, 0.88);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
@@ -9718,28 +9722,28 @@ html[data-theme="dark"] body.route-marketing.route-leaderboard .lb-detail-cta .c
 }
 
 html[data-theme="dark"] body.route-marketing .lb-detail-error.card {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border-color: rgba(99, 179, 237, 0.14);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border-color: rgba(242, 165, 26, 0.14);
   color: rgba(226, 232, 240, 0.82);
 }
 
 html[data-theme="dark"] body.route-marketing .lb-detail-error.card .landing-link {
-  color: #93c5fd;
+  color: #ffd166;
 }
 
 /* Local Salon Ranking (intel list + detail) */
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-report-hero.card,
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-search-toolbar.card,
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-table-card.card {
-  background: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  border: 1px solid rgba(99, 179, 237, 0.12);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 42%, #120906 100%);
+  border: 1px solid rgba(242, 165, 26, 0.12);
   box-shadow:
-    0 24px 64px rgba(8, 15, 35, 0.45),
+    0 24px 64px rgba(33, 12, 4, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .marketing-page-intel .marketing-section-kicker {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .marketing-page-intel .marketing-title {
@@ -9755,8 +9759,8 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-search-label 
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-search-input {
-  background: rgba(10, 18, 32, 0.82);
-  border-color: rgba(99, 179, 237, 0.22);
+  background: rgba(22, 13, 9, 0.82);
+  border-color: rgba(242, 165, 26, 0.22);
   color: rgba(248, 250, 252, 0.95);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
@@ -9764,7 +9768,7 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-search-input 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-list-cta {
   border-color: rgba(201, 162, 39, 0.45);
   background: rgba(255, 255, 255, 0.06);
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-list-cta:hover,
@@ -9775,12 +9779,12 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-list-cta:focu
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-table thead th {
   background: rgba(255, 255, 255, 0.06);
-  border-bottom-color: rgba(99, 179, 237, 0.18);
-  color: #f0d78c;
+  border-bottom-color: rgba(242, 165, 26, 0.18);
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-table tbody td {
-  border-bottom-color: rgba(99, 179, 237, 0.12);
+  border-bottom-color: rgba(242, 165, 26, 0.12);
   color: rgba(248, 250, 252, 0.88);
 }
 
@@ -9793,12 +9797,12 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-td-address {
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-salon-link {
-  color: #93c5fd;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-salon-link:hover,
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-salon-link:focus-visible {
-  border-bottom-color: rgba(147, 197, 253, 0.55);
+  border-bottom-color: rgba(255, 209, 102, 0.55);
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-table-empty {
@@ -9818,12 +9822,12 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-metric strong
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-report::before {
-  background: radial-gradient(ellipse 85% 70% at 50% 0%, rgba(99, 179, 237, 0.14) 0%, transparent 72%);
+  background: radial-gradient(ellipse 85% 70% at 50% 0%, rgba(242, 165, 26, 0.14) 0%, transparent 72%);
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-hero {
-  border-color: rgba(99, 179, 237, 0.18);
-  background: linear-gradient(165deg, rgba(21, 34, 56, 0.96) 0%, rgba(12, 18, 32, 0.98) 100%);
+  border-color: rgba(242, 165, 26, 0.18);
+  background: linear-gradient(165deg, rgba(42, 21, 13, 0.96) 0%, rgba(22, 13, 9, 0.98) 100%);
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-hero-salon-name,
@@ -9842,12 +9846,12 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-lead {
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-eyebrow,
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-page-title .intel-growth-page-date,
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-score-label {
-  color: #93c5fd;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-score-card {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(99, 179, 237, 0.22);
+  border-color: rgba(242, 165, 26, 0.22);
   box-shadow: none;
 }
 
@@ -9856,12 +9860,12 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-score-
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-score-value span {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-meta {
   background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(99, 179, 237, 0.18);
+  border-color: rgba(242, 165, 26, 0.18);
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-meta-key {
@@ -9874,11 +9878,11 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-meta-v
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-summary-card {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(99, 179, 237, 0.16);
+  border-color: rgba(242, 165, 26, 0.16);
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-summary-eyebrow {
-  color: #93c5fd;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-summary-title {
@@ -9887,7 +9891,7 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-summar
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-insight-card {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(99, 179, 237, 0.14);
+  border-color: rgba(242, 165, 26, 0.14);
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-insight-eyebrow {
@@ -9903,18 +9907,18 @@ html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-action
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-action-list strong {
-  color: #f0d78c;
+  color: #ffd166;
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-growth-actions {
   background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(99, 179, 237, 0.14);
+  border-color: rgba(242, 165, 26, 0.14);
 }
 
 html[data-theme="dark"] body.route-marketing.route-analysis .intel-offer-card {
-  background: linear-gradient(145deg, rgba(21, 34, 56, 0.96) 0%, rgba(12, 18, 32, 0.98) 100%);
+  background: linear-gradient(145deg, rgba(42, 21, 13, 0.96) 0%, rgba(22, 13, 9, 0.98) 100%);
   border-color: rgba(201, 162, 39, 0.38);
-  box-shadow: 0 14px 40px rgba(8, 15, 35, 0.45);
+  box-shadow: 0 14px 40px rgba(33, 12, 4, 0.45);
 }
 
 /* =========================================================
@@ -9998,8 +10002,8 @@ html[data-theme="light"] body.route-marketing.route-leaderboard .lb-cat-pill {
 }
 
 html[data-theme="light"] body.route-marketing.route-leaderboard .lb-cat-pill.is-active {
-  background: linear-gradient(135deg, #f0d78c 0%, #c9a227 100%);
-  color: #1a1520;
+  background: linear-gradient(135deg, #ffd166 0%, #d94b1f 100%);
+  color: #241007;
   border-color: transparent;
 }
 
@@ -11061,15 +11065,17 @@ html[data-theme="light"] body .marketing-brand .brand-part-rank {
   font-weight: 700 !important;
 }
 
-/* Logo: MySalon must stay gold gradient */
+/* Logo: MyRestaurant must stay warm restaurant gradient */
 html[data-theme="dark"] body .marketing-brand .brand-part-mysalon,
-html[data-theme="light"] body .marketing-brand .brand-part-mysalon {
-  background: linear-gradient(135deg, #fff0b6 0%, #e6c35f 42%, #cfa83d 100%) !important;
+html[data-theme="light"] body .marketing-brand .brand-part-mysalon,
+html[data-theme="dark"] body .marketing-brand .brand-part-myrestaurant,
+html[data-theme="light"] body .marketing-brand .brand-part-myrestaurant {
+  background: linear-gradient(135deg, #fff0b6 0%, #ffd166 34%, #f2a51a 62%, #d94b1f 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  text-shadow: 0 0 18px rgba(230, 195, 95, 0.18) !important;
+  text-shadow: 0 0 18px rgba(242, 165, 26, 0.2) !important;
   font-weight: 700 !important;
 }
 
@@ -11763,7 +11769,7 @@ html[data-theme="light"] body .marketing-lang-option {
     font-size: 16px !important;
   }
 }
-/* AI review booster — loyalty promo capture (ported from rankmysalon) */
+/* AI review booster — loyalty promo capture */
 .loyalty-promo-panel {
   margin-top: 16px;
   padding: 16px;

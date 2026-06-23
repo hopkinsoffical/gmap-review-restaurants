@@ -12,61 +12,61 @@ html[data-theme="light"] {
   --rms-site-max-width: 1192px;
   --rms-site-side-padding: 32px;
 
-  /* Warm cream backgrounds */
-  --rms-bg: #fffbf4;
-  --rms-bg-soft: #fff6e8;
-  --rms-bg-panel: #fff0d9;
+  /* Warm restaurant cream backgrounds */
+  --rms-bg: #fff9ef;
+  --rms-bg-soft: #fff0d8;
+  --rms-bg-panel: #ffe3bd;
   --rms-bg-card: #ffffff;
   --rms-bg-card-2: #fef9f2;
 
   /* Dark espresso text */
-  --rms-text: #1c0f07;
-  --rms-text-soft: #3d2010;
-  --rms-text-muted: #8c6440;
+  --rms-text: #241007;
+  --rms-text-soft: #46220f;
+  --rms-text-muted: #7a5433;
 
   /* Warm borders */
-  --rms-border: rgba(180, 100, 40, 0.14);
-  --rms-border-strong: rgba(180, 100, 40, 0.26);
+  --rms-border: rgba(154, 73, 31, 0.16);
+  --rms-border-strong: rgba(154, 73, 31, 0.28);
 
-  /* Restaurant orange as primary accent */
-  --rms-gold: #e8611a;
-  --rms-gold-soft: rgba(232, 97, 26, 0.12);
+  /* Tomato + saffron restaurant accents */
+  --rms-gold: #d94b1f;
+  --rms-gold-soft: rgba(217, 75, 31, 0.12);
 
   /* Light nav header */
-  --rms-header-bg: linear-gradient(135deg, #ffffff 0%, #fff8f0 100%);
-  --rms-header-border: rgba(232, 97, 26, 0.16);
+  --rms-header-bg: linear-gradient(135deg, #ffffff 0%, #fff3e0 100%);
+  --rms-header-border: rgba(217, 75, 31, 0.18);
 
-  --rms-shadow-soft: 0 22px 70px rgba(140, 70, 20, 0.10);
-  --rms-shadow-card: 0 8px 32px rgba(140, 70, 20, 0.09);
+  --rms-shadow-soft: 0 22px 70px rgba(105, 48, 18, 0.12);
+  --rms-shadow-card: 0 8px 32px rgba(105, 48, 18, 0.10);
 
   /* Marketing surfaces */
   --rms-mkt-page-bg: transparent;
   --rms-mkt-card-bg: #ffffff;
-  --rms-mkt-card-border: rgba(232, 97, 26, 0.14);
+  --rms-mkt-card-border: rgba(217, 75, 31, 0.15);
   --rms-mkt-card-shadow:
-    0 8px 32px rgba(140, 70, 20, 0.09),
+    0 8px 32px rgba(105, 48, 18, 0.10),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  --rms-mkt-inset: #fff6e8;
-  --rms-kicker: #c04a10;
-  --rms-link: #c04a10;
-  --rms-link-hover: #963a0c;
+  --rms-mkt-inset: #fff0d8;
+  --rms-kicker: #b43f18;
+  --rms-link: #b43f18;
+  --rms-link-hover: #7c2d12;
   --rms-input-bg: #ffffff;
-  --rms-input-border: rgba(180, 100, 40, 0.28);
+  --rms-input-border: rgba(154, 73, 31, 0.28);
   --rms-input-text: #1c0f07;
-  --rms-input-placeholder: #8c6440;
-  --rms-ghost-bg: #fff6e8;
-  --rms-ghost-border: rgba(232, 97, 26, 0.22);
+  --rms-input-placeholder: #7a5433;
+  --rms-ghost-bg: #fff0d8;
+  --rms-ghost-border: rgba(217, 75, 31, 0.24);
   --rms-ghost-text: #1c0f07;
-  --rms-ghost-hover-bg: rgba(232, 97, 26, 0.08);
-  --rms-pill-bg: #fff6e8;
-  --rms-pill-border: rgba(232, 97, 26, 0.18);
+  --rms-ghost-hover-bg: rgba(217, 75, 31, 0.09);
+  --rms-pill-bg: #fff0d8;
+  --rms-pill-border: rgba(217, 75, 31, 0.2);
   --rms-pill-text: #3d2010;
-  --rms-pill-active-bg: linear-gradient(135deg, #f5a623 0%, #e8611a 100%);
+  --rms-pill-active-bg: linear-gradient(135deg, #f2a51a 0%, #d94b1f 100%);
   --rms-pill-active-text: #ffffff;
   --rms-tab-muted: #8c6440;
   --rms-tab-active: #1c0f07;
-  --rms-tab-active-border: #e8611a;
-  --rms-cta-pay-bg: linear-gradient(135deg, #f5a623, #e8611a);
+  --rms-tab-active-border: #d94b1f;
+  --rms-cta-pay-bg: linear-gradient(135deg, #f2a51a, #d94b1f);
   --rms-cta-pay-text: #ffffff;
   --rms-success: #2e7d52;
   --rms-danger: #c0392b;
@@ -80,57 +80,58 @@ html[data-theme="dark"] {
   --rms-site-max-width: 1192px;
   --rms-site-side-padding: 32px;
 
-  --rms-bg: #05070d;
-  --rms-bg-soft: #08111f;
-  --rms-bg-panel: #0d182b;
-  --rms-bg-card: #0e1a2d;
-  --rms-bg-card-2: #111d31;
+  --rms-bg: #0d0705;
+  --rms-bg-soft: #160d09;
+  --rms-bg-panel: #24130c;
+  --rms-bg-card: #1f120d;
+  --rms-bg-card-2: #28170f;
 
   --rms-text: #f8fafc;
-  --rms-text-soft: #c3d0e4;
-  --rms-text-muted: #94a3b8;
+  --rms-text-soft: #f3d7bf;
+  --rms-text-muted: #c59b77;
 
-  --rms-border: rgba(148, 163, 184, 0.18);
-  --rms-border-strong: rgba(148, 163, 184, 0.28);
+  --rms-border: rgba(242, 165, 26, 0.18);
+  --rms-border-strong: rgba(242, 165, 26, 0.3);
 
-  --rms-gold: #e8611a;
-  --rms-gold-soft: rgba(232, 97, 26, 0.16);
+  --rms-gold: #f2a51a;
+  --rms-gold-soft: rgba(242, 165, 26, 0.16);
 
-  --rms-header-bg: linear-gradient(135deg, rgba(13, 27, 49, 0.98), rgba(9, 18, 34, 0.98));
-  --rms-header-border: rgba(232, 97, 26, 0.28);
+  --rms-header-bg: linear-gradient(135deg, rgba(36, 19, 12, 0.98), rgba(20, 11, 7, 0.98));
+  --rms-header-border: rgba(242, 165, 26, 0.28);
 
   --rms-shadow-soft: 0 22px 70px rgba(0, 0, 0, 0.34);
   --rms-shadow-card: 0 18px 45px rgba(0, 0, 0, 0.28);
 
   --rms-mkt-page-bg:
-    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(232, 97, 26, 0.10), transparent 52%),
-    linear-gradient(180deg, #070b14 0%, #0f172a 38%, #0b101c 100%);
-  --rms-mkt-card-bg: linear-gradient(145deg, #0c1220 0%, #152238 42%, #0a1628 100%);
-  --rms-mkt-card-border: rgba(232, 97, 26, 0.14);
+    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(217, 75, 31, 0.16), transparent 52%),
+    radial-gradient(ellipse 80% 50% at 92% 8%, rgba(242, 165, 26, 0.12), transparent 46%),
+    linear-gradient(180deg, #100805 0%, #1a0e09 42%, #0d0705 100%);
+  --rms-mkt-card-bg: linear-gradient(145deg, #160d09 0%, #28150e 48%, #120906 100%);
+  --rms-mkt-card-border: rgba(242, 165, 26, 0.16);
   --rms-mkt-card-shadow:
     0 24px 64px rgba(8, 15, 35, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   --rms-mkt-inset: rgba(255, 255, 255, 0.06);
-  --rms-kicker: #f5a623;
-  --rms-link: #f5a623;
-  --rms-link-hover: #e8611a;
-  --rms-input-bg: rgba(10, 18, 32, 0.82);
-  --rms-input-border: rgba(232, 97, 26, 0.28);
+  --rms-kicker: #f2a51a;
+  --rms-link: #f2a51a;
+  --rms-link-hover: #ff7043;
+  --rms-input-bg: rgba(22, 13, 9, 0.82);
+  --rms-input-border: rgba(242, 165, 26, 0.28);
   --rms-input-text: rgba(248, 250, 252, 0.95);
   --rms-input-placeholder: rgba(226, 232, 240, 0.42);
   --rms-ghost-bg: rgba(255, 255, 255, 0.06);
-  --rms-ghost-border: rgba(232, 97, 26, 0.28);
+  --rms-ghost-border: rgba(242, 165, 26, 0.28);
   --rms-ghost-text: rgba(248, 250, 252, 0.92);
-  --rms-ghost-hover-bg: rgba(232, 97, 26, 0.12);
+  --rms-ghost-hover-bg: rgba(242, 165, 26, 0.12);
   --rms-pill-bg: rgba(255, 255, 255, 0.06);
-  --rms-pill-border: rgba(232, 97, 26, 0.18);
+  --rms-pill-border: rgba(242, 165, 26, 0.18);
   --rms-pill-text: rgba(248, 250, 252, 0.88);
-  --rms-pill-active-bg: linear-gradient(135deg, #f5a623 0%, #e8611a 100%);
+  --rms-pill-active-bg: linear-gradient(135deg, #f2a51a 0%, #d94b1f 100%);
   --rms-pill-active-text: #ffffff;
   --rms-tab-muted: rgba(226, 232, 240, 0.45);
-  --rms-tab-active: #f5a623;
-  --rms-tab-active-border: #e8611a;
-  --rms-cta-pay-bg: linear-gradient(135deg, #f5a623, #e8611a);
+  --rms-tab-active: #f2a51a;
+  --rms-tab-active-border: #d94b1f;
+  --rms-cta-pay-bg: linear-gradient(135deg, #f2a51a, #d94b1f);
   --rms-cta-pay-text: #ffffff;
   --rms-success: #86efac;
   --rms-danger: #fca5a5;
@@ -152,18 +153,18 @@ body {
 
 html[data-theme="dark"] body {
   background:
-    radial-gradient(circle at 12% 0%, rgba(232, 97, 26, 0.08), transparent 30%),
-    radial-gradient(circle at 85% 20%, rgba(245, 166, 35, 0.06), transparent 32%),
-    linear-gradient(180deg, #05070d 0%, #07101d 48%, #05070d 100%) !important;
+    radial-gradient(circle at 12% 0%, rgba(217, 75, 31, 0.12), transparent 30%),
+    radial-gradient(circle at 85% 20%, rgba(242, 165, 26, 0.08), transparent 32%),
+    linear-gradient(180deg, #0d0705 0%, #160d09 48%, #0d0705 100%) !important;
 }
 
 html[data-theme="light"] body,
 body {
   background:
-    radial-gradient(circle at 8% 0%, rgba(245, 166, 35, 0.18), transparent 28%),
-    radial-gradient(circle at 88% 10%, rgba(232, 97, 26, 0.10), transparent 26%),
-    radial-gradient(circle at 50% 100%, rgba(245, 200, 150, 0.14), transparent 40%),
-    linear-gradient(180deg, #fffbf4 0%, #fff3e0 50%, #fffbf4 100%) !important;
+    radial-gradient(circle at 8% 0%, rgba(242, 165, 26, 0.18), transparent 28%),
+    radial-gradient(circle at 88% 10%, rgba(217, 75, 31, 0.12), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(123, 63, 0, 0.10), transparent 40%),
+    linear-gradient(180deg, #fff9ef 0%, #fff0d8 50%, #fff9ef 100%) !important;
 }
 
 /* Smooth change */
@@ -399,14 +400,14 @@ html[data-theme="light"] li {
 
 .marketing-header .marketing-nav-link:hover,
 .marketing-header .marketing-nav-link.is-active {
-  color: #e8611a !important;
-  border-bottom: 2px solid #e8611a !important;
+  color: #d94b1f !important;
+  border-bottom: 2px solid #d94b1f !important;
   padding-bottom: 2px !important;
 }
 
 /* Brand: "Rank" in orange, "MyRestaurant" in dark */
 .brand-part-rank {
-  color: #e8611a !important;
+  color: #d94b1f !important;
   font-weight: 800 !important;
 }
 

@@ -14,6 +14,24 @@ These are iron laws. Follow them every time you touch this repo.
 6. Prefer exact paths, exact commands, exact error messages, and exact root causes. Do not write vague summaries if a future agent would need to rediscover the same facts.
 7. Preserve historical updates below the newest entry. Do not reorder older entries except to keep newest-first ordering.
 
+## Update - 2026-06-23 - Restaurant Marketing UI Refactor
+
+Status:
+
+- Homepage and marketing surfaces were refactored from salon-facing copy/visuals to restaurant-facing UX:
+  - [app.js](app.js)
+    - updated the overview hero, brief-report form, trust points, Ryan/AI advisor section, services page copy, leaderboard/report copy, store review studio prompts, and user-facing error messages for restaurants/diners
+    - kept existing internal `salon` route/API/table identifiers intact where changing them would break current backend contracts
+  - [styles.css](styles.css), [theme.css](theme.css), [marketing-surfaces.css](marketing-surfaces.css)
+    - moved the visual system from navy/purple salon styling to warm restaurant colors: cream backgrounds, espresso dark surfaces, tomato CTA accents, and saffron highlights
+    - added `brand-part-myrestaurant` support to brand gradient selectors that previously only targeted `brand-part-mysalon`
+  - [index.html](index.html), [package.json](package.json)
+    - updated remaining static salon-facing description text to restaurant-facing wording
+
+Verification planned:
+
+- `node --check app.js`
+
 ## Update - 2026-04-23 - Homepage Hero CTA Aligned To Benefit List Left Edge
 
 Status:
