@@ -25,7 +25,7 @@ Status:
     - updated receipt/menu mismatch text, Google review generation hard rules, service-praise injection, and review validation regexes to use diner/server/host/dining-room vocabulary
     - kept internal `service` focus key and `salon_*` backend field names unchanged where they are part of existing contracts
 
-Verification planned:
+Verification completed:
 
 - `node --check app.js`
 
