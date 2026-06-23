@@ -190,6 +190,36 @@
         "More Diners from Social Media",
         "More Calls Turned into Tables",
       ],
+      toolsKicker: "Tools",
+      toolsTitle: "Restaurant growth tools that make Google traffic easier to convert",
+      toolsBody:
+        "Match the salon reference structure with dedicated tool entries for reviews, SMS, AI front desk, and local ranking audits.",
+      toolsItems: [
+        {
+          title: "AI Review Generator",
+          body: "Turn receipts and menu context into natural Google Maps reviews diners actually sound like they wrote.",
+          href: "/ai-review-generator.html",
+          cta: "Open tool",
+        },
+        {
+          title: "AI SMS Review Booster",
+          body: "Follow up after dine-in, takeout, or reservations with compliant review requests and smart reminders.",
+          href: "/ai-sms-review-booster.html",
+          cta: "Open tool",
+        },
+        {
+          title: "AI Front Desk",
+          body: "Let Ryan handle calls, common questions, missed-call recovery, and reservation intent.",
+          href: "/ai-front-desk.html",
+          cta: "Meet the agent",
+        },
+        {
+          title: "Local Ranking Audit",
+          body: "Compare your restaurant against nearby competitors on Maps visibility, reviews, recency, and conversion signals.",
+          href: "/analysis-reports",
+          cta: "View rankings",
+        },
+      ],
       digitalHumanOverviewKicker: "The Smartest Person in the Room",
       digitalHumanOverviewTitle: "Meet Ryan, Your Growth Advisor",
       digitalHumanOverviewHeading: "You Might Be Losing Diners on Google Right Now",
@@ -249,6 +279,35 @@
         "让门店主页带来更多订位",
         "从社交媒体带来更多食客",
         "把来电变成真实到店餐桌",
+      ],
+      toolsKicker: "工具",
+      toolsTitle: "把 Google 流量转成订位和到店的餐厅增长工具",
+      toolsBody: "按参考站结构补齐工具入口：评论生成、短信催评、AI 前台和本地排名诊断。",
+      toolsItems: [
+        {
+          title: "AI 评论生成器",
+          body: "结合小票和菜单信息，生成像真实食客会写的 Google Maps 评论。",
+          href: "/ai-review-generator.html",
+          cta: "打开工具",
+        },
+        {
+          title: "AI 短信评论助推器",
+          body: "在堂食、外卖或订位后自动跟进，合规发送评论请求和提醒。",
+          href: "/ai-sms-review-booster.html",
+          cta: "打开工具",
+        },
+        {
+          title: "AI 前台",
+          body: "让 Ryan 处理来电、常见问题、未接回拨和订位意向。",
+          href: "/ai-front-desk.html",
+          cta: "认识 AI Agent",
+        },
+        {
+          title: "本地排名诊断",
+          body: "用地图曝光、评论、新鲜度和转化信号，对比附近竞争餐厅。",
+          href: "/analysis-reports",
+          cta: "查看排名",
+        },
       ],
       digitalHumanOverviewKicker: "房间里最聪明的前台",
       digitalHumanOverviewTitle: "认识 Ryan，你的增长顾问",
@@ -698,6 +757,8 @@ applyMarketingTheme(getMarketingTheme());
       pageTitleAdminStore: "Store Editor",
       navOverview: "Overview",
       navPrice: "Price",
+      navTools: "Tools",
+      navAiAgent: "AI Agent",
       navServices: "Services",
       navAbout: "About Us",
       navLeaderboard: "Leaderboard",
@@ -995,6 +1056,8 @@ applyMarketingTheme(getMarketingTheme());
       pageTitleAdminStore: "门店编辑",
       navOverview: "首页",
       navPrice: "价格",
+      navTools: "工具",
+      navAiAgent: "AI Agent",
       navServices: "服务",
       navAbout: "关于我们",
       navLeaderboard: "排行榜",
@@ -6313,11 +6376,61 @@ applyMarketingTheme(getMarketingTheme());
     });
   }
 
+  function getMarketingToolsItems() {
+    return Array.isArray(MARKETING_COPY.toolsItems) ? MARKETING_COPY.toolsItems : [];
+  }
+
+  function getMarketingToolsDropdownHtml() {
+    var items = getMarketingToolsItems();
+    return (
+      '<div class="marketing-nav-dropdown">' +
+      '<a class="marketing-nav-link marketing-nav-link--dropdown" href="#tools">' +
+      escapeHtml(MARKETING_UI.navTools) +
+      '<span class="marketing-nav-caret" aria-hidden="true">▾</span></a>' +
+      '<div class="marketing-nav-dropdown-menu" aria-label="' +
+      escapeHtml(MARKETING_UI.navTools) +
+      '">' +
+      items
+        .map(function (item) {
+          return (
+            '<a class="marketing-nav-tool-link" href="' +
+            escapeHtml(item.href || "#tools") +
+            '"><span class="marketing-nav-tool-title">' +
+            escapeHtml(item.title || "") +
+            '</span><span class="marketing-nav-tool-body">' +
+            escapeHtml(item.body || "") +
+            "</span></a>"
+          );
+        })
+        .join("") +
+      "</div></div>"
+    );
+  }
+
+  function getMarketingNavLinkHtml(routeKind, label, extraHref, forceActive) {
+    var navActive = forceActive || state.routeKind === routeKind;
+    if (routeKind === ROUTE_ANALYSIS_LIST && isAnalysisRoute()) {
+      navActive = true;
+    }
+    if (routeKind === ROUTE_SERVICES && state.routeKind === ROUTE_SERVICES) {
+      navActive = true;
+    }
+    if (routeKind === ROUTE_TALK && isAssistantRoute()) {
+      navActive = true;
+    }
+    var active = navActive ? " is-active" : "";
+    return (
+      '<a class="marketing-nav-link' +
+      active +
+      '" href="' +
+      escapeHtml(extraHref || getPagePath(routeKind)) +
+      '">' +
+      escapeHtml(label) +
+      "</a>"
+    );
+  }
+
   function getMarketingNavHtml() {
-    const links = [
-  { key: ROUTE_ANALYSIS_LIST, label: MARKETING_UI.navAnalysis },
-  { key: ROUTE_SERVICES, label: MARKETING_UI.navServices },
-];
 
     return (
       '<header class="marketing-nav-shell">' +
@@ -6327,27 +6440,10 @@ applyMarketingTheme(getMarketingTheme());
       '<span class="brand-part brand-part-myrestaurant">MyRestaurant</span>' +
       "</a>" +
       '<nav class="marketing-nav" aria-label="Primary">' +
-      links
-        .map(function (link) {
-          var navActive = state.routeKind === link.key;
-          if (link.key === ROUTE_ANALYSIS_LIST && isAnalysisRoute()) {
-            navActive = true;
-          }
-          if (link.key === ROUTE_SERVICES && state.routeKind === ROUTE_SERVICES) {
-            navActive = true;
-          }
-          const active = navActive ? " is-active" : "";
-          return (
-            '<a class="marketing-nav-link' +
-            active +
-            '" href="' +
-            getPagePath(link.key) +
-            '">' +
-            escapeHtml(link.label) +
-            "</a>"
-          );
-        })
-        .join("") +
+      getMarketingNavLinkHtml(ROUTE_ANALYSIS_LIST, MARKETING_UI.navAnalysis) +
+      getMarketingToolsDropdownHtml() +
+      getMarketingNavLinkHtml(ROUTE_TALK, MARKETING_UI.navAiAgent, "/#ai-agent") +
+      getMarketingNavLinkHtml(ROUTE_SERVICES, MARKETING_UI.navServices) +
       "</nav>" +
       "</div>" +
       '<div class="marketing-auth-actions">' +
@@ -7170,6 +7266,49 @@ applyMarketingTheme(getMarketingTheme());
     );
   }
 
+  function getMarketingToolsSectionHtml(sectionId) {
+    var items = getMarketingToolsItems();
+    return (
+      '<section id="' +
+      escapeHtml(sectionId || "tools") +
+      '" class="marketing-section marketing-tools card">' +
+      '<div class="marketing-section-head marketing-tools-head">' +
+      '<p class="marketing-section-kicker">' +
+      escapeHtml(MARKETING_COPY.toolsKicker || MARKETING_UI.navTools) +
+      "</p>" +
+      '<h2 class="marketing-section-title">' +
+      escapeHtml(MARKETING_COPY.toolsTitle || "") +
+      "</h2>" +
+      '<p class="marketing-body marketing-body-wide">' +
+      escapeHtml(MARKETING_COPY.toolsBody || "") +
+      "</p>" +
+      "</div>" +
+      '<div class="marketing-tools-grid">' +
+      items
+        .map(function (item) {
+          return (
+            '<article class="marketing-tool-card">' +
+            '<div class="marketing-tool-card-copy">' +
+            '<h3>' +
+            escapeHtml(item.title || "") +
+            "</h3>" +
+            "<p>" +
+            escapeHtml(item.body || "") +
+            "</p></div>" +
+            '<a class="marketing-tool-card-link" href="' +
+            escapeHtml(item.href || "#") +
+            '">' +
+            escapeHtml(item.cta || MARKETING_UI.navTools) +
+            '<span aria-hidden="true"> →</span></a>' +
+            "</article>"
+          );
+        })
+        .join("") +
+      "</div>" +
+      "</section>"
+    );
+  }
+
   function renderOverviewContent() {
     var digitalHumanPoints = (MARKETING_COPY.digitalHumanOverviewPoints || [])
       .map(function (item) {
@@ -7222,7 +7361,8 @@ applyMarketingTheme(getMarketingTheme());
       "</div>" +
       "</div>" +
       "</section>" +
-      '<section class="marketing-section marketing-digital-human card">' +
+      getMarketingToolsSectionHtml("tools") +
+      '<section id="ai-agent" class="marketing-section marketing-digital-human card">' +
       '<div class="marketing-digital-grid">' +
       '<div class="marketing-digital-copy">' +
       '<div class="marketing-section-head marketing-section-head-compact">' +
@@ -7323,6 +7463,14 @@ applyMarketingTheme(getMarketingTheme());
         })
         .join("") +
       "</ul></div></div>" +
+      getRmsMobileScrollCueHtml("tools") +
+      "</div></section>" +
+      '<section class="rms-mobile-panel rms-mobile-panel--tools" data-rms-panel="tools">' +
+      '<div class="rms-mobile-panel-inner">' +
+      '<p class="rms-mobile-panel-label">' +
+      escapeHtml(MARKETING_UI.navTools) +
+      "</p>" +
+      getMarketingToolsSectionHtml("tools-mobile") +
       getRmsMobileScrollCueHtml("digital") +
       "</div></section>" +
       '<section class="rms-mobile-panel rms-mobile-panel--digital" data-rms-panel="digital">' +
@@ -7330,7 +7478,7 @@ applyMarketingTheme(getMarketingTheme());
       '<p class="rms-mobile-panel-label">' +
       escapeHtml(MARKETING_UI.mobilePanelDigital) +
       "</p>" +
-      '<section class="marketing-section marketing-digital-human card"><div class="marketing-digital-grid">' +
+      '<section id="ai-agent-mobile" class="marketing-section marketing-digital-human card"><div class="marketing-digital-grid">' +
       '<div class="marketing-digital-copy"><div class="marketing-section-head marketing-section-head-compact">' +
       '<p class="marketing-section-kicker">' +
       escapeHtml(MARKETING_COPY.digitalHumanOverviewKicker || "") +
@@ -7367,7 +7515,7 @@ applyMarketingTheme(getMarketingTheme());
       '<div class="rms-mobile-panel-inner">' +
       getMarketingFooterHtml() +
       "</div></section></div>" +
-      getRmsMobileDotsHtml(["lead", "story", "digital", "footer"], "lead") +
+      getRmsMobileDotsHtml(["lead", "story", "tools", "digital", "footer"], "lead") +
       "</div></div>"
     );
   }

@@ -1402,6 +1402,78 @@ h1 {
   font-weight: 700;
 }
 
+.marketing-nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.marketing-nav-link--dropdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.marketing-nav-caret {
+  font-size: 0.72em;
+  line-height: 1;
+}
+
+.marketing-nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  z-index: 30;
+  width: min(360px, calc(100vw - 32px));
+  padding: 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(217, 75, 31, 0.14);
+  background: rgba(255, 250, 242, 0.98);
+  box-shadow: 0 22px 52px rgba(80, 35, 12, 0.18);
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    visibility 0.18s ease;
+}
+
+.marketing-nav-dropdown:hover .marketing-nav-dropdown-menu,
+.marketing-nav-dropdown:focus-within .marketing-nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+.marketing-nav-tool-link {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 14px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.marketing-nav-tool-link:hover,
+.marketing-nav-tool-link:focus-visible {
+  background: rgba(217, 75, 31, 0.08);
+  outline: none;
+}
+
+.marketing-nav-tool-title {
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.marketing-nav-tool-body {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
 .marketing-nav-link.is-active,
 .marketing-nav-link:hover,
 .marketing-nav-link:focus-visible {
@@ -1410,6 +1482,7 @@ h1 {
 
 .marketing-hero-section,
 .marketing-digital-human,
+.marketing-tools,
 .marketing-insights,
 .marketing-placeholder,
 .assistant-panel,
@@ -2229,6 +2302,83 @@ h1 {
   margin: 0;
   font-size: clamp(1.5rem, 2vw, 2.3rem);
   line-height: 1.15;
+}
+
+.marketing-tools {
+  display: grid;
+  gap: 20px;
+  border-radius: 32px;
+}
+
+.marketing-tools-head {
+  max-width: 760px;
+}
+
+.marketing-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.marketing-tool-card {
+  display: grid;
+  align-content: space-between;
+  min-height: 220px;
+  gap: 18px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(217, 75, 31, 0.14);
+  background:
+    radial-gradient(circle at top right, rgba(255, 209, 102, 0.22), transparent 34%),
+    rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+}
+
+.marketing-tool-card h3 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.marketing-tool-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.marketing-tool-card-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 40px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(217, 75, 31, 0.1);
+  color: var(--gold-strong);
+  font-size: 0.86rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.marketing-tool-card-link:hover,
+.marketing-tool-card-link:focus-visible {
+  background: linear-gradient(135deg, #ffd166 0%, #d94b1f 100%);
+  color: #241007;
+  outline: none;
+}
+
+@media (max-width: 980px) {
+  .marketing-tools-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .marketing-tools-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .marketing-digital-grid {
@@ -8753,6 +8903,54 @@ html[data-theme="dark"] body.route-marketing .marketing-nav-link {
 html[data-theme="dark"] body.route-marketing .marketing-nav-link.is-active,
 html[data-theme="dark"] body.route-marketing .marketing-nav-link:hover,
 html[data-theme="dark"] body.route-marketing .marketing-nav-link:focus-visible {
+  color: #ffd166;
+}
+
+html[data-theme="dark"] body.route-marketing .marketing-nav-dropdown-menu {
+  border-color: rgba(242, 165, 26, 0.18);
+  background: linear-gradient(145deg, rgba(22, 13, 9, 0.98) 0%, rgba(42, 21, 13, 0.98) 100%);
+  box-shadow: 0 24px 64px rgba(33, 12, 4, 0.48);
+}
+
+html[data-theme="dark"] body.route-marketing .marketing-nav-tool-link {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+html[data-theme="dark"] body.route-marketing .marketing-nav-tool-link:hover,
+html[data-theme="dark"] body.route-marketing .marketing-nav-tool-link:focus-visible {
+  background: rgba(255, 209, 102, 0.1);
+}
+
+html[data-theme="dark"] body.route-marketing .marketing-nav-tool-body {
+  color: rgba(255, 238, 218, 0.66);
+}
+
+html[data-theme="dark"] body.route-marketing .marketing-tools {
+  border-color: rgba(242, 165, 26, 0.16);
+  background: linear-gradient(145deg, #160d09 0%, #28150e 48%, #120906 100%);
+  box-shadow:
+    0 24px 64px rgba(33, 12, 4, 0.46),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme="dark"] body.route-marketing .marketing-tool-card {
+  border-color: rgba(242, 165, 26, 0.16);
+  background:
+    radial-gradient(circle at top right, rgba(242, 165, 26, 0.12), transparent 36%),
+    rgba(255, 255, 255, 0.055);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html[data-theme="dark"] body.route-marketing .marketing-tool-card h3 {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+html[data-theme="dark"] body.route-marketing .marketing-tool-card p {
+  color: rgba(255, 238, 218, 0.72);
+}
+
+html[data-theme="dark"] body.route-marketing .marketing-tool-card-link {
+  background: rgba(255, 209, 102, 0.1);
   color: #ffd166;
 }
 

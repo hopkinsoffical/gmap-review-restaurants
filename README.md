@@ -14,6 +14,23 @@ These are iron laws. Follow them every time you touch this repo.
 6. Prefer exact paths, exact commands, exact error messages, and exact root causes. Do not write vague summaries if a future agent would need to rediscover the same facts.
 7. Preserve historical updates below the newest entry. Do not reorder older entries except to keep newest-first ordering.
 
+## Update - 2026-06-23 - Marketing Navigation Matches Tools And AI Agent Structure
+
+Status:
+
+- Marketing navigation now includes the missing reference-style entries:
+  - [app.js](app.js)
+    - added `Tools` and `AI Agent` labels to the marketing nav
+    - added a `Tools` dropdown with AI Review Generator, AI SMS Review Booster, AI Front Desk, and Local Ranking Audit links
+    - added a homepage `Tools` section and an `AI Agent` anchor for the Ryan section
+    - added the mobile homepage `Tools` panel so the section order is now lead -> story -> tools -> AI Agent -> footer
+  - [styles.css](styles.css)
+    - added dropdown, tool-card grid, mobile-responsive, and dark-mode styles for the new navigation and Tools section
+
+Verification planned:
+
+- `node --check app.js`
+
 ## Update - 2026-06-23 - Restaurant Store Review Booster Prompts
 
 Status:
