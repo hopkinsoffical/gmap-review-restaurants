@@ -28,7 +28,7 @@ Status:
   - [index.html](index.html), [package.json](package.json)
     - updated remaining static salon-facing description text to restaurant-facing wording
 
-Verification planned:
+Verification completed:
 
 - `node --check app.js`
 
