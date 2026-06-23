@@ -14,6 +14,21 @@ These are iron laws. Follow them every time you touch this repo.
 6. Prefer exact paths, exact commands, exact error messages, and exact root causes. Do not write vague summaries if a future agent would need to rediscover the same facts.
 7. Preserve historical updates below the newest entry. Do not reorder older entries except to keep newest-first ordering.
 
+## Update - 2026-06-23 - Restaurant Store Review Booster Prompts
+
+Status:
+
+- `/stores/{slug}` AI review booster prompts and validation were rewritten for restaurant Google Maps reviews:
+  - [app.js](app.js)
+    - changed review focus rules from salon/service-result wording to restaurant food/drink, staff/service, and atmosphere wording
+    - replaced salon-oriented dish profile anchors with restaurant menu anchors for noodles, rice, buns, dumplings, seafood, soup, tofu, fried/braised dishes, drinks, and desserts
+    - updated receipt/menu mismatch text, Google review generation hard rules, service-praise injection, and review validation regexes to use diner/server/host/dining-room vocabulary
+    - kept internal `service` focus key and `salon_*` backend field names unchanged where they are part of existing contracts
+
+Verification planned:
+
+- `node --check app.js`
+
 ## Update - 2026-06-23 - Restaurant Marketing UI Refactor
 
 Status:

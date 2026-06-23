@@ -1299,8 +1299,8 @@ applyMarketingTheme(getMarketingTheme());
 
   const FOCUS_RULES = {
     none: {
-      zhLabel: "只写项目效果",
-      enLabel: "service result only",
+      zhLabel: "只写菜品",
+      enLabel: "food or drink only",
       zhRule: "这一条只写菜品或饮品本身，比如味道、口感、分量、摆盘、温度，完全不要提staff、环境、氛围。",
       enRule:
         "This review must only talk about the food or drink itself, such as flavor, texture, portion, presentation, freshness, or how the meal came out. Do not mention staff, ambiance, atmosphere, decor, or the restaurant space.",
@@ -1326,7 +1326,7 @@ applyMarketingTheme(getMarketingTheme());
       key: "first_time",
       zhLabel: "第一次来",
       enLabel: "First time here",
-      zhPrompt: "三条都要自然带出是第一次来，但说法别一样，像刚做完项目顺手发出去的短评。",
+      zhPrompt: "三条都要自然带出是第一次来，但说法别一样，像刚吃完或刚离店顺手发出去的短评。",
       enPrompt: "All three should naturally sound like a first visit, but vary the wording so they read like quick post-meal reactions.",
       zhPrefixes: ["第一次来，感觉不错。", "头回来吃，印象很好。", "第一次来，比想的更满意。"],
       enPrefixes: ["First time here, and I liked it right away.", "My first visit here was an easy yes.", "New here, but the result left a strong first impression."],
@@ -1482,7 +1482,7 @@ applyMarketingTheme(getMarketingTheme());
       receiptDetectedSingle: "识别到：{dish}",
       receiptDetectedMulti: "已识别 {count} 个菜品",
       receiptDetectedNone: "这张小票还没认出明确菜品",
-      receiptDetectedUncertain: "小票有读出文字，但未对上目录，请在下方手选项目",
+      receiptDetectedUncertain: "小票有读出文字，但未对上菜单，请在下方手选菜品",
       receiptFailed: "小票识别失败，请换一张更清楚的小票。",
       routeReceipt: "正在整理内容，请稍候…",
       routeDish: "正在整理内容，请稍候…",
@@ -1492,7 +1492,7 @@ applyMarketingTheme(getMarketingTheme());
       reviewFailed: "评论生成失败，请稍后重试。",
       noApiKey: "未配置 OpenAI API Key。",
       noReceipt: "请先上传小票。",
-      noDishes: "还没认出项目，换张更清楚的小票试试。",
+      noDishes: "还没认出菜品，换张更清楚的小票试试。",
       receiptUnmatchedOnly:
         "小票上读到的品名与当前餐厅菜单目录对不上，下面已列出识别文字，请点「从目录添加菜品」手选最相近的；如目录仍是示例内容，请先在后台把菜单改成与你店一致的品项。",
       noUrl: "未配置 Google 跳转链接。",
@@ -1501,7 +1501,7 @@ applyMarketingTheme(getMarketingTheme());
       manualOpen: "没打开？换个入口",
       manualOpenMaps: "优先试 Google Maps",
       manualOpenBrowser: "改用浏览器评论页",
-      addDishFail: "没找到这个项目，请换个写法或从下拉建议里选。",
+      addDishFail: "没找到这个菜品，请换个写法或从下拉建议里选。",
       addDishSuccess: "已补加菜品。",
       removeDishSuccess: "已移除菜品。",
       correctionChanged: "正在整理内容，请稍候…",
@@ -1523,7 +1523,7 @@ applyMarketingTheme(getMarketingTheme());
       storeBootstrapGeneric: "门店页面加载失败，请稍后重试。",
       storeVisitServiceLabel: "今日菜品",
       storeVisitHeroTitle: "今天在 {name} 的体验怎么样？",
-      storeVisitHeroLead: "你的真实感受能帮助其他顾客找到好店家。",
+      storeVisitHeroLead: "你的真实感受能帮助其他食客找到好餐厅。",
       storeVisitMoodPick: "点选星星告诉我们今天的感受",
       storeVisitMood1: "还有提升空间",
       storeVisitMood2: "还可以",
@@ -1561,7 +1561,7 @@ applyMarketingTheme(getMarketingTheme());
       landingPrimaryCta: "Open the Xiebao Edison store page",
       landingSecondaryCta: "View the canonical store route",
       landingCardOneTitle: "What works today",
-      landingCardOneBody: "Upload a receipt, confirm the visit context, and get three short Google review options that still sound like a real client.",
+      landingCardOneBody: "Upload a receipt, confirm the visit context, and get three short Google review options that still sound like a real diner.",
       landingCardTwoTitle: "Where the product is going",
       landingCardTwoBody: "The root domain becomes the main marketing site, store-specific experiences live under /stores/:slug, and /s/:slug stays as the short link.",
       landingCardThreeTitle: "Current production example",
@@ -1605,7 +1605,7 @@ applyMarketingTheme(getMarketingTheme());
       receiptDetectedSingle: "Detected: {dish}",
       receiptDetectedMulti: "{count} dishes detected",
       receiptDetectedNone: "No matching dishes on this receipt yet.",
-      receiptDetectedUncertain: "We read lines on the receipt but they don’t match the catalog — pick services below.",
+      receiptDetectedUncertain: "We read lines on the receipt but they do not match the menu yet — pick dishes below.",
       receiptFailed: "Receipt reading failed. Try a clearer receipt photo.",
       routeReceipt: "Preparing everything. Please wait...",
       routeDish: "Preparing everything. Please wait...",
@@ -1615,7 +1615,7 @@ applyMarketingTheme(getMarketingTheme());
       reviewFailed: "Review generation failed. Please try again.",
       noApiKey: "OpenAI API key is missing.",
       noReceipt: "Upload a receipt first.",
-      noDishes: "No service found yet. Try a clearer receipt photo.",
+      noDishes: "No dish found yet. Try a clearer receipt photo.",
       receiptUnmatchedOnly:
         "We read these lines, but they do not match the restaurant catalog yet. Add dishes manually from the list, or update the catalog in admin so it matches your menu. See the uncertain lines below.",
       noUrl: "Google link is not configured.",
@@ -1682,20 +1682,22 @@ applyMarketingTheme(getMarketingTheme());
   const DISH_PROFILE_OVERRIDES = {};
 
   const DISH_PROFILE_RULES = [
-    { test: /gel|color gel|french gel|hard gel|soft gel/i, zh: ["颜色很正", "表面很亮", "做得很细"], en: ["great color", "glossy finish", "very detailed work"] },
-    { test: /sns|powder|dip/i, zh: ["做得很稳", "成品很干净", "看起来很精致"], en: ["very clean finish", "looks polished", "came out really neat"] },
-    { test: /manicure|mani/i, zh: ["细节做得好", "看起来很干净", "整体很舒服"], en: ["great detail work", "very clean result", "felt easy and comfortable"] },
-    { test: /pedicure|pedi|foot massage|callus/i, zh: ["做完整个人都放松", "护理很到位", "细节很仔细"], en: ["really relaxing", "thorough care", "very attentive detail"] },
-    { test: /acrylic|extension|tip|permanent french|extra length/i, zh: ["造型做得很顺", "长度和形状都很好看", "完成度很高"], en: ["shape came out beautifully", "great length and structure", "high-finish result"] },
-    { test: /design|art|tropical/i, zh: ["设计感很好", "成品很有记忆点", "细节很精致"], en: ["great design sense", "very memorable finish", "beautiful detail work"] },
-    { test: /wax|threading|brazilian|eyebrow|lip|chin/i, zh: ["过程很利落", "做得很干净", "节奏很稳"], en: ["smooth process", "very clean result", "efficient and steady"] },
-    { test: /massage|swedish|deep tissue|aromatherapy|head spa/i, zh: ["过程很放松", "力度刚好", "结束后状态很好"], en: ["very relaxing", "pressure felt just right", "felt great afterward"] },
-    { test: /lashes|facial|skin care|makeup/i, zh: ["效果很自然", "看起来很精致", "整体状态更好了"], en: ["natural-looking result", "very polished", "overall look came out great"] },
+    { test: /noodle|面|捞面|汤面|拌面/i, zh: ["面条口感好", "汤底或酱汁很入味", "吃起来很顺口"], en: ["nice noodle texture", "flavorful broth or sauce", "easy to keep eating"] },
+    { test: /rice|饭|炒饭|泡饭|盖饭/i, zh: ["米饭口感不错", "配料给得足", "味道很稳"], en: ["rice texture was good", "generous toppings", "solid flavor"] },
+    { test: /bun|包|生煎|小笼|月饼/i, zh: ["外皮口感好", "馅料很足", "趁热吃很香"], en: ["wrapper had a good bite", "generous filling", "best while hot"] },
+    { test: /dumpling|wonton|饺|馄饨|锅贴|烧卖|shumai/i, zh: ["馅料鲜", "皮和馅比例好", "口感很扎实"], en: ["fresh filling", "good wrapper-to-filling balance", "satisfying bite"] },
+    { test: /seafood|crab|shrimp|fish|lobster|虾|蟹|鱼|龙虾|海鲜/i, zh: ["海鲜很鲜", "调味够入味", "份量看得见"], en: ["seafood tasted fresh", "seasoning landed well", "portion felt generous"] },
+    { test: /soup|broth|汤|煲|casserole|pot/i, zh: ["汤底舒服", "热度刚好", "味道很暖胃"], en: ["comforting broth", "served at a good temperature", "warm and satisfying"] },
+    { test: /tofu|豆腐/i, zh: ["豆腐口感嫩", "酱汁很下饭", "味道层次不错"], en: ["silky tofu texture", "sauce went well with rice", "nice layers of flavor"] },
+    { test: /fried|crispy|煎|炸|脆/i, zh: ["外层很香脆", "火候不错", "吃起来不腻"], en: ["crispy outside", "well-cooked", "not too heavy"] },
+    { test: /braised|红烧|酱|sauce|glaze/i, zh: ["酱汁很入味", "味道浓郁", "很适合配饭"], en: ["sauce was flavorful", "rich taste", "great with rice"] },
+    { test: /drink|tea|soda|lemon|饮品|茶|柠檬|金桔|百香果/i, zh: ["饮品清爽", "甜度舒服", "搭配餐点刚好"], en: ["refreshing drink", "comfortable sweetness", "paired well with the meal"] },
+    { test: /dessert|甜点|杨枝甘露|mango|red bean|pineapple|莲藕/i, zh: ["甜度刚好", "收尾很舒服", "口感有层次"], en: ["balanced sweetness", "nice finish to the meal", "good texture"] },
   ];
 
   const DISH_PROFILE_FALLBACK = {
-    zh: ["做得很细致", "成品很干净", "整体很满意"],
-    en: ["very detailed work", "clean result", "really happy with how it came out"],
+    zh: ["味道很稳", "出品不错", "整体很满意"],
+    en: ["solid flavor", "good execution", "really happy with the meal"],
   };
 
   const HISTORY_STORAGE_KEY = "gmap-faster-review-history-v1";
@@ -2282,8 +2284,8 @@ applyMarketingTheme(getMarketingTheme());
 
       const sentence =
         state.lang === "zh"
-          ? "也夸夸" + payload.staffLabel + "，很" + option.zhPhrase + "。"
-          : " Also shoutout to " + payload.staffLabel + " for being " + option.enPhrase + ".";
+          ? "也提一下" + payload.staffLabel + "，服务" + option.zhPhrase + "。"
+          : " Also shoutout to " + payload.staffLabel + " for the " + option.enPhrase + " service.";
 
       return Object.assign({}, review, {
         text: state.lang === "zh" ? review.text + sentence : review.text + sentence,
@@ -9809,7 +9811,7 @@ function renderServicesContent() {
           config.restaurantNameZh +
           "\n" +
           "输出语言：中文\n\n" +
-          "本次项目与固定夸赞点：\n" +
+          "本次菜品/饮品与固定夸赞点：\n" +
           dishLines +
           "\n\n" +
           "顾客来店信息：\n" +
@@ -9818,7 +9820,7 @@ function renderServicesContent() {
           "。\n" +
           (visitTier ? "- " + visitTier.zhPrompt + "\n" : "") +
           (servicePraise
-            ? "- 如果本轮有服务相关评论，请明确提到" +
+            ? "- 如果本轮有 staff/服务相关评论，请明确提到" +
               servicePraise.staffLabel +
               "，重点夸“" +
               servicePraiseOption.zhLabel +
@@ -9831,10 +9833,10 @@ function renderServicesContent() {
           "硬性要求：\n" +
           "1. 必须输出 3 条评论，并严格使用这 3 个 style_key：review_a、review_b、review_c。\n" +
           "2. review_a 对应卡片“随手好发”，review_b 对应“精致一点”，review_c 对应“让人记住”。\n" +
-          "3. 本轮三条评论里，必须刚好一条只写项目效果，刚好一条提staff，刚好一条提环境；但哪张卡对应哪种焦点，以本轮上面的分配为准。\n" +
-          "4. 不要把服务和环境同时写进同一条。\n" +
-          "5. 优先点出 1 到 2 个最有记忆点的项目；遇到很长的项目名时，用顾客会顺口说的短叫法，不要把整串服务项目名全塞进去。\n" +
-          "6. 每条都要口语、简短、像刚做完项目顺手发出去的话，允许稍微带一点吸引力，但不能像广告。\n" +
+          "3. 本轮三条评论里，必须刚好一条只写菜品/饮品，刚好一条提staff/服务，刚好一条提环境；但哪张卡对应哪种焦点，以本轮上面的分配为准。\n" +
+          "4. 不要把staff/服务和环境同时写进同一条。\n" +
+          "5. 优先点出 1 到 2 个最有记忆点的菜品或饮品；遇到很长的菜单名时，用食客会顺口说的短叫法，不要把整串菜单名全塞进去。\n" +
+          "6. 每条都要口语、简短、像刚吃完或刚离店顺手发出去的话，允许稍微带一点吸引力，但不能像广告。\n" +
           "7. 三条正文的总体长度必须递增：review_a 最短，review_b 比 review_a 明显更长，review_c 最长；每条遵守上面卡片里的长度目标，不要把三条写得差不多长。\n" +
           "8. 可以带一点真人会说的小碎句，但不要三条都一个套路。\n" +
           "9. 禁止使用冒号、破折号，不要加 emoji、引号、井号。\n" +
@@ -9858,7 +9860,7 @@ function renderServicesContent() {
         config.restaurantNameEn +
         "\n" +
         "Output language: English\n\n" +
-        "Services with fixed praise anchors:\n" +
+        "Dishes/drinks with fixed praise anchors:\n" +
         dishLines +
         "\n\n" +
         "Visit context:\n" +
@@ -9867,7 +9869,7 @@ function renderServicesContent() {
         ".\n" +
         (visitTier ? "- " + visitTier.enPrompt + "\n" : "") +
         (servicePraise
-          ? "- If this round includes the service-focused review, explicitly mention " +
+          ? "- If this round includes the staff/service-focused review, explicitly mention " +
             servicePraise.staffLabel +
             " and highlight that they were " +
             servicePraiseOption.enLabel +
@@ -9881,8 +9883,8 @@ function renderServicesContent() {
         "1. Output exactly 3 reviews and use these exact style_key values: review_a, review_b, review_c.\n" +
         "2. review_a is the Easy pick card, review_b is the Polished card, and review_c is the Memorable card.\n" +
         "3. Across the three reviews, there must be exactly one results-only review, exactly one staff review, and exactly one atmosphere review, but the card-to-focus mapping must follow this round's assignment above.\n" +
-        "4. Never mention service and atmosphere in the same review.\n" +
-        "5. Mention 1 or 2 memorable services at most. If a service name is long, shorten it the way a client naturally would instead of pasting the full title.\n" +
+        "4. Never mention staff/service and atmosphere in the same review.\n" +
+        "5. Mention 1 or 2 memorable dishes or drinks at most. If a menu item name is long, shorten it the way a diner naturally would instead of pasting the full title.\n" +
         "6. Keep every review conversational, short, and easy to post. A little appealing is good, but it still has to feel personal rather than ad copy.\n" +
         "7. Overall length must increase: review_a is the shortest, review_b is clearly longer than review_a, and review_c is the longest, but review_c (Memorable) must stay at 50 words or below—count full words. Follow each card's length target above and do not make all three feel the same length.\n" +
         "8. Use light real-person filler only when it helps. Do not make all three follow the same sentence pattern.\n" +
@@ -10283,12 +10285,12 @@ function renderServicesContent() {
 
     const servicePattern =
       state.lang === "zh"
-        ? /服务|staff|老师|美甲师|技师|店员|态度|热情|耐心|细心|认真|沟通|照顾周到|手法/
-        : /\bservice\b|\bstaff\b|\btech(?:nician)?\b|\bartist\b|\bteam\b|\battentive\b|\bpatient\b|\bfriendly\b|\bkind\b|\bcommunicat(?:ion|e|ive)\b|\bgentle\b|took care of us|well taken care of|hospitality|easy to communicate with/i;
+        ? /服务|staff|店员|服务员|前台|接待|态度|热情|耐心|细心|认真|沟通|照顾周到|上菜快|出餐快|招呼|推荐|安排|点单| hospitality/i
+        : /\bservice\b|\bstaff\b|\bserver\b|\bwaiter\b|\bwaitress\b|\bhost\b|\bhostess\b|\bteam\b|\battentive\b|\bpatient\b|\bfriendly\b|\bkind\b|\bcommunicat(?:ion|e|ive)\b|\bhospitality\b|\bhelpful\b|took care of us|well taken care of|easy to communicate with|quick service|fast service/i;
     const environmentPattern =
       state.lang === "zh"
         ? /环境|氛围|装修|店里|空间|座位|坐着舒服|店里很干净|环境很舒服|空间很舒服|氛围很放松|店里很安静|空间很明亮/
-        : /\bambiance\b|\batmosphere\b|\bdecor\b|\benvironment\b|\bspace\b|\bsetting\b|\broom\b|\bvibe(?:s)?\b|\bcozy\b|\bclean (salon|space|room|place)\b|\b(salon|space|room|place) (was |felt )?clean\b|\b(relaxing|calm|comfortable) (space|room|setting|vibe|atmosphere|salon)\b/i;
+        : /\bambiance\b|\batmosphere\b|\bdecor\b|\benvironment\b|\bspace\b|\bsetting\b|\bdining room\b|\btable\b|\bseating\b|\bvibe(?:s)?\b|\bcozy\b|\bclean (restaurant|space|room|place|dining room)\b|\b(restaurant|space|room|place|dining room) (was |felt )?clean\b|\b(relaxing|calm|comfortable) (space|room|setting|vibe|atmosphere|restaurant|dining room)\b/i;
     const bannedPunctuationPattern = /[:：—–-]/;
 
     reviews.forEach(function (review) {
