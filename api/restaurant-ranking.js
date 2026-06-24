@@ -6,7 +6,7 @@
  * Returns full leaderboard row + google profile + DOH data merged.
  */
 
-const { getSupabaseAdmin } = require("../lib/server/supabase");
+const { getSupabasePublic } = require("../lib/server/supabase");
 const { handleApiError, sendJson } = require("../lib/server/http");
 
 module.exports = async function handler(req, res) {
@@ -23,7 +23,7 @@ module.exports = async function handler(req, res) {
       return sendJson(res, 400, { error: "slug, placeId, or camis required" });
     }
 
-    const supabase = getSupabaseAdmin();
+    const supabase = getSupabasePublic();
 
     // 1. Try restaurant_leaderboard first (has pre-computed scores)
     let lbRow = null;

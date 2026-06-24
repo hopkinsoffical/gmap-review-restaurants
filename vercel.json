@@ -32,6 +32,11 @@
       "source": "/s/:slug",
       "destination": "/stores/:slug",
       "permanent": true
+    },
+    {
+      "source": "/ai-review-booster.html",
+      "destination": "/ai-review-generator.html",
+      "permanent": true
     }
   ],
   "rewrites": [

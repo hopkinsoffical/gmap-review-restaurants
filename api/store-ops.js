@@ -1,14 +1,29 @@
 const { createAppError } = require("../lib/server/shared");
-const { getDefaultSalonMenuJsonSafe } = require("../lib/server/default-menu");
 const { generateReviewsForStore } = require("../lib/server/reviews");
 const { getSlugParam, handleApiError, methodNotAllowed, readJsonBody, sendJson } = require("../lib/server/http");
 const { recognizeStoreUpload } = require("../lib/server/recognize");
-const { createScanEvent, getStoreBootstrap } = require("../lib/server/store-repo");
+const { createScanEvent, getStoreBootstrap, resolveStoreMenuPack } = require("../lib/server/store-repo");
 
 function queryOp(req) {
   const raw = req && req.query ? req.query.op : "";
   const v = Array.isArray(raw) ? raw[0] : raw;
   return String(v || "").trim();
+}
+
+function buildBootstrapMenuPayload(menuPack) {
+  if (!menuPack || !menuPack.menuJson) return { menuSnapshotPayload: null, fallbackMenu: null };
+  if (menuPack.catalogStatus === "published") {
+    return {
+      menuSnapshotPayload: {
+        menu: menuPack.menuJson,
+      },
+      fallbackMenu: null,
+    };
+  }
+  return {
+    menuSnapshotPayload: null,
+    fallbackMenu: menuPack.menuJson,
+  };
 }
 
 module.exports = async function handler(req, res) {
@@ -28,26 +43,33 @@ module.exports = async function handler(req, res) {
         throw createAppError("STORE_NOT_FOUND", "Store not found or inactive", 404);
       }
 
+      const menuPack = await resolveStoreMenuPack(bootstrap);
+      if (!menuPack || !menuPack.menuJson) {
+        throw createAppError(
+          "MENU_SNAPSHOT_NOT_FOUND",
+          "No published menu, service catalog, or bundled fallback menu could be loaded.",
+          503,
+        );
+      }
+
       const published = bootstrap.menuSnapshot;
-      const publishedMenu =
-        published && published.menu && typeof published.menu === "object" ? published.menu : null;
+      const menuParts = buildBootstrapMenuPayload(menuPack);
       const menuSnapshotPayload =
-        published && publishedMenu
+        menuPack.catalogStatus === "published" && published
           ? {
               id: published.id,
               version: published.version,
               publishedAt: published.publishedAt,
-              menu: publishedMenu,
+              menu: menuPack.menuJson,
             }
-          : null;
-      const fallbackMenu = menuSnapshotPayload ? null : getDefaultSalonMenuJsonSafe();
+          : menuParts.menuSnapshotPayload;
 
       return sendJson(res, 200, {
         store: bootstrap.store,
         staff: bootstrap.staff || [],
         menuSnapshot: menuSnapshotPayload,
-        fallbackMenu: fallbackMenu,
-        catalogStatus: menuSnapshotPayload ? "published" : "default_seed",
+        fallbackMenu: menuParts.fallbackMenu,
+        catalogStatus: menuPack.catalogStatus,
         serviceSpotlight: bootstrap.serviceSpotlight || null,
         features: {
           receiptRecognition: true,
@@ -76,12 +98,11 @@ module.exports = async function handler(req, res) {
         throw createAppError("STORE_NOT_FOUND", "Store not found or inactive", 404);
       }
 
-      const menuJson =
-        (bootstrap.menuSnapshot && bootstrap.menuSnapshot.menu) || getDefaultSalonMenuJsonSafe();
-      if (!menuJson) {
+      const menuPack = await resolveStoreMenuPack(bootstrap);
+      if (!menuPack || !menuPack.menuJson) {
         throw createAppError(
           "MENU_SNAPSHOT_NOT_FOUND",
-          "No published service catalog and bundled menu.json could not be loaded.",
+          "No published menu, service catalog, or bundled fallback menu could be loaded.",
           503,
         );
       }
@@ -94,13 +115,13 @@ module.exports = async function handler(req, res) {
 
       const result = await recognizeStoreUpload({
         store: bootstrap.store,
-        menuJson: menuJson,
+        menuJson: menuPack.menuJson,
         imageDataUrl: imageDataUrl,
       });
 
       await createScanEvent({
         storeId: bootstrap.store.id,
-        menuSnapshotId: (bootstrap.menuSnapshot && bootstrap.menuSnapshot.id) || null,
+        menuSnapshotId: menuPack.menuSnapshotId,
         imageKind: result.imageAnalysis && result.imageAnalysis.image_kind,
         recognitionMode: result.recognitionMeta && result.recognitionMeta.mode,
         recognizedDishIds: result.recognizedDishIds,
@@ -128,12 +149,11 @@ module.exports = async function handler(req, res) {
         throw createAppError("STORE_NOT_FOUND", "Store not found or inactive", 404);
       }
 
-      const menuJson =
-        (bootstrap.menuSnapshot && bootstrap.menuSnapshot.menu) || getDefaultSalonMenuJsonSafe();
-      if (!menuJson) {
+      const menuPack = await resolveStoreMenuPack(bootstrap);
+      if (!menuPack || !menuPack.menuJson) {
         throw createAppError(
           "MENU_SNAPSHOT_NOT_FOUND",
-          "No published service catalog and bundled menu.json could not be loaded.",
+          "No published menu, service catalog, or bundled fallback menu could be loaded.",
           503,
         );
       }
@@ -141,7 +161,7 @@ module.exports = async function handler(req, res) {
       const body = await readJsonBody(req);
       const reviews = await generateReviewsForStore({
         store: bootstrap.store,
-        menuJson: menuJson,
+        menuJson: menuPack.menuJson,
         dishIds: body.dishIds || [],
         lang: body.lang || "zh",
         recentTexts: body.recentTexts || [],

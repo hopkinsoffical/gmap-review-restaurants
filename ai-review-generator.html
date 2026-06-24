@@ -1,497 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Review Generator | RankMyRestaurant</title>
+  <title>AI Review Booster | RankMyRestaurant</title>
 
   <link rel="stylesheet" href="/styles.css"/>
+  <link rel="stylesheet" href="/marketing-surfaces.css?v=20260610-7" />
 
   <style>
-    body{
-      margin:0;
-      background:
-        radial-gradient(circle at top, rgba(31,57,108,.14), transparent 28%),
-        linear-gradient(180deg,#040b16 0%, #08111d 100%);
-      color:#edf4ff;
-      font-family:Inter,sans-serif;
-      overflow-x:hidden;
+    body {
+      margin: 0;
+      background: #0D0B1F;
+      color: #F5F0FA;
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
     }
-
-    .product-page{
-      width:100%;
-      max-width:1120px;
-      margin:24px auto 48px;
+    .product-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
-
-    .product-page .marketing-nav-shell,
-    .product-page .marketing-footer{
-      width:100% !important;
-      max-width:100% !important;
-      margin-left:0 !important;
-      margin-right:0 !important;
-      box-sizing:border-box !important;
+    .product-shell {
+      max-width: 1200px;
+      margin: 0 auto;
     }
-
-    .product-page .marketing-footer-wrapper,
-    .product-page .marketing-footer-bottom{
-      width:100% !important;
-      max-width:100% !important;
-      box-sizing:border-box !important;
-    }
-
-    .product-page .marketing-nav-shell{
-      background:linear-gradient(180deg,#0b1322 0%, #101b2d 100%) !important;
-      border:1px solid rgba(117,149,208,.16) !important;
-      box-shadow:0 18px 50px rgba(0,0,0,.24) !important;
-      display:flex !important;
-      align-items:center !important;
-      justify-content:space-between !important;
-      flex-wrap:nowrap !important;
-      white-space:nowrap !important;
-      gap:12px !important;
-      overflow:visible !important;
-    }
-
-    .product-page .marketing-nav-main{
-      display:flex !important;
-      align-items:center !important;
-      justify-content:flex-start !important;
-      flex-wrap:nowrap !important;
-      white-space:nowrap !important;
-      flex:1 1 auto !important;
-      min-width:0 !important;
-      gap:20px !important;
-    }
-
-    .product-page .marketing-brand{
-      flex:0 0 auto !important;
-      white-space:nowrap !important;
-    }
-
-    .product-page .marketing-nav{
-      display:flex !important;
-      align-items:center !important;
-      justify-content:flex-start !important;
-      flex-wrap:nowrap !important;
-      white-space:nowrap !important;
-      flex:0 1 auto !important;
-      min-width:0 !important;
-      gap:13px !important;
-    }
-
-    .product-page .marketing-nav-link{
-      flex:0 0 auto !important;
-      white-space:nowrap !important;
-      color:#9daabe !important;
-    }
-
-    .product-page .marketing-auth-actions{
-      display:flex !important;
-      align-items:center !important;
-      justify-content:flex-end !important;
-      flex-wrap:nowrap !important;
-      white-space:nowrap !important;
-      flex:0 0 auto !important;
-      gap:12px !important;
-    }
-
-    .product-page .marketing-contact-nav-btn,
-    .product-page .marketing-auth-link,
-    .product-page .marketing-lang-toggle{
-      flex:0 0 auto !important;
-      white-space:nowrap !important;
-    }
-
-    .product-page .brand-part-rank{
-      color:#f5f8ff !important;
-      font-weight:700 !important;
-    }
-
-    .product-page .brand-part-mysalon{
-      background:linear-gradient(135deg,#fff0b6 0%,#e6c35f 42%,#cfa83d 100%) !important;
-      -webkit-background-clip:text !important;
-      background-clip:text !important;
-      color:transparent !important;
-      text-shadow:0 0 18px rgba(230,195,95,.18) !important;
-      font-weight:700 !important;
-    }
-
-    .product-page .marketing-nav-link:hover,
-    .product-page .marketing-nav-link.is-active{
-      color:#e6c35f !important;
-    }
-
-    .product-page .marketing-auth-link,
-    .product-page .marketing-lang-toggle{
-      background:rgba(255,255,255,.04) !important;
-      border:1px solid rgba(255,255,255,.12) !important;
-      color:#edf4ff !important;
-    }
-
-    .product-page .marketing-auth-link:hover,
-    .product-page .marketing-lang-toggle:hover{
-      background:rgba(255,255,255,.08) !important;
-      color:#ffffff !important;
-    }
-
-    .product-page .marketing-contact-nav-btn{
-      background:linear-gradient(135deg,#9f1118 0%, #d31b25 100%) !important;
-      color:#ffffff !important;
-      box-shadow:0 12px 34px rgba(211,27,37,.28) !important;
-    }
-
-    .product-page .marketing-footer{
-      background:linear-gradient(180deg,#0b1322 0%, #101b2d 100%) !important;
-      border:1px solid rgba(117,149,208,.16) !important;
-      color:#edf4ff !important;
-      box-shadow:0 18px 50px rgba(0,0,0,.24) !important;
-    }
-
-    .product-page .footer-logo-360,
-    .product-page .footer-logo-media,
-    .product-page .footer-company-name,
-    .product-page .footer-column-header{
-      color:#f5f8ff !important;
-    }
-
-    .product-page .footer-logo-ai{
-      color:#20e686 !important;
-    }
-
-    .product-page .footer-column-title{
-      color:#c7d2e6 !important;
-    }
-
-    .product-page .footer-address,
-    .product-page .footer-link,
-    .product-page .footer-copyright{
-      color:#8d9aad !important;
-    }
-
-    .product-page .footer-link:hover{
-      color:#e6c35f !important;
-    }
-
-    .product-page .marketing-footer-bottom{
-      border-top-color:rgba(117,149,208,.22) !important;
-    }
-
-    .product-shell{
-      margin-top:22px;
-      padding:34px;
-      border-radius:42px;
-      background:linear-gradient(180deg,#111a2b 0%, #17243a 100%);
-      border:1px solid rgba(117,149,208,.1);
-      backdrop-filter:blur(16px);
-      box-shadow:0 18px 50px rgba(0,0,0,.24);
-    }
-
-    .hero-top-section{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:42px;
-      align-items:center;
-      margin-bottom:42px;
-    }
-
-    .hero-label{
-      display:inline-flex;
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(126,164,214,.12);
-      color:#8fb6e6;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.05em;
-      text-transform:uppercase;
-    }
-
-    .hero-title{
-      margin:22px 0 20px;
-      font-size:76px;
-      line-height:.88;
-      letter-spacing:-.08em;
-      font-weight:800;
-      color:#f5f8ff;
-    }
-
-    .hero-description{
-      margin:0;
-      font-size:18px;
-      line-height:1.95;
-      color:#9db0c8;
-    }
-
-    .hero-description strong{
-      color:#edf4ff;
-      font-weight:700;
-    }
-
-    .hero-image{
-      overflow:hidden;
-      border-radius:32px;
-      background:
-        radial-gradient(circle at top left, rgba(104,140,219,.18), transparent 30%),
-        linear-gradient(135deg,#101a2c 0%, #17263f 100%);
-      border:1px solid rgba(255,255,255,.06);
-      aspect-ratio:4/3;
-      max-height:390px;
-      box-shadow:0 20px 60px rgba(0,0,0,.22);
-    }
-
-    .hero-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .feature-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:16px;
-      margin-bottom:42px;
-    }
-
-    .feature-item{
-      padding:22px;
-      border-radius:24px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .feature-title{
-      margin-bottom:8px;
-      font-size:15px;
-      font-weight:700;
-      color:#f4f8ff;
-    }
-
-    .feature-text{
-      font-size:14px;
-      line-height:1.8;
-      color:#9fb3cb;
-    }
-
-    .bottom-section{
-      margin-bottom:42px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-    }
-
-    .bottom-card{
-      padding:30px;
-      border-radius:30px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .bottom-title{
-      margin:0 0 14px;
-      font-size:28px;
-      letter-spacing:-.05em;
-      color:#f4f8ff;
-    }
-
-    .bottom-text{
-      font-size:15px;
-      line-height:1.95;
-      color:#9fb3cb;
-    }
-
-    .pricing-section{
-      margin-top:8px;
-    }
-
-    .pricing-heading{
-      margin:0 0 24px;
-      font-size:34px;
-      letter-spacing:-.05em;
-      color:#f5f8ff;
-      text-align:center;
-    }
-
-    .pricing-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-    }
-
-    .plan-card{
-      position:relative;
-      padding:34px;
-      border-radius:30px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .plan-card.featured{
-      background:
-        radial-gradient(circle at top right, rgba(230,195,95,.14), transparent 28%),
-        linear-gradient(180deg,#0b1322 0%, #101b2d 100%);
-      color:#f5f8ff;
-      border:1px solid rgba(230,195,95,.16);
-      transform:scale(1.02);
-      box-shadow:0 24px 70px rgba(0,0,0,.34);
-    }
-
-    .popular-badge{
-      position:absolute;
-      top:-12px;
-      right:24px;
-      padding:8px 14px;
-      border-radius:999px;
-      background:linear-gradient(135deg,#e3c465 0%, #f2dfa1 100%);
-      color:#08111d;
-      font-size:11px;
-      font-weight:800;
-      letter-spacing:.05em;
-      text-transform:uppercase;
-    }
-
-    .plan-label{
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      margin-bottom:16px;
-      color:#e6c35f;
-    }
-
-    .plan-price{
-      display:flex;
-      align-items:flex-end;
-      gap:10px;
-      margin-bottom:14px;
-    }
-
-    .plan-price-main{
-      font-size:58px;
-      line-height:1;
-      font-weight:800;
-      letter-spacing:-.08em;
-      color:#f5f8ff;
-    }
-
-    .plan-price-sub{
-      font-size:16px;
-      margin-bottom:8px;
-      color:#9db0c8;
-    }
-
-    .plan-save{
-      display:inline-flex;
-      margin-bottom:18px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(230,195,95,.12);
-      color:#e6c35f;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.04em;
-    }
-
-    .plan-description{
-      margin-bottom:24px;
-      font-size:14px;
-      line-height:1.9;
-      color:#9fb3cb;
-    }
-
-    .plan-card.featured .plan-description{
-      color:#9fb3cb;
-    }
-
-    .plan-points{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin-bottom:30px;
-    }
-
-    .plan-point{
-      font-size:14px;
-      line-height:1.7;
-      color:#9fb3cb;
-    }
-
-    .primary-btn,
-    .secondary-btn{
-      width:100%;
-      height:58px;
-      border-radius:999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      font-size:14px;
-      font-weight:700;
-      transition:.2s ease;
-      box-sizing:border-box;
-    }
-
-    .primary-btn{
-      background:linear-gradient(135deg,#e3c465 0%, #f2dfa1 100%);
-      color:#08111d;
-      box-shadow:0 14px 28px rgba(227,196,101,.18);
-    }
-
-    .secondary-btn{
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      color:#edf4ff;
-    }
-
-    .primary-btn:hover,
-    .secondary-btn:hover{
-      transform:translateY(-2px);
-    }
-
-    .setup-note{
-      margin-top:24px;
-      text-align:center;
-      font-size:13px;
-      line-height:1.8;
-      color:#8d9aad;
-    }
-
-    @media(max-width:900px){
-      .hero-top-section,
-      .feature-grid,
-      .pricing-grid,
-      .bottom-section{
-        grid-template-columns:1fr;
-      }
-
-      .hero-title{
-        font-size:48px;
-      }
-
-      .plan-card.featured{
-        transform:none;
-      }
-    }
-
-    @media(max-width:768px){
-      .product-page{
-        width:auto;
-        max-width:none;
-        margin:16px;
-      }
-
-      .product-page .marketing-nav-shell,
-      .product-page .marketing-nav-main,
-      .product-page .marketing-nav,
-      .product-page .marketing-auth-actions{
-        flex-wrap:wrap !important;
-        white-space:normal !important;
-      }
-
-      .product-shell{
-        padding:24px;
-      }
+    @media (max-width: 640px) {
+      body { padding: 0; }
+      .product-page { padding: 0 16px; }
     }
   </style>
 
@@ -789,374 +325,1052 @@
     }
   </style>
 
+  <style>
+    /* === AI Review Booster landing page === */
+    :root {
+      --air-bg: #0d0b1f;
+      --air-bg-2: #14102e;
+      --air-panel: #1a1338;
+      --air-card: #211a45;
+      --air-ink: #f5f0fa;
+      --air-soft: #c9c0d8;
+      --air-muted: #8a82a0;
+      --air-pink: #e8a0d5;
+      --air-coral: #f4a8c7;
+      --air-accent: #7b6ef6;
+      --air-radius: 18px;
+      --air-max: 1100px;
+    }
+
+    .air-product-shell {
+      max-width: var(--air-max);
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+      color: var(--air-ink);
+    }
+
+    /* === HERO === */
+    .air-hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 56px;
+      align-items: center;
+      padding: 32px 0 64px;
+    }
+
+    .air-hero-label {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(232, 160, 213, 0.32);
+      background: rgba(232, 160, 213, 0.08);
+      color: var(--air-coral);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .air-hero-title {
+      margin: 0 0 18px;
+      font-size: clamp(2.6rem, 6vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, #ffffff 0%, #c9b8e8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .air-hero-sub {
+      margin: 0 0 28px;
+      font-size: 1.08rem;
+      line-height: 1.6;
+      color: var(--air-soft);
+      max-width: 540px;
+    }
+
+    .air-hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .air-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.98rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .air-cta-primary {
+      background: linear-gradient(135deg, #f4a8c7 0%, #d98be0 100%);
+      color: #0d0b1f;
+      box-shadow: 0 8px 24px rgba(232, 160, 213, 0.28);
+    }
+
+    .air-cta-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 32px rgba(232, 160, 213, 0.42);
+    }
+
+    .air-cta-ghost {
+      background: transparent;
+      color: var(--air-ink);
+      border-color: rgba(245, 240, 250, 0.24);
+    }
+
+    .air-cta-ghost:hover {
+      border-color: var(--air-pink);
+      color: var(--air-pink);
+    }
+
+    .air-cta-secondary {
+      background: transparent;
+      color: var(--air-pink);
+      border-color: rgba(232, 160, 213, 0.4);
+    }
+
+    .air-cta-secondary:hover {
+      background: rgba(232, 160, 213, 0.08);
+    }
+
+    .air-cta-large {
+      padding: 16px 28px;
+      font-size: 1.04rem;
+    }
+
+    .air-cta-save {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(232, 160, 213, 0.18);
+      color: var(--air-coral);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .air-hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--air-muted);
+      font-size: 0.86rem;
+    }
+
+    .air-hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .air-phone-frame {
+      position: relative;
+      width: 320px;
+      max-width: 100%;
+      aspect-ratio: 9 / 18;
+      padding: 14px;
+      border-radius: 42px;
+      background: linear-gradient(180deg, #2a1f5a 0%, #1a1338 100%);
+      border: 1px solid rgba(232, 160, 213, 0.2);
+      box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.45),
+        0 0 80px rgba(232, 160, 213, 0.18);
+      overflow: hidden;
+    }
+
+    .air-phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #0d0b1f;
+    }
+
+    .air-phone-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .air-phone-glow {
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle at 50% 50%, rgba(232, 160, 213, 0.18), transparent 60%);
+      z-index: -1;
+      filter: blur(20px);
+    }
+
+    /* === SECTION HEAD === */
+    .air-section-head {
+      max-width: 720px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .air-section-label {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(232, 160, 213, 0.08);
+      color: var(--air-coral);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .air-section-title {
+      margin: 0 0 14px;
+      font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .air-section-sub {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: var(--air-soft);
+    }
+
+    /* === HOW IT WORKS === */
+    .air-how {
+      padding: 56px 0;
+    }
+
+    .air-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .air-step {
+      position: relative;
+      padding: 28px 24px 24px;
+      border-radius: var(--air-radius);
+      border: 1px solid rgba(232, 160, 213, 0.18);
+      background: linear-gradient(180deg, rgba(26, 19, 56, 0.7) 0%, rgba(33, 26, 69, 0.5) 100%);
+    }
+
+    .air-step-num {
+      position: absolute;
+      top: -16px;
+      left: 24px;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f4a8c7 0%, #d98be0 100%);
+      color: #0d0b1f;
+      font-size: 0.92rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(232, 160, 213, 0.36);
+    }
+
+    .air-step-title {
+      margin: 8px 0 8px;
+      font-size: 1.06rem;
+      font-weight: 700;
+      color: var(--air-ink);
+    }
+
+    .air-step-text {
+      margin: 0 0 18px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--air-soft);
+    }
+
+    .air-step-mockup {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(13, 11, 31, 0.6);
+      border: 1px solid rgba(232, 160, 213, 0.12);
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .air-mockup-tap {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--air-coral);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .air-mockup-line {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(245, 240, 250, 0.16);
+    }
+
+    .air-mockup-line.short {
+      width: 60%;
+    }
+
+    .air-mockup-screen {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .air-mockup-pill {
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(245, 240, 250, 0.08);
+      border: 1px solid rgba(245, 240, 250, 0.12);
+    }
+
+    .air-mockup-pill.filled {
+      background: rgba(232, 160, 213, 0.22);
+      border-color: rgba(232, 160, 213, 0.4);
+    }
+
+    .air-mockup-card {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(232, 160, 213, 0.08);
+      border: 1px solid rgba(232, 160, 213, 0.18);
+    }
+
+    .air-mockup-card-line {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(245, 240, 250, 0.22);
+      margin: 4px 0;
+    }
+
+    .air-mockup-card-line.short {
+      width: 60%;
+    }
+
+    /* === REAL REVIEW SAMPLES === */
+    .air-samples {
+      padding: 64px 0;
+    }
+
+    .air-samples-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .air-sample {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .air-sample-frame {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #1a1338;
+      border: 1px solid rgba(232, 160, 213, 0.18);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .air-sample-frame:hover {
+      transform: translateY(-4px);
+      border-color: rgba(232, 160, 213, 0.4);
+    }
+
+    .air-sample-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .air-sample figcaption {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 0 4px;
+    }
+
+    .air-sample-num {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--air-coral);
+    }
+
+    .air-sample-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--air-ink);
+    }
+
+    /* === WHY === */
+    .air-why {
+      padding: 56px 0;
+    }
+
+    .air-why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .air-why-card {
+      padding: 26px 24px;
+      border-radius: var(--air-radius);
+      background: linear-gradient(180deg, rgba(26, 19, 56, 0.7) 0%, rgba(33, 26, 69, 0.5) 100%);
+      border: 1px solid rgba(232, 160, 213, 0.18);
+    }
+
+    .air-why-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(232, 160, 213, 0.22) 0%, rgba(123, 110, 246, 0.18) 100%);
+      border: 1px solid rgba(232, 160, 213, 0.28);
+      color: var(--air-coral);
+      font-size: 1.4rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .air-why-title {
+      margin: 0 0 8px;
+      font-size: 1.04rem;
+      font-weight: 700;
+    }
+
+    .air-why-text {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: var(--air-soft);
+    }
+
+    /* === CTA PANEL === */
+    .air-cta-panel {
+      padding: 48px 0 24px;
+    }
+
+    .air-cta-card {
+      position: relative;
+      padding: 56px 48px;
+      border-radius: 24px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(107, 47, 160, 0.32), transparent 36%),
+        radial-gradient(circle at 84% 12%, rgba(232, 160, 213, 0.28), transparent 32%),
+        linear-gradient(180deg, #1a1338 0%, #211a45 100%);
+      border: 1px solid rgba(232, 160, 213, 0.28);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
+      overflow: hidden;
+    }
+
+    .air-cta-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(13, 11, 31, 0.0) 60%, rgba(13, 11, 31, 0.4) 100%);
+      pointer-events: none;
+    }
+
+    .air-cta-eyebrow {
+      position: relative;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(232, 160, 213, 0.14);
+      color: var(--air-coral);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .air-cta-title {
+      position: relative;
+      margin: 0 auto 14px;
+      max-width: 640px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .air-cta-text {
+      position: relative;
+      margin: 0 auto 28px;
+      max-width: 540px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--air-soft);
+    }
+
+    .air-cta-buttons {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .air-cta-fineprint {
+      position: relative;
+      font-size: 0.82rem;
+      color: var(--air-muted);
+    }
+
+    /* === MOBILE === */
+    @media (max-width: 900px) {
+      .air-hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: left;
+      }
+
+      .air-hero-visual {
+        order: -1;
+      }
+
+      .air-phone-frame {
+        width: 240px;
+      }
+
+      .air-steps {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .air-why-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .air-samples-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .air-cta-card {
+        padding: 40px 24px;
+      }
+
+      .air-cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .air-cta-large {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .air-product-shell {
+        padding: 32px 16px 64px;
+      }
+
+      .air-samples-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body class="route-product">
 
 <div class="product-page">
 
-<header class="marketing-nav-shell">
+<header class="home-hero-nav" aria-label="Primary">
+        <a class="home-hero-brand" href="/">
+          <span class="brand-part brand-part-rank">Rank</span><span class="brand-part brand-part-myrestaurant">MyRestaurant</span>
+        </a>
+        <button type="button" class="home-hero-hamburger" id="homeHeroHamburgerAI" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <div class="home-hero-nav-mobile" id="homeHeroNavMobileAI">
+          <a class="home-hero-link" href="/">Overview</a>
+          <a class="home-hero-link" href="/ai-agents/ryan">AI Agent</a>
+          <div class="home-hero-dropdown">
+            <button type="button" class="home-hero-link home-hero-dropdown-toggle" id="homeNavToolsToggleMobAI" aria-haspopup="true" aria-expanded="false">
+              Tools
+            </button>
+            <div class="home-hero-dropdown-menu" id="homeNavToolsMenuMobAI" role="menu" hidden>
+              <a class="home-hero-dropdown-item" href="/analysis-reports" role="menuitem">Free Checkup Tool</a>
+              <a class="home-hero-dropdown-item" href="/ai-review-generator.html" role="menuitem">AI Review Booster Tool</a>
+              <a class="home-hero-dropdown-item" href="/leaderboard" role="menuitem">Leaderboard</a>
+            </div>
+          </div>
+          <a class="home-hero-link" href="/services.html">Services</a>
+          <div class="home-hero-nav-mobile-actions">
+            <a class="home-hero-signin" href="/login">Sign in</a>
+            <button type="button" class="home-hero-cta" id="homeNavContactBtnMobAI">Contact Us <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+        <nav class="home-hero-links" aria-label="Tools">
+          <a class="home-hero-link" href="/">Overview</a>
+          <a class="home-hero-link" href="/ai-agents/ryan">AI Agent</a>
+          <div class="home-hero-dropdown">
+            <button type="button" class="home-hero-link home-hero-dropdown-toggle" id="homeNavToolsToggle" aria-haspopup="true" aria-expanded="false">
+              Tools
+            </button>
+            <div class="home-hero-dropdown-menu" id="homeNavToolsMenu" role="menu" hidden>
+              <a class="home-hero-dropdown-item" href="/analysis-reports" role="menuitem">Free Checkup Tool</a>
+              <a class="home-hero-dropdown-item" href="/ai-review-generator.html" role="menuitem">AI Review Booster Tool</a>
+              <a class="home-hero-dropdown-item" href="/leaderboard" role="menuitem">Leaderboard</a>
+            </div>
+          </div>
+          <a class="home-hero-link" href="/services.html">Services</a>
+        </nav>
+        <div class="home-hero-actions">
+          <a class="home-hero-signin" href="/login">Sign in</a>
+          <button type="button" class="home-hero-cta" id="homeNavContactBtn">Contact Us <span aria-hidden="true">→</span></button>
+        </div>
+      </header>
 
-  <div class="marketing-nav-main">
 
-    <a class="marketing-brand" href="/">
-      <span class="brand-part brand-part-rank">Rank</span>
-      <span class="brand-part brand-part-mysalon">MySalon</span>
-    </a>
+<script>
+  (function () {
+    // Mobile menu toggle
+    var btn = document.getElementById('homeHeroHamburgerAI');
+    var panel = document.getElementById('homeHeroNavMobileAI');
+    if (btn && panel) {
+      btn.addEventListener('click', function () {
+        var isOpen = panel.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+      // Outside click
+      document.addEventListener('click', function (e) {
+        if (!panel.contains(e.target) && !btn.contains(e.target) && panel.classList.contains('is-open')) {
+          panel.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      });
+      // ESC
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+          panel.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      });
+    }
 
-    <nav class="marketing-nav" aria-label="Primary">
+    // Mobile Tools dropdown (inside mobile panel)
+    var mobToggle = document.getElementById('homeNavToolsToggleMobAI');
+    var mobMenu = document.getElementById('homeNavToolsMenuMobAI');
+    if (mobToggle && mobMenu) {
+      mobToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var isOpen = !mobMenu.hasAttribute('hidden');
+        if (isOpen) {
+          mobMenu.setAttribute('hidden', '');
+          mobToggle.setAttribute('aria-expanded', 'false');
+        } else {
+          mobMenu.removeAttribute('hidden');
+          mobToggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
 
-      <a class="marketing-nav-link" href="/">
-        Overview
-      </a>
+    // Desktop Tools dropdown
+    var dToggle = document.getElementById('homeNavToolsToggle');
+    var dMenu = document.getElementById('homeNavToolsMenu');
+    if (dToggle && dMenu) {
+      dToggle.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var isOpen = !dMenu.hasAttribute('hidden');
+        if (isOpen) {
+          dMenu.setAttribute('hidden', '');
+          dToggle.setAttribute('aria-expanded', 'false');
+        } else {
+          dMenu.removeAttribute('hidden');
+          dToggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+      document.addEventListener('click', function (e) {
+        if (!dToggle.contains(e.target) && !dMenu.contains(e.target)) {
+          dMenu.setAttribute('hidden', '');
+          dToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !dMenu.hasAttribute('hidden')) {
+          dMenu.setAttribute('hidden', '');
+          dToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+  })();
+</script>
 
-      <a class="marketing-nav-link" href="/leaderboard">
-        Leaderboard
-      </a>
 
-      <a class="marketing-nav-link" href="/analysis-reports">
-        Local Salon Ranking
-      </a>
+<main class="air-product-shell">
 
-      <a class="marketing-nav-link is-active" href="/services.html">
-        Services
-      </a>
-
-      <a class="marketing-nav-link" href="/about-us">
-        About Us
-      </a>
-
-    </nav>
-
-  </div>
-
-  <div class="marketing-auth-actions">
-
-    <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme">
-      <span data-theme-icon>☾</span>
-    </button>
-
-    <button
-      type="button"
-      id="marketingContactOpen"
-      class="marketing-contact-nav-btn"
-    >
-      Contact Us
-    </button>
-
-    <a
-      class="ghost landing-link marketing-auth-link"
-      href="/login"
-    >
-      Sign in
-    </a>
-
-    <div class="marketing-lang-wrap" data-marketing-lang-wrap>
-
-      <button
-        type="button"
-        class="ghost landing-link marketing-auth-link marketing-lang-toggle"
-        data-marketing-lang-btn
-        aria-haspopup="true"
-        aria-expanded="false"
-        aria-label="Language · English"
-        id="marketingLangBtn"
-      >
-        <span class="marketing-lang-btn-label">English</span>
-        <span class="marketing-lang-btn-caret" aria-hidden="true">▾</span>
-      </button>
-
-      <ul
-        class="marketing-lang-menu hidden"
-        data-marketing-lang-menu
-        role="menu"
-        aria-labelledby="marketingLangBtn"
-        aria-hidden="true"
-      ></ul>
-
-    </div>
-
-  </div>
-
-</header>
-
-<main class="product-shell">
-
-  <section class="hero-top-section">
-
-    <div>
-      <div class="hero-label">
-        Tier 1 • Google Client Growth System
+  <!-- HERO -->
+  <section class="air-hero">
+    <div class="air-hero-text">
+      <div class="air-hero-label">Tool · Tier 1 Growth System</div>
+      <h1 class="air-hero-title">AI Review Booster</h1>
+      <p class="air-hero-sub">
+        Turn happy guests into 5-star Google reviews — automatically.
+        A 3-tap flow at the table, AI writes the review, guest posts it on Google.
+      </p>
+      <div class="air-hero-ctas">
+        <a
+          href="https://y6y1hf-45.myshopify.com/cart/clear?return_to=/cart/add?items[][id]=45172793180239%26items[][quantity]=1%26items[][selling_plan]=1818230863%26items[][id]=45173467480143%26items[][quantity]=1%26return_to=/checkout"
+          class="air-cta air-cta-primary"
+        >
+          Start Monthly Plan · $29
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="#air-how" class="air-cta air-cta-ghost">See how it works</a>
+        <a href="/stores/xiebao-edison" class="air-cta air-cta-secondary">See live demo</a>
       </div>
+      <div class="air-hero-meta">
+        <span>✓ No app to install</span>
+        <span>✓ Works with any restaurant POS</span>
+        <span>✓ Cancel anytime</span>
+      </div>
+    </div>
+    <div class="air-hero-visual">
+      <div class="air-phone-frame">
+        <div class="air-phone-screen">
+          <img
+            src="/images/ai-review-demo/04-store-visit-step1.png"
+            alt="Store visit step 1 on a phone"
+            class="air-phone-img"
+          />
+        </div>
+        <div class="air-phone-glow"></div>
+      </div>
+    </div>
+  </section>
 
-      <h1 class="hero-title">
-        AI Review Generator
-      </h1>
-
-      <p class="hero-description">
-        Turn happy salon clients into consistent 5-star Google reviews
-        with a frictionless AI-powered review system built specifically
-        for salons and beauty businesses.
-        <strong>
-          Increase Google visibility, improve local ranking performance,
-          and generate more booked clients automatically.
-        </strong>
+  <!-- HOW IT WORKS — 3 STEPS -->
+  <section class="air-how" id="air-how">
+    <div class="air-section-head">
+      <div class="air-section-label">How it works</div>
+      <h2 class="air-section-title">3 taps. One review on Google.</h2>
+      <p class="air-section-sub">
+        From the moment a guest sits down to the moment their review is live on Google —
+        it takes under a minute.
       </p>
     </div>
 
-    <div class="hero-image">
-      <img
-        src="./images/ai-review-generator.png"
-        alt="AI Review Generator"
-      />
-    </div>
+    <div class="air-steps">
+      <div class="air-step">
+        <div class="air-step-num">1</div>
+        <div class="air-step-title">Client taps NFC / scans QR</div>
+        <div class="air-step-text">
+          Placed at every table. Phone opens the store visit page instantly —
+          no app, no login.
+        </div>
+        <div class="air-step-mockup air-step-mockup-1">
+          <div class="air-mockup-tap">Tap or scan</div>
+          <div class="air-mockup-screen">
+            <div class="air-mockup-line"></div>
+            <div class="air-mockup-line short"></div>
+            <div class="air-mockup-pill"></div>
+            <div class="air-mockup-pill"></div>
+          </div>
+        </div>
+      </div>
 
+      <div class="air-step">
+        <div class="air-step-num">2</div>
+        <div class="air-step-title">Quick 3-tap survey</div>
+        <div class="air-step-text">
+          Visit tier (First time / Been back / Regular) → server or highlight → dishes.
+          Three taps and they're done.
+        </div>
+        <div class="air-step-mockup air-step-mockup-2">
+          <div class="air-mockup-screen">
+            <div class="air-mockup-pill filled"></div>
+            <div class="air-mockup-pill"></div>
+            <div class="air-mockup-pill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="air-step">
+        <div class="air-step-num">3</div>
+        <div class="air-step-title">AI writes, client posts</div>
+        <div class="air-step-text">
+          AI generates 3 review drafts in their voice. Client picks one, taps,
+          and it's live on Google Maps.
+        </div>
+        <div class="air-step-mockup air-step-mockup-3">
+          <div class="air-mockup-card">
+            <div class="air-mockup-card-line"></div>
+            <div class="air-mockup-card-line"></div>
+            <div class="air-mockup-card-line short"></div>
+          </div>
+          <div class="air-mockup-card">
+            <div class="air-mockup-card-line"></div>
+            <div class="air-mockup-card-line short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="feature-grid">
-
-    <div class="feature-item">
-      <div class="feature-title">NFC + QR Review Technology</div>
-      <div class="feature-text">
-        Let clients leave reviews instantly with a simple tap or scan.
-      </div>
+  <!-- REAL REVIEW SAMPLES — 4 IMAGES -->
+  <section class="air-samples">
+    <div class="air-section-head">
+      <div class="air-section-label">Real review samples</div>
+      <h2 class="air-section-title">3 drafts in their voice, ready in seconds.</h2>
+      <p class="air-section-sub">
+        Here's what guests actually see after step 2. Each card is a unique
+        AI-generated draft they can post to Google with one tap.
+      </p>
     </div>
 
-    <div class="feature-item">
-      <div class="feature-title">AI Review Assistance</div>
-      <div class="feature-text">
-        Help clients generate high-quality reviews in seconds.
-      </div>
+    <div class="air-samples-grid">
+      <figure class="air-sample">
+        <div class="air-sample-frame">
+          <img src="/images/ai-review-demo/01-review-easy-pick.png" alt="Review draft 1: Easy pick" />
+        </div>
+        <figcaption>
+          <span class="air-sample-num">01</span>
+          <span class="air-sample-name">Easy pick</span>
+        </figcaption>
+      </figure>
+      <figure class="air-sample">
+        <div class="air-sample-frame">
+          <img src="/images/ai-review-demo/02-review-polished.png" alt="Review draft 2: Polished" />
+        </div>
+        <figcaption>
+          <span class="air-sample-num">02</span>
+          <span class="air-sample-name">Polished</span>
+        </figcaption>
+      </figure>
+      <figure class="air-sample">
+        <div class="air-sample-frame">
+          <img src="/images/ai-review-demo/03-review-memorable.png" alt="Review draft 3: Memorable" />
+        </div>
+        <figcaption>
+          <span class="air-sample-num">03</span>
+          <span class="air-sample-name">Memorable</span>
+        </figcaption>
+      </figure>
+      <figure class="air-sample">
+        <div class="air-sample-frame">
+          <img src="/images/ai-review-demo/04-store-visit-step1.png" alt="Store visit step 1" />
+        </div>
+        <figcaption>
+          <span class="air-sample-num">↪</span>
+          <span class="air-sample-name">The 3-tap flow</span>
+        </figcaption>
+      </figure>
     </div>
-
-    <div class="feature-item">
-      <div class="feature-title">Google Ranking Optimization</div>
-      <div class="feature-text">
-        Improve visibility in local Google Maps search results.
-      </div>
-    </div>
-
-    <div class="feature-item">
-      <div class="feature-title">Salon Growth Automation</div>
-      <div class="feature-text">
-        Create a repeatable client acquisition engine for your salon.
-      </div>
-    </div>
-
   </section>
 
-  <section class="bottom-section">
-
-    <div class="bottom-card">
-      <h3 class="bottom-title">Why Reviews Matter</h3>
-      <div class="bottom-text">
-        Today, most new salon clients discover businesses through Google Maps
-        and online reviews. A stronger review profile increases trust,
-        improves click-through rates, and helps your salon rank above local competitors.
+  <!-- WHY IT WORKS — 3 value props -->
+  <section class="air-why">
+    <div class="air-section-head">
+      <div class="air-section-label">Why restaurants use it</div>
+      <h2 class="air-section-title">Built for the table, not the back office.</h2>
+    </div>
+    <div class="air-why-grid">
+      <div class="air-why-card">
+        <div class="air-why-icon">★</div>
+        <div class="air-why-title">More 5-star reviews</div>
+        <div class="air-why-text">
+          Most happy guests never leave a review. The 3-tap flow captures them
+          in the moment, while the meal is still fresh.
+        </div>
+      </div>
+      <div class="air-why-card">
+        <div class="air-why-icon">↑</div>
+        <div class="air-why-title">Higher Google ranking</div>
+        <div class="air-why-text">
+          Review velocity and recency are top local-pack signals. Steady 5-star
+          reviews push you above nearby competitors.
+        </div>
+      </div>
+      <div class="air-why-card">
+        <div class="air-why-icon">⏱</div>
+        <div class="air-why-title">Zero staff work</div>
+        <div class="air-why-text">
+          No follow-up texts, no QR codes to print, no spreadsheet tracking.
+          Guests self-serve at the table.
+        </div>
       </div>
     </div>
-
-    <div class="bottom-card">
-      <h3 class="bottom-title">Built For Salon Growth</h3>
-      <div class="bottom-text">
-        AI Review Generator was designed specifically for salons and beauty businesses —
-        helping teams consistently generate authentic client reviews
-        without creating friction in the customer experience.
-      </div>
-    </div>
-
   </section>
 
-  <section class="pricing-section">
-
-    <h2 class="pricing-heading">
-      Choose Your Growth Plan
-    </h2>
-
-    <div class="pricing-grid">
-
-      <div class="plan-card">
-
-        <div class="plan-label">Monthly Plan</div>
-
-        <div class="plan-price">
-          <div class="plan-price-main">$29</div>
-          <div class="plan-price-sub">/month</div>
-        </div>
-
-        <div class="plan-description">
-          Flexible monthly access for salons that want to start building
-          stronger Google visibility and client trust immediately.
-        </div>
-
-        <div class="plan-points">
-          <div class="plan-point">✔ AI review automation system</div>
-          <div class="plan-point">✔ Google ranking optimization</div>
-          <div class="plan-point">✔ Salon onboarding support</div>
-          <div class="plan-point">✔ Ongoing growth tools</div>
-        </div>
-
+  <!-- CTA PANEL -->
+  <section class="air-cta-panel">
+    <div class="air-cta-card">
+      <div class="air-cta-eyebrow">Ready to start?</div>
+      <h2 class="air-cta-title">Start getting 5-star Google reviews tonight.</h2>
+      <p class="air-cta-text">
+        $29/month. Set up in 10 minutes. First review typically within 24 hours.
+      </p>
+      <div class="air-cta-buttons">
         <a
           href="https://y6y1hf-45.myshopify.com/cart/clear?return_to=/cart/add?items[][id]=45172793180239%26items[][quantity]=1%26items[][selling_plan]=1818230863%26items[][id]=45173467480143%26items[][quantity]=1%26return_to=/checkout"
-          class="secondary-btn"
+          class="air-cta air-cta-primary air-cta-large"
         >
-          Start Monthly Plan
+          Start Monthly Plan · $29
+          <span aria-hidden="true">→</span>
         </a>
-
-      </div>
-
-      <div class="plan-card featured">
-
-        <div class="popular-badge">
-          Most Popular
-        </div>
-
-        <div class="plan-label">Annual Growth Plan</div>
-
-        <div class="plan-price">
-          <div class="plan-price-main">$200</div>
-          <div class="plan-price-sub">/year</div>
-        </div>
-
-        <div class="plan-save">
-          Save $148/year
-        </div>
-
-        <div class="plan-description">
-          Best value for salons serious about long-term Google growth,
-          reputation building, and predictable client acquisition.
-        </div>
-
-        <div class="plan-points">
-          <div class="plan-point">✔ Full AI review growth system</div>
-          <div class="plan-point">✔ Priority onboarding support</div>
-          <div class="plan-point">✔ Strongest ROI over time</div>
-          <div class="plan-point">✔ Lower effective monthly cost</div>
-        </div>
-
         <a
           href="https://y6y1hf-45.myshopify.com/cart/clear?return_to=/cart/add?items[][id]=45172793180239%26items[][quantity]=1%26items[][selling_plan]=1818263631%26items[][id]=45173467480143%26items[][quantity]=1%26return_to=/checkout"
-          class="primary-btn"
+          class="air-cta air-cta-secondary air-cta-large"
         >
-          Start Annual Plan
+          Annual Plan · $200/yr
+          <span class="air-cta-save">Save $148</span>
         </a>
-
       </div>
-
+      <div class="air-cta-fineprint">
+        Secure checkout via Shopify · Cancel anytime · 7-day refund
+      </div>
     </div>
-
-    <div class="setup-note">
-      One-time onboarding & setup fee is automatically included during checkout.
-    </div>
-
   </section>
 
 </main>
+</main>
 
-<footer class="marketing-footer">
+<footer class="home-footer">
+      <div class="home-footer-inner">
 
-  <div class="marketing-footer-wrapper">
-
-    <div class="marketing-footer-left">
-
-      <a href="/" class="marketing-footer-logo-link">
-        <span class="footer-logo-part footer-logo-360">360</span>
-        <span class="footer-logo-part footer-logo-ai">AI</span>
-        <span class="footer-logo-part footer-logo-media">Media</span>
-      </a>
-
-      <div class="marketing-footer-info">
-        <p class="footer-company-name">RankMyRestaurant</p>
-        <p class="footer-address">Salon Platform</p>
-        <p class="footer-address">AI Growth Automation</p>
-      </div>
-
-    </div>
-
-    <div class="marketing-footer-right">
-
-      <div class="marketing-footer-column">
-
-        <h3 class="footer-column-title">
-          PRODUCT
-        </h3>
-
-        <ul class="footer-column-list">
-
-          <li class="footer-column-header">
-            <a
-              href="https://www.rankmyrestaurant.ai/stores/xiebao-edison"
-              class="footer-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Review Tools
+        <!-- Top row: Brand + Social (desktop) -->
+        <div class="home-footer-brand-row">
+          <div class="home-footer-brand">
+            <a href="/" class="footer-360ai-logo">
+              <span class="flp-360">360</span>
+              <span class="flp-ai">AI</span>
+              <span class="flp-media">Media</span>
             </a>
-          </li>
+            <a href="/" class="footer-rm-brand">
+              <span class="fb-rank">Rank</span><span class="fb-myrestaurant">MyRestaurant</span>
+            </a>
+            <p class="footer-address">AI growth automation for restaurants &amp; local dining brands</p>
+          </div>
+        </div>
 
-          <li><a href="/price" class="footer-link">Reviews Manager</a></li>
-          <li><a href="/price" class="footer-link">Response Manager</a></li>
-          <li><a href="/price" class="footer-link">Analytics</a></li>
-          <li><a href="/price" class="footer-link">Reports</a></li>
+        <!-- Columns (hidden on mobile) -->
+        <div class="home-footer-columns home-footer-columns-desktop">
+          <div class="home-footer-col">
+            <p class="home-footer-col-heading">Company</p>
+            <ul class="home-footer-links">
+              <li><a href="/about-us" class="home-footer-link">About Us</a></li>
+              <li><a href="/terms" class="home-footer-link">Terms of Service</a></li>
+              <li><a href="/privacy" class="home-footer-link">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div class="home-footer-col">
+            <p class="home-footer-col-heading">Product</p>
+            <ul class="home-footer-links">
+              <li><a href="/analysis-reports" class="home-footer-link">Free Checkup Tool</a></li>
+              <li><a href="/ai-review-generator.html" class="home-footer-link">AI Review Booster Tool</a></li>
+            </ul>
+          </div>
+        </div>
 
-        </ul>
+        <div class="home-footer-bottom">
+          <div class="home-footer-bottom-inner">
+            <p class="home-footer-copy">&copy; 2026 360AIMedia &mdash; RankMyRestaurant. All rights reserved.</p>
+            <div class="home-footer-social">
+              <a href="https://www.youtube.com/@RankMySalonOfficial" class="home-footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/rankmysalon_official/" class="home-footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+              </a>
+              <a href="https://www.facebook.com/rankmysalon/" class="home-footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="/" class="home-footer-social-link" aria-label="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="https://t.me/rankmysalon" class="home-footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              </a>
+              <a href="https://x.com/rankmysalon" class="home-footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
 
       </div>
-
-      <div class="marketing-footer-column">
-
-        <h3 class="footer-column-title">
-          FEATURES
-        </h3>
-
-        <ul class="footer-column-list">
-
-          <li class="footer-column-header">
-            Automation
-          </li>
-
-          <li><a href="/button.html" class="footer-link">AI Voice Agent</a></li>
-          <li><a href="/price" class="footer-link">Smart Follow-up</a></li>
-          <li><a href="/price" class="footer-link">Client Acquisition</a></li>
-          <li><a href="/price" class="footer-link">Booking System</a></li>
-
-        </ul>
-
-      </div>
-
-      <div class="marketing-footer-column">
-
-        <h3 class="footer-column-title">
-          COMPANY
-        </h3>
-
-        <ul class="footer-column-list">
-
-          <li><a href="/about-us" class="footer-link">About Us</a></li>
-          <li><a href="/sms-consent" class="footer-link">SMS Consent</a></li>
-          <li><a href="/terms" class="footer-link">Terms of Service</a></li>
-          <li><a href="/privacy" class="footer-link">Privacy Policy</a></li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="marketing-footer-bottom">
-
-    <p class="footer-copyright">
-      © 2026 RankMyRestaurant. Restaurant-ready AI for reviews, follow-up, and voice automation.
-    </p>
-
-  </div>
-
-</footer>
+    </footer>
 
 </div>
 
 <script src="/theme.js"></script>
+<script>
+      (function () {
+        var btn = document.getElementById('homeHeroHamburgerAI');
+        var panel = document.getElementById('homeHeroNavMobileAI');
+        if (!btn || !panel) return;
+        btn.addEventListener('click', function () {
+          var isOpen = panel.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', String(isOpen));
+        });
+        document.addEventListener('click', function (e) {
+          if (e.target.closest('.home-hero-nav')) return;
+          if (panel.classList.contains('is-open')) {
+            panel.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+            panel.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+        // Mobile Contact Us
+        var contactBtn = document.getElementById('homeNavContactBtnAI');
+        if (contactBtn) {
+          var formModal = document.getElementById('homeGetInTouchModal');
+          contactBtn.addEventListener('click', function() {
+            if (formModal) {
+              formModal.removeAttribute('hidden');
+              document.body.style.overflow = 'hidden';
+            }
+          });
+        }
+      })();
+    </script>
 </body>
-</html>
