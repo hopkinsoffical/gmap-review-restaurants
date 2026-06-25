@@ -7,8 +7,14 @@
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; base-uri 'self'; form-action 'self' https:; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https: wss:; media-src 'self' https: blob:; frame-src 'self' https:; worker-src 'self' blob:"
         },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
   ],
@@ -20,9 +26,9 @@
   ],
   "redirects": [
     {
-  "source": "/services",
-  "destination": "/index.html"
-},
+      "source": "/services",
+      "destination": "/index.html"
+    },
     {
       "source": "/talk-to-assistant",
       "destination": "/button.html",
@@ -175,6 +181,26 @@
     {
       "source": "/stores/:slug",
       "destination": "/index.html"
+    },
+    {
+      "source": "/ai-agents/ryan",
+      "destination": "/ai-agents/ryan.html"
+    },
+    {
+      "source": "/ai-agents/hannah",
+      "destination": "/ai-agents/hannah.html"
+    },
+    {
+      "source": "/ai-agents/andrew",
+      "destination": "/ai-agents/andrew.html"
+    },
+    {
+      "source": "/ai-agents/sarah",
+      "destination": "/ai-agents/sarah.html"
+    },
+    {
+      "source": "/ai-agents/grace",
+      "destination": "/ai-agents/grace.html"
     }
   ]
 }

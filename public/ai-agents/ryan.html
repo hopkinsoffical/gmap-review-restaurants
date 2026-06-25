@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ryan — AI Growth Advisor | RankMyRestaurant</title>
+  <meta name="description" content="Ryan is your always-on AI marketing assistant. Ask him anything about your Google Maps visibility, social content, and client acquisition. Ryan pulls live data "/>
+
+  <link rel="stylesheet" href="/styles.css"/>
+
+  <style>
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top, rgba(199, 62, 29, 0.18), transparent 32%),
+        linear-gradient(180deg, #040b16 0%, #08111d 100%);
+      color: #edf4ff;
+    }
+
+    .agent-page {
+      width: 100%;
+      max-width: 1120px;
+      margin: 24px auto 48px;
+    }
+
+    .agent-page .marketing-nav-shell {
+      background: linear-gradient(180deg, #0b1322 0%, #101b2d 100%) !important;
+      border: 1px solid rgba(199, 62, 29, 0.18) !important;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.34) !important;
+    }
+
+    .agent-page .brand-part-rank {
+      color: #f5f8ff !important;
+      font-weight: 700 !important;
+    }
+
+    .agent-page .brand-part-myrestaurant {
+      background: linear-gradient(135deg, #fde2c8 0%, #c73e1d 42%, #8b1a0e 100%) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+      text-shadow: 0 0 18px rgba(199, 62, 29, 0.24) !important;
+      font-weight: 700 !important;
+    }
+
+    .agent-page .marketing-nav-link {
+      color: #9daabe !important;
+    }
+
+    .agent-page .marketing-nav-link:hover,
+    .agent-page .marketing-nav-link.is-active {
+      color: #fde2c8 !important;
+    }
+
+    /* Static dropdown (no JS) — inline list of children under the label */
+    .agent-page .marketing-nav-dropdown-static {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .agent-page .marketing-nav-dropdown-static-label {
+      cursor: default;
+      opacity: 0.85;
+    }
+
+    .agent-page .marketing-nav-dropdown-static-menu {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-left: 12px;
+      padding-left: 14px;
+      border-left: 1px solid rgba(199, 62, 29, 0.18);
+    }
+
+    .agent-page .marketing-nav-dropdown-static-item {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 8px;
+      transition: background 0.12s ease, color 0.12s ease;
+    }
+
+    .agent-page .marketing-nav-dropdown-static-item:hover {
+      background: rgba(199, 62, 29, 0.16);
+      color: #fde2c8;
+    }
+
+    .agent-page .marketing-auth-link,
+    .agent-page .marketing-lang-toggle {
+      background: rgba(255, 255, 255, 0.04) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      color: #edf4ff !important;
+    }
+
+    .agent-page .marketing-auth-link:hover,
+    .agent-page .marketing-lang-toggle:hover {
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .agent-page .marketing-contact-nav-btn {
+      background: linear-gradient(135deg, #dc2626 0%, #c73e1d 100%) !important;
+      border: 0 !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    .agent-page .marketing-contact-nav-btn:hover {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    }
+
+    /* Hero */
+    .agent-hero {
+      width: 100%;
+      max-width: 1120px;
+      margin: 48px auto 36px;
+      padding: 64px 56px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(199, 62, 29, 0.18), transparent 50%),
+        linear-gradient(180deg, #0f1828 0%, #1a2438 100%);
+      border: 1px solid rgba(199, 62, 29, 0.18);
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .agent-hero::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -120px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #c73e1d 0%, transparent 70%);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .agent-hero-eyebrow {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(199, 62, 29, 0.16);
+      border: 1px solid rgba(199, 62, 29, 0.34);
+      color: #fde2c8;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .agent-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      line-height: 1.1;
+      font-weight: 800;
+      color: #f5f8ff;
+      margin: 0 0 18px;
+      max-width: 720px;
+    }
+
+    .agent-hero p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      max-width: 680px;
+      margin: 0 0 32px;
+    }
+
+    .agent-hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .agent-hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .agent-hero-cta.primary {
+      background: linear-gradient(135deg, #dc2626 0%, #c73e1d 100%);
+      color: #ffffff;
+      box-shadow: 0 14px 30px rgba(199, 62, 29, 0.32);
+    }
+
+    .agent-hero-cta.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(199, 62, 29, 0.44);
+    }
+
+    .agent-hero-cta.secondary {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #edf4ff;
+    }
+
+    .agent-hero-cta.secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Features grid */
+    .agent-features {
+      width: 100%;
+      max-width: 1120px;
+      margin: 36px auto;
+      padding: 0 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .agent-feature {
+      padding: 28px 26px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(199, 62, 29, 0.08) 0%, rgba(199, 62, 29, 0.02) 100%);
+      border: 1px solid rgba(199, 62, 29, 0.18);
+    }
+
+    .agent-feature h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      color: #f5f8ff;
+      font-weight: 700;
+    }
+
+    .agent-feature p {
+      margin: 0;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .agent-feature-icon {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(199, 62, 29, 0.2);
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      color: #fde2c8;
+      font-size: 1.1rem;
+    }
+
+    /* Video placeholder */
+    .agent-video {
+      width: 100%;
+      max-width: 1120px;
+      margin: 48px auto;
+      padding: 56px 48px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #0d1729 0%, #1a2438 100%);
+      border: 1px solid rgba(199, 62, 29, 0.18);
+      text-align: center;
+    }
+
+    .agent-video h2 {
+      margin: 0 0 12px;
+      color: #f5f8ff;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .agent-video p {
+      margin: 0 0 24px;
+      color: #94a3b8;
+    }
+
+    .agent-video-frame {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      background:
+        repeating-linear-gradient(45deg, rgba(199, 62, 29, 0.08) 0 12px, transparent 12px 24px),
+        linear-gradient(135deg, #08111d 0%, #152033 100%);
+      border: 1px dashed rgba(199, 62, 29, 0.34);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .agent-page {
+        width: auto;
+        max-width: none;
+        margin: 16px;
+      }
+      .agent-hero {
+        margin: 24px auto;
+        padding: 36px 24px;
+      }
+      .agent-video {
+        padding: 32px 20px;
+      }
+      .agent-page .marketing-nav-dropdown-static-menu {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="agent-page">
+
+<header class="marketing-nav-shell">
+
+  <div class="marketing-nav-main">
+
+    <a class="marketing-brand" href="/">
+      <span class="brand-part brand-part-rank">Rank</span>
+      <span class="brand-part brand-part-myrestaurant">MyRestaurant</span>
+    </a>
+
+    <nav class="marketing-nav" aria-label="Primary">
+      <a class="marketing-nav-link" href="/">
+        Overview
+      </a>      <a class="marketing-nav-link is-active" href="#">
+        AI Agent
+      </a>      <a class="marketing-nav-link" href="/analysis-reports">
+        Local Ranking
+      </a>      <a class="marketing-nav-link" href="#">
+        Tools
+      </a>      <a class="marketing-nav-link" href="/services.html">
+        Services
+      </a>
+      <div class="marketing-nav-dropdown-static">
+        <span class="marketing-nav-link marketing-nav-dropdown-static-label">AI Agent</span>
+        <div class="marketing-nav-dropdown-static-menu">
+          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/ryan">Ryan — AI Growth Advisor</a>
+          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/hannah">Hannah — AI Front Desk Manager</a>
+          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/andrew">Andrew — Customer Acquisition Manager</a>
+          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/sarah">Sarah — Reputation Manager</a>
+          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/grace">Grace — Client Success Manager</a>
+        </div>
+      </div>
+
+      <div class="marketing-nav-dropdown-static">
+        <span class="marketing-nav-link marketing-nav-dropdown-static-label">Tools</span>
+        <div class="marketing-nav-dropdown-static-menu">
+          <a class="marketing-nav-dropdown-static-item" href="/ai-review-generator.html">AI Review Booster Tool</a>
+          <a class="marketing-nav-dropdown-static-item" href="/leaderboard">Leaderboard</a>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+
+  <div class="marketing-auth-actions">
+
+    <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle light and dark theme">
+      <span data-theme-icon>☾</span>
+    </button>
+
+    <button
+      type="button"
+      id="marketingContactOpen"
+      class="marketing-contact-nav-btn"
+    >
+      Contact Us
+    </button>
+
+    <a
+      class="ghost landing-link marketing-auth-link"
+      href="/login"
+    >
+      Sign in
+    </a>
+
+    <div class="marketing-lang-wrap" data-marketing-lang-wrap>
+
+      <button
+        type="button"
+        class="ghost landing-link marketing-auth-link marketing-lang-toggle"
+        data-marketing-lang-btn
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-label="Language · English"
+        id="marketingLangBtn"
+      >
+        <span class="marketing-lang-btn-label">English</span>
+        <span class="marketing-lang-btn-caret" aria-hidden="true">▾</span>
+      </button>
+
+      <ul
+        class="marketing-lang-menu hidden"
+        data-marketing-lang-menu
+        role="menu"
+        aria-labelledby="marketingLangBtn"
+        aria-hidden="true"
+      ></ul>
+
+    </div>
+
+  </div>
+
+</header>
+
+<main class="agent-content">
+
+  <section class="agent-hero">
+    <span class="agent-hero-eyebrow">AI Growth Advisor</span>
+    <h1>Your Always-On AI Marketing Strategist</h1>
+    <p>Ryan is your always-on AI marketing assistant. Ask him anything about your Google Maps visibility, social content, and client acquisition. Ryan pulls live data from your Google Business Profile, recent reviews, and local competitor leaderboards to give you actionable advice on demand.</p>
+    <div class="agent-hero-cta-row">
+      <a class="agent-hero-cta primary" href="/talk-to-assistant">
+        Talk to Ryan
+      </a>
+      <a class="agent-hero-cta secondary" href="/services.html">
+        See pricing
+      </a>
+    </div>
+  </section>
+
+  <section class="agent-features" aria-label="What Ryan does">
+    <div class="agent-feature">
+      <span class="agent-feature-icon">★</span>
+      <h3>What Ryan does for you</h3>
+      <p>Realtime Google Maps ranking analysis</p>
+    </div>
+    <div class="agent-feature">
+      <span class="agent-feature-icon">⚡</span>
+      <h3>How Ryan works</h3>
+      <p>Competitor benchmark and gap identification</p>
+    </div>
+    <div class="agent-feature">
+      <span class="agent-feature-icon">✉</span>
+      <h3>What you get</h3>
+      <p>Weekly content calendar for your restaurant</p>
+    </div>
+    <div class="agent-feature">
+      <span class="agent-feature-icon">☘</span>
+      <h3>Always on your side</h3>
+      <p>Reply to reviews with your brand voice</p>
+    </div>
+  </section>
+
+  <section class="agent-video">
+    <h2>Ryan demo video</h2>
+    <p>See Ryan in action. (Demo video coming soon.)</p>
+    <div class="agent-video-frame">
+      Ryan demo video
+    </div>
+  </section>
+
+</main>
+
+</div>
+
+<script src="/theme.js"></script>
+<script src="/app.js?v=20260525-1"></script>
+</body>
+</html>
