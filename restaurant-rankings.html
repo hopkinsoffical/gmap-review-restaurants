@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EatAdvisor Rankings — Best Restaurants by Town</title>
+<meta name="description" content="EatAdvisor ranks every restaurant in your town by a single 0–100 score built from Google ratings, reviews, sentiment, health grades and more. Browse the best restaurants in Edison, NJ and nearby.">
+<link rel="canonical" href="https://rankmyrestaurant.ai/rankings">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary-100:#f3edfd;--primary-200:#e5ccff;--primary-300:#d2a6ff;--primary-400:#9e6bf2;
+  --primary-500:#7338d3;--primary-600:#4f2495;--primary-700:#361768;
+  --neutral-bg:#f4f5f5;--neutral-white:#fcfdfd;--neutral-100:#f4f5f5;--neutral-200:#dcdfe0;
+  --neutral-300:#bcc1c2;--neutral-600:#687173;--neutral-700:#505758;--neutral-800:#272a2b;
+  --neutral-black:#232323;--neutral-border:#dcdfe0;
+  --success-light:#d3f6cf;--success:#0d7a7a;--success-dark:#0f5c5c;
+  --warning-light:#ffebb7;--warning:#fcba3a;--warning-dark:#da9021;
+  --danger-light:#ffe0e0;--danger:#f15656;--info:#0a75c3;
+  --radius-md:10px;--radius-lg:14px;--radius-xl:20px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,.08);--shadow-lg:0 8px 32px rgba(0,0,0,.10);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--neutral-bg)}
+body{font-family:var(--font);color:var(--neutral-800);background:var(--neutral-bg);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* nav */
+.nav{background:var(--neutral-white);border-bottom:1px solid var(--neutral-border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100}
+.nav-logo{font-size:17px;font-weight:800;color:var(--primary-500);text-decoration:none;letter-spacing:-.4px;display:flex;align-items:center;gap:7px}
+.nav-logo-icon{width:28px;height:28px;background:var(--primary-400);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
+.nav-links{display:flex;gap:18px;align-items:center}
+.nav-link{font-size:13px;font-weight:600;color:var(--neutral-700);text-decoration:none}
+.nav-link.is-active{color:var(--primary-500)}
+.nav-link:hover{color:var(--primary-500)}
+.nav-cta{background:var(--primary-400);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;font-family:var(--font);transition:background .15s}
+.nav-cta:hover{background:var(--primary-500)}
+@media(max-width:640px){.nav-links{display:none}}
+
+.page{max-width:980px;margin:0 auto;padding:28px 16px 80px}
+
+/* hero */
+.hero{background:linear-gradient(135deg,var(--primary-700) 0%,var(--primary-500) 55%,var(--primary-400) 100%);border-radius:var(--radius-xl);padding:34px 28px;color:#fff;position:relative;overflow:hidden;margin-bottom:24px}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(255,255,255,.12) 0%,transparent 60%);pointer-events:none}
+.hero-kicker{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin-bottom:10px}
+.hero-title{font-size:30px;font-weight:800;line-height:1.2;letter-spacing:-.5px;margin-bottom:12px}
+.hero-title .accent{color:#ffd56b}
+.hero-body{font-size:14px;line-height:1.65;opacity:.92;max-width:640px}
+.hero-town{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:8px 14px;border-radius:30px;font-size:13px;font-weight:600}
+
+.demo-note{font-size:11px;color:var(--neutral-600);text-align:center;margin:-12px 0 22px;letter-spacing:.02em}
+
+/* leaderboard cards */
+.board-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:880px){.board-grid{grid-template-columns:1fr}}
+.board{background:var(--neutral-white);border:1px solid var(--neutral-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s}
+.board:hover{box-shadow:var(--shadow-md);border-color:var(--primary-300)}
+.board-head{padding:18px 18px 14px;border-bottom:1px solid var(--neutral-100)}
+.board-icon{font-size:24px;margin-bottom:8px;display:block}
+.board-title{font-size:15px;font-weight:800;letter-spacing:-.2px;color:var(--neutral-black);line-height:1.3}
+.board-sub{font-size:12px;color:var(--neutral-600);margin-top:4px;line-height:1.4}
+.board-list{flex:1;padding:6px 8px}
+.rank-row{display:flex;align-items:center;gap:11px;padding:10px 10px;border-radius:var(--radius-md);text-decoration:none;color:inherit;transition:background .15s}
+.rank-row:hover{background:var(--primary-100)}
+.rank-num{width:24px;height:24px;border-radius:7px;background:var(--neutral-100);color:var(--neutral-700);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rank-row:nth-child(1) .rank-num{background:#fdebc4;color:#9a6b04}
+.rank-row:nth-child(2) .rank-num{background:#e7eaec;color:#5a6266}
+.rank-row:nth-child(3) .rank-num{background:#f6e2d2;color:#8a5326}
+.rank-body{flex:1;min-width:0}
+.rank-name{font-size:13px;font-weight:700;color:var(--neutral-800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-meta{font-size:11px;color:var(--neutral-600);margin-top:1px;display:flex;gap:7px;flex-wrap:wrap}
+.rank-meta .nearby-tag{color:var(--primary-500);font-weight:600}
+.score-pill{flex-shrink:0;width:38px;height:38px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;line-height:1}
+.score-pill .n{font-size:15px}
+.score-pill .l{font-size:7px;font-weight:700;letter-spacing:.04em;opacity:.8;margin-top:1px}
+.board-foot{padding:13px 18px;border-top:1px solid var(--neutral-100)}
+.board-cta{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;color:var(--primary-500);text-decoration:none}
+.board-cta:hover{color:var(--primary-600)}
+
+/* how scored strip */
+.scored-strip{margin-top:26px;background:var(--neutral-white);border:1px solid var(--neutral-border);border-radius:var(--radius-lg);padding:18px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.scored-strip h3{font-size:13px;font-weight:800;color:var(--neutral-black)}
+.scored-strip p{font-size:12px;color:var(--neutral-600);line-height:1.5;flex:1;min-width:240px}
+.scored-dims{display:flex;gap:6px;flex-wrap:wrap}
+.scored-dims span{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;background:var(--primary-100);color:var(--primary-500)}
+
+/* bottom cta */
+.cta-section{background:var(--neutral-white);border:1px solid var(--neutral-border);border-radius:var(--radius-xl);padding:30px 28px;text-align:center;margin-top:26px;box-shadow:var(--shadow-sm)}
+.cta-title{font-size:20px;font-weight:800;letter-spacing:-.3px;margin-bottom:8px}
+.cta-sub{font-size:13px;color:var(--neutral-600);margin-bottom:18px;line-height:1.6;max-width:460px;margin-left:auto;margin-right:auto}
+.cta-btn{display:inline-flex;align-items:center;gap:6px;background:var(--primary-400);color:#fff;padding:12px 26px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:background .2s}
+.cta-btn:hover{background:var(--primary-500)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo"><span class="nav-logo-icon">🍽</span> EatAdvisor</a>
+  <div class="nav-links">
+    <a class="nav-link" href="/">Overview</a>
+    <a class="nav-link" href="/leaderboard">Leaderboard</a>
+    <a class="nav-link is-active" href="/rankings">Rankings</a>
+    <a class="nav-link" href="/services.html">Services</a>
+  </div>
+  <a href="/services.html" class="nav-cta">Get Free Analysis</a>
+</nav>
+
+<div class="page">
+  <header class="hero">
+    <div class="hero-kicker">EatAdvisor Rankings</div>
+    <h1 class="hero-title">The best restaurants in <span class="accent" id="heroTown">Edison, NJ</span> — ranked, not just listed.</h1>
+    <p class="hero-body" id="heroBody"></p>
+    <div class="hero-town">📍 <span id="heroTownPill">Edison, New Jersey</span> · <span id="heroCount">22</span> restaurants scored</div>
+  </header>
+
+  <p class="demo-note" id="demoNote"></p>
+
+  <div class="board-grid" id="boardGrid"></div>
+
+  <div class="scored-strip">
+    <div>
+      <h3>How the EatAdvisor score works</h3>
+    </div>
+    <p>Every restaurant gets one 0–100 score blended from six signals. We rank strictly by score, high to low — so the order is earned, not paid.</p>
+    <div class="scored-dims">
+      <span>⭐ Reputation</span><span>💬 Review Power</span><span>🏥 Health</span>
+      <span>📍 Visibility</span><span>🍽 Dining Appeal</span><span>📞 Booking</span>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <div class="cta-title">Want your restaurant ranked higher?</div>
+    <div class="cta-sub">Get a free EatAdvisor scorecard for your restaurant and a step-by-step plan to climb the local rankings.</div>
+    <a class="cta-btn" href="/services.html">Get my free scorecard →</a>
+  </div>
+</div>
+
+<script src="/assets/eatadvisor-edison.js"></script>
+<script>
+(function(){
+"use strict";
+var DS = window.EATADVISOR_DATASET || { town:{}, restaurants:[], leaderboards:[] };
+var town = DS.town || {};
+
+/* ── subdomain-style link to the town ranking page ──────────────────────────
+ * Path-based today: /town/edison-nj  (rewritten to /town-ranking.html).
+ * To go to a real subdomain later (e.g. edison.rankmyrestaurant.ai), set
+ * SUBDOMAIN_HOST and the helper switches to an absolute https URL.            */
+var SUBDOMAIN_HOST = ""; // e.g. "rankmyrestaurant.ai" → "https://edison.rankmyrestaurant.ai/"
+function townUrl(cuisine){
+  var qs = cuisine ? ("?cuisine="+encodeURIComponent(cuisine)) : "";
+  if (SUBDOMAIN_HOST) return "https://"+town.slug.replace(/-/g,".")+"."+SUBDOMAIN_HOST+"/"+qs;
+  return "/town/"+town.slug+qs;
+}
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function scoreColor(s){return s>=85?"var(--success)":s>=70?"var(--info)":s>=55?"var(--warning-dark)":"var(--danger)"}
+function scoreBg(s){return s>=85?"var(--success-light)":s>=70?"#d6ecfb":s>=55?"var(--warning-light)":"var(--danger-light)"}
+function levelLabel(s){return s>=85?"TOP":s>=70?"GOOD":s>=55?"OK":"LOW"}
+
+function topByCuisine(cuisine,n){
+  return DS.restaurants
+    .filter(function(r){return r.cuisine===cuisine})
+    .sort(function(a,b){return b.score-a.score})
+    .slice(0,n||5);
+}
+
+/* hero text */
+var townLabel = (town.name||"")+", "+(town.stateAbbr||"");
+document.getElementById("heroTown").textContent = townLabel;
+document.getElementById("heroTownPill").textContent = (town.name||"")+", "+(town.state||"");
+document.getElementById("heroBody").textContent = town.blurb||"";
+document.getElementById("heroCount").textContent = DS.restaurants.length;
+document.title = "Best Restaurants in "+townLabel+" — EatAdvisor Rankings";
+if (DS.isDemo){
+  document.getElementById("demoNote").textContent =
+    "Demo dataset for "+townLabel+" · live Google + health-grade data rolls out as each market is ingested.";
+}
+
+/* render the 3 default leaderboards */
+var grid = document.getElementById("boardGrid");
+grid.innerHTML = DS.leaderboards.map(function(board){
+  var rows = topByCuisine(board.cuisine, 5);
+  var listHtml = rows.map(function(r,i){
+    var c = scoreColor(r.score);
+    return '<a class="rank-row" href="/restaurant-local-ranking.html?slug='+encodeURIComponent(r.slug)+'">'
+      + '<div class="rank-num">'+(i+1)+'</div>'
+      + '<div class="rank-body">'
+      +   '<div class="rank-name">'+esc(r.name)+'</div>'
+      +   '<div class="rank-meta"><span>★ '+r.rating.toFixed(1)+'</span><span>'+r.reviews.toLocaleString()+' reviews</span><span>'+esc(r.price)+'</span>'
+      +     (r.nearby ? '<span class="nearby-tag">'+esc(r.town)+'</span>' : '')
+      +   '</div>'
+      + '</div>'
+      + '<div class="score-pill" style="background:'+scoreBg(r.score)+';color:'+c+'"><span class="n">'+r.score+'</span><span class="l">'+levelLabel(r.score)+'</span></div>'
+      + '</a>';
+  }).join("");
+  return '<div class="board">'
+    + '<div class="board-head"><span class="board-icon">'+board.icon+'</span>'
+    +   '<div class="board-title">'+esc(board.title)+'</div>'
+    +   '<div class="board-sub">'+esc(board.subtitle)+'</div></div>'
+    + '<div class="board-list">'+listHtml+'</div>'
+    + '<div class="board-foot"><a class="board-cta" href="'+townUrl(board.cuisine)+'"><span>View full '+esc(board.title.replace(/^Best\s+/,"").replace(/\s+in .*$/,""))+' ranking</span><span>→</span></a></div>'
+    + '</div>';
+}).join("");
+})();
+</script>
+</body>
+</html>
