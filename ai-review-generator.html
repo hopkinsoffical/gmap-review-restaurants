@@ -671,82 +671,6 @@
       width: 60%;
     }
 
-    /* === REAL REVIEW SAMPLES === */
-    .air-samples {
-      padding: 64px 0;
-    }
-
-    .air-samples-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .air-sample {
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .air-sample-frame {
-      position: relative;
-      aspect-ratio: 9 / 18;
-      border-radius: 28px;
-      overflow: hidden;
-      background: linear-gradient(180deg, #2a1f5a 0%, #1a1338 100%);
-      border: 1px solid rgba(232, 160, 213, 0.22);
-      box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.36),
-        0 0 0 1px rgba(232, 160, 213, 0.08) inset;
-      padding: 12px;
-      transition: transform 0.18s ease, border-color 0.18s ease;
-    }
-
-    .air-sample-screen {
-      width: 100%;
-      height: 100%;
-      border-radius: 18px;
-      overflow: hidden;
-      background: #0d0b1f;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .air-sample-frame:hover {
-      transform: translateY(-4px);
-      border-color: rgba(232, 160, 213, 0.4);
-    }
-
-    .air-sample-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      display: block;
-    }
-
-    .air-sample figcaption {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      padding: 0 4px;
-    }
-
-    .air-sample-num {
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: var(--air-coral);
-    }
-
-    .air-sample-name {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--air-ink);
-    }
-
     /* === WHY === */
     .air-why {
       padding: 56px 0;
@@ -893,11 +817,6 @@
         gap: 14px;
       }
 
-      .air-samples-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-      }
-
       .air-cta-card {
         padding: 40px 24px;
       }
@@ -915,10 +834,6 @@
     @media (max-width: 480px) {
       .air-product-shell {
         padding: 32px 16px 64px;
-      }
-
-      .air-samples-grid {
-        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -1078,56 +993,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- REAL REVIEW SAMPLES — 4 IMAGES -->
-  <section class="air-samples">
-    <div class="air-samples-grid">
-      <figure class="air-sample">
-        <div class="air-sample-frame">
-          <div class="air-sample-screen">
-            <img src="/images/ai-review-demo/01-review-easy-pick.png" alt="Review draft 1: Easy pick" />
-          </div>
-        </div>
-        <figcaption>
-          <span class="air-sample-num">01</span>
-          <span class="air-sample-name">Easy pick</span>
-        </figcaption>
-      </figure>
-      <figure class="air-sample">
-        <div class="air-sample-frame">
-          <div class="air-sample-screen">
-            <img src="/images/ai-review-demo/02-review-polished.png" alt="Review draft 2: Polished" />
-          </div>
-        </div>
-        <figcaption>
-          <span class="air-sample-num">02</span>
-          <span class="air-sample-name">Polished</span>
-        </figcaption>
-      </figure>
-      <figure class="air-sample">
-        <div class="air-sample-frame">
-          <div class="air-sample-screen">
-            <img src="/images/ai-review-demo/03-review-memorable.png" alt="Review draft 3: Memorable" />
-          </div>
-        </div>
-        <figcaption>
-          <span class="air-sample-num">03</span>
-          <span class="air-sample-name">Memorable</span>
-        </figcaption>
-      </figure>
-      <figure class="air-sample">
-        <div class="air-sample-frame">
-          <div class="air-sample-screen">
-            <img src="/images/ai-review-demo/04-store-visit-step1.png" alt="Store visit step 1" />
-          </div>
-        </div>
-        <figcaption>
-          <span class="air-sample-num">↪</span>
-          <span class="air-sample-name">The 3-tap flow</span>
-        </figcaption>
-      </figure>
     </div>
   </section>
 
