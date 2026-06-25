@@ -1454,6 +1454,10 @@ h1 {
   flex-direction: column;
 }
 
+.marketing-dropdown-menu[hidden] {
+  display: none;
+}
+
 .marketing-dropdown-item {
   display: block;
   padding: 10px 16px;
