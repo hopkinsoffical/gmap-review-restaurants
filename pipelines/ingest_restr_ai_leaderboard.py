@@ -99,9 +99,24 @@ def fetch_all(
 
 
 # Outscraper-style Google profile source tables (newest first).
+# 1) info_gather_google_profiles_dedup — view: one row per place_id (latest scrape)
+# 2) info_gather_google_profiles_latest — legacy materialized view (sql/030)
+# 3) info_gather_google_profiles — raw table (has duplicates from re-scrapes)
 SOURCE_TABLE_CANDIDATES = (
+    "info_gather_google_profiles_dedup",
     "info_gather_google_profiles_latest",
     "info_gather_google_profiles",
+)
+
+
+# Minimal column set for the leaderboard — avoids pulling heavy Outscraper nested JSON
+# (raw, additional_info, popular_times_histogram) that bloats PostgREST responses.
+SOURCE_COLUMNS = (
+    "place_id,title,address,state,city,postal_code,"
+    "category_name,rating,reviews_count,"
+    "phone,website,reviews_distribution,best_menu_url,"
+    "opening_hours,image_url,categories,price,"
+    "updated_at,permanently_closed,temporarily_closed"
 )
 
 
@@ -113,7 +128,13 @@ def fetch_source_rows(
     last_error: Exception | None = None
     for table in SOURCE_TABLE_CANDIDATES:
         try:
-            rows = fetch_all(supabase_url, headers, table, max_rows=max_rows)
+            rows = fetch_all(
+                supabase_url,
+                headers,
+                table,
+                params={"select": SOURCE_COLUMNS, "order": "updated_at.desc"},
+                max_rows=max_rows,
+            )
             print(f"Read {len(rows)} rows from {table}")
             return rows, table
         except RuntimeError as err:
@@ -311,14 +332,26 @@ def main() -> None:
 
     print(f"Prepared {len(rows)} restr_ai_leaderboard rows from {source_table}")
     if args.dry_run:
-        preview_n = min(len(rows), args.limit if args.limit > 0 else 5)
-        for row in rows[:preview_n]:
+        # Level distribution first (always useful).
+        from collections import Counter
+        level_counts = Counter(r["assessment_level"] for r in rows)
+        scores = [r["ai_score"] for r in rows]
+        print(f"  levels: {dict(level_counts)}")
+        print(f"  score:  min={min(scores):.1f} p25={sorted(scores)[len(scores)//4]:.1f} "
+              f"median={sorted(scores)[len(scores)//2]:.1f} p75={sorted(scores)[3*len(scores)//4]:.1f} "
+              f"max={max(scores):.1f}")
+        # If --limit unset, show top 20 by score. Otherwise show the (chronological) first N.
+        if args.limit and args.limit > 0:
+            preview = rows[: args.limit]
+            print(f"  first {len(preview)} (by source order):")
+        else:
+            preview = sorted(rows, key=lambda r: -r["ai_score"])[:20]
+            print(f"  top 20 by ai_score:")
+        for row in preview:
             print(
-                f"  {row['slug']}: ai_score={row['ai_score']} "
-                f"level={row['assessment_level']} town={row['town']}, {row['state']}"
+                f"    {row['ai_score']:5.1f}  {row['assessment_level']:9s}  "
+                f"{row['slug']:50s}  {row['town']}, {row['state']}"
             )
-        if len(rows) > preview_n:
-            print(f"  ... and {len(rows) - preview_n} more")
         return
 
     inserted = insert_chunks(supabase_url, headers, rows)
