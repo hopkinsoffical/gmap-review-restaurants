@@ -1,10 +1,15 @@
+#!/usr/bin/env python3
 """
 Ingest Google restaurant profiles into public.restr_ai_leaderboard (append-only history).
 
 Reads from info_gather_google_profiles (latest listed rows) and scores with
 restr_leaderboard_scoring (Google Visibility customer-acquisition model).
 
-Usage:
+Prerequisites:
+  - Supabase: sql/034_restr_ai_leaderboard.sql
+  - Env: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (repo root .env / .env.local)
+
+Usage (from repo root):
   python3 pipelines/ingest_restr_ai_leaderboard.py [--limit N] [--dry-run]
 """
 
@@ -14,12 +19,24 @@ import argparse
 import hashlib
 import os
 import re
+import sys
 import time
+from pathlib import Path
 from typing import Any, Dict, List
 
 import requests
 
-from restr_leaderboard_scoring import (
+_PIPELINES_DIR = Path(__file__).resolve().parent
+ROOT = _PIPELINES_DIR.parent
+if str(_PIPELINES_DIR) not in sys.path:
+    sys.path.insert(0, str(_PIPELINES_DIR))
+
+from dotenv import load_dotenv  # noqa: E402
+
+load_dotenv(ROOT / ".env.local")
+load_dotenv(ROOT / ".env")
+
+from restr_leaderboard_scoring import (  # noqa: E402
     assign_assessment_levels_by_ai_score_percentile,
     calc_restr_ai_score,
     freshness_heuristic,
@@ -27,9 +44,12 @@ from restr_leaderboard_scoring import (
     sentiment_from_review_histogram,
 )
 
-SUPABASE_URL = os.getenv("SUPABASE_URL", "").rstrip("/")
-KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
-HEADERS = {"apikey": KEY, "Authorization": f"Bearer {KEY}", "Content-Type": "application/json"}
+
+def supabase_config() -> tuple[str, str, Dict[str, str]]:
+    url = os.getenv("SUPABASE_URL", "").rstrip("/")
+    key = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
+    headers = {"apikey": key, "Authorization": f"Bearer {key}", "Content-Type": "application/json"}
+    return url, key, headers
 
 
 def make_slug(title: str, place_id: str) -> str:
@@ -41,13 +61,19 @@ def make_slug(title: str, place_id: str) -> str:
     return f"restaurant-{suffix}"
 
 
-def fetch_all(table: str, params: Dict[str, str] | None = None, page_size: int = 500) -> List[Dict[str, Any]]:
+def fetch_all(
+    supabase_url: str,
+    headers: Dict[str, str],
+    table: str,
+    params: Dict[str, str] | None = None,
+    page_size: int = 500,
+) -> List[Dict[str, Any]]:
     rows: List[Dict[str, Any]] = []
     offset = 0
     while True:
         resp = requests.get(
-            f"{SUPABASE_URL}/rest/v1/{table}",
-            headers={**HEADERS, "Range-Unit": "items", "Range": f"{offset}-{offset + page_size - 1}"},
+            f"{supabase_url}/rest/v1/{table}",
+            headers={**headers, "Range-Unit": "items", "Range": f"{offset}-{offset + page_size - 1}"},
             params=params or {"is_listed": "eq.true", "select": "*", "order": "updated_at.desc"},
             timeout=60,
         )
@@ -149,13 +175,18 @@ def build_row(rec: Dict[str, Any]) -> Dict[str, Any] | None:
     }
 
 
-def insert_chunks(rows: List[Dict[str, Any]], batch_size: int = 100) -> int:
+def insert_chunks(
+    supabase_url: str,
+    headers: Dict[str, str],
+    rows: List[Dict[str, Any]],
+    batch_size: int = 100,
+) -> int:
     inserted = 0
     for i in range(0, len(rows), batch_size):
         batch = rows[i : i + batch_size]
         resp = requests.post(
-            f"{SUPABASE_URL}/rest/v1/restr_ai_leaderboard",
-            headers=HEADERS,
+            f"{supabase_url}/rest/v1/restr_ai_leaderboard",
+            headers=headers,
             json=batch,
             timeout=120,
         )
@@ -170,10 +201,14 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
-    if not SUPABASE_URL or not KEY:
-        raise SystemExit("Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY")
+    supabase_url, key, headers = supabase_config()
+    if not supabase_url or not key:
+        raise SystemExit(
+            "Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local or the environment "
+            "(see .env.local.example)."
+        )
 
-    source = fetch_all("info_gather_google_profiles_latest")
+    source = fetch_all(supabase_url, headers, "info_gather_google_profiles_latest")
     if args.limit and args.limit > 0:
         source = source[: args.limit]
 
@@ -183,8 +218,16 @@ def main() -> None:
 
     print(f"Prepared {len(rows)} restr_ai_leaderboard rows")
     if args.dry_run:
+        for row in rows[:5]:
+            print(
+                f"  {row['slug']}: ai_score={row['ai_score']} "
+                f"level={row['assessment_level']} town={row['town']}, {row['state']}"
+            )
+        if len(rows) > 5:
+            print(f"  ... and {len(rows) - 5} more")
         return
-    inserted = insert_chunks(rows)
+
+    inserted = insert_chunks(supabase_url, headers, rows)
     print(f"Inserted {inserted} rows")
 
 
