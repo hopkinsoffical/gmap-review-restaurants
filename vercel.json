@@ -65,6 +65,10 @@
       "destination": "/api/intel-restaurants"
     },
     {
+      "source": "/api/user-geo",
+      "destination": "/api/user-geo"
+    },
+    {
       "source": "/api/leaderboard/salons",
       "destination": "/api/leaderboard-restaurants"
     },
