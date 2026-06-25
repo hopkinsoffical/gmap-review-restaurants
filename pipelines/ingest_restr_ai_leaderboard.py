@@ -77,7 +77,9 @@ def fetch_all(
             params=params or {"is_listed": "eq.true", "select": "*", "order": "updated_at.desc"},
             timeout=60,
         )
-        resp.raise_for_status()
+        if not resp.ok:
+            detail = resp.text[:400]
+            raise RuntimeError(f"Supabase read failed for {table} ({resp.status_code}): {detail}")
         batch = resp.json()
         if not batch:
             break
@@ -87,6 +89,29 @@ def fetch_all(
         offset += page_size
         time.sleep(0.05)
     return rows
+
+
+SOURCE_TABLE_CANDIDATES = (
+    "info_gather_google_profiles_latest",
+    "salon_ai_leaderboard_latest",
+)
+
+
+def fetch_source_rows(supabase_url: str, headers: Dict[str, str]) -> tuple[List[Dict[str, Any]], str]:
+    last_error: Exception | None = None
+    for table in SOURCE_TABLE_CANDIDATES:
+        try:
+            rows = fetch_all(supabase_url, headers, table)
+            print(f"Read {len(rows)} rows from {table}")
+            return rows, table
+        except RuntimeError as err:
+            last_error = err
+            print(f"Skip {table}: {err}", file=sys.stderr)
+    raise RuntimeError(
+        "Could not read any source table. Expected one of: "
+        + ", ".join(SOURCE_TABLE_CANDIDATES)
+        + (f". Last error: {last_error}" if last_error else "")
+    )
 
 
 def sentiment_fallback_from_rating(rating: float) -> float:
@@ -190,7 +215,12 @@ def insert_chunks(
             json=batch,
             timeout=120,
         )
-        resp.raise_for_status()
+        if not resp.ok:
+            detail = resp.text[:500]
+            hint = ""
+            if resp.status_code in (404, 406) or "restr_ai_leaderboard" in detail:
+                hint = " Run sql/034_restr_ai_leaderboard.sql in Supabase SQL Editor first."
+            raise RuntimeError(f"Insert failed ({resp.status_code}): {detail}.{hint}")
         inserted += len(batch)
     return inserted
 
@@ -208,7 +238,7 @@ def main() -> None:
             "(see .env.local.example)."
         )
 
-    source = fetch_all(supabase_url, headers, "info_gather_google_profiles_latest")
+    source, source_table = fetch_source_rows(supabase_url, headers)
     if args.limit and args.limit > 0:
         source = source[: args.limit]
 
@@ -216,7 +246,7 @@ def main() -> None:
     rows = [r for r in rows if r]
     assign_assessment_levels_by_ai_score_percentile(rows)
 
-    print(f"Prepared {len(rows)} restr_ai_leaderboard rows")
+    print(f"Prepared {len(rows)} restr_ai_leaderboard rows from {source_table}")
     if args.dry_run:
         for row in rows[:5]:
             print(
