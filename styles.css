@@ -1447,7 +1447,7 @@ h1 {
   min-width: 240px;
   padding: 8px 0;
   border-radius: 14px;
-  border: 1px solid rgba(199, 62, 29, 0.18);
+  border: 1px solid rgba(246, 22, 0, 0.18);
   background: #ffffff;
   box-shadow: 0 16px 48px rgba(43, 18, 8, 0.18), 0 0 0 1px rgba(43, 18, 8, 0.04);
   display: flex;
@@ -1471,7 +1471,7 @@ h1 {
 
 .marketing-dropdown-item:hover,
 .marketing-dropdown-item:focus-visible {
-  background: rgba(199, 62, 29, 0.08);
+  background: rgba(246, 22, 0, 0.08);
   color: var(--gold-strong, #b30f00);
 }
 
@@ -1488,10 +1488,10 @@ h1 {
   position: relative;
   overflow: hidden;
   border-radius: 32px;
-  border: 1px solid rgba(220, 38, 38, 0.16);
+  border: 1px solid rgba(246, 22, 0, 0.16);
   background:
-    radial-gradient(circle at top left, rgba(220, 38, 38, 0.18), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(199, 62, 29, 0.18), transparent 24%),
+    radial-gradient(circle at top left, rgba(246, 22, 0, 0.18), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(246, 22, 0, 0.18), transparent 24%),
     linear-gradient(135deg, #160d09 0%, #2a150d 44%, #0f0705 100%);
   box-shadow: 0 28px 80px rgba(43, 18, 8, 0.28);
 }
@@ -1503,7 +1503,7 @@ h1 {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: rgba(199, 62, 29, 0.18);
+  background: rgba(246, 22, 0, 0.18);
   filter: blur(64px);
   pointer-events: none;
 }
@@ -1694,7 +1694,7 @@ h1 {
 /* Homepage hero — brief report lead (espresso + saffron, restaurant-focused) */
 .marketing-hero-section--brief.card {
   background: linear-gradient(145deg, #150b07 0%, #2a150d 48%, #0f0705 100%);
-  border: 1px solid rgba(220, 38, 38, 0.16);
+  border: 1px solid rgba(246, 22, 0, 0.16);
   box-shadow:
     0 24px 64px rgba(33, 12, 4, 0.46),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
@@ -1708,8 +1708,8 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(220, 38, 38, 0.16), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(199, 62, 29, 0.14), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(246, 22, 0, 0.16), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(246, 22, 0, 0.14), transparent 50%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 44%);
   pointer-events: none;
 }
@@ -1799,7 +1799,7 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 2px 24px rgba(220, 38, 38, 0.32));
+  filter: drop-shadow(0 2px 24px rgba(246, 22, 0, 0.32));
 }
 
 .marketing-hero-urgency {
@@ -1876,8 +1876,8 @@ h1 {
 
 .marketing-hero-brief-input:focus {
   outline: none;
-  border-color: rgba(220, 38, 38, 0.58);
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.16);
+  border-color: rgba(246, 22, 0, 0.58);
+  box-shadow: 0 0 0 3px rgba(246, 22, 0, 0.16);
 }
 
 .marketing-hero-brief-consent {
@@ -1925,7 +1925,7 @@ h1 {
   letter-spacing: 0.02em;
   color: #241007;
   background: linear-gradient(135deg, #ff3a1c 0%, #f61600 48%, #b30f00 100%);
-  box-shadow: 0 14px 32px rgba(199, 62, 29, 0.32);
+  box-shadow: 0 14px 32px rgba(246, 22, 0, 0.32);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
@@ -1933,7 +1933,7 @@ h1 {
 
 .marketing-hero-brief-submit:hover {
   transform: translateY(-1px);
-  box-shadow: 0 18px 36px rgba(199, 62, 29, 0.4);
+  box-shadow: 0 18px 36px rgba(246, 22, 0, 0.4);
 }
 
 .marketing-hero-brief-feedback {
@@ -2001,7 +2001,7 @@ h1 {
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  box-shadow: 0 12px 26px rgba(199, 62, 29, 0.25);
+  box-shadow: 0 12px 26px rgba(246, 22, 0, 0.25);
 }
 
 .marketing-report-card {
@@ -2084,7 +2084,7 @@ h1 {
 
 .marketing-report-rating-card {
   background: linear-gradient(180deg, rgba(255, 242, 232, 0.98), rgba(255, 250, 246, 0.94));
-  border-color: rgba(199, 62, 29, 0.18);
+  border-color: rgba(246, 22, 0, 0.18);
 }
 
 .marketing-report-rating-line {
@@ -2312,7 +2312,7 @@ h1 {
   min-height: 520px;
   border-color: rgba(255, 231, 199, 0.1);
   background:
-    radial-gradient(circle at top, rgba(220, 38, 38, 0.2), transparent 32%),
+    radial-gradient(circle at top, rgba(246, 22, 0, 0.2), transparent 32%),
     linear-gradient(180deg, rgba(36, 16, 7, 0.96), rgba(13, 7, 5, 0.98));
   box-shadow: 0 26px 60px rgba(22, 9, 4, 0.34);
 }
@@ -2371,12 +2371,12 @@ h1 {
   border-color: transparent;
   background: linear-gradient(135deg, #f61600 0%, #d91200 100%);
   color: #241007;
-  box-shadow: 0 18px 34px rgba(199, 62, 29, 0.26);
+  box-shadow: 0 18px 34px rgba(246, 22, 0, 0.26);
 }
 
 .marketing-digital-human .cta:hover,
 .marketing-digital-human .cta:focus-visible {
-  box-shadow: 0 22px 40px rgba(199, 62, 29, 0.34);
+  box-shadow: 0 22px 40px rgba(246, 22, 0, 0.34);
 }
 
 .marketing-digital-alt-link {
@@ -6835,11 +6835,11 @@ textarea.portal-input {
 
 .lb-search-btn:hover {
   background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(220, 38, 38, 0.45);
+  border-color: rgba(246, 22, 0, 0.45);
 }
 
 .lb-search-btn:focus-visible {
-  outline: 2px solid rgba(220, 38, 38, 0.7);
+  outline: 2px solid rgba(246, 22, 0, 0.7);
   outline-offset: 2px;
 }
 
@@ -8151,7 +8151,7 @@ textarea.portal-input {
 }
 
 .cta.lb-rep-cta-primary:focus-visible {
-  outline: 2px solid rgba(220, 38, 38, 0.55);
+  outline: 2px solid rgba(246, 22, 0, 0.55);
   outline-offset: 3px;
 }
 
