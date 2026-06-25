@@ -2493,7 +2493,7 @@ applyMarketingTheme(getMarketingTheme());
     if (routeKind === ROUTE_TALK) return "/button.html";
     if (routeKind === ROUTE_TAVUS_DEMO) return "/tavus-demo";
     if (routeKind === ROUTE_ANALYSIS_LIST) return "/analysis-reports";
-    if (routeKind === ROUTE_LEADERBOARD_LIST) return "/leaderboard";
+    if (routeKind === ROUTE_LEADERBOARD_LIST) return "/analysis-reports";
     return "/";
   }
 
@@ -2580,7 +2580,7 @@ applyMarketingTheme(getMarketingTheme());
 
     if (normalizedPath === "/leaderboard") {
       return {
-        kind: ROUTE_LEADERBOARD_LIST,
+        kind: ROUTE_ANALYSIS_LIST,
         slug: "",
       };
     }
@@ -2588,7 +2588,7 @@ applyMarketingTheme(getMarketingTheme());
     const leaderboardSalonMatch = normalizedPath.match(/^\/leaderboard\/([^/]+)$/);
     if (leaderboardSalonMatch) {
       return {
-        kind: ROUTE_LEADERBOARD_SALON,
+        kind: ROUTE_ANALYSIS_SALON,
         slug: decodeURIComponent(leaderboardSalonMatch[1]),
       };
     }
@@ -6583,7 +6583,7 @@ applyMarketingTheme(getMarketingTheme());
         label: MARKETING_UI.navTools,
         items: [
           { label: "AI Review Booster Tool", href: "/ai-review-generator.html" },
-          { label: "Leaderboard", href: "/leaderboard" },
+          { label: "Analysis Reports", href: "/analysis-reports" },
         ],
       },
     ];
