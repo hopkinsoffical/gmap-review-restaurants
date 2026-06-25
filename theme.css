@@ -13,11 +13,11 @@ html[data-theme="light"] {
   --rms-site-side-padding: 32px;
 
   /* Warm restaurant cream backgrounds */
-  --rms-bg: #fff9ef;
-  --rms-bg-soft: #fff0d8;
-  --rms-bg-panel: #ffe3bd;
+  --rms-bg: #fef6ee;
+  --rms-bg-soft: #fde2c8;
+  --rms-bg-panel: #f8c8a4;
   --rms-bg-card: #ffffff;
-  --rms-bg-card-2: #fef9f2;
+  --rms-bg-card-2: #fdf2e9;
 
   /* Dark espresso text */
   --rms-text: #241007;
@@ -25,16 +25,16 @@ html[data-theme="light"] {
   --rms-text-muted: #7a5433;
 
   /* Warm borders */
-  --rms-border: rgba(154, 73, 31, 0.16);
-  --rms-border-strong: rgba(154, 73, 31, 0.28);
+  --rms-border: rgba(139, 26, 14, 0.16);
+  --rms-border-strong: rgba(139, 26, 14, 0.28);
 
   /* Tomato + saffron restaurant accents */
-  --rms-gold: #d94b1f;
-  --rms-gold-soft: rgba(217, 75, 31, 0.12);
+  --rms-gold: #c73e1d;
+  --rms-gold-soft: rgba(199, 62, 29, 0.12);
 
   /* Light nav header */
-  --rms-header-bg: linear-gradient(135deg, #ffffff 0%, #fff3e0 100%);
-  --rms-header-border: rgba(217, 75, 31, 0.18);
+  --rms-header-bg: linear-gradient(135deg, #ffffff 0%, #fde2c8 100%);
+  --rms-header-border: rgba(199, 62, 29, 0.18);
 
   --rms-shadow-soft: 0 22px 70px rgba(105, 48, 18, 0.12);
   --rms-shadow-card: 0 8px 32px rgba(105, 48, 18, 0.10);
@@ -42,31 +42,31 @@ html[data-theme="light"] {
   /* Marketing surfaces */
   --rms-mkt-page-bg: transparent;
   --rms-mkt-card-bg: #ffffff;
-  --rms-mkt-card-border: rgba(217, 75, 31, 0.15);
+  --rms-mkt-card-border: rgba(199, 62, 29, 0.15);
   --rms-mkt-card-shadow:
     0 8px 32px rgba(105, 48, 18, 0.10),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  --rms-mkt-inset: #fff0d8;
-  --rms-kicker: #b43f18;
-  --rms-link: #b43f18;
+  --rms-mkt-inset: #fde2c8;
+  --rms-kicker: #8b1a0e;
+  --rms-link: #8b1a0e;
   --rms-link-hover: #7c2d12;
   --rms-input-bg: #ffffff;
-  --rms-input-border: rgba(154, 73, 31, 0.28);
+  --rms-input-border: rgba(139, 26, 14, 0.28);
   --rms-input-text: #1c0f07;
   --rms-input-placeholder: #7a5433;
-  --rms-ghost-bg: #fff0d8;
-  --rms-ghost-border: rgba(217, 75, 31, 0.24);
+  --rms-ghost-bg: #fde2c8;
+  --rms-ghost-border: rgba(199, 62, 29, 0.24);
   --rms-ghost-text: #1c0f07;
-  --rms-ghost-hover-bg: rgba(217, 75, 31, 0.09);
-  --rms-pill-bg: #fff0d8;
-  --rms-pill-border: rgba(217, 75, 31, 0.2);
+  --rms-ghost-hover-bg: rgba(199, 62, 29, 0.09);
+  --rms-pill-bg: #fde2c8;
+  --rms-pill-border: rgba(199, 62, 29, 0.2);
   --rms-pill-text: #3d2010;
-  --rms-pill-active-bg: linear-gradient(135deg, #f2a51a 0%, #d94b1f 100%);
+  --rms-pill-active-bg: linear-gradient(135deg, #dc2626 0%, #c73e1d 100%);
   --rms-pill-active-text: #ffffff;
   --rms-tab-muted: #8c6440;
   --rms-tab-active: #1c0f07;
-  --rms-tab-active-border: #d94b1f;
-  --rms-cta-pay-bg: linear-gradient(135deg, #f2a51a, #d94b1f);
+  --rms-tab-active-border: #c73e1d;
+  --rms-cta-pay-bg: linear-gradient(135deg, #dc2626, #c73e1d);
   --rms-cta-pay-text: #ffffff;
   --rms-success: #2e7d52;
   --rms-danger: #c0392b;
@@ -164,7 +164,7 @@ body {
     radial-gradient(circle at 8% 0%, rgba(242, 165, 26, 0.18), transparent 28%),
     radial-gradient(circle at 88% 10%, rgba(217, 75, 31, 0.12), transparent 26%),
     radial-gradient(circle at 50% 100%, rgba(123, 63, 0, 0.10), transparent 40%),
-    linear-gradient(180deg, #fff9ef 0%, #fff0d8 50%, #fff9ef 100%) !important;
+    linear-gradient(180deg, #fef6ee 0%, #fde2c8 50%, #fef6ee 100%) !important;
 }
 
 /* Smooth change */
@@ -1224,7 +1224,7 @@ html[data-theme="light"] .tab-price {
 
 html[data-theme="dark"] .tab-price strong,
 html[data-theme="light"] .tab-price strong {
-  color: #e6c35f !important;
+  color: #c73e1d !important;
 }
 
 /* Tier label */
@@ -1241,7 +1241,7 @@ html[data-theme="light"] .tab-tier {
 /* Popular label remains gold */
 html[data-theme="dark"] .popular-badge,
 html[data-theme="light"] .popular-badge {
-  background: linear-gradient(135deg, #e6c35f, #f2dfa1) !important;
+  background: linear-gradient(135deg, #c73e1d, #fde2c8) !important;
   color: #07101c !important;
 }
 
@@ -1337,7 +1337,7 @@ html[data-theme="light"] .detail-products a {
 
 html[data-theme="dark"] .detail-cta,
 html[data-theme="light"] .detail-cta {
-  background: linear-gradient(135deg, #e3c465, #f2dfa1) !important;
+  background: linear-gradient(135deg, #e3c465, #fde2c8) !important;
   color: #07101c !important;
 }
 
@@ -1374,7 +1374,7 @@ html[data-theme="light"] .marketing-footer a {
 
 html[data-theme="dark"] .footer-column-title,
 html[data-theme="light"] .footer-column-title {
-  color: #e6c35f !important;
+  color: #c73e1d !important;
 }
 
 /* =========================================================
@@ -1437,7 +1437,7 @@ html[data-theme="light"] .services-page .brand-part-rank {
 
 html[data-theme="dark"] .services-page .brand-part-mysalon,
 html[data-theme="light"] .services-page .brand-part-mysalon {
-  color: #e6c35f !important;
+  color: #c73e1d !important;
 }
 
 /* Nav links */
@@ -1694,7 +1694,7 @@ html[data-theme="light"] .tier-page .brand-part-rank {
 
 html[data-theme="dark"] .tier-page .brand-part-mysalon,
 html[data-theme="light"] .tier-page .brand-part-mysalon {
-  background: linear-gradient(135deg, #fff0b6 0%, #e6c35f 42%, #cfa83d 100%) !important;
+  background: linear-gradient(135deg, #fde2c8 0%, #c73e1d 42%, #8b1a0e 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
@@ -1832,7 +1832,7 @@ html[data-theme="light"] .service-card {
 
 html[data-theme="dark"] .service-label,
 html[data-theme="light"] .service-label {
-  color: #e6c35f !important;
+  color: #c73e1d !important;
 }
 
 html[data-theme="dark"] .service-title {
@@ -1856,7 +1856,7 @@ html[data-theme="light"] .service-feature {
 /* Buttons */
 html[data-theme="dark"] .primary-btn,
 html[data-theme="light"] .primary-btn {
-  background: linear-gradient(135deg, #e3c465 0%, #f2dfa1 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #fde2c8 100%) !important;
   color: #08111d !important;
   box-shadow: 0 14px 28px rgba(227, 196, 101, 0.18) !important;
 }
@@ -1997,7 +1997,7 @@ html[data-theme="light"] .tier-page .footer-copyright {
 
 html[data-theme="dark"] .tier-page .footer-link:hover,
 html[data-theme="light"] .tier-page .footer-link:hover {
-  color: #e6c35f !important;
+  color: #c73e1d !important;
 }
 
 html[data-theme="dark"] .tier-page .marketing-footer-bottom {
@@ -2217,7 +2217,7 @@ html[data-theme="light"] .product-page .brand-part-rank {
 
 html[data-theme="dark"] .product-page .brand-part-mysalon,
 html[data-theme="light"] .product-page .brand-part-mysalon {
-  background: linear-gradient(135deg, #fff0b6 0%, #e6c35f 42%, #cfa83d 100%) !important;
+  background: linear-gradient(135deg, #fde2c8 0%, #c73e1d 42%, #8b1a0e 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
@@ -2436,7 +2436,7 @@ html[data-theme="dark"] .plan-label,
 html[data-theme="light"] .plan-label,
 html[data-theme="dark"] .plan-save,
 html[data-theme="light"] .plan-save {
-  color: #e6c35f !important;
+  color: #c73e1d !important;
 }
 
 html[data-theme="dark"] .plan-save {
@@ -2471,7 +2471,7 @@ html[data-theme="light"] .setup-note {
 
 html[data-theme="dark"] .popular-badge,
 html[data-theme="light"] .popular-badge {
-  background: linear-gradient(135deg, #e3c465 0%, #f2dfa1 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #fde2c8 100%) !important;
   color: #08111d !important;
 }
 
@@ -2481,7 +2481,7 @@ html[data-theme="light"] .popular-badge {
 
 html[data-theme="dark"] .primary-btn,
 html[data-theme="light"] .primary-btn {
-  background: linear-gradient(135deg, #e3c465 0%, #f2dfa1 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #fde2c8 100%) !important;
   color: #08111d !important;
   box-shadow: 0 14px 28px rgba(227, 196, 101, 0.18) !important;
 }
@@ -2558,7 +2558,7 @@ html[data-theme="light"] .product-page .footer-copyright {
 
 html[data-theme="dark"] .product-page .footer-link:hover,
 html[data-theme="light"] .product-page .footer-link:hover {
-  color: #e6c35f !important;
+  color: #c73e1d !important;
 }
 
 /* =========================================================
@@ -2756,7 +2756,7 @@ html[data-theme="light"] .service-page .brand-part-rank {
 
 html[data-theme="dark"] .service-page .brand-part-mysalon,
 html[data-theme="light"] .service-page .brand-part-mysalon {
-  background: linear-gradient(135deg, #fff0b6 0%, #e6c35f 42%, #cfa83d 100%) !important;
+  background: linear-gradient(135deg, #fde2c8 0%, #c73e1d 42%, #8b1a0e 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
@@ -2901,7 +2901,7 @@ html[data-theme="dark"] .section-label,
 html[data-theme="light"] .section-label,
 html[data-theme="dark"] .feature-number,
 html[data-theme="light"] .feature-number {
-  color: #e6c35f !important;
+  color: #c73e1d !important;
 }
 
 html[data-theme="dark"] .section-title,
@@ -2999,7 +2999,7 @@ html[data-theme="dark"] .pricing-btn,
 html[data-theme="light"] .pricing-btn,
 html[data-theme="dark"] .cta-btn,
 html[data-theme="light"] .cta-btn {
-  background: linear-gradient(135deg, #e3c465 0%, #f2dfa1 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #fde2c8 100%) !important;
   color: #08111d !important;
   box-shadow: 0 14px 28px rgba(227, 196, 101, 0.18) !important;
 }
@@ -3078,7 +3078,7 @@ html[data-theme="light"] .service-page .footer-copyright {
 
 html[data-theme="dark"] .service-page .footer-link:hover,
 html[data-theme="light"] .service-page .footer-link:hover {
-  color: #e6c35f !important;
+  color: #c73e1d !important;
 }
 
 /* =========================================================
@@ -3662,7 +3662,7 @@ html[data-theme="dark"] .cta,
 html[data-theme="light"] .cta,
 html[data-theme="dark"] .marketing-hero-brief-submit,
 html[data-theme="light"] .marketing-hero-brief-submit {
-  background: linear-gradient(135deg, #e3c465 0%, #f2dfa1 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #fde2c8 100%) !important;
   color: #08111d !important;
   border-color: transparent !important;
   box-shadow: 0 14px 28px rgba(227, 196, 101, 0.18) !important;

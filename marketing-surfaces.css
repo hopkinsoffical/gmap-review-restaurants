@@ -5,7 +5,7 @@
 
 html[data-theme="light"]:has(body.route-marketing),
 html:not([data-theme]):has(body.route-marketing) {
-  background: #fff9ef !important;
+  background: #fef6ee !important;
 }
 
 html[data-theme="dark"]:has(body.route-marketing) {

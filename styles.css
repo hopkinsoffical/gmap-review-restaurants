@@ -1,16 +1,16 @@
 @import url("/theme.css");
 
 :root {
-  --bg: #fff9ef;
+  --bg: #fef6ee;
   --panel: rgba(255, 255, 255, 0.90);
   --panel-strong: rgba(255, 250, 242, 0.96);
-  --panel-border: rgba(217, 75, 31, 0.15);
+  --panel-border: rgba(199, 62, 29, 0.15);
   --text: #241007;
   --muted: #7a5433;
-  --gold: #d94b1f;
-  --gold-strong: #b43f18;
-  --gold-soft: rgba(217, 75, 31, 0.12);
-  --chip-bg: rgba(242, 165, 26, 0.15);
+  --gold: #c73e1d;
+  --gold-strong: #8b1a0e;
+  --gold-soft: rgba(199, 62, 29, 0.12);
+  --chip-bg: rgba(220, 38, 38, 0.15);
   --danger: #c0392b;
   --ok: #2e7d52;
   --working: #c07920;
@@ -30,9 +30,9 @@ body {
   padding: 0;
   min-height: 100%;
   background:
-    radial-gradient(circle at 8% 10%, rgba(242, 165, 26, 0.18), transparent 28%),
-    radial-gradient(circle at 88% 8%, rgba(217, 75, 31, 0.12), transparent 24%),
-    linear-gradient(180deg, #fff9ef 0%, #fff0d8 100%);
+    radial-gradient(circle at 8% 10%, rgba(220, 38, 38, 0.18), transparent 28%),
+    radial-gradient(circle at 88% 8%, rgba(199, 62, 29, 0.12), transparent 24%),
+    linear-gradient(180deg, #fef6ee 0%, #fde2c8 100%);
   color: var(--text);
   font-family: "Manrope", "Noto Sans SC", sans-serif;
 }
@@ -68,13 +68,13 @@ body.has-pricing-summary {
 .bg-glow-1 {
   top: -8vw;
   right: -4vw;
-  background: #f2a51a;
+  background: #dc2626;
 }
 
 .bg-glow-2 {
   bottom: -10vw;
   left: -9vw;
-  background: #d94b1f;
+  background: #c73e1d;
 }
 
 .app {
@@ -1421,10 +1421,10 @@ h1 {
   position: relative;
   overflow: hidden;
   border-radius: 32px;
-  border: 1px solid rgba(242, 165, 26, 0.16);
+  border: 1px solid rgba(220, 38, 38, 0.16);
   background:
-    radial-gradient(circle at top left, rgba(242, 165, 26, 0.18), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(217, 75, 31, 0.18), transparent 24%),
+    radial-gradient(circle at top left, rgba(220, 38, 38, 0.18), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(199, 62, 29, 0.18), transparent 24%),
     linear-gradient(135deg, #160d09 0%, #2a150d 44%, #0f0705 100%);
   box-shadow: 0 28px 80px rgba(43, 18, 8, 0.28);
 }
@@ -1436,7 +1436,7 @@ h1 {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: rgba(217, 75, 31, 0.18);
+  background: rgba(199, 62, 29, 0.18);
   filter: blur(64px);
   pointer-events: none;
 }
@@ -1627,7 +1627,7 @@ h1 {
 /* Homepage hero — brief report lead (espresso + saffron, restaurant-focused) */
 .marketing-hero-section--brief.card {
   background: linear-gradient(145deg, #150b07 0%, #2a150d 48%, #0f0705 100%);
-  border: 1px solid rgba(242, 165, 26, 0.16);
+  border: 1px solid rgba(220, 38, 38, 0.16);
   box-shadow:
     0 24px 64px rgba(33, 12, 4, 0.46),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
@@ -1641,8 +1641,8 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(242, 165, 26, 0.16), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(217, 75, 31, 0.14), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(220, 38, 38, 0.16), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(199, 62, 29, 0.14), transparent 50%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 44%);
   pointer-events: none;
 }
@@ -1662,7 +1662,7 @@ h1 {
 
 .marketing-hero-section--brief .marketing-rating-row--brief {
   justify-content: center;
-  color: #f2a51a;
+  color: #dc2626;
   margin-bottom: 12px;
 }
 
@@ -1728,11 +1728,11 @@ h1 {
   font-size: clamp(2rem, 5.2vw, 3.25rem);
   font-weight: 400;
   line-height: 1.05;
-  background: linear-gradient(118deg, #fff6d4 0%, #f2c66b 38%, #f2a51a 64%, #ff7043 100%);
+  background: linear-gradient(118deg, #fde2c8 0%, #c2410c 38%, #dc2626 64%, #ea580c 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 2px 24px rgba(242, 165, 26, 0.32));
+  filter: drop-shadow(0 2px 24px rgba(220, 38, 38, 0.32));
 }
 
 .marketing-hero-urgency {
@@ -1809,8 +1809,8 @@ h1 {
 
 .marketing-hero-brief-input:focus {
   outline: none;
-  border-color: rgba(242, 165, 26, 0.58);
-  box-shadow: 0 0 0 3px rgba(242, 165, 26, 0.16);
+  border-color: rgba(220, 38, 38, 0.58);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.16);
 }
 
 .marketing-hero-brief-consent {
@@ -1838,7 +1838,7 @@ h1 {
 }
 
 .marketing-hero-brief-inline-link {
-  color: #ffd166;
+  color: #dc2626;
   text-decoration: none;
 }
 
@@ -1857,8 +1857,8 @@ h1 {
   font-weight: 800;
   letter-spacing: 0.02em;
   color: #241007;
-  background: linear-gradient(135deg, #ffd166 0%, #f2a51a 48%, #d94b1f 100%);
-  box-shadow: 0 14px 32px rgba(217, 75, 31, 0.32);
+  background: linear-gradient(135deg, #dc2626 0%, #dc2626 48%, #c73e1d 100%);
+  box-shadow: 0 14px 32px rgba(199, 62, 29, 0.32);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
@@ -1866,7 +1866,7 @@ h1 {
 
 .marketing-hero-brief-submit:hover {
   transform: translateY(-1px);
-  box-shadow: 0 18px 36px rgba(217, 75, 31, 0.4);
+  box-shadow: 0 18px 36px rgba(199, 62, 29, 0.4);
 }
 
 .marketing-hero-brief-feedback {
@@ -1908,7 +1908,7 @@ h1 {
 }
 
 .marketing-hero-section--brief .marketing-trust-item::before {
-  color: #f2a51a;
+  color: #dc2626;
 }
 
 .marketing-report-shell {
@@ -1928,13 +1928,13 @@ h1 {
   min-height: 34px;
   padding: 7px 14px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #d94b1f 0%, #ff7043 100%);
+  background: linear-gradient(135deg, #c73e1d 0%, #ea580c 100%);
   color: #fffaf8;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  box-shadow: 0 12px 26px rgba(217, 75, 31, 0.25);
+  box-shadow: 0 12px 26px rgba(199, 62, 29, 0.25);
 }
 
 .marketing-report-card {
@@ -2008,7 +2008,7 @@ h1 {
 
 .marketing-report-position-value {
   margin: 0;
-  color: #d94b1f;
+  color: #c73e1d;
   font-size: clamp(2rem, 3vw, 2.8rem);
   line-height: 1;
   font-weight: 900;
@@ -2017,7 +2017,7 @@ h1 {
 
 .marketing-report-rating-card {
   background: linear-gradient(180deg, rgba(255, 242, 232, 0.98), rgba(255, 250, 246, 0.94));
-  border-color: rgba(217, 75, 31, 0.18);
+  border-color: rgba(199, 62, 29, 0.18);
 }
 
 .marketing-report-rating-line {
@@ -2028,14 +2028,14 @@ h1 {
 }
 
 .marketing-report-rating-value {
-  color: #d94b1f;
+  color: #c73e1d;
   font-size: 1.6rem;
   line-height: 1;
   font-weight: 900;
 }
 
 .marketing-report-stars {
-  color: #f2a51a;
+  color: #dc2626;
   letter-spacing: 0.08em;
   font-size: 0.78rem;
   white-space: nowrap;
@@ -2117,7 +2117,7 @@ h1 {
 }
 
 .marketing-report-bar-fill-you {
-  background: linear-gradient(90deg, #b43f18 0%, #d94b1f 100%);
+  background: linear-gradient(90deg, #8b1a0e 0%, #c73e1d 100%);
 }
 
 .marketing-report-bar-fill-median {
@@ -2125,7 +2125,7 @@ h1 {
 }
 
 .marketing-report-bar-fill-top {
-  background: linear-gradient(90deg, #f2a51a 0%, #ffd166 100%);
+  background: linear-gradient(90deg, #dc2626 0%, #dc2626 100%);
 }
 
 .marketing-report-nearby-section {
@@ -2245,7 +2245,7 @@ h1 {
   min-height: 520px;
   border-color: rgba(255, 231, 199, 0.1);
   background:
-    radial-gradient(circle at top, rgba(242, 165, 26, 0.2), transparent 32%),
+    radial-gradient(circle at top, rgba(220, 38, 38, 0.2), transparent 32%),
     linear-gradient(180deg, rgba(36, 16, 7, 0.96), rgba(13, 7, 5, 0.98));
   box-shadow: 0 26px 60px rgba(22, 9, 4, 0.34);
 }
@@ -2265,7 +2265,7 @@ h1 {
 }
 
 .marketing-digital-human .marketing-section-kicker {
-  color: #ffd166;
+  color: #dc2626;
 }
 
 .marketing-digital-human .marketing-section-title,
@@ -2302,14 +2302,14 @@ h1 {
 
 .marketing-digital-human .cta {
   border-color: transparent;
-  background: linear-gradient(135deg, #d94b1f 0%, #f2a51a 100%);
+  background: linear-gradient(135deg, #c73e1d 0%, #dc2626 100%);
   color: #241007;
-  box-shadow: 0 18px 34px rgba(217, 75, 31, 0.26);
+  box-shadow: 0 18px 34px rgba(199, 62, 29, 0.26);
 }
 
 .marketing-digital-human .cta:hover,
 .marketing-digital-human .cta:focus-visible {
-  box-shadow: 0 22px 40px rgba(217, 75, 31, 0.34);
+  box-shadow: 0 22px 40px rgba(199, 62, 29, 0.34);
 }
 
 .marketing-digital-alt-link {
@@ -2360,7 +2360,7 @@ h1 {
   border-radius: 999px;
   border: 1px solid rgba(255, 209, 102, 0.2);
   background: rgba(36, 16, 7, 0.58);
-  color: #ffd166;
+  color: #dc2626;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -5286,7 +5286,7 @@ textarea.portal-input {
 }
 
 .intel-growth-insight-card--conv .intel-growth-insight-ico {
-  background: linear-gradient(135deg, #d94b1f, #f2a51a);
+  background: linear-gradient(135deg, #c73e1d, #dc2626);
 }
 
 .intel-insight-eyebrow {
@@ -6768,11 +6768,11 @@ textarea.portal-input {
 
 .lb-search-btn:hover {
   background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(242, 165, 26, 0.45);
+  border-color: rgba(220, 38, 38, 0.45);
 }
 
 .lb-search-btn:focus-visible {
-  outline: 2px solid rgba(242, 165, 26, 0.7);
+  outline: 2px solid rgba(220, 38, 38, 0.7);
   outline-offset: 2px;
 }
 
@@ -7131,7 +7131,7 @@ textarea.portal-input {
 }
 
 .lb-card-menu-btn:focus-visible {
-  outline: 2px solid var(--accent, #d94b1f);
+  outline: 2px solid var(--accent, #c73e1d);
   outline-offset: 2px;
 }
 
@@ -7611,7 +7611,7 @@ textarea.portal-input {
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #d94b1f, #f2a51a);
+  background: linear-gradient(90deg, #c73e1d, #dc2626);
 }
 
 .lb-rep-score-sub {
@@ -11070,12 +11070,12 @@ html[data-theme="dark"] body .marketing-brand .brand-part-mysalon,
 html[data-theme="light"] body .marketing-brand .brand-part-mysalon,
 html[data-theme="dark"] body .marketing-brand .brand-part-myrestaurant,
 html[data-theme="light"] body .marketing-brand .brand-part-myrestaurant {
-  background: linear-gradient(135deg, #fff0b6 0%, #ffd166 34%, #f2a51a 62%, #d94b1f 100%) !important;
+  background: linear-gradient(135deg, #fde2c8 0%, #c73e1d 42%, #8b1a0e 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  text-shadow: 0 0 18px rgba(242, 165, 26, 0.2) !important;
+  text-shadow: 0 0 18px rgba(199, 62, 29, 0.22) !important;
   font-weight: 700 !important;
 }
 
