@@ -702,7 +702,9 @@ applyMarketingTheme(getMarketingTheme());
       navServices: "Services",
       navAbout: "About Us",
       navLeaderboard: "Leaderboard",
-      navAnalysis: "Local Restaurant Ranking",
+      navAnalysis: "Local Ranking",
+      navAgent: "AI Agent",
+      navTools: "Tools",
       navContact: "Contact Us",
       navDashboard: "Dashboard",
       navSignIn: "Sign in",
@@ -1005,7 +1007,9 @@ applyMarketingTheme(getMarketingTheme());
       navServices: "服务",
       navAbout: "关于我们",
       navLeaderboard: "排行榜",
-      navAnalysis: "本地餐厅排名",
+      navAnalysis: "本地排名",
+      navAgent: "AI 智能体",
+      navTools: "工具",
       navContact: "联系我们",
       navDashboard: "后台",
       navSignIn: "登录",
@@ -6551,10 +6555,100 @@ applyMarketingTheme(getMarketingTheme());
   }
 
   function getMarketingNavHtml() {
+    // 5-tab nav matching rankmysalon.ai (Overview / AI Agent /
+    // Local Ranking / Tools / Services). AI Agent and Tools are
+    // dropdowns; Overview, Local Ranking, and Services are direct
+    // links. The links array below drives the simple <a> tags;
+    // the two dropdown blocks are rendered after.
     const links = [
-  { key: ROUTE_ANALYSIS_LIST, label: MARKETING_UI.navAnalysis },
-  { key: ROUTE_SERVICES, label: MARKETING_UI.navServices },
-];
+      { key: ROUTE_LANDING, label: MARKETING_UI.navOverview, href: "/" },
+      { key: ROUTE_ANALYSIS_LIST, label: MARKETING_UI.navAnalysis, href: "/analysis-reports" },
+      { key: ROUTE_SERVICES, label: MARKETING_UI.navServices, href: "/services.html" },
+    ];
+
+    const dropdowns = [
+      {
+        id: "marketingNavAi",
+        label: MARKETING_UI.navAgent,
+        items: [
+          { label: "Ryan \u2014 AI Growth Advisor", href: "/ai-agents/ryan" },
+          { label: "Hannah \u2014 AI Front Desk Manager", href: "/ai-agents/hannah" },
+          { label: "Andrew \u2014 Customer Acquisition Manager", href: "/ai-agents/andrew" },
+          { label: "Sarah \u2014 Reputation Manager", href: "/ai-agents/sarah" },
+          { label: "Grace \u2014 Client Success Manager", href: "/ai-agents/grace" },
+        ],
+      },
+      {
+        id: "marketingNavTools",
+        label: MARKETING_UI.navTools,
+        items: [
+          { label: "AI Review Booster Tool", href: "/ai-review-generator.html" },
+          { label: "Leaderboard", href: "/leaderboard" },
+        ],
+      },
+    ];
+
+    // Render the 5 nav items in Cathy's required order:
+    // Overview, AI Agent, Local Ranking, Tools, Services
+    const navItemsHtml = [
+      linksHtmlItem(links[0]), // Overview
+      dropdownsHtmlItem(dropdowns[0]), // AI Agent
+      linksHtmlItem(links[1]), // Local Ranking
+      dropdownsHtmlItem(dropdowns[1]), // Tools
+      linksHtmlItem(links[2]), // Services
+    ].join("");
+
+    function linksHtmlItem(link) {
+      var navActive = state.routeKind === link.key;
+      if (link.key === ROUTE_ANALYSIS_LIST && isAnalysisRoute()) {
+        navActive = true;
+      }
+      if (link.key === ROUTE_SERVICES && state.routeKind === ROUTE_SERVICES) {
+        navActive = true;
+      }
+      if (link.key === ROUTE_LANDING && (state.routeKind === ROUTE_LANDING || !state.routeKind)) {
+        navActive = true;
+      }
+      const active = navActive ? " is-active" : "";
+      return (
+        '<a class="marketing-nav-link' +
+        active +
+        '" href="' +
+        (link.href || getPagePath(link.key)) +
+        '">' +
+        escapeHtml(link.label) +
+        "</a>"
+      );
+    }
+
+    function dropdownsHtmlItem(dd) {
+      const itemsHtml = dd.items
+        .map(function (item) {
+          return (
+            '<a class="marketing-dropdown-item" href="' +
+            escapeHtml(item.href) +
+            '" role="menuitem">' +
+            escapeHtml(item.label) +
+            "</a>"
+          );
+        })
+        .join("");
+      return (
+        '<div class="marketing-dropdown">' +
+        '<button type="button" class="marketing-nav-link marketing-dropdown-toggle" id="' +
+        dd.id +
+        'Btn" aria-haspopup="true" aria-expanded="false">' +
+        escapeHtml(dd.label) +
+        '<span class="marketing-dropdown-caret" aria-hidden="true">\u25BE</span>' +
+        "</button>" +
+        '<div class="marketing-dropdown-menu" id="' +
+        dd.id +
+        'Menu" role="menu" hidden>' +
+        itemsHtml +
+        "</div>" +
+        "</div>"
+      );
+    }
 
     return (
       '<header class="marketing-nav-shell">' +
@@ -6564,27 +6658,7 @@ applyMarketingTheme(getMarketingTheme());
       '<span class="brand-part brand-part-myrestaurant">MyRestaurant</span>' +
       "</a>" +
       '<nav class="marketing-nav" aria-label="Primary">' +
-      links
-        .map(function (link) {
-          var navActive = state.routeKind === link.key;
-          if (link.key === ROUTE_ANALYSIS_LIST && isAnalysisRoute()) {
-            navActive = true;
-          }
-          if (link.key === ROUTE_SERVICES && state.routeKind === ROUTE_SERVICES) {
-            navActive = true;
-          }
-          const active = navActive ? " is-active" : "";
-          return (
-            '<a class="marketing-nav-link' +
-            active +
-            '" href="' +
-            getPagePath(link.key) +
-            '">' +
-            escapeHtml(link.label) +
-            "</a>"
-          );
-        })
-        .join("") +
+      navItemsHtml +
       "</nav>" +
       "</div>" +
       '<div class="marketing-auth-actions">' +
@@ -7163,6 +7237,57 @@ applyMarketingTheme(getMarketingTheme());
     document.addEventListener("keydown", function (event) {
       if (event.key !== "Escape") return;
       closeAllMarketingLangMenus();
+    });
+  }
+
+  function bindMarketingNavDropdowns() {
+    function closeAllMarketingNavDropdowns() {
+      var menus = document.querySelectorAll(".marketing-dropdown-menu");
+      for (var i = 0; i < menus.length; i += 1) {
+        menus[i].setAttribute("hidden", "");
+        var wrap = menus[i].closest(".marketing-dropdown");
+        if (wrap) {
+          var btn = wrap.querySelector(".marketing-dropdown-toggle");
+          if (btn) btn.setAttribute("aria-expanded", "false");
+        }
+      }
+    }
+    function openMarketingNavDropdown(id) {
+      closeAllMarketingNavDropdowns();
+      var menu = document.getElementById(id);
+      if (!menu) return;
+      menu.removeAttribute("hidden");
+      var wrap = menu.closest(".marketing-dropdown");
+      if (wrap) {
+        var btn = wrap.querySelector(".marketing-dropdown-toggle");
+        if (btn) btn.setAttribute("aria-expanded", "true");
+      }
+    }
+    document.addEventListener("click", function (event) {
+      var t = event.target;
+      if (!t || !t.closest) return;
+      var btn = t.closest(".marketing-dropdown-toggle");
+      if (btn) {
+        event.preventDefault();
+        event.stopPropagation();
+        var menu = btn.parentElement ? btn.parentElement.querySelector(".marketing-dropdown-menu") : null;
+        if (!menu) return;
+        var isOpen = btn.getAttribute("aria-expanded") === "true";
+        if (isOpen) {
+          closeAllMarketingNavDropdowns();
+        } else {
+          openMarketingNavDropdown(menu.id);
+        }
+        return;
+      }
+      if (!t.closest(".marketing-dropdown")) {
+        closeAllMarketingNavDropdowns();
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeAllMarketingNavDropdowns();
+      }
     });
   }
 
@@ -11972,6 +12097,7 @@ function renderServicesContent() {
     initShopify();
     bindPricingEvents();
     bindMarketingLanguageEvents();
+    bindMarketingNavDropdowns();
     bindIntelListSearchDelegation();
     bindLeaderboardUiDelegation();
     bindMarketingFormEvents();
