@@ -8,10 +8,8 @@ import math
 from typing import Any, Dict, Mapping, Optional
 
 from leaderboard_scoring import (
-    assessment_level_from_fraction_from_top,
     assign_assessment_levels_by_ai_score_percentile,
     freshness_heuristic,
-    resolve_assessment_level_for_slug,
     sentiment_from_review_histogram,
 )
 
