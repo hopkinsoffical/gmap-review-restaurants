@@ -67,14 +67,18 @@ def fetch_all(
     table: str,
     params: Dict[str, str] | None = None,
     page_size: int = 500,
+    max_rows: int = 0,
 ) -> List[Dict[str, Any]]:
     rows: List[Dict[str, Any]] = []
     offset = 0
     while True:
+        if max_rows and len(rows) >= max_rows:
+            rows = rows[:max_rows]
+            break
         resp = requests.get(
             f"{supabase_url}/rest/v1/{table}",
             headers={**headers, "Range-Unit": "items", "Range": f"{offset}-{offset + page_size - 1}"},
-            params=params or {"is_listed": "eq.true", "select": "*", "order": "updated_at.desc"},
+            params=params or {"select": "*", "order": "updated_at.desc"},
             timeout=60,
         )
         if not resp.ok:
@@ -84,6 +88,9 @@ def fetch_all(
         if not batch:
             break
         rows.extend(batch)
+        if max_rows and len(rows) >= max_rows:
+            rows = rows[:max_rows]
+            break
         if len(batch) < page_size:
             break
         offset += page_size
@@ -91,17 +98,22 @@ def fetch_all(
     return rows
 
 
+# Outscraper-style Google profile source tables (newest first).
 SOURCE_TABLE_CANDIDATES = (
     "info_gather_google_profiles_latest",
-    "salon_ai_leaderboard_latest",
+    "info_gather_google_profiles",
 )
 
 
-def fetch_source_rows(supabase_url: str, headers: Dict[str, str]) -> tuple[List[Dict[str, Any]], str]:
+def fetch_source_rows(
+    supabase_url: str,
+    headers: Dict[str, str],
+    max_rows: int = 0,
+) -> tuple[List[Dict[str, Any]], str]:
     last_error: Exception | None = None
     for table in SOURCE_TABLE_CANDIDATES:
         try:
-            rows = fetch_all(supabase_url, headers, table)
+            rows = fetch_all(supabase_url, headers, table, max_rows=max_rows)
             print(f"Read {len(rows)} rows from {table}")
             return rows, table
         except RuntimeError as err:
@@ -129,41 +141,87 @@ def sentiment_fallback_from_rating(rating: float) -> float:
     return 0.66
 
 
+# Outscraper info_gather_google_profiles uses Google-style column names; map to the
+# normalized leaderboard field names. Keep both styles for forward-compat.
+SOURCE_FIELD_ALIASES = {
+    "name": ("name", "title"),
+    "address": ("address",),
+    "state": ("state",),
+    "town": ("town", "city"),
+    "zipcode": ("zipcode", "postal_code"),
+    "category": ("category", "category_name"),
+    "review_count": ("review_count", "reviews_count"),
+    "place_id": ("place_id",),
+    "google_place_id": ("google_place_id",),
+    "phone": ("phone",),
+    "website": ("website",),
+    "reviews_distribution": ("reviews_distribution",),
+    "reviews": ("reviews",),
+    "best_menu_url": ("best_menu_url", "menu_url"),
+    "opening_hours": ("opening_hours",),
+    "image_url": ("image_url",),
+    "categories": ("categories",),
+    "price": ("price",),
+    "delivery": ("delivery",),
+    "takeout": ("takeout",),
+    "dine_in": ("dine_in",),
+    "reservable": ("reservable",),
+    "profile_updated_at": ("profile_updated_at", "updated_at"),
+}
+
+
+def _field(rec: Dict[str, Any], key: str) -> Any:
+    for alias in SOURCE_FIELD_ALIASES.get(key, (key,)):
+        if alias in rec and rec[alias] is not None:
+            return rec[alias]
+    return None
+
+
+def _is_listed(rec: Dict[str, Any]) -> bool:
+    # Outscraper tables don't have is_listed; exclude permanently_closed / temporarily_closed.
+    if rec.get("is_listed") is False:
+        return False
+    if rec.get("permanently_closed") is True or rec.get("temporarily_closed") is True:
+        return False
+    return True
+
+
 def build_row(rec: Dict[str, Any]) -> Dict[str, Any] | None:
-    place_id = str(rec.get("place_id") or rec.get("google_place_id") or "").strip()
+    place_id = str(_field(rec, "place_id") or _field(rec, "google_place_id") or "").strip()
+    name = str(_field(rec, "name") or "").strip()
     slug = str(rec.get("slug") or "").strip().lower()
     if not slug and place_id:
-        slug = make_slug(str(rec.get("name") or ""), place_id)
+        slug = make_slug(name or "restaurant", place_id)
     if not slug:
         return None
 
-    rating = float(rec.get("rating") or 0)
-    review_count = max(0, int(rec.get("review_count") or 0))
-    hist = rec.get("reviews_distribution") or {}
+    rating = float(_field(rec, "rating") or 0)
+    review_count = max(0, int(_field(rec, "review_count") or 0))
+    hist = _field(rec, "reviews_distribution") or {}
     if hist:
         sentiment_p = sentiment_from_review_histogram(hist, review_count)
     else:
         sentiment_p = sentiment_fallback_from_rating(rating)
-    freshness_f = freshness_heuristic(review_count, rec.get("reviews") or [])
+    freshness_f = freshness_heuristic(review_count, _field(rec, "reviews") or [])
 
     dim_signals = {
         "rating": rating,
         "reviewCount": review_count,
         "sentimentP": sentiment_p,
         "freshnessF": freshness_f,
-        "phone": rec.get("phone"),
-        "website": rec.get("website"),
-        "address": rec.get("address"),
+        "phone": _field(rec, "phone"),
+        "website": _field(rec, "website"),
+        "address": _field(rec, "address"),
         "placeId": place_id,
-        "menuUrl": rec.get("best_menu_url") or rec.get("menu_url"),
-        "openingHours": rec.get("opening_hours"),
-        "imageUrl": rec.get("image_url"),
-        "categories": rec.get("categories"),
-        "price": rec.get("price"),
-        "delivery": rec.get("delivery"),
-        "takeout": rec.get("takeout"),
-        "dineIn": rec.get("dine_in"),
-        "reservable": rec.get("reservable"),
+        "menuUrl": _field(rec, "best_menu_url"),
+        "openingHours": _field(rec, "opening_hours"),
+        "imageUrl": _field(rec, "image_url"),
+        "categories": _field(rec, "categories"),
+        "price": _field(rec, "price"),
+        "delivery": _field(rec, "delivery"),
+        "takeout": _field(rec, "takeout"),
+        "dineIn": _field(rec, "dine_in"),
+        "reservable": _field(rec, "reservable"),
     }
     dims = restr_dimension_scores_from_signals(dim_signals)
     ai_score = calc_restr_ai_score(
@@ -175,28 +233,30 @@ def build_row(rec: Dict[str, Any]) -> Dict[str, Any] | None:
         dims["dim_conversion_score"],
     )
 
+    town = str(_field(rec, "town") or "").strip()
+    state = str(_field(rec, "state") or "").strip()
     return {
         "slug": slug,
-        "name": str(rec.get("name") or slug).strip(),
-        "address": str(rec.get("address") or "").strip(),
-        "state": str(rec.get("state") or "").strip(),
-        "county": str(rec.get("county") or rec.get("city") or "").strip(),
-        "town": str(rec.get("town") or rec.get("city") or "").strip(),
-        "zipcode": str(rec.get("zipcode") or "").strip(),
-        "category": str(rec.get("category") or "").strip(),
+        "name": name or slug,
+        "address": str(_field(rec, "address") or "").strip(),
+        "state": state,
+        "county": str(_field(rec, "county") or town or "").strip(),
+        "town": town,
+        "zipcode": str(_field(rec, "zipcode") or "").strip(),
+        "category": str(_field(rec, "category") or "").strip(),
         "rating": rating,
         "review_count": review_count,
-        "phone": str(rec.get("phone") or "").strip(),
-        "website": str(rec.get("website") or "").strip(),
+        "phone": str(_field(rec, "phone") or "").strip(),
+        "website": str(_field(rec, "website") or "").strip(),
         "sentiment_p": sentiment_p,
         "freshness_f": freshness_f,
         "ai_score": ai_score,
         "assessment_level": "MODERATE",
         "place_id": place_id or None,
         "google_place_id": place_id or None,
-        "profile_updated_at": rec.get("profile_updated_at") or rec.get("updated_at"),
+        "profile_updated_at": _field(rec, "profile_updated_at"),
         **dims,
-        "is_listed": rec.get("is_listed", True) is not False,
+        "is_listed": _is_listed(rec),
     }
 
 
@@ -227,7 +287,8 @@ def insert_chunks(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Ingest restr_ai_leaderboard from Google profiles.")
-    parser.add_argument("--limit", type=int, default=0, help="Max source rows (0 = all)")
+    parser.add_argument("--limit", type=int, default=0, help="Max source rows to ingest (0 = all)")
+    parser.add_argument("--max-rows", type=int, default=0, help="Stop fetching after N rows from Supabase (debug aid)")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
@@ -238,7 +299,9 @@ def main() -> None:
             "(see .env.local.example)."
         )
 
-    source, source_table = fetch_source_rows(supabase_url, headers)
+    # --max-rows caps the fetch (faster dry-runs); --limit caps what we score+insert.
+    fetch_cap = args.max_rows or args.limit
+    source, source_table = fetch_source_rows(supabase_url, headers, max_rows=fetch_cap)
     if args.limit and args.limit > 0:
         source = source[: args.limit]
 
@@ -248,13 +311,14 @@ def main() -> None:
 
     print(f"Prepared {len(rows)} restr_ai_leaderboard rows from {source_table}")
     if args.dry_run:
-        for row in rows[:5]:
+        preview_n = min(len(rows), args.limit if args.limit > 0 else 5)
+        for row in rows[:preview_n]:
             print(
                 f"  {row['slug']}: ai_score={row['ai_score']} "
                 f"level={row['assessment_level']} town={row['town']}, {row['state']}"
             )
-        if len(rows) > 5:
-            print(f"  ... and {len(rows) - 5} more")
+        if len(rows) > preview_n:
+            print(f"  ... and {len(rows) - preview_n} more")
         return
 
     inserted = insert_chunks(supabase_url, headers, rows)
