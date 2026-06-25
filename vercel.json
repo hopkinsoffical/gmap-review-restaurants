@@ -141,6 +141,14 @@
       "destination": "/index.html"
     },
     {
+      "source": "/rankings",
+      "destination": "/restaurant-rankings.html"
+    },
+    {
+      "source": "/town/:slug",
+      "destination": "/town-ranking.html"
+    },
+    {
       "source": "/leaderboard",
       "destination": "/index.html"
     },

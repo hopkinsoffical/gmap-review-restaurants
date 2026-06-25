@@ -599,6 +599,7 @@ body {
   </div>
 </div>
 
+<script src="/assets/eatadvisor-edison.js"></script>
 <script>
 (function(){
 "use strict";
@@ -896,11 +897,71 @@ function showError(msg){
   document.getElementById("app").innerHTML='<div class="error-wrap"><div class="error-icon">⚠️</div><div class="error-title">Restaurant not found</div><div class="error-msg">'+esc(msg)+'</div><p style="margin-top:16px"><a href="/services.html" style="color:var(--primary-500);font-weight:600">← Browse all services</a></p></div>';
 }
 
+/* ── Demo dataset scorecard (EatAdvisor seeded towns) ──────────────────────
+ * When the slug belongs to the seeded town dataset (e.g. Edison demo), render
+ * a scorecard from the stored EatAdvisor score + 6 dimensions instead of
+ * hitting the live DB. Keeps the Rankings → town page → scorecard flow whole. */
+function findDemo(slug){
+  var ds=window.EATADVISOR_DATASET;
+  if(!ds||!slug)return null;
+  for(var i=0;i<ds.restaurants.length;i++){if(ds.restaurants[i].slug===slug)return ds.restaurants[i];}
+  return null;
+}
+function renderDemo(r){
+  var town=(window.EATADVISOR_DATASET&&window.EATADVISOR_DATASET.town)||{};
+  var lvl=levelFromScore(r.score),color=toneColor(lvl.tone);
+  var d=r.dims;
+  var six=[
+    {icon:"⭐",name:"Reputation Score",score:d.reputation,sub:"Stars & Review Sentiment"},
+    {icon:"💬",name:"Review Power",score:d.reviewPower,sub:"Review Volume"},
+    {icon:"🏥",name:"Health & Safety",score:d.health,sub:"Health Department Grade"},
+    {icon:"📍",name:"Google Visibility",score:d.visibility,sub:"Profile Completeness"},
+    {icon:"🍽",name:"Dining Appeal",score:d.appeal,sub:"Service & Value"},
+    {icon:"📞",name:"Booking Readiness",score:d.booking,sub:"Phone · Menu · Reservation"}
+  ];
+  document.title=r.name+" — EatAdvisor Scorecard";
+  var townHref="/town/"+(town.slug||"");
+  var html='<div class="hero"><div class="hero-top"><div class="hero-info">'
+    +'<div class="hero-badges"><span class="badge badge-purple">EatAdvisor Scorecard</span>'
+    +(r.grade?'<span class="badge '+(r.grade==="A"?"badge-success":"badge-warning")+'">DOH Grade '+esc(r.grade)+'</span>':'')
+    +'<span class="badge '+badgeClass(lvl.tone)+'">'+lvl.label+'</span></div>'
+    +'<h1 class="hero-name">'+esc(r.name)+'</h1>'
+    +'<div class="hero-meta">'+esc(r.address)+'</div>'
+    +'<div class="hero-category">🍽 '+esc(r.category||"")+'</div></div>'
+    +'<div class="hero-score">'+scoreRing(r.score,color,92)
+    +'<div class="score-label" style="color:'+esc(color)+'">'+lvl.label+'</div>'
+    +'<div class="score-sub">out of 100</div></div></div>'
+    +'<div class="stat-grid">'
+    +'<div class="stat-card"><div class="stat-label">Google Rating</div><div class="stat-value c-info">'+r.rating.toFixed(1)+'★</div><div class="stat-sub">out of 5.0</div></div>'
+    +'<div class="stat-card"><div class="stat-label">Total Reviews</div><div class="stat-value c-purple">'+r.reviews.toLocaleString()+'</div><div class="stat-sub">on Google Maps</div></div>'
+    +'<div class="stat-card"><div class="stat-label">Health Grade</div><div class="stat-value '+(r.grade==="A"?"c-success":"c-warning")+'">'+esc(r.grade||"—")+'</div><div class="stat-sub">Inspection</div></div>'
+    +'<div class="stat-card"><div class="stat-label">Price</div><div class="stat-value c-neutral">'+esc(r.price||"—")+'</div><div class="stat-sub">tier</div></div>'
+    +'</div></div>';
+  html+='<div class="sec-head">6 Ranking Dimensions</div><div class="dim-grid">';
+  six.forEach(function(dim){var t=tone(dim.score),c=toneColor(t);
+    html+='<div class="dim-card '+t+'"><div class="dim-icon">'+dim.icon+'</div>'
+      +'<div class="dim-name">'+esc(dim.name)+'</div>'
+      +'<div class="dim-score-wrap"><span class="dim-score-num" style="color:'+esc(c)+'">'+Math.round(dim.score)+'</span><span class="dim-score-denom">/100</span></div>'
+      +'<div class="dim-bar-track"><div class="dim-bar-fill '+t+'" style="width:'+Math.round(dim.score)+'%"></div></div>'
+      +'<div class="dim-desc">'+esc(dim.sub)+'</div></div>';
+  });
+  html+='</div>';
+  html+='<div class="cta-section"><div class="cta-eyebrow">EatAdvisor Ranking</div>'
+    +'<div class="cta-title">See how '+esc(r.name)+' ranks against the town</div>'
+    +'<div class="cta-subtitle">This restaurant scores '+r.score+'/100 on EatAdvisor. Compare it to every restaurant in '+esc(town.name||"town")+' and nearby.</div>'
+    +'<a class="cta-btn" href="'+townHref+'">View the '+esc(town.name||"town")+' ranking →</a></div>';
+  document.getElementById("app").innerHTML=html;
+}
+
 async function main(){
   if(!SLUG&&!PLACE_ID&&!CAMIS&&!BIZ_NAME){
     showError("No restaurant specified. Add ?slug=... or ?placeId=... or ?camis=... to the URL.");
     return;
   }
+
+  /* Demo dataset short-circuit (seeded EatAdvisor towns) */
+  var demo=findDemo(SLUG);
+  if(demo){ renderDemo(demo); return; }
   try{
     var profile=null,restaurant={};
 
