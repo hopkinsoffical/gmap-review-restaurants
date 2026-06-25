@@ -25,6 +25,8 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 _PIPELINES_DIR = Path(__file__).resolve().parent
 ROOT = _PIPELINES_DIR.parent
@@ -36,6 +38,35 @@ from dotenv import load_dotenv  # noqa: E402
 load_dotenv(ROOT / ".env.local")
 load_dotenv(ROOT / ".env")
 
+
+def _build_session() -> requests.Session:
+    """Reusable Session with retry+backoff for Supabase REST.
+
+    ConnectionResetError / ReadTimeout / ChunkedEncodingError happen intermittently
+    on large paginated reads (55k+ rows). The Retry handles them transparently so
+    fetch_all() can keep paging across transient network drops.
+    """
+    sess = requests.Session()
+    retry_cfg = Retry(
+        total=8,
+        connect=4,
+        read=4,
+        status=4,
+        backoff_factor=0.6,  # 0.6, 1.2, 2.4, 4.8s
+        status_forcelist=(500, 502, 503, 504, 429),
+        allowed_methods=frozenset(["GET", "POST", "HEAD"]),
+        respect_retry_after_header=True,
+        raise_on_status=False,
+    )
+    adapter = HTTPAdapter(
+        max_retries=retry_cfg,
+        pool_connections=10,
+        pool_maxsize=10,
+    )
+    sess.mount("https://", adapter)
+    sess.mount("http://", adapter)
+    return sess
+
 from restr_leaderboard_scoring import (  # noqa: E402
     assign_assessment_levels_by_ai_score_percentile,
     calc_restr_ai_score,
@@ -45,11 +76,11 @@ from restr_leaderboard_scoring import (  # noqa: E402
 )
 
 
-def supabase_config() -> tuple[str, str, Dict[str, str]]:
+def supabase_config() -> tuple[str, str, Dict[str, str], requests.Session]:
     url = os.getenv("SUPABASE_URL", "").rstrip("/")
     key = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
     headers = {"apikey": key, "Authorization": f"Bearer {key}", "Content-Type": "application/json"}
-    return url, key, headers
+    return url, key, headers, _build_session()
 
 
 def make_slug(title: str, place_id: str) -> str:
@@ -64,29 +95,71 @@ def make_slug(title: str, place_id: str) -> str:
 def fetch_all(
     supabase_url: str,
     headers: Dict[str, str],
+    session: requests.Session,
     table: str,
     params: Dict[str, str] | None = None,
     page_size: int = 500,
     max_rows: int = 0,
 ) -> List[Dict[str, Any]]:
+    """Paginated GET with chunked retry on connection drops.
+
+    Note: the requests Session's Retry handles 5xx/429 and connection-level
+    retries. For partial reads (server broke connection mid-stream), we keep
+    the offset at the last successful page and retry the same Range.
+    """
     rows: List[Dict[str, Any]] = []
     offset = 0
+    empty_streak = 0
     while True:
         if max_rows and len(rows) >= max_rows:
             rows = rows[:max_rows]
             break
-        resp = requests.get(
-            f"{supabase_url}/rest/v1/{table}",
-            headers={**headers, "Range-Unit": "items", "Range": f"{offset}-{offset + page_size - 1}"},
-            params=params or {"select": "*", "order": "updated_at.desc"},
-            timeout=60,
-        )
-        if not resp.ok:
-            detail = resp.text[:400]
-            raise RuntimeError(f"Supabase read failed for {table} ({resp.status_code}): {detail}")
-        batch = resp.json()
+        last_err: Exception | None = None
+        batch: List[Dict[str, Any]] = []
+        # Outer loop = manual chunked retry on top of urllib3 Retry.
+        # urllib3 Retry already covers 5xx/429 and a few network errors, but a
+        # long-running paginated read can still hit ECONNRESET after the first
+        # chunk is read. We retry the same Range up to 4 times before giving up.
+        for attempt in range(4):
+            try:
+                resp = session.get(
+                    f"{supabase_url}/rest/v1/{table}",
+                    headers={**headers, "Range-Unit": "items",
+                            "Range": f"{offset}-{offset + page_size - 1}"},
+                    params=params or {"select": "*", "order": "updated_at.desc"},
+                    timeout=(15, 60),  # (connect, read)
+                )
+                if not resp.ok:
+                    detail = resp.text[:400]
+                    raise RuntimeError(
+                        f"Supabase read failed for {table} ({resp.status_code}): {detail}"
+                    )
+                batch = resp.json()
+                last_err = None
+                break
+            except (requests.exceptions.ConnectionError,
+                    requests.exceptions.ChunkedEncodingError,
+                    requests.exceptions.ReadTimeout,
+                    ConnectionResetError) as err:
+                last_err = err
+                wait = 0.8 * (2 ** attempt)  # 0.8, 1.6, 3.2, 6.4s
+                print(
+                    f"  fetch retry {attempt + 1}/4 at offset={offset} "
+                    f"({type(err).__name__}); sleeping {wait:.1f}s",
+                    file=sys.stderr,
+                )
+                time.sleep(wait)
+        if last_err is not None:
+            raise RuntimeError(
+                f"Supabase read failed for {table} at offset={offset} after 4 retries: {last_err}"
+            )
         if not batch:
-            break
+            empty_streak += 1
+            if empty_streak >= 2:
+                # Two empty pages in a row = end of data, not a transient empty.
+                break
+        else:
+            empty_streak = 0
         rows.extend(batch)
         if max_rows and len(rows) >= max_rows:
             rows = rows[:max_rows]
@@ -123,6 +196,7 @@ SOURCE_COLUMNS = (
 def fetch_source_rows(
     supabase_url: str,
     headers: Dict[str, str],
+    session: requests.Session,
     max_rows: int = 0,
 ) -> tuple[List[Dict[str, Any]], str]:
     last_error: Exception | None = None
@@ -131,6 +205,7 @@ def fetch_source_rows(
             rows = fetch_all(
                 supabase_url,
                 headers,
+                session,
                 table,
                 params={"select": SOURCE_COLUMNS, "order": "updated_at.desc"},
                 max_rows=max_rows,
@@ -284,25 +359,47 @@ def build_row(rec: Dict[str, Any]) -> Dict[str, Any] | None:
 def insert_chunks(
     supabase_url: str,
     headers: Dict[str, str],
+    session: requests.Session,
     rows: List[Dict[str, Any]],
     batch_size: int = 100,
 ) -> int:
     inserted = 0
     for i in range(0, len(rows), batch_size):
         batch = rows[i : i + batch_size]
-        resp = requests.post(
-            f"{supabase_url}/rest/v1/restr_ai_leaderboard",
-            headers=headers,
-            json=batch,
-            timeout=120,
-        )
-        if not resp.ok:
-            detail = resp.text[:500]
-            hint = ""
-            if resp.status_code in (404, 406) or "restr_ai_leaderboard" in detail:
-                hint = " Run sql/034_restr_ai_leaderboard.sql in Supabase SQL Editor first."
-            raise RuntimeError(f"Insert failed ({resp.status_code}): {detail}.{hint}")
-        inserted += len(batch)
+        # Reuse session for insert too — same retry+pool benefits.
+        for attempt in range(4):
+            try:
+                resp = session.post(
+                    f"{supabase_url}/rest/v1/restr_ai_leaderboard",
+                    headers=headers,
+                    json=batch,
+                    timeout=(15, 120),
+                )
+                if not resp.ok:
+                    detail = resp.text[:500]
+                    hint = ""
+                    if resp.status_code in (404, 406) or "restr_ai_leaderboard" in detail:
+                        hint = " Run sql/034_restr_ai_leaderboard.sql in Supabase SQL Editor first."
+                    raise RuntimeError(f"Insert failed ({resp.status_code}): {detail}.{hint}")
+                inserted += len(batch)
+                last_err = None
+                break
+            except (requests.exceptions.ConnectionError,
+                    requests.exceptions.ChunkedEncodingError,
+                    requests.exceptions.ReadTimeout,
+                    ConnectionResetError) as err:
+                last_err = err
+                wait = 0.8 * (2 ** attempt)
+                print(
+                    f"  insert retry {attempt + 1}/4 at offset={i} "
+                    f"({type(err).__name__}); sleeping {wait:.1f}s",
+                    file=sys.stderr,
+                )
+                time.sleep(wait)
+        if last_err is not None:
+            raise RuntimeError(
+                f"Insert failed at offset={i} after 4 retries: {last_err}"
+            )
     return inserted
 
 
@@ -313,7 +410,7 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
-    supabase_url, key, headers = supabase_config()
+    supabase_url, key, headers, session = supabase_config()
     if not supabase_url or not key:
         raise SystemExit(
             "Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local or the environment "
@@ -322,7 +419,7 @@ def main() -> None:
 
     # --max-rows caps the fetch (faster dry-runs); --limit caps what we score+insert.
     fetch_cap = args.max_rows or args.limit
-    source, source_table = fetch_source_rows(supabase_url, headers, max_rows=fetch_cap)
+    source, source_table = fetch_source_rows(supabase_url, headers, session, max_rows=fetch_cap)
     if args.limit and args.limit > 0:
         source = source[: args.limit]
 
@@ -354,7 +451,7 @@ def main() -> None:
             )
         return
 
-    inserted = insert_chunks(supabase_url, headers, rows)
+    inserted = insert_chunks(supabase_url, headers, session, rows)
     print(f"Inserted {inserted} rows")
 
 
