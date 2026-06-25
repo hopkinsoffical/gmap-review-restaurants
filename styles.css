@@ -1346,6 +1346,9 @@ h1 {
   justify-content: space-between;
   gap: 18px;
   padding: 18px 22px;
+  position: relative;
+  z-index: 100;
+  overflow: visible;
 }
 
 .marketing-nav-main {
@@ -1440,7 +1443,7 @@ h1 {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  z-index: 50;
+  z-index: 200;
   min-width: 240px;
   padding: 8px 0;
   border-radius: 14px;
@@ -11111,6 +11114,8 @@ body .marketing-nav-shell {
   flex-wrap: nowrap !important;
   gap: 14px !important;
   overflow: visible !important;
+  position: relative !important;
+  z-index: 100 !important;
 }
 
 body .marketing-nav-main {
