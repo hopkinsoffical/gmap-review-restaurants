@@ -15,6 +15,7 @@
     "ingest:leaderboard": "node scripts/ingest-salon-ai-leaderboard.js",
     "ingest:leaderboard:js": "node scripts/ingest-salon-ai-leaderboard.js",
     "ingest:leaderboard:py": ".venv/bin/python3 pipelines/ingest_salon_ai_leaderboard.py",
+    "ingest:restr-leaderboard:py": "python3 pipelines/ingest_restr_ai_leaderboard.py",
     "ingest:edison:py": ".venv/bin/python3 pipelines/fetch_ingest_edison_nj_salons.py",
     "ingest:nj-townships:py": ".venv/bin/python3 pipelines/fetch_ingest_nj_townships_salons.py",
     "ingest:pa-townships:py": ".venv/bin/python3 pipelines/fetch_ingest_pa_townships_salons.py",
