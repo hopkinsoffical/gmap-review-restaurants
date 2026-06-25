@@ -1,22 +1,22 @@
 @import url("/theme.css");
 
 :root {
-  --bg: #efefed;
-  --panel: rgba(255, 255, 255, 0.90);
-  --panel-strong: rgba(255, 255, 255, 0.96);
-  --panel-border: rgba(35, 36, 36, 0.12);
-  --text: #232424;
-  --muted: #929292;
-  --gold: #f61600;
-  --gold-strong: #b30f00;
-  --gold-soft: rgba(246, 22, 0, 0.10);
-  --chip-bg: rgba(246, 22, 0, 0.12);
-  --danger: #f61600;
+  --bg: #e5e5e0;
+  --panel: rgba(255, 255, 255, 0.92);
+  --panel-strong: rgba(255, 255, 255, 0.98);
+  --panel-border: rgba(33, 25, 34, 0.12);
+  --text: #211922;
+  --muted: #7a7a72;
+  --gold: #e60023;
+  --gold-strong: #b3001b;
+  --gold-soft: rgba(230, 0, 35, 0.10);
+  --chip-bg: rgba(230, 0, 35, 0.12);
+  --danger: #e60023;
   --ok: #2e7d52;
   --working: #c07920;
-  --shadow: 0 8px 32px rgba(35, 36, 36, 0.08);
-  --radius-panel: 20px;
-  --radius-control: 18px;
+  --shadow: 0 8px 32px rgba(33, 25, 34, 0.08);
+  --radius-panel: 24px;
+  --radius-control: 999px;
   --radius-soft: 16px;
 }
 
@@ -30,11 +30,11 @@ body {
   padding: 0;
   min-height: 100%;
   background:
-    radial-gradient(circle at 8% 10%, rgba(246, 22, 0, 0.10), transparent 28%),
-    radial-gradient(circle at 88% 8%, rgba(35, 36, 36, 0.06), transparent 24%),
-    linear-gradient(180deg, #efefed 0%, #f4f4f2 100%);
+    radial-gradient(circle at 8% 10%, rgba(230, 0, 35, 0.08), transparent 28%),
+    radial-gradient(circle at 88% 8%, rgba(33, 25, 34, 0.04), transparent 24%),
+    linear-gradient(180deg, #e5e5e0 0%, #f5f5f1 100%);
   color: var(--text);
-  font-family: "Manrope", "Noto Sans SC", sans-serif;
+  font-family: -apple-system, "system-ui", "Segoe UI", "Manrope", "Noto Sans SC", Roboto, sans-serif;
 }
 
 html {
@@ -68,13 +68,13 @@ body.has-pricing-summary {
 .bg-glow-1 {
   top: -8vw;
   right: -4vw;
-  background: #f61600;
+  background: #e60023;
 }
 
 .bg-glow-2 {
   bottom: -10vw;
   left: -9vw;
-  background: #b30f00;
+  background: #b3001b;
 }
 
 .app {
@@ -1447,7 +1447,7 @@ h1 {
   min-width: 240px;
   padding: 8px 0;
   border-radius: 14px;
-  border: 1px solid rgba(246, 22, 0, 0.18);
+  border: 1px solid rgba(230, 0, 35, 0.18);
   background: #ffffff;
   box-shadow: 0 16px 48px rgba(43, 18, 8, 0.18), 0 0 0 1px rgba(43, 18, 8, 0.04);
   display: flex;
@@ -1471,8 +1471,8 @@ h1 {
 
 .marketing-dropdown-item:hover,
 .marketing-dropdown-item:focus-visible {
-  background: rgba(246, 22, 0, 0.08);
-  color: var(--gold-strong, #b30f00);
+  background: rgba(230, 0, 35, 0.08);
+  color: var(--gold-strong, #b3001b);
 }
 
 .marketing-hero-section,
@@ -1488,10 +1488,10 @@ h1 {
   position: relative;
   overflow: hidden;
   border-radius: 32px;
-  border: 1px solid rgba(246, 22, 0, 0.16);
+  border: 1px solid rgba(230, 0, 35, 0.16);
   background:
-    radial-gradient(circle at top left, rgba(246, 22, 0, 0.18), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(246, 22, 0, 0.18), transparent 24%),
+    radial-gradient(circle at top left, rgba(230, 0, 35, 0.18), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(230, 0, 35, 0.18), transparent 24%),
     linear-gradient(135deg, #160d09 0%, #2a150d 44%, #0f0705 100%);
   box-shadow: 0 28px 80px rgba(43, 18, 8, 0.28);
 }
@@ -1503,7 +1503,7 @@ h1 {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: rgba(246, 22, 0, 0.18);
+  background: rgba(230, 0, 35, 0.18);
   filter: blur(64px);
   pointer-events: none;
 }
@@ -1694,7 +1694,7 @@ h1 {
 /* Homepage hero — brief report lead (espresso + saffron, restaurant-focused) */
 .marketing-hero-section--brief.card {
   background: linear-gradient(145deg, #150b07 0%, #2a150d 48%, #0f0705 100%);
-  border: 1px solid rgba(246, 22, 0, 0.16);
+  border: 1px solid rgba(230, 0, 35, 0.16);
   box-shadow:
     0 24px 64px rgba(33, 12, 4, 0.46),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
@@ -1708,8 +1708,8 @@ h1 {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(246, 22, 0, 0.16), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(246, 22, 0, 0.14), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(230, 0, 35, 0.16), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(230, 0, 35, 0.14), transparent 50%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 44%);
   pointer-events: none;
 }
@@ -1729,7 +1729,7 @@ h1 {
 
 .marketing-hero-section--brief .marketing-rating-row--brief {
   justify-content: center;
-  color: #f61600;
+  color: #e60023;
   margin-bottom: 12px;
 }
 
@@ -1795,11 +1795,11 @@ h1 {
   font-size: clamp(2rem, 5.2vw, 3.25rem);
   font-weight: 400;
   line-height: 1.05;
-  background: linear-gradient(118deg, #f4f4f2 0%, #c2410c 38%, #f61600 64%, #ea580c 100%);
+  background: linear-gradient(118deg, #f5f5f1 0%, #b3001b 38%, #e60023 64%, #ff1a3d 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 2px 24px rgba(246, 22, 0, 0.32));
+  filter: drop-shadow(0 2px 24px rgba(230, 0, 35, 0.32));
 }
 
 .marketing-hero-urgency {
@@ -1876,8 +1876,8 @@ h1 {
 
 .marketing-hero-brief-input:focus {
   outline: none;
-  border-color: rgba(246, 22, 0, 0.58);
-  box-shadow: 0 0 0 3px rgba(246, 22, 0, 0.16);
+  border-color: rgba(230, 0, 35, 0.58);
+  box-shadow: 0 0 0 3px rgba(230, 0, 35, 0.16);
 }
 
 .marketing-hero-brief-consent {
@@ -1905,7 +1905,7 @@ h1 {
 }
 
 .marketing-hero-brief-inline-link {
-  color: #f61600;
+  color: #e60023;
   text-decoration: none;
 }
 
@@ -1924,8 +1924,8 @@ h1 {
   font-weight: 800;
   letter-spacing: 0.02em;
   color: #241007;
-  background: linear-gradient(135deg, #ff3a1c 0%, #f61600 48%, #b30f00 100%);
-  box-shadow: 0 14px 32px rgba(246, 22, 0, 0.32);
+  background: linear-gradient(135deg, #ff1a3d 0%, #e60023 48%, #b3001b 100%);
+  box-shadow: 0 14px 32px rgba(230, 0, 35, 0.32);
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
@@ -1933,7 +1933,7 @@ h1 {
 
 .marketing-hero-brief-submit:hover {
   transform: translateY(-1px);
-  box-shadow: 0 18px 36px rgba(246, 22, 0, 0.4);
+  box-shadow: 0 18px 36px rgba(230, 0, 35, 0.4);
 }
 
 .marketing-hero-brief-feedback {
@@ -1975,7 +1975,7 @@ h1 {
 }
 
 .marketing-hero-section--brief .marketing-trust-item::before {
-  color: #f61600;
+  color: #e60023;
 }
 
 .marketing-report-shell {
@@ -1995,13 +1995,13 @@ h1 {
   min-height: 34px;
   padding: 7px 14px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #f61600 0%, #d91200 100%);
+  background: linear-gradient(135deg, #e60023 0%, #b3001b 100%);
   color: #fffaf8;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  box-shadow: 0 12px 26px rgba(246, 22, 0, 0.25);
+  box-shadow: 0 12px 26px rgba(230, 0, 35, 0.25);
 }
 
 .marketing-report-card {
@@ -2075,7 +2075,7 @@ h1 {
 
 .marketing-report-position-value {
   margin: 0;
-  color: #f61600;
+  color: #e60023;
   font-size: clamp(2rem, 3vw, 2.8rem);
   line-height: 1;
   font-weight: 900;
@@ -2084,7 +2084,7 @@ h1 {
 
 .marketing-report-rating-card {
   background: linear-gradient(180deg, rgba(255, 242, 232, 0.98), rgba(255, 250, 246, 0.94));
-  border-color: rgba(246, 22, 0, 0.18);
+  border-color: rgba(230, 0, 35, 0.18);
 }
 
 .marketing-report-rating-line {
@@ -2095,14 +2095,14 @@ h1 {
 }
 
 .marketing-report-rating-value {
-  color: #f61600;
+  color: #e60023;
   font-size: 1.6rem;
   line-height: 1;
   font-weight: 900;
 }
 
 .marketing-report-stars {
-  color: #f61600;
+  color: #e60023;
   letter-spacing: 0.08em;
   font-size: 0.78rem;
   white-space: nowrap;
@@ -2184,7 +2184,7 @@ h1 {
 }
 
 .marketing-report-bar-fill-you {
-  background: linear-gradient(90deg, #b30f00 0%, #f61600 100%);
+  background: linear-gradient(90deg, #b3001b 0%, #e60023 100%);
 }
 
 .marketing-report-bar-fill-median {
@@ -2192,7 +2192,7 @@ h1 {
 }
 
 .marketing-report-bar-fill-top {
-  background: linear-gradient(90deg, #f61600 0%, #f61600 100%);
+  background: linear-gradient(90deg, #e60023 0%, #e60023 100%);
 }
 
 .marketing-report-nearby-section {
@@ -2312,7 +2312,7 @@ h1 {
   min-height: 520px;
   border-color: rgba(255, 231, 199, 0.1);
   background:
-    radial-gradient(circle at top, rgba(246, 22, 0, 0.2), transparent 32%),
+    radial-gradient(circle at top, rgba(230, 0, 35, 0.2), transparent 32%),
     linear-gradient(180deg, rgba(36, 16, 7, 0.96), rgba(13, 7, 5, 0.98));
   box-shadow: 0 26px 60px rgba(22, 9, 4, 0.34);
 }
@@ -2332,7 +2332,7 @@ h1 {
 }
 
 .marketing-digital-human .marketing-section-kicker {
-  color: #f61600;
+  color: #e60023;
 }
 
 .marketing-digital-human .marketing-section-title,
@@ -2369,14 +2369,14 @@ h1 {
 
 .marketing-digital-human .cta {
   border-color: transparent;
-  background: linear-gradient(135deg, #f61600 0%, #d91200 100%);
+  background: linear-gradient(135deg, #e60023 0%, #b3001b 100%);
   color: #241007;
-  box-shadow: 0 18px 34px rgba(246, 22, 0, 0.26);
+  box-shadow: 0 18px 34px rgba(230, 0, 35, 0.26);
 }
 
 .marketing-digital-human .cta:hover,
 .marketing-digital-human .cta:focus-visible {
-  box-shadow: 0 22px 40px rgba(246, 22, 0, 0.34);
+  box-shadow: 0 22px 40px rgba(230, 0, 35, 0.34);
 }
 
 .marketing-digital-alt-link {
@@ -2427,7 +2427,7 @@ h1 {
   border-radius: 999px;
   border: 1px solid rgba(255, 209, 102, 0.2);
   background: rgba(36, 16, 7, 0.58);
-  color: #f61600;
+  color: #e60023;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -5353,7 +5353,7 @@ textarea.portal-input {
 }
 
 .intel-growth-insight-card--conv .intel-growth-insight-ico {
-  background: linear-gradient(135deg, #f61600, #d91200);
+  background: linear-gradient(135deg, #e60023, #b3001b);
 }
 
 .intel-insight-eyebrow {
@@ -6835,11 +6835,11 @@ textarea.portal-input {
 
 .lb-search-btn:hover {
   background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(246, 22, 0, 0.45);
+  border-color: rgba(230, 0, 35, 0.45);
 }
 
 .lb-search-btn:focus-visible {
-  outline: 2px solid rgba(246, 22, 0, 0.7);
+  outline: 2px solid rgba(230, 0, 35, 0.7);
   outline-offset: 2px;
 }
 
@@ -7198,7 +7198,7 @@ textarea.portal-input {
 }
 
 .lb-card-menu-btn:focus-visible {
-  outline: 2px solid var(--accent, #f61600);
+  outline: 2px solid var(--accent, #e60023);
   outline-offset: 2px;
 }
 
@@ -7678,7 +7678,7 @@ textarea.portal-input {
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #f61600, #d91200);
+  background: linear-gradient(90deg, #e60023, #b3001b);
 }
 
 .lb-rep-score-sub {
@@ -7824,7 +7824,7 @@ textarea.portal-input {
 }
 
 .lb-rep-arr--bad {
-  color: #f61600;
+  color: #e60023;
 }
 
 .lb-rep-arr--ok {
@@ -8151,7 +8151,7 @@ textarea.portal-input {
 }
 
 .cta.lb-rep-cta-primary:focus-visible {
-  outline: 2px solid rgba(246, 22, 0, 0.55);
+  outline: 2px solid rgba(230, 0, 35, 0.55);
   outline-offset: 3px;
 }
 
@@ -11153,17 +11153,17 @@ html[data-theme="light"] body .marketing-brand .brand-part-rank {
   font-weight: 700 !important;
 }
 
-/* Logo: MyRestaurant uses blogTO red palette (2026-06-25) */
+/* Logo: MyRestaurant uses Pinterest red palette (2026-06-25) */
 html[data-theme="dark"] body .marketing-brand .brand-part-mysalon,
 html[data-theme="light"] body .marketing-brand .brand-part-mysalon,
 html[data-theme="dark"] body .marketing-brand .brand-part-myrestaurant,
 html[data-theme="light"] body .marketing-brand .brand-part-myrestaurant {
-  background: linear-gradient(135deg, #f61600 0%, #c01100 100%) !important;
+  background: linear-gradient(135deg, #e60023 0%, #b3001b 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
   -webkit-text-fill-color: transparent !important;
-  text-shadow: 0 0 18px rgba(246, 22, 0, 0.20) !important;
+  text-shadow: 0 0 18px rgba(230, 0, 35, 0.20) !important;
   font-weight: 700 !important;
 }
 

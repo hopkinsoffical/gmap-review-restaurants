@@ -6,73 +6,73 @@
    1. Theme Variables
 ================================ */
 
-/* Restaurant light mode is the default — blogTO editorial palette (2026-06-25) */
+/* Restaurant light mode is the default — Pinterest visual palette (2026-06-25) */
 :root,
 html[data-theme="light"] {
   --rms-site-max-width: 1192px;
   --rms-site-side-padding: 32px;
 
-  /* Cool editorial backgrounds (blogTO cool cream-gray) */
-  --rms-bg: #efefed;
-  --rms-bg-soft: #f4f4f2;
-  --rms-bg-panel: #e8e8e6;
+  /* Warm Pinterest backgrounds (warmer than blogTO cream-gray) */
+  --rms-bg: #e5e5e0;
+  --rms-bg-soft: #f5f5f1;
+  --rms-bg-panel: #dddcd6;
   --rms-bg-card: #ffffff;
-  --rms-bg-card-2: #f7f7f5;
+  --rms-bg-card-2: #f5f5f1;
 
-  /* Cool editorial text (blogTO dark gray) */
-  --rms-text: #232424;
-  --rms-text-soft: #4a4a4a;
-  --rms-text-muted: #929292;
+  /* Pinterest dark text (very dark purple-black) */
+  --rms-text: #211922;
+  --rms-text-soft: #62625b;
+  --rms-text-muted: #7a7a72;
 
-  /* Cool editorial borders */
-  --rms-border: rgba(35, 36, 36, 0.12);
-  --rms-border-strong: rgba(35, 36, 36, 0.24);
+  /* Pinterest warm borders */
+  --rms-border: rgba(33, 25, 34, 0.12);
+  --rms-border-strong: rgba(33, 25, 34, 0.24);
 
-  /* Brand red (blogTO signature) */
-  --rms-gold: #f61600;
-  --rms-gold-soft: rgba(246, 22, 0, 0.10);
+  /* Brand red (Pinterest signature #E60023) */
+  --rms-gold: #e60023;
+  --rms-gold-soft: rgba(230, 0, 35, 0.10);
 
-  /* Light nav header — flat white (blogTO) */
+  /* Light nav header — flat white (Pinterest) */
   --rms-header-bg: #ffffff;
-  --rms-header-border: rgba(35, 36, 36, 0.12);
+  --rms-header-border: rgba(33, 25, 34, 0.12);
 
-  --rms-shadow-soft: 0 22px 70px rgba(35, 36, 36, 0.10);
-  --rms-shadow-card: 0 8px 32px rgba(35, 36, 36, 0.08);
+  --rms-shadow-soft: 0 22px 70px rgba(33, 25, 34, 0.10);
+  --rms-shadow-card: 0 8px 32px rgba(33, 25, 34, 0.08);
 
   /* Marketing surfaces */
   --rms-mkt-page-bg: transparent;
   --rms-mkt-card-bg: #ffffff;
-  --rms-mkt-card-border: rgba(35, 36, 36, 0.12);
+  --rms-mkt-card-border: rgba(33, 25, 34, 0.12);
   --rms-mkt-card-shadow:
-    0 8px 32px rgba(35, 36, 36, 0.08),
+    0 8px 32px rgba(33, 25, 34, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  --rms-mkt-inset: #f4f4f2;
-  --rms-kicker: #f61600;
-  --rms-link: #f61600;
-  --rms-link-hover: #c01100;
+  --rms-mkt-inset: #f5f5f1;
+  --rms-kicker: #e60023;
+  --rms-link: #e60023;
+  --rms-link-hover: #b3001b;
   --rms-input-bg: #ffffff;
-  --rms-input-border: rgba(35, 36, 36, 0.18);
-  --rms-input-text: #232424;
-  --rms-input-placeholder: #929292;
-  --rms-ghost-bg: #f4f4f2;
-  --rms-ghost-border: rgba(35, 36, 36, 0.18);
-  --rms-ghost-text: #232424;
-  --rms-ghost-hover-bg: rgba(35, 36, 36, 0.06);
-  --rms-pill-bg: #f4f4f2;
-  --rms-pill-border: rgba(35, 36, 36, 0.16);
-  --rms-pill-text: #4a4a4a;
-  --rms-pill-active-bg: #f61600;
+  --rms-input-border: rgba(33, 25, 34, 0.18);
+  --rms-input-text: #211922;
+  --rms-input-placeholder: #7a7a72;
+  --rms-ghost-bg: #f5f5f1;
+  --rms-ghost-border: rgba(33, 25, 34, 0.18);
+  --rms-ghost-text: #211922;
+  --rms-ghost-hover-bg: rgba(33, 25, 34, 0.06);
+  --rms-pill-bg: #f5f5f1;
+  --rms-pill-border: rgba(33, 25, 34, 0.16);
+  --rms-pill-text: #62625b;
+  --rms-pill-active-bg: #e60023;
   --rms-pill-active-text: #ffffff;
-  --rms-tab-muted: #929292;
-  --rms-tab-active: #232424;
-  --rms-tab-active-border: #f61600;
-  --rms-cta-pay-bg: #f61600;
+  --rms-tab-muted: #7a7a72;
+  --rms-tab-active: #211922;
+  --rms-tab-active-border: #e60023;
+  --rms-cta-pay-bg: #e60023;
   --rms-cta-pay-text: #ffffff;
   --rms-success: #2e7d52;
-  --rms-danger: #f61600;
+  --rms-danger: #e60023;
   --rms-score-good: #2e7d52;
   --rms-score-fair: #c07920;
-  --rms-score-weak: #f61600;
+  --rms-score-weak: #e60023;
 }
 
 /* Keep dark mode available but it's not the default */
@@ -164,7 +164,7 @@ body {
     radial-gradient(circle at 8% 0%, rgba(242, 165, 26, 0.18), transparent 28%),
     radial-gradient(circle at 88% 10%, rgba(217, 75, 31, 0.12), transparent 26%),
     radial-gradient(circle at 50% 100%, rgba(123, 63, 0, 0.10), transparent 40%),
-    linear-gradient(180deg, #efefed 0%, #f4f4f2 50%, #efefed 100%) !important;
+    linear-gradient(180deg, #e5e5e0 0%, #f5f5f1 50%, #e5e5e0 100%) !important;
 }
 
 /* Smooth change */
@@ -1224,7 +1224,7 @@ html[data-theme="light"] .tab-price {
 
 html[data-theme="dark"] .tab-price strong,
 html[data-theme="light"] .tab-price strong {
-  color: #f61600 !important;
+  color: #e60023 !important;
 }
 
 /* Tier label */
@@ -1241,7 +1241,7 @@ html[data-theme="light"] .tab-tier {
 /* Popular label remains gold */
 html[data-theme="dark"] .popular-badge,
 html[data-theme="light"] .popular-badge {
-  background: linear-gradient(135deg, #f61600, #f4f4f2) !important;
+  background: linear-gradient(135deg, #e60023, #f5f5f1) !important;
   color: #07101c !important;
 }
 
@@ -1337,7 +1337,7 @@ html[data-theme="light"] .detail-products a {
 
 html[data-theme="dark"] .detail-cta,
 html[data-theme="light"] .detail-cta {
-  background: linear-gradient(135deg, #e3c465, #f4f4f2) !important;
+  background: linear-gradient(135deg, #e3c465, #f5f5f1) !important;
   color: #07101c !important;
 }
 
@@ -1374,7 +1374,7 @@ html[data-theme="light"] .marketing-footer a {
 
 html[data-theme="dark"] .footer-column-title,
 html[data-theme="light"] .footer-column-title {
-  color: #f61600 !important;
+  color: #e60023 !important;
 }
 
 /* =========================================================
@@ -1437,7 +1437,7 @@ html[data-theme="light"] .services-page .brand-part-rank {
 
 html[data-theme="dark"] .services-page .brand-part-mysalon,
 html[data-theme="light"] .services-page .brand-part-mysalon {
-  color: #f61600 !important;
+  color: #e60023 !important;
 }
 
 /* Nav links */
@@ -1694,7 +1694,7 @@ html[data-theme="light"] .tier-page .brand-part-rank {
 
 html[data-theme="dark"] .tier-page .brand-part-mysalon,
 html[data-theme="light"] .tier-page .brand-part-mysalon {
-  background: linear-gradient(135deg, #f7f7f5 0%, #f61600 50%, #b30f00 100%) !important;
+  background: linear-gradient(135deg, #f5f5f1 0%, #e60023 50%, #b3001b 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
@@ -1832,7 +1832,7 @@ html[data-theme="light"] .service-card {
 
 html[data-theme="dark"] .service-label,
 html[data-theme="light"] .service-label {
-  color: #f61600 !important;
+  color: #e60023 !important;
 }
 
 html[data-theme="dark"] .service-title {
@@ -1856,7 +1856,7 @@ html[data-theme="light"] .service-feature {
 /* Buttons */
 html[data-theme="dark"] .primary-btn,
 html[data-theme="light"] .primary-btn {
-  background: linear-gradient(135deg, #e3c465 0%, #f4f4f2 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #f5f5f1 100%) !important;
   color: #08111d !important;
   box-shadow: 0 14px 28px rgba(227, 196, 101, 0.18) !important;
 }
@@ -1997,7 +1997,7 @@ html[data-theme="light"] .tier-page .footer-copyright {
 
 html[data-theme="dark"] .tier-page .footer-link:hover,
 html[data-theme="light"] .tier-page .footer-link:hover {
-  color: #f61600 !important;
+  color: #e60023 !important;
 }
 
 html[data-theme="dark"] .tier-page .marketing-footer-bottom {
@@ -2217,7 +2217,7 @@ html[data-theme="light"] .product-page .brand-part-rank {
 
 html[data-theme="dark"] .product-page .brand-part-mysalon,
 html[data-theme="light"] .product-page .brand-part-mysalon {
-  background: linear-gradient(135deg, #f7f7f5 0%, #f61600 50%, #b30f00 100%) !important;
+  background: linear-gradient(135deg, #f5f5f1 0%, #e60023 50%, #b3001b 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
@@ -2436,7 +2436,7 @@ html[data-theme="dark"] .plan-label,
 html[data-theme="light"] .plan-label,
 html[data-theme="dark"] .plan-save,
 html[data-theme="light"] .plan-save {
-  color: #f61600 !important;
+  color: #e60023 !important;
 }
 
 html[data-theme="dark"] .plan-save {
@@ -2471,7 +2471,7 @@ html[data-theme="light"] .setup-note {
 
 html[data-theme="dark"] .popular-badge,
 html[data-theme="light"] .popular-badge {
-  background: linear-gradient(135deg, #e3c465 0%, #f4f4f2 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #f5f5f1 100%) !important;
   color: #08111d !important;
 }
 
@@ -2481,7 +2481,7 @@ html[data-theme="light"] .popular-badge {
 
 html[data-theme="dark"] .primary-btn,
 html[data-theme="light"] .primary-btn {
-  background: linear-gradient(135deg, #e3c465 0%, #f4f4f2 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #f5f5f1 100%) !important;
   color: #08111d !important;
   box-shadow: 0 14px 28px rgba(227, 196, 101, 0.18) !important;
 }
@@ -2558,7 +2558,7 @@ html[data-theme="light"] .product-page .footer-copyright {
 
 html[data-theme="dark"] .product-page .footer-link:hover,
 html[data-theme="light"] .product-page .footer-link:hover {
-  color: #f61600 !important;
+  color: #e60023 !important;
 }
 
 /* =========================================================
@@ -2756,7 +2756,7 @@ html[data-theme="light"] .service-page .brand-part-rank {
 
 html[data-theme="dark"] .service-page .brand-part-mysalon,
 html[data-theme="light"] .service-page .brand-part-mysalon {
-  background: linear-gradient(135deg, #f7f7f5 0%, #f61600 50%, #b30f00 100%) !important;
+  background: linear-gradient(135deg, #f5f5f1 0%, #e60023 50%, #b3001b 100%) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
@@ -2901,7 +2901,7 @@ html[data-theme="dark"] .section-label,
 html[data-theme="light"] .section-label,
 html[data-theme="dark"] .feature-number,
 html[data-theme="light"] .feature-number {
-  color: #f61600 !important;
+  color: #e60023 !important;
 }
 
 html[data-theme="dark"] .section-title,
@@ -2999,7 +2999,7 @@ html[data-theme="dark"] .pricing-btn,
 html[data-theme="light"] .pricing-btn,
 html[data-theme="dark"] .cta-btn,
 html[data-theme="light"] .cta-btn {
-  background: linear-gradient(135deg, #e3c465 0%, #f4f4f2 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #f5f5f1 100%) !important;
   color: #08111d !important;
   box-shadow: 0 14px 28px rgba(227, 196, 101, 0.18) !important;
 }
@@ -3078,7 +3078,7 @@ html[data-theme="light"] .service-page .footer-copyright {
 
 html[data-theme="dark"] .service-page .footer-link:hover,
 html[data-theme="light"] .service-page .footer-link:hover {
-  color: #f61600 !important;
+  color: #e60023 !important;
 }
 
 /* =========================================================
@@ -3662,7 +3662,7 @@ html[data-theme="dark"] .cta,
 html[data-theme="light"] .cta,
 html[data-theme="dark"] .marketing-hero-brief-submit,
 html[data-theme="light"] .marketing-hero-brief-submit {
-  background: linear-gradient(135deg, #e3c465 0%, #f4f4f2 100%) !important;
+  background: linear-gradient(135deg, #e3c465 0%, #f5f5f1 100%) !important;
   color: #08111d !important;
   border-color: transparent !important;
   box-shadow: 0 14px 28px rgba(227, 196, 101, 0.18) !important;
