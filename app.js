@@ -25,6 +25,7 @@
   const ROUTE_TERMS = "terms";
   /** Client grid page size (keep in sync with server DEFAULT_PREVIEW_LIMIT / RLS top-N). */
   const LEADERBOARD_PAGE_SIZE = 20;
+  const INTEL_PAGE_SIZE = 20;
   var smsFunnelPingTimer = null;
   var smsFunnelRuntimeCfg = null;
   var smsFunnelVisibilityBound = false;
@@ -877,19 +878,25 @@ applyMarketingTheme(getMarketingTheme());
       analysisKicker: "Google Maps · Local visibility",
       analysisTitle: "Local Restaurant Ranking",
       analysisBody:
-        "Compare restaurants by Google signals and marketing score. Open any row for local benchmarks, sentiment, and review highlights.",
+        "Compare restaurants by Google Visibility score in your city. Rankings emphasize local SEO strength and customer-acquisition readiness from live Google signals.",
       analysisFreshDbHint:
-        "If this is a fresh database, run sql/009_intel_market_columns.sql in Supabase SQL Editor, then reload.",
+        "If this is a fresh database, run sql/034_restr_ai_leaderboard.sql in Supabase SQL Editor, then reload.",
+      analysisGeoLabel: "Showing Google Visibility rankings for",
+      analysisGeoFallback: "your area",
+      analysisListLoading: "Loading local restaurant rankings...",
+      analysisNoResultsGeo: "No listed restaurants in this city yet. Try search or talk to Ryan to add coverage.",
+      analysisPrevious: "Previous",
+      analysisNext: "Next",
       analysisSearchLabel: "Search restaurants",
       analysisSearchPlaceholder: "Name, address, city, or township",
-      analysisSearchEmptyHint: "Type at least 2 characters to search listed restaurants.",
+      analysisSearchEmptyHint: "Browse rankings for your city below, or type 2+ characters to search.",
       analysisSearchLoading: "Searching restaurants...",
       analysisTableLabel: "Restaurant listings",
       analysisThSalon: "Restaurant",
       analysisThAddress: "Address",
       analysisThRating: "Google rating",
       analysisThReviews: "Google reviews",
-      analysisThScore: "Marketing score",
+      analysisThScore: "Visibility score",
       analysisReportKicker: "Restaurant report",
       analysisReportUnavailable: "Report unavailable",
       analysisReportLoadFailed: "This restaurant could not be loaded.",
@@ -1166,18 +1173,24 @@ applyMarketingTheme(getMarketingTheme());
       analysisKicker: "Google Maps · 本地可见度",
       analysisTitle: "本地餐厅排名",
       analysisBody:
-        "按 Google 信号与营销评分浏览本地餐厅。打开任意一行可查看地区基准、情绪与评论亮点。",
-      analysisFreshDbHint: "如果这是新数据库，请在 Supabase SQL Editor 中执行 sql/009_intel_market_columns.sql，然后重新加载。",
+        "按 Google Visibility 评分浏览您所在城市的餐厅排名，侧重本地 SEO 与获客就绪度等 Google 信号。",
+      analysisFreshDbHint: "如果这是新数据库，请在 Supabase SQL Editor 中执行 sql/034_restr_ai_leaderboard.sql，然后重新加载。",
+      analysisGeoLabel: "当前展示 Google Visibility 排名：",
+      analysisGeoFallback: "您所在地区",
+      analysisListLoading: "正在加载本地餐厅排名...",
+      analysisNoResultsGeo: "该城市暂无收录餐厅。可尝试搜索，或与 Ryan 对话申请覆盖。",
+      analysisPrevious: "上一页",
+      analysisNext: "下一页",
       analysisSearchLabel: "搜索餐厅",
       analysisSearchPlaceholder: "名称、地址、城市或 township",
-      analysisSearchEmptyHint: "请输入至少 2 个字符以搜索已上架餐厅。",
+      analysisSearchEmptyHint: "下方为所在城市排名，或输入至少 2 个字符搜索。",
       analysisSearchLoading: "正在搜索餐厅...",
       analysisTableLabel: "餐厅列表",
       analysisThSalon: "餐厅",
       analysisThAddress: "地址",
       analysisThRating: "Google 评分",
       analysisThReviews: "Google 评论数",
-      analysisThScore: "营销评分",
+      analysisThScore: "Visibility 评分",
       analysisReportKicker: "餐厅报告",
       analysisReportUnavailable: "报告暂不可用",
       analysisReportLoadFailed: "无法加载该餐厅。",
@@ -1763,6 +1776,12 @@ applyMarketingTheme(getMarketingTheme());
     intelListSearchLoading: false,
     intelListSearchTimer: null,
     intelListSearchDelegationBound: false,
+    intelGeoState: "",
+    intelGeoCity: "",
+    intelGeoResolved: false,
+    intelListPage: 1,
+    intelListTotal: 0,
+    intelListSource: "geo",
     leaderboardLoading: false,
     leaderboardError: "",
     leaderboardSalons: [],
@@ -2889,7 +2908,7 @@ applyMarketingTheme(getMarketingTheme());
     var q = String(state.intelSearchQuery || "")
       .trim()
       .toLowerCase();
-    if (!q) return all;
+    if (!q || q.length < 2 || state.intelListSource === "geo") return all;
     return all.filter(function (s) {
       return (
         String(s.name || "")
@@ -2909,6 +2928,136 @@ applyMarketingTheme(getMarketingTheme());
           .indexOf(q) !== -1
       );
     });
+  }
+
+  function intelGeoDisplayLabel() {
+    var city = String(state.intelGeoCity || "").trim();
+    var st = String(state.intelGeoState || "").trim();
+    if (city && st) return city + ", " + st;
+    if (city) return city;
+    if (st) return st;
+    return MARKETING_UI.analysisGeoFallback;
+  }
+
+  function buildIntelListQuerySuffix() {
+    var qLen = String(state.intelSearchQuery || "").trim().length;
+    if (qLen >= 2) {
+      return (
+        "?q=" +
+        encodeURIComponent(String(state.intelSearchQuery || "").trim()) +
+        "&limit=" +
+        INTEL_PAGE_SIZE +
+        "&offset=" +
+        String((state.intelListPage - 1) * INTEL_PAGE_SIZE)
+      );
+    }
+    var parts = [];
+    var st = String(state.intelGeoState || "").trim();
+    var city = String(state.intelGeoCity || "").trim();
+    if (st) parts.push("state=" + encodeURIComponent(st));
+    if (city) parts.push("city=" + encodeURIComponent(city));
+    parts.push("limit=" + String(INTEL_PAGE_SIZE));
+    parts.push("offset=" + String((state.intelListPage - 1) * INTEL_PAGE_SIZE));
+    return parts.length ? "?" + parts.join("&") : "";
+  }
+
+  async function resolveIntelUserGeo() {
+    try {
+      var cached = localStorage.getItem("intelUserGeo");
+      if (cached) {
+        var parsed = JSON.parse(cached);
+        if (parsed && (parsed.city || parsed.state)) {
+          state.intelGeoCity = String(parsed.city || "").trim();
+          state.intelGeoState = String(parsed.state || "").trim();
+          state.intelGeoResolved = true;
+          return;
+        }
+      }
+    } catch (_e) {}
+
+    try {
+      var ps = new URLSearchParams(window.location.search || "");
+      var urlState = (ps.get("state") || "").trim();
+      var urlCity = (ps.get("city") || ps.get("town") || "").trim();
+      if (urlState || urlCity) {
+        state.intelGeoState = urlState;
+        state.intelGeoCity = urlCity;
+        state.intelGeoResolved = true;
+        try {
+          localStorage.setItem(
+            "intelUserGeo",
+            JSON.stringify({ city: state.intelGeoCity, state: state.intelGeoState }),
+          );
+        } catch (_e2) {}
+        return;
+      }
+    } catch (_e3) {}
+
+    try {
+      var geoRes = await fetch("/api/user-geo", { cache: "no-store" });
+      var geoPayload = await geoRes.json().catch(function () {
+        return null;
+      });
+      if (geoRes.ok && geoPayload) {
+        state.intelGeoCity = String(geoPayload.city || "").trim();
+        state.intelGeoState = String(geoPayload.state || "").trim();
+        if (state.intelGeoCity || state.intelGeoState) {
+          state.intelGeoResolved = true;
+          try {
+            localStorage.setItem(
+              "intelUserGeo",
+              JSON.stringify({ city: state.intelGeoCity, state: state.intelGeoState }),
+            );
+          } catch (_e4) {}
+          return;
+        }
+      }
+    } catch (_e5) {}
+
+    state.intelGeoResolved = true;
+  }
+
+  async function loadIntelSalonList() {
+    if (!isAnalysisListRoute()) return;
+    var q = String(state.intelSearchQuery || "").trim();
+    if (q.length >= 2) {
+      state.intelListSource = "search";
+      return loadIntelSalonSearch();
+    }
+    state.intelListSource = "geo";
+    state.intelListSearchLoading = true;
+    refreshIntelListTableBody();
+    try {
+      await resolveIntelUserGeo();
+      var response = await fetch("/api/intel/salons" + buildIntelListQuerySuffix(), { cache: "no-store" });
+      var payload = await response.json().catch(function () {
+        return null;
+      });
+      if (!response.ok) {
+        var msg =
+          payload && payload.error && payload.error.message
+            ? payload.error.message
+            : "Could not load restaurant rankings (" + response.status + ").";
+        throw new Error(msg);
+      }
+      state.intelSalons = Array.isArray(payload && payload.salons) ? payload.salons : [];
+      state.intelListTotal = payload && payload.total != null ? Number(payload.total) || 0 : state.intelSalons.length;
+      if (payload && payload.geo) {
+        if (payload.geo.state) state.intelGeoState = String(payload.geo.state).trim();
+        if (payload.geo.city || payload.geo.town) {
+          state.intelGeoCity = String(payload.geo.city || payload.geo.town).trim();
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      state.intelError = (err && err.message) || "Unexpected error loading restaurant rankings.";
+      state.intelSalons = [];
+      state.intelListTotal = 0;
+    } finally {
+      state.intelListSearchLoading = false;
+      refreshIntelListTableBody();
+      refreshIntelListPagination();
+    }
   }
 
   function buildIntelTableRowsHtml(salons) {
@@ -2949,10 +3098,12 @@ applyMarketingTheme(getMarketingTheme());
       var qLen = String(state.intelSearchQuery || "").trim().length;
       var hasQuery = qLen >= 2;
       var emptyMsg = state.intelListSearchLoading
-        ? MARKETING_UI.analysisSearchLoading
+        ? hasQuery
+          ? MARKETING_UI.analysisSearchLoading
+          : MARKETING_UI.analysisListLoading
         : hasQuery
           ? "No restaurants match your search. Try another name, street, city, or town."
-          : MARKETING_UI.analysisSearchEmptyHint;
+          : MARKETING_UI.analysisNoResultsGeo;
       rows =
         '<tr><td colspan="5" class="intel-table-empty">' + escapeHtml(emptyMsg) + "</td></tr>";
     }
@@ -2966,19 +3117,64 @@ applyMarketingTheme(getMarketingTheme());
     tbody.innerHTML = buildIntelTableRowsHtml(getIntelSalonsFiltered());
   }
 
+  function buildIntelPaginationHtml() {
+    var total = Math.max(0, Number(state.intelListTotal) || 0);
+    var totalPages = Math.max(1, Math.ceil(total / INTEL_PAGE_SIZE));
+    var page = state.intelListPage;
+    if (page > totalPages) page = totalPages;
+    if (page < 1) page = 1;
+    state.intelListPage = page;
+    var meta =
+      '<span class="lb-pager-meta intel-pager-meta">' +
+      escapeHtml(String(total)) +
+      " restaurants" +
+      (totalPages > 1 ? " · Page " + page + " / " + totalPages : "") +
+      "</span>";
+    if (totalPages <= 1) {
+      return (
+        '<nav id="intelListPager" class="lb-pager intel-pager" aria-label="Restaurant ranking pages">' +
+        meta +
+        "</nav>"
+      );
+    }
+    var prevDis = page <= 1 ? " disabled" : "";
+    var nextDis = page >= totalPages ? " disabled" : "";
+    return (
+      '<nav id="intelListPager" class="lb-pager intel-pager" aria-label="Restaurant ranking pages">' +
+      meta +
+      '<div class="lb-pager-btns">' +
+      '<button type="button" class="ghost lb-pager-btn"' +
+      prevDis +
+      ' data-intel-page="prev">' +
+      escapeHtml(MARKETING_UI.analysisPrevious) +
+      "</button>" +
+      '<button type="button" class="ghost lb-pager-btn"' +
+      nextDis +
+      ' data-intel-page="next">' +
+      escapeHtml(MARKETING_UI.analysisNext) +
+      "</button>" +
+      "</div></nav>"
+    );
+  }
+
+  function refreshIntelListPagination() {
+    var nav = document.getElementById("intelListPager");
+    if (!nav) return;
+    nav.outerHTML = buildIntelPaginationHtml();
+  }
+
   async function loadIntelSalonSearch() {
     if (!isAnalysisListRoute()) return;
     var q = String(state.intelSearchQuery || "").trim();
     if (q.length < 2) {
-      state.intelSalons = [];
-      state.intelListSearchLoading = false;
-      refreshIntelListTableBody();
-      return;
+      state.intelListPage = 1;
+      return loadIntelSalonList();
     }
+    state.intelListSource = "search";
     state.intelListSearchLoading = true;
     refreshIntelListTableBody();
     try {
-      var response = await fetch("/api/intel/salons?q=" + encodeURIComponent(q), { cache: "no-store" });
+      var response = await fetch("/api/intel/salons" + buildIntelListQuerySuffix(), { cache: "no-store" });
       var payload = await response.json().catch(function () {
         return null;
       });
@@ -2990,13 +3186,16 @@ applyMarketingTheme(getMarketingTheme());
         throw new Error(msg);
       }
       state.intelSalons = Array.isArray(payload && payload.salons) ? payload.salons : [];
+      state.intelListTotal = payload && payload.total != null ? Number(payload.total) || 0 : state.intelSalons.length;
     } catch (err) {
       console.error(err);
       state.intelError = (err && err.message) || "Unexpected error searching restaurants.";
       state.intelSalons = [];
+      state.intelListTotal = 0;
     } finally {
       state.intelListSearchLoading = false;
       refreshIntelListTableBody();
+      refreshIntelListPagination();
     }
   }
 
@@ -3012,10 +3211,14 @@ applyMarketingTheme(getMarketingTheme());
         state.intelListSearchTimer = null;
       }
       var q = String(state.intelSearchQuery || "").trim();
+      state.intelListPage = 1;
       if (q.length < 2) {
-        state.intelSalons = [];
-        state.intelListSearchLoading = false;
-        refreshIntelListTableBody();
+        state.intelListSearchTimer = setTimeout(function () {
+          state.intelListSearchTimer = null;
+          loadIntelSalonList().catch(function (err) {
+            console.error(err);
+          });
+        }, 280);
         return;
       }
       state.intelListSearchTimer = setTimeout(function () {
@@ -3024,6 +3227,33 @@ applyMarketingTheme(getMarketingTheme());
           console.error(err);
         });
       }, 320);
+    });
+    document.addEventListener("click", function (ev) {
+      if (!isAnalysisListRoute()) return;
+      var t = ev.target;
+      if (!t || !t.closest) return;
+      var pageBtn = t.closest("[data-intel-page]");
+      if (!pageBtn || pageBtn.disabled) return;
+      var dir = pageBtn.getAttribute("data-intel-page") || "";
+      var totalPages = Math.max(1, Math.ceil((Number(state.intelListTotal) || 0) / INTEL_PAGE_SIZE));
+      if (dir === "prev" && state.intelListPage > 1) {
+        state.intelListPage -= 1;
+      } else if (dir === "next" && state.intelListPage < totalPages) {
+        state.intelListPage += 1;
+      } else {
+        return;
+      }
+      ev.preventDefault();
+      var q = String(state.intelSearchQuery || "").trim();
+      if (q.length >= 2) {
+        loadIntelSalonSearch().catch(function (err) {
+          console.error(err);
+        });
+      } else {
+        loadIntelSalonList().catch(function (err) {
+          console.error(err);
+        });
+      }
     });
   }
 
@@ -5682,10 +5912,9 @@ applyMarketingTheme(getMarketingTheme());
       if (isAnalysisListRoute()) {
         state.intelSalons = [];
         state.intelListSearchLoading = false;
-        var listQ = String(state.intelSearchQuery || "").trim();
-        if (listQ.length >= 2) {
-          await loadIntelSalonSearch();
-        }
+        state.intelListPage = 1;
+        state.intelListTotal = 0;
+        await loadIntelSalonList();
       } else if (isAnalysisSalonRoute() || isAnalysisFullRoute()) {
         const slug = String(state.storeSlug || "").trim();
         if (!slug) {
@@ -5795,6 +6024,12 @@ applyMarketingTheme(getMarketingTheme());
     }
 
     var rows = buildIntelTableRowsHtml(getIntelSalonsFiltered());
+    var geoLine =
+      '<p class="marketing-body intel-geo-label">' +
+      escapeHtml(MARKETING_UI.analysisGeoLabel) +
+      ' <strong>' +
+      escapeHtml(intelGeoDisplayLabel()) +
+      "</strong></p>";
 
     return (
       '<div class="marketing-page marketing-page-intel">' +
@@ -5809,6 +6044,7 @@ applyMarketingTheme(getMarketingTheme());
       '<p class="marketing-body marketing-body-wide">' +
       escapeHtml(MARKETING_UI.analysisBody) +
       "</p>" +
+      geoLine +
       "</section>" +
       '<section class="intel-search-toolbar card">' +
       '<div class="intel-search-row">' +
@@ -5851,6 +6087,7 @@ applyMarketingTheme(getMarketingTheme());
       rows +
       "</tbody></table>" +
       "</div>" +
+      buildIntelPaginationHtml() +
       "</section>" +
       getMarketingFooterHtml() +
       "</div>"
@@ -11627,6 +11864,27 @@ function renderServicesContent() {
       state.intelDetail = null;
       if (route.kind === ROUTE_ANALYSIS_LIST) {
         state.intelSearchQuery = "";
+        state.intelListPage = 1;
+        state.intelListTotal = 0;
+        state.intelListSource = "geo";
+        try {
+          var __intelPs = new URLSearchParams(window.location.search || "");
+          var __intelSt = (__intelPs.get("state") || "").trim();
+          var __intelCity = (__intelPs.get("city") || __intelPs.get("town") || "").trim();
+          if (__intelSt || __intelCity) {
+            state.intelGeoState = __intelSt;
+            state.intelGeoCity = __intelCity;
+            state.intelGeoResolved = true;
+          } else {
+            state.intelGeoState = "";
+            state.intelGeoCity = "";
+            state.intelGeoResolved = false;
+          }
+        } catch (__intelE) {
+          state.intelGeoState = "";
+          state.intelGeoCity = "";
+          state.intelGeoResolved = false;
+        }
       }
     }
 
