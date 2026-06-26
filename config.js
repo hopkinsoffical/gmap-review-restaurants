@@ -18,7 +18,7 @@ window.APP_CONFIG = {
   // 这里只保留非敏感的产品/订阅标识。
   // 当前 pricing CTA 会创建一个包含：
   // 1. $199 一次性 setup（商品 Professional Setup）
-  // 2. $29 / month 订阅（商品 RankMySalon Monthly Plan；变体 ID 与 Admin 商品页一致）
+  // 2. $29 / month 订阅（商品 RankMyRestaurant Monthly Plan；变体 ID 与 Admin 商品页一致）
   // 的 Shopify cart，然后跳转到托管 checkout。
   shopify: {
     domain: "y6y1hf-45.myshopify.com",

@@ -656,9 +656,16 @@ function getMarketingThemeIcon() {
   return getMarketingTheme() === "dark" ? "☾" : "☀";
 }
 
-function applyMarketingTheme(theme) {
+function isStoreVisitPathname(pathname) {
+  return /^\/stores\/[^/]+/i.test(String(pathname || location.pathname || ""));
+}
+
+function applyMarketingTheme(theme, options) {
+  var opts = options || {};
   document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem(MARKETING_THEME_STORAGE_KEY, theme);
+  if (opts.persist !== false) {
+    localStorage.setItem(MARKETING_THEME_STORAGE_KEY, theme);
+  }
 
   const themeIcons = document.querySelectorAll("[data-theme-icon]");
 
@@ -668,6 +675,9 @@ function applyMarketingTheme(theme) {
 }
 
 function toggleMarketingTheme() {
+  if (isStoreVisitPathname(location.pathname)) {
+    return;
+  }
   const currentTheme = getMarketingTheme();
   const nextTheme = currentTheme === "dark" ? "light" : "dark";
 
@@ -676,7 +686,12 @@ function toggleMarketingTheme() {
 
 window.toggleMarketingTheme = toggleMarketingTheme;
 
-applyMarketingTheme(getMarketingTheme());
+if (isStoreVisitPathname(location.pathname)) {
+  document.documentElement.classList.add("store-theme-locked");
+  applyMarketingTheme("dark", { persist: false });
+} else {
+  applyMarketingTheme(getMarketingTheme());
+}
 
 
   const MARKETING_UI_I18N = {
@@ -1539,21 +1554,47 @@ applyMarketingTheme(getMarketingTheme());
         "当前使用通用示例菜单，拍照写评价可以正常使用。在后台保存本店菜单目录后，会自动切换为你店自己的菜品。",
       storeBootstrapGeneric: "门店页面加载失败，请稍后重试。",
       storeVisitServiceLabel: "今日菜品",
-      storeVisitHeroTitle: "今天在 {name} 的体验怎么样？",
-      storeVisitHeroLead: "你的真实感受能帮助其他食客找到好餐厅。",
-      storeVisitMoodPick: "点选星星告诉我们今天的感受",
-      storeVisitMood1: "还有提升空间",
-      storeVisitMood2: "还可以",
-      storeVisitMood3: "挺不错的",
-      storeVisitMood4: "非常喜欢！",
-      storeVisitMood5: "简直太棒了！",
-      storeVisitGoogleCta: "上传小票，生成 Google 评论",
-      storeVisitOr: "或",
-      storeVisitPrivateCta: "私下向我们反馈",
-      storeVisitLowStarHint: "如果星级较低或暂时不想公开评价，建议先私下留言，我们会认真阅读并跟进。",
-      storeVisitSocialProof: "已有 {count} 位满意食客留下评价",
-      storeVisitWriteOwnOutline: "自己写评论",
-      storeReceiptScanHint: "点上方深色按钮，拍摄或从相册选择一张清晰的小票照片。",
+      storeVisitHeading: "给 {store} 留个点评",
+      storeVisitHeroTitle: "今天满意吗？",
+      storeVisitHeroLead: "回答几个简短问题，我们来帮你整理一条 Google 点评。",
+      storeVisitMoodPick: "请点击星星继续。",
+      storeVisitStarsLabel: "为本次体验评分",
+      storeFlowVisitTitle: "这是你第几次来？",
+      storeFlowVisitHint: "选择最接近今天情况的一项。",
+      storeFlowStaffTitle: "今天是哪位服务员接待你？",
+      storeFlowStaffHint: "可跳过。也可搜索姓名后点选一位服务员；再次点选可取消。",
+      storeFlowStaffSearchPlaceholder: "搜索服务员姓名",
+      storeFlowStaffSkipBtn: "暂不选择服务员",
+      storeFlowStaffEmpty: "没有找到匹配的服务员，请换个关键词试试。",
+      storeFlowServicesTitle: "今天吃了哪些菜？",
+      storeFlowServicesHint: "列表先展示少量菜品。请用搜索找到更多，可多选；越准确，生成的点评越自然。",
+      storeFlowServicesSearchPlaceholder: "搜索菜品",
+      storeFlowServicesSelected: "已选菜品",
+      storeFlowServicesEmpty: "没有找到匹配的菜品，请换个关键词试试。",
+      storeFlowServicesRequired: "请至少选择一道菜。",
+      storeFlowStepBack: "返回",
+      storeFlowStepContinue: "继续",
+      storeFlowStepGenerate: "生成 3 条点评",
+      storeFlowVisitRequired: "请先选择来店次数。",
+      storeFlowStaffRequired: "请先选择今天的服务员。",
+      storeFlowWriteOwnBtn: "自己写点评，去 Google",
+      storeReceiptScanHint: "",
+      storeCallbackTitle: "抱歉这次没有让你满意",
+      storeCallbackIntro: "留下你的电话，我们会让经理尽快联系你。",
+      storeCallbackPhoneLabel: "你的电话",
+      storeCallbackPhonePlaceholder: "请输入手机号",
+      storeCallbackPlaceholderName: "您的姓名",
+      storeCallbackPlaceholderPhone: "您的手机号",
+      storeCallbackPlaceholderGoogle: "Google / Gmail 邮箱（选填，便于核对 Maps 账号）",
+      storeCallbackPlaceholderMessage: "想告诉我们什么？",
+      storeCallbackNameRequired: "请填写您的姓名。",
+      storeCallbackMessageRequired: "请写几句具体的反馈。",
+      storeCallbackSubmitBtn: "继续",
+      storeCallbackPhoneRequired: "请填写有效的电话号码。",
+      storeCallbackThanksTitle: "❤️ 我们希望下次能做得更好",
+      storeCallbackThanksBody:
+        "感谢您的反馈。\n我们已经收到您的意见，会尽快联系您解决问题。\n许多顾客在问题解决后都愿意再次光顾并更新评价。",
+      storeCallbackThanksDone: "提交完成",
       storePrivateModalTitle: "私下反馈给店家",
       storePrivateModalIntro: "只有后台团队能看到，不会出现在 Google 上。我们会认真阅读每一条。",
       storePrivateFieldName: "怎么称呼您",
@@ -1662,22 +1703,47 @@ applyMarketingTheme(getMarketingTheme());
         "Using a generic sample list for now — receipts and reviews still work. Save your own catalog in admin to match your real menu.",
       storeBootstrapGeneric: "Could not load this store. Please try again.",
       storeVisitServiceLabel: "Today's dish",
-      storeVisitHeroTitle: "How was your visit with {name}?",
-      storeVisitHeroLead: "Your honest take helps other diners find great restaurants.",
-      storeVisitMoodPick: "Tap a star to tell us how it went.",
-      storeVisitMood1: "Room to improve",
-      storeVisitMood2: "It was okay",
-      storeVisitMood3: "Pretty good",
-      storeVisitMood4: "Really loved it!",
-      storeVisitMood5: "Absolutely amazing!",
-      storeVisitGoogleCta: "Start with a receipt for your Google review",
-      storeVisitOr: "or",
-      storeVisitPrivateCta: "Share feedback privately with us",
-      storeVisitLowStarHint:
-        "If your experience was below 4 stars, consider sharing private feedback first — we read every note and it helps us follow up without pressure.",
-      storeVisitSocialProof: "{count} happy diners have already reviewed us",
-      storeVisitWriteOwnOutline: "Write my own review",
-      storeReceiptScanHint: "Tap the dark button above, then snap or pick a clear photo of your receipt.",
+      storeVisitHeading: "Review for {store}",
+      storeVisitHeroTitle: "Are you happy with today's visit?",
+      storeVisitHeroLead: "Answer a few quick questions and we will help draft a Google review.",
+      storeVisitMoodPick: "Tap a star to continue.",
+      storeVisitStarsLabel: "Rate your visit",
+      storeFlowVisitTitle: "How many times have you visited us?",
+      storeFlowVisitHint: "Pick the option that fits today best.",
+      storeFlowStaffTitle: "Who was your server today?",
+      storeFlowStaffHint: "Optional: skip, or search and tap one server. Tap again to clear your choice.",
+      storeFlowStaffSearchPlaceholder: "Search server name",
+      storeFlowStaffSkipBtn: "Skip server",
+      storeFlowStaffEmpty: "No server matched that search. Try another keyword.",
+      storeFlowServicesTitle: "Which dishes did you have today?",
+      storeFlowServicesHint: "A few dishes show first. Search to find more — select all that apply for a more natural review.",
+      storeFlowServicesSearchPlaceholder: "Search dishes",
+      storeFlowServicesSelected: "Selected dishes",
+      storeFlowServicesEmpty: "No dishes matched that search. Try another keyword.",
+      storeFlowServicesRequired: "Please choose at least one dish.",
+      storeFlowStepBack: "Back",
+      storeFlowStepContinue: "Continue",
+      storeFlowStepGenerate: "Generate 3 review ideas",
+      storeFlowVisitRequired: "Pick the visit count first.",
+      storeFlowStaffRequired: "Choose your server first.",
+      storeFlowWriteOwnBtn: "Write my own on Google",
+      storeReceiptScanHint: "",
+      storeCallbackTitle: "We're sorry today's visit missed the mark",
+      storeCallbackIntro: "Leave your phone number and we'll ask the manager to call you.",
+      storeCallbackPhoneLabel: "Your phone number",
+      storeCallbackPhonePlaceholder: "Your phone number",
+      storeCallbackPlaceholderName: "Your Name",
+      storeCallbackPlaceholderPhone: "Your phone number",
+      storeCallbackPlaceholderGoogle: "Google / Gmail (optional, helps us match your Maps account)",
+      storeCallbackPlaceholderMessage: "What would you like us to know?",
+      storeCallbackNameRequired: "Please add your name.",
+      storeCallbackMessageRequired: "Please add a few words about your visit.",
+      storeCallbackSubmitBtn: "Continue",
+      storeCallbackPhoneRequired: "Please enter a valid phone number.",
+      storeCallbackThanksTitle: "❤️ We hope to do better next time",
+      storeCallbackThanksBody:
+        "Thank you for your feedback.\nWe've received your message and will contact you soon to resolve the issue.\nMany guests come back and update their review once everything is sorted.",
+      storeCallbackThanksDone: "Done",
       storePrivateModalTitle: "Private note to the restaurant",
       storePrivateModalIntro:
         "This goes straight to the team behind the scenes — it is never posted on Google. We read every message.",
@@ -1818,6 +1884,13 @@ applyMarketingTheme(getMarketingTheme());
     serviceSpotlight: null,
     storeReviewCount: null,
     storeVisitStars: 0,
+    storeVisitStarsHover: 0,
+    storeVisitStarsBound: false,
+    storeReviewFlowStage: "gate",
+    storeReviewSatisfaction: "",
+    storeServiceSearch: "",
+    storeStaffSearch: "",
+    storePrivateFeedbackMode: "private",
     storePrivateFeedbackModalBound: false,
     storeVisitChromeBound: false,
   };
@@ -1829,6 +1902,7 @@ applyMarketingTheme(getMarketingTheme());
     portalContent: document.getElementById("portalContent"),
     layout: document.getElementById("layout"),
     intakeCard: document.getElementById("intakeCard"),
+    storeVisitReceiptBlock: document.getElementById("storeVisitReceiptBlock"),
     storeVisitShell: document.getElementById("storeVisitShell"),
     storeVisitBrandName: document.getElementById("storeVisitBrandName"),
     storeVisitServiceCard: document.getElementById("storeVisitServiceCard"),
@@ -1838,13 +1912,7 @@ applyMarketingTheme(getMarketingTheme());
     storeVisitHeroLead: document.getElementById("storeVisitHeroLead"),
     storeVisitStars: document.getElementById("storeVisitStars"),
     storeVisitMood: document.getElementById("storeVisitMood"),
-    storeVisitLowStarHint: document.getElementById("storeVisitLowStarHint"),
-    storeGoogleReviewEntryBtn: document.getElementById("storeGoogleReviewEntryBtn"),
-    storeGoogleCtaLabel: document.getElementById("storeGoogleCtaLabel"),
-    storeVisitOrText: document.getElementById("storeVisitOrText"),
-    storePrivateFeedbackBtn: document.getElementById("storePrivateFeedbackBtn"),
-    storeWriteOwnOutlineBtn: document.getElementById("storeWriteOwnOutlineBtn"),
-    storeVisitSocialProof: document.getElementById("storeVisitSocialProof"),
+    storeFlowCard: document.getElementById("storeFlowCard"),
     dishesCard: document.getElementById("dishesCard"),
     reviewsCard: document.getElementById("reviewsCard"),
     brandName: document.getElementById("brandName"),
@@ -1916,6 +1984,7 @@ applyMarketingTheme(getMarketingTheme());
     loyaltyPromoContinueBtn: document.getElementById("loyaltyPromoContinueBtn"),
     loyaltyPromoStatus: document.getElementById("loyaltyPromoStatus"),
     anotherSetBtn: document.getElementById("anotherSetBtn"),
+    reviewWriteOwnBtn: document.getElementById("reviewWriteOwnBtn"),
     visitSheetBackdrop: document.getElementById("visitSheetBackdrop"),
     visitSheet: document.getElementById("visitSheet"),
     visitSheetDragZone: document.getElementById("visitSheetDragZone"),
@@ -2267,6 +2336,17 @@ applyMarketingTheme(getMarketingTheme());
   }
 
   function buildServicePraisePayload() {
+    if (
+      isStoreRoute() &&
+      String(state.serviceStaffLabel || "").trim() &&
+      state.storeReviewFlowStage === "reviews"
+    ) {
+      return {
+        staffLabel: getResolvedServiceStaffLabel(state.serviceStaffLabel, state.lang),
+        praiseKey: "friendly",
+      };
+    }
+
     if (!isServicePraiseAvailable() || !state.servicePraiseEnabled) return null;
 
     const option = getServicePraiseOption(state.servicePraiseKey);
@@ -2274,6 +2354,68 @@ applyMarketingTheme(getMarketingTheme());
       staffLabel: getResolvedServiceStaffLabel(state.serviceStaffLabel, state.lang),
       praiseKey: option.key,
     };
+  }
+
+  function getStoreFlowStaffOptions() {
+    return uniqueArray(
+      (state.staffOptions || [])
+        .map(function (staff) {
+          return String(staff && (staff.displayName || staff.name) || "").trim();
+        })
+        .filter(Boolean),
+    );
+  }
+
+  function getStoreFlowNextStageAfterVisit() {
+    return getStoreFlowStaffOptions().length ? "staff" : "services";
+  }
+
+  function getStoreFlowPreviousStage(stage) {
+    if (stage === "staff") return "visit";
+    if (stage === "services") return getStoreFlowStaffOptions().length ? "staff" : "visit";
+    if (stage === "visit") return "gate";
+    return "gate";
+  }
+
+  function getStoreServiceMatches(query) {
+    const normalizedQuery = normalizeText(query || "");
+    const sorted = state.flatDishes.slice().sort(function (a, b) {
+      return getDishName(a).localeCompare(getDishName(b), state.lang === "zh" ? "zh-Hans" : "en", {
+        sensitivity: "base",
+      });
+    });
+
+    const browseLimit = 5;
+    const searchLimit = 36;
+
+    if (!normalizedQuery) return sorted.slice(0, browseLimit);
+
+    return sorted.filter(function (item) {
+      const haystack = [
+        item.zh,
+        item.en,
+        item.categoryName,
+        (item.aliases || []).join(" "),
+      ].join(" ");
+      return normalizeText(haystack).indexOf(normalizedQuery) !== -1;
+    }).slice(0, searchLimit);
+  }
+
+  function getStoreStaffMatches(query, staffNames) {
+    const normalizedQuery = normalizeText(query || "");
+    const list = Array.isArray(staffNames) ? staffNames.slice() : [];
+    const browseLimit = 5;
+    const searchLimit = 36;
+
+    if (!normalizedQuery) {
+      return list.slice(0, browseLimit);
+    }
+
+    return list
+      .filter(function (name) {
+        return normalizeText(String(name || "")).indexOf(normalizedQuery) !== -1;
+      })
+      .slice(0, searchLimit);
   }
 
   function reviewMentionsVisitContext(text, visitTierKey) {
@@ -6582,7 +6724,7 @@ applyMarketingTheme(getMarketingTheme());
         id: "marketingNavTools",
         label: MARKETING_UI.navTools,
         items: [
-          { label: "AI Review Booster Tool", href: "/ai-review-generator.html" },
+          { label: "AI Review Booster Tool", href: "/ai-review-generator" },
           { label: "Analysis Reports", href: "/analysis-reports" },
         ],
       },
@@ -9080,96 +9222,243 @@ function renderServicesContent() {
     return data;
   }
 
-  function getStoreVisitSocialCount() {
-    var n = state.storeReviewCount;
-    if (n != null && Number.isFinite(Number(n)) && Number(n) > 0) return Math.round(Number(n));
-    return 247;
+  function canInteractWithStoreVisitStars() {
+    var isBusy = state.isRecognizing || state.isGenerating;
+    var storeUnavailable = !!state.storeBootstrapFailure || !!state.storeBootstrapPending;
+    return state.storeReviewFlowStage === "gate" && !isBusy && !storeUnavailable;
+  }
+
+  function updateStoreVisitStarsVisual() {
+    if (!el.storeVisitStars) return;
+    var selected = Number(state.storeVisitStars) || 0;
+    var hover = Number(state.storeVisitStarsHover) || 0;
+    var displayCount = hover > 0 ? hover : selected;
+    var tiles = el.storeVisitStars.querySelectorAll(".store-visit-star-tile");
+    tiles.forEach(function (btn, idx) {
+      var starVal = idx + 1;
+      var filled = starVal <= displayCount;
+      btn.classList.toggle("is-filled", filled);
+      btn.classList.toggle("is-active", starVal === selected && selected > 0);
+      btn.setAttribute("aria-checked", starVal === selected ? "true" : "false");
+      btn.disabled = !canInteractWithStoreVisitStars();
+    });
+  }
+
+  function ensureStoreVisitStarsMarkup() {
+    if (!el.storeVisitStars || state.storeVisitStarsBound) return;
+    state.storeVisitStarsBound = true;
+    el.storeVisitStars.innerHTML = "";
+    for (var i = 1; i <= 5; i += 1) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "store-visit-star-tile";
+      button.setAttribute("data-star-value", String(i));
+      button.setAttribute("role", "radio");
+      button.setAttribute("aria-checked", "false");
+      var glyph = document.createElement("span");
+      glyph.className = "store-visit-star-glyph";
+      glyph.setAttribute("aria-hidden", "true");
+      glyph.textContent = "★";
+      button.appendChild(glyph);
+      el.storeVisitStars.appendChild(button);
+    }
+  }
+
+  function handleStoreVisitStarSelect(starValue) {
+    var n = Number(starValue);
+    if (!Number.isFinite(n) || n < 1 || n > 5 || !canInteractWithStoreVisitStars()) return;
+
+    state.storeVisitStars = n;
+    state.storeVisitStarsHover = 0;
+    updateStoreVisitStarsVisual();
+    trackEvent("store_visit_star_selected", analyticsParams({ rating: n }));
+
+    if (n === 5) {
+      state.storeReviewSatisfaction = "yes";
+      state.storeReviewFlowStage = "visit";
+      renderStoreFlowCard();
+      renderFlowState();
+      scrollCardIntoView(el.intakeCard, 8);
+      trackEvent("store_flow_yes_clicked", analyticsParams({ rating: n }));
+      return;
+    }
+
+    state.storeReviewSatisfaction = "no";
+    setNodeText(el.storeVisitMood, t("storeCallbackIntro"));
+    openStorePrivateFeedbackModal("callback");
+    trackEvent("store_flow_no_clicked", analyticsParams({ rating: n }));
   }
 
   function syncStoreVisitStars() {
-    if (!el.storeVisitStars || !isStoreRoute()) return;
-    var n = Number(state.storeVisitStars) || 0;
-    var tiles = el.storeVisitStars.querySelectorAll("[data-store-star]");
-    for (var i = 0; i < tiles.length; i++) {
-      var tile = tiles[i];
-      var v = Number(tile.getAttribute("data-store-star")) || 0;
-      tile.classList.toggle("is-filled", n > 0 && v <= n);
-      tile.classList.toggle("is-active", n === v);
-      tile.setAttribute("aria-checked", n === v ? "true" : "false");
+    if (!isStoreRoute() || !el.storeVisitStars) return;
+    ensureStoreVisitStarsMarkup();
+    el.storeVisitStars.setAttribute("aria-label", t("storeVisitStarsLabel"));
+    updateStoreVisitStarsVisual();
+    if (state.storeReviewFlowStage === "gate" && !(Number(state.storeVisitStars) || 0)) {
+      setNodeText(el.storeVisitMood, t("storeVisitMoodPick"));
     }
-    if (el.storeGoogleReviewEntryBtn) {
-      el.storeGoogleReviewEntryBtn.classList.toggle("is-rating-high", n >= 4);
-      el.storeGoogleReviewEntryBtn.classList.toggle("is-rating-low", n > 0 && n < 4);
-    }
-    if (el.storePrivateFeedbackBtn) {
-      el.storePrivateFeedbackBtn.classList.toggle("is-emphasized", n > 0 && n < 4);
-    }
-    if (el.storeVisitLowStarHint) {
-      el.storeVisitLowStarHint.classList.toggle("hidden", !(n > 0 && n < 4));
-    }
-    var moodKey = n === 0 ? "storeVisitMoodPick" : "storeVisitMood" + n;
-    setNodeText(el.storeVisitMood, t(moodKey));
   }
 
   function syncStoreVisitChrome() {
-    if (!el.storeVisitShell) return;
     if (!isStoreRoute()) {
-      el.storeVisitShell.hidden = true;
+      if (el.storeVisitShell) el.storeVisitShell.hidden = true;
       document.body.classList.remove("store-visit-ready", "store-has-receipt", "store-bootstrap-gated");
       return;
     }
-    if (state.storeBootstrapFailure || state.storeBootstrapPending) {
-      el.storeVisitShell.hidden = true;
+
+    if (state.storeBootstrapPending) {
+      if (el.storeVisitShell) el.storeVisitShell.hidden = true;
       document.body.classList.remove("store-visit-ready", "store-has-receipt");
       return;
     }
+
+    if (state.storeBootstrapFailure) {
+      document.body.classList.remove("store-visit-ready", "store-has-receipt");
+      if (el.storeVisitShell) {
+        el.storeVisitShell.hidden = false;
+        var failLabel = getRestaurantName() || slugToStorePlaceholderLabel(state.storeSlug);
+        setNodeText(
+          el.storeVisitBrandName,
+          formatText(t("storeVisitHeading"), { store: String(failLabel || "") }),
+        );
+        setNodeText(el.storeVisitHeroTitle, t("storeVisitHeroTitle"));
+        setNodeText(el.storeVisitHeroLead, t("storeVisitHeroLead"));
+        setNodeText(el.storeVisitMood, resolveBootstrapFailureCopy(state.storeBootstrapFailure));
+      }
+      return;
+    }
+
     document.body.classList.add("store-visit-ready");
+    if (!el.storeVisitShell) return;
     el.storeVisitShell.hidden = false;
 
     var name = getRestaurantName();
-    setNodeText(el.storeVisitBrandName, String(name || "").toUpperCase());
-    setNodeText(el.storeVisitHeroTitle, formatText(t("storeVisitHeroTitle"), { name: name }));
+    setNodeText(
+      el.storeVisitBrandName,
+      formatText(t("storeVisitHeading"), { store: String(name || "") }),
+    );
+    setNodeText(el.storeVisitHeroTitle, t("storeVisitHeroTitle"));
     setNodeText(el.storeVisitHeroLead, t("storeVisitHeroLead"));
 
-    if (el.storeVisitServiceCard && el.storeVisitServiceLabel && el.storeVisitServiceName) {
-      var sp = state.serviceSpotlight;
-      if (sp && String(sp.name || "").trim()) {
-        el.storeVisitServiceCard.classList.remove("hidden");
-        setNodeText(el.storeVisitServiceLabel, t("storeVisitServiceLabel"));
-        setNodeText(el.storeVisitServiceName, String(sp.name).trim());
-      } else {
-        el.storeVisitServiceCard.classList.add("hidden");
-      }
+    if (el.storeVisitServiceCard) {
+      el.storeVisitServiceCard.classList.add("hidden");
     }
 
-    setNodeText(el.storeGoogleCtaLabel, t("storeVisitGoogleCta"));
-    setNodeText(el.storeVisitOrText, t("storeVisitOr"));
-    if (el.storePrivateFeedbackBtn) {
-      el.storePrivateFeedbackBtn.textContent = t("storeVisitPrivateCta");
-    }
-    setNodeText(el.storeVisitLowStarHint, t("storeVisitLowStarHint"));
-    setNodeText(el.storeVisitSocialProof, formatText(t("storeVisitSocialProof"), { count: String(getStoreVisitSocialCount()) }));
-    if (el.storeWriteOwnOutlineBtn) {
-      el.storeWriteOwnOutlineBtn.textContent = t("storeVisitWriteOwnOutline");
-    }
+    renderStoreFlowCard();
     syncStoreVisitStars();
+    syncStoreVisitReceiptBlock();
+    if (document.body.classList.contains("store-visit-ready") && !hasActiveResultFlow() && !state.storeBootstrapFailure) {
+      clearReceiptStatus();
+    }
+  }
+
+  function syncStorePrivateFeedbackSubmitBtn(isSubmitting) {
+    if (!el.storePrivateFeedbackSubmitBtn) return;
+    var isCallbackMode = state.storePrivateFeedbackMode === "callback";
+    el.storePrivateFeedbackSubmitBtn.disabled = !!isSubmitting;
+    if (isSubmitting) {
+      el.storePrivateFeedbackSubmitBtn.textContent = t("storePrivateSubmitting");
+      return;
+    }
+    if (isCallbackMode) {
+      el.storePrivateFeedbackSubmitBtn.innerHTML =
+        "<span>" +
+        escapeHtml(t("storeFlowStepContinue")) +
+        '</span><span class="store-flow-nav-icon" aria-hidden="true">→</span>';
+      el.storePrivateFeedbackSubmitBtn.classList.add("store-private-feedback-continue-btn");
+      return;
+    }
+    el.storePrivateFeedbackSubmitBtn.textContent = t("storePrivateSubmitBtn");
+    el.storePrivateFeedbackSubmitBtn.classList.remove("store-private-feedback-continue-btn");
   }
 
   function syncStorePrivateFeedbackModalCopy() {
     if (!el.storePrivateFeedbackTitle) return;
-    setNodeText(el.storePrivateFeedbackTitle, t("storePrivateModalTitle"));
-    setNodeText(el.storePrivateFeedbackIntro, t("storePrivateModalIntro"));
+    var isCallbackMode = state.storePrivateFeedbackMode === "callback";
+    if (el.storePrivateFeedbackDialog) {
+      el.storePrivateFeedbackDialog.classList.toggle("is-callback-mode", isCallbackMode);
+    }
+    setNodeText(el.storePrivateFeedbackTitle, t(isCallbackMode ? "storeCallbackTitle" : "storePrivateModalTitle"));
+    setNodeText(el.storePrivateFeedbackIntro, t(isCallbackMode ? "storeCallbackIntro" : "storePrivateModalIntro"));
     setNodeText(el.storePrivateLabelName, t("storePrivateFieldName"));
-    setNodeText(el.storePrivateLabelPhone, t("storePrivateFieldPhone"));
+    setNodeText(el.storePrivateLabelPhone, t(isCallbackMode ? "storeCallbackPhoneLabel" : "storePrivateFieldPhone"));
     setNodeText(el.storePrivateLabelGoogle, t("storePrivateFieldGoogle"));
     setNodeText(el.storePrivateLabelMessage, t("storePrivateFieldMessage"));
-    setNodeText(el.storePrivateFeedbackCancelBtn, t("storePrivateCancelBtn"));
-    setNodeText(el.storePrivateFeedbackSubmitBtn, t("storePrivateSubmitBtn"));
-    setNodeText(el.storePrivateFeedbackThanksTitle, t("storePrivateThanksTitle"));
-    setNodeText(el.storePrivateFeedbackThanksBody, t("storePrivateThanksBody"));
-    setNodeText(el.storePrivateFeedbackThanksDoneBtn, t("storePrivateThanksDone"));
+    if (el.storePrivateFeedbackCancelBtn) {
+      el.storePrivateFeedbackCancelBtn.classList.toggle("hidden", isCallbackMode);
+      if (!isCallbackMode) {
+        setNodeText(el.storePrivateFeedbackCancelBtn, t("storePrivateCancelBtn"));
+      }
+    }
+    syncStorePrivateFeedbackSubmitBtn(false);
+    setNodeText(el.storePrivateFeedbackThanksTitle, t(isCallbackMode ? "storeCallbackThanksTitle" : "storePrivateThanksTitle"));
+    setNodeText(el.storePrivateFeedbackThanksBody, t(isCallbackMode ? "storeCallbackThanksBody" : "storePrivateThanksBody"));
+    setNodeText(
+      el.storePrivateFeedbackThanksDoneBtn,
+      t(isCallbackMode ? "storeCallbackThanksDone" : "storePrivateThanksDone"),
+    );
     if (el.storePrivateFeedbackCloseBtn) {
       el.storePrivateFeedbackCloseBtn.setAttribute("aria-label", state.lang === "zh" ? "关闭" : "Close");
+    }
+    if (el.storePrivateInputPhone) {
+      if (isCallbackMode) {
+        el.storePrivateInputPhone.placeholder = t("storeCallbackPlaceholderPhone");
+      } else {
+        el.storePrivateInputPhone.placeholder = t("storePrivateFieldPhone");
+      }
+      el.storePrivateInputPhone.required = isCallbackMode;
+    }
+    if (el.storePrivateInputName) {
+      el.storePrivateInputName.required = true;
+      if (isCallbackMode) {
+        el.storePrivateInputName.placeholder = t("storeCallbackPlaceholderName");
+      } else {
+        el.storePrivateInputName.placeholder = t("storePrivateFieldName");
+      }
+    }
+    if (el.storePrivateInputMessage) {
+      el.storePrivateInputMessage.required = true;
+      if (isCallbackMode) {
+        el.storePrivateInputMessage.placeholder = t("storeCallbackPlaceholderMessage");
+      } else {
+        el.storePrivateInputMessage.placeholder = t("storePrivateFieldMessage");
+      }
+    }
+    if (el.storePrivateInputGoogle) {
+      el.storePrivateInputGoogle.required = false;
+      if (isCallbackMode) {
+        el.storePrivateInputGoogle.placeholder = t("storeCallbackPlaceholderGoogle");
+      } else {
+        el.storePrivateInputGoogle.placeholder = t("storePrivateFieldGoogle");
+      }
+    }
+    if (el.storePrivateInputName && el.storePrivateInputName.closest) {
+      var nameWrap = el.storePrivateInputName.closest("label");
+      if (nameWrap) {
+        nameWrap.classList.remove("hidden");
+        nameWrap.classList.toggle("store-private-feedback-label--placeholder-only", isCallbackMode);
+      }
+    }
+    if (el.storePrivateInputGoogle && el.storePrivateInputGoogle.closest) {
+      var googleWrap = el.storePrivateInputGoogle.closest("label");
+      if (googleWrap) {
+        googleWrap.classList.remove("hidden");
+        googleWrap.classList.toggle("store-private-feedback-label--placeholder-only", isCallbackMode);
+      }
+    }
+    if (el.storePrivateInputMessage && el.storePrivateInputMessage.closest) {
+      var msgWrap = el.storePrivateInputMessage.closest("label");
+      if (msgWrap) {
+        msgWrap.classList.remove("hidden");
+        msgWrap.classList.toggle("store-private-feedback-label--placeholder-only", isCallbackMode);
+      }
+    }
+    if (el.storePrivateInputPhone && el.storePrivateInputPhone.closest) {
+      var phoneWrap = el.storePrivateInputPhone.closest("label");
+      if (phoneWrap) {
+        phoneWrap.classList.remove("hidden");
+        phoneWrap.classList.toggle("store-private-feedback-label--placeholder-only", isCallbackMode);
+      }
     }
   }
 
@@ -9187,23 +9476,32 @@ function renderServicesContent() {
       el.storePrivateFeedbackFormError.textContent = "";
       el.storePrivateFeedbackFormError.classList.add("hidden");
     }
+    if (el.storePrivateFeedbackDialog) {
+      el.storePrivateFeedbackDialog.classList.remove("is-callback-thanks");
+    }
   }
 
-  function openStorePrivateFeedbackModal() {
+  function openStorePrivateFeedbackModal(mode) {
     if (!el.storePrivateFeedbackBackdrop || !isStoreRoute() || state.storeBootstrapFailure || state.storeBootstrapPending) return;
+    state.storePrivateFeedbackMode = mode === "callback" ? "callback" : "private";
     resetStorePrivateFeedbackPanels();
     syncStorePrivateFeedbackModalCopy();
     el.storePrivateFeedbackBackdrop.removeAttribute("hidden");
     el.storePrivateFeedbackBackdrop.setAttribute("aria-hidden", "false");
+    document.body.classList.add("store-private-feedback-open");
     window.requestAnimationFrame(function () {
       if (el.storePrivateFeedbackBackdrop) {
         el.storePrivateFeedbackBackdrop.classList.add("is-open");
+      }
+      if (state.storePrivateFeedbackMode === "callback" && el.storePrivateInputName) {
+        el.storePrivateInputName.focus();
       }
     });
   }
 
   function closeStorePrivateFeedbackModal() {
     if (!el.storePrivateFeedbackBackdrop) return;
+    document.body.classList.remove("store-private-feedback-open");
     el.storePrivateFeedbackBackdrop.classList.remove("is-open");
     el.storePrivateFeedbackBackdrop.setAttribute("aria-hidden", "true");
     window.setTimeout(function () {
@@ -9219,6 +9517,7 @@ function renderServicesContent() {
   async function handleStorePrivateFeedbackSubmit(ev) {
     if (ev && ev.preventDefault) ev.preventDefault();
     if (!el.storePrivateFeedbackForm || !state.storeSlug) return;
+    var isCallbackMode = state.storePrivateFeedbackMode === "callback";
     var name = String((el.storePrivateInputName && el.storePrivateInputName.value) || "").trim();
     var phone = String((el.storePrivateInputPhone && el.storePrivateInputPhone.value) || "").trim();
     var googleAccount = String(
@@ -9227,7 +9526,29 @@ function renderServicesContent() {
     var message = String(
       (el.storePrivateInputMessage && el.storePrivateInputMessage.value) || "",
     ).trim();
-    if (!name) {
+    var phoneDigits = phone.replace(/\D/g, "");
+    if (isCallbackMode && phoneDigits.length < 7) {
+      if (el.storePrivateFeedbackFormError) {
+        el.storePrivateFeedbackFormError.textContent = t("storeCallbackPhoneRequired");
+        el.storePrivateFeedbackFormError.classList.remove("hidden");
+      }
+      return;
+    }
+    if (isCallbackMode && !name) {
+      if (el.storePrivateFeedbackFormError) {
+        el.storePrivateFeedbackFormError.textContent = t("storeCallbackNameRequired");
+        el.storePrivateFeedbackFormError.classList.remove("hidden");
+      }
+      return;
+    }
+    if (isCallbackMode && (!message || message.length < 4)) {
+      if (el.storePrivateFeedbackFormError) {
+        el.storePrivateFeedbackFormError.textContent = t("storeCallbackMessageRequired");
+        el.storePrivateFeedbackFormError.classList.remove("hidden");
+      }
+      return;
+    }
+    if (!isCallbackMode && !name) {
       if (el.storePrivateFeedbackFormError) {
         el.storePrivateFeedbackFormError.textContent =
           state.lang === "zh" ? "请填写称呼。" : "Please add your name.";
@@ -9235,7 +9556,7 @@ function renderServicesContent() {
       }
       return;
     }
-    if (!message || message.length < 4) {
+    if (!isCallbackMode && (!message || message.length < 4)) {
       if (el.storePrivateFeedbackFormError) {
         el.storePrivateFeedbackFormError.textContent =
           state.lang === "zh" ? "请写几句具体的反馈。" : "Please add a few words about your visit.";
@@ -9247,12 +9568,7 @@ function renderServicesContent() {
       el.storePrivateFeedbackFormError.textContent = "";
       el.storePrivateFeedbackFormError.classList.add("hidden");
     }
-    var sub = el.storePrivateFeedbackSubmitBtn;
-    var prevText = sub ? sub.textContent : "";
-    if (sub) {
-      sub.disabled = true;
-      sub.textContent = t("storePrivateSubmitting");
-    }
+    syncStorePrivateFeedbackSubmitBtn(true);
     try {
       await fetchJson(
         "/api/stores/" + encodeURIComponent(String(state.storeSlug || "").trim()) + "/private-feedback",
@@ -9260,14 +9576,27 @@ function renderServicesContent() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            name: name,
+            name: isCallbackMode ? name || (state.lang === "zh" ? "匿名顾客" : "Guest") : name,
             phone: phone,
-            googleAccount: googleAccount,
+            googleAccount: isCallbackMode ? "" : googleAccount,
             message: message,
             lang: state.lang === "zh" ? "zh" : "en",
           }),
         },
       );
+      if (isCallbackMode) {
+        if (el.storePrivateFeedbackFormPane) {
+          el.storePrivateFeedbackFormPane.classList.add("hidden");
+        }
+        if (el.storePrivateFeedbackThanksPane) {
+          el.storePrivateFeedbackThanksPane.classList.remove("hidden");
+        }
+        if (el.storePrivateFeedbackDialog) {
+          el.storePrivateFeedbackDialog.classList.add("is-callback-thanks");
+        }
+        syncStorePrivateFeedbackModalCopy();
+        return;
+      }
       if (el.storePrivateFeedbackFormPane) {
         el.storePrivateFeedbackFormPane.classList.add("hidden");
       }
@@ -9283,10 +9612,7 @@ function renderServicesContent() {
         el.storePrivateFeedbackFormError.classList.remove("hidden");
       }
     } finally {
-      if (sub) {
-        sub.disabled = false;
-        sub.textContent = prevText || t("storePrivateSubmitBtn");
-      }
+      syncStorePrivateFeedbackSubmitBtn(false);
     }
   }
 
@@ -9371,6 +9697,9 @@ function renderServicesContent() {
   }
 
   function hasVisibleResultStage() {
+    if (isStoreRoute()) {
+      return state.storeReviewFlowStage === "reviews";
+    }
     return (
       !!state.lastRecognitionMode ||
       state.recognizedDishIds.size > 0 ||
@@ -9402,10 +9731,17 @@ function renderServicesContent() {
     });
   }
 
+  function syncAnotherSetBtn() {
+    if (!el.anotherSetBtn) return;
+    var label = state.isGenerating ? t("anotherSetWorking") : t("anotherSetBtn");
+    el.anotherSetBtn.setAttribute("aria-label", label);
+    el.anotherSetBtn.title = label;
+  }
+
   function renderFlowState() {
     const active = hasActiveResultFlow();
     const resultStageVisible = hasVisibleResultStage();
-    document.body.classList.toggle("has-results", active);
+    document.body.classList.toggle("has-results", !isStoreRoute() && active);
     document.body.classList.toggle("correction-open", false);
     document.body.classList.toggle("has-visit-sheet", state.isVisitSheetOpen);
     el.dishesCard.classList.add("hidden");
@@ -9413,8 +9749,15 @@ function renderServicesContent() {
     el.layout.classList.toggle("single-stage", !resultStageVisible);
     el.correctionToggle.classList.toggle("hidden", !shouldShowCorrectionToggle());
     el.correctionPanel.classList.toggle("hidden", !resultStageVisible || !state.isCorrectionOpen);
-    el.anotherSetBtn.classList.toggle("hidden", state.generatedReviews.length === 0);
+    el.anotherSetBtn.classList.toggle("hidden", state.generatedReviews.length === 0 && !state.isGenerating);
     el.anotherSetBtn.classList.toggle("is-loading", state.isGenerating);
+    syncAnotherSetBtn();
+    if (el.reviewWriteOwnBtn) {
+      el.reviewWriteOwnBtn.classList.toggle(
+        "hidden",
+        !isStoreRoute() || state.storeReviewFlowStage !== "reviews" || state.isGenerating,
+      );
+    }
     el.visitSheetBackdrop.classList.toggle("is-open", state.isVisitSheetOpen);
   }
 
@@ -9424,14 +9767,10 @@ function renderServicesContent() {
     el.uploadBtn.disabled = isBusy || storeUnavailable;
     if (el.writeOwnReviewBtn) el.writeOwnReviewBtn.disabled = isBusy;
     if (el.storeVisitStars) {
-      var __st = el.storeVisitStars.querySelectorAll("[data-store-star]");
-      for (var __si = 0; __si < __st.length; __si++) {
-        __st[__si].disabled = isBusy || storeUnavailable;
-      }
+      el.storeVisitStars.querySelectorAll(".store-visit-star-tile").forEach(function (btn) {
+        btn.disabled = isBusy || storeUnavailable || state.storeReviewFlowStage !== "gate";
+      });
     }
-    if (el.storeGoogleReviewEntryBtn) el.storeGoogleReviewEntryBtn.disabled = isBusy || storeUnavailable;
-    if (el.storeWriteOwnOutlineBtn) el.storeWriteOwnOutlineBtn.disabled = isBusy || storeUnavailable;
-    if (el.storePrivateFeedbackBtn) el.storePrivateFeedbackBtn.disabled = isBusy || storeUnavailable;
     el.retakeBtn.disabled = isBusy;
     el.retakeInlineBtn.disabled = isBusy;
     el.resetBtn.disabled = isBusy;
@@ -9444,6 +9783,7 @@ function renderServicesContent() {
     el.serviceStaffSelect.disabled = isBusy || !isServicePraiseAvailable();
     el.serviceApplyBtn.disabled = isBusy || !isServicePraiseAvailable();
     el.serviceClearBtn.disabled = isBusy || !isServicePraiseAvailable();
+    if (el.reviewWriteOwnBtn) el.reviewWriteOwnBtn.disabled = isBusy || storeUnavailable;
   }
 
   function parseMenu(raw) {
@@ -10786,10 +11126,12 @@ function renderServicesContent() {
     setNodeText(el.reviewsEmptyText, t("reviewsEmpty"));
     setNodeText(el.recognizedEmptyText, t("recognizedEmpty"));
     setNodeText(el.uncertainTitle, t("uncertainTitle"));
-    setNodeText(el.anotherSetBtn, state.isGenerating ? t("anotherSetWorking") : t("anotherSetBtn"));
+    syncAnotherSetBtn();
+    if (el.reviewWriteOwnBtn) setNodeText(el.reviewWriteOwnBtn, t("storeFlowWriteOwnBtn"));
     renderReceiptMeta();
     renderFlowState();
     renderVisitSheet();
+    renderStoreFlowCard();
     renderReviewContext();
     renderDishOptions();
     renderRecognizedDishes();
@@ -10867,14 +11209,207 @@ function renderServicesContent() {
     el.serviceStaffSelect.value = state.serviceStaffLabel;
   }
 
+  function buildStoreFlowBackBtn(stage, isBusy) {
+    return (
+      '<button type="button" class="ghost compact store-flow-nav-btn store-flow-nav-back" data-store-flow-back="' +
+      escapeHtml(stage) +
+      '"' +
+      (isBusy ? " disabled" : "") +
+      '><span class="store-flow-nav-icon" aria-hidden="true">←</span><span>' +
+      escapeHtml(t("storeFlowStepBack")) +
+      "</span></button>"
+    );
+  }
+
+  function buildStoreFlowForwardBtn(labelKey, dataAttr, disabled) {
+    return (
+      '<button type="button" class="cta store-flow-nav-btn store-flow-nav-forward" ' +
+      dataAttr +
+      (disabled ? " disabled" : "") +
+      '><span>' +
+      escapeHtml(t(labelKey)) +
+      '</span><span class="store-flow-nav-icon" aria-hidden="true">→</span></button>'
+    );
+  }
+
+  function renderStoreFlowCard() {
+    if (!el.storeFlowCard) return;
+
+    if (!isStoreRoute() || state.storeBootstrapFailure || state.storeBootstrapPending) {
+      el.storeFlowCard.innerHTML = "";
+      el.storeFlowCard.classList.add("hidden");
+      return;
+    }
+
+    if (state.storeReviewFlowStage === "staff" && getStoreFlowStaffOptions().length === 0) {
+      state.storeReviewFlowStage = "services";
+    }
+
+    var stage = state.storeReviewFlowStage;
+    if (stage === "gate" || stage === "reviews") {
+      el.storeFlowCard.innerHTML = "";
+      el.storeFlowCard.classList.add("hidden");
+      return;
+    }
+
+    var isBusy = state.isRecognizing || state.isGenerating;
+    var staffOptions = getStoreFlowStaffOptions();
+    var selectedServiceIds = Array.from(state.recognizedDishIds).sort(function (a, b) {
+      return a - b;
+    });
+    var selectedServicesHtml = selectedServiceIds
+      .map(function (dishId) {
+        var item = state.dishMap.get(dishId);
+        if (!item) return "";
+        return (
+          '<button type="button" class="store-flow-chip is-selected" data-store-flow-remove-service="' +
+          escapeHtml(String(dishId)) +
+          '">' +
+          '<span>' +
+          escapeHtml(getDishName(item)) +
+          '</span><span aria-hidden="true">×</span></button>'
+        );
+      })
+      .join("");
+    var selectedStaff = String(state.serviceStaffLabel || "").trim();
+    var html = "";
+
+    if (stage === "visit") {
+      var visitOptionsHtml = VISIT_TIER_OPTIONS.map(function (option) {
+        var selected = state.visitTier === option.key;
+        return (
+          '<button type="button" class="store-flow-choice-btn' +
+          (selected ? " is-selected" : "") +
+          '" data-store-flow-visit="' +
+          escapeHtml(option.key) +
+          '" aria-pressed="' +
+          (selected ? "true" : "false") +
+          '"' +
+          (isBusy ? " disabled" : "") +
+          ">" +
+          escapeHtml(state.lang === "zh" ? option.zhLabel : option.enLabel) +
+          "</button>"
+        );
+      }).join("");
+
+      html =
+        '<div class="store-flow-head"><p class="store-flow-step">1 / 3</p><h3 class="store-flow-title">' +
+        escapeHtml(t("storeFlowVisitTitle")) +
+        '</h3></div><div class="store-flow-choice-list">' +
+        visitOptionsHtml +
+        '</div><div class="store-flow-actions">' +
+        buildStoreFlowBackBtn("visit", isBusy) +
+        buildStoreFlowForwardBtn("storeFlowStepContinue", 'data-store-flow-next="visit"', !state.visitTier || isBusy) +
+        "</div>";
+    } else if (stage === "staff") {
+      var staffMatches = getStoreStaffMatches(state.storeStaffSearch, staffOptions);
+      var staffOptionsHtml = staffMatches
+        .map(function (name) {
+          var idx = staffOptions.indexOf(name);
+          if (idx < 0) return "";
+          var selected = selectedStaff === name;
+          return (
+            '<button type="button" class="store-flow-choice-btn' +
+            (selected ? " is-selected" : "") +
+            '" data-store-flow-staff-index="' +
+            String(idx) +
+            '" aria-pressed="' +
+            (selected ? "true" : "false") +
+            '"' +
+            (isBusy ? " disabled" : "") +
+            ">" +
+            escapeHtml(name) +
+            "</button>"
+          );
+        })
+        .join("");
+
+      html =
+        '<div class="store-flow-head"><p class="store-flow-step">2 / 3</p><h3 class="store-flow-title">' +
+        escapeHtml(t("storeFlowStaffTitle")) +
+        '</h3></div><label class="store-flow-search-label"><span class="hidden-accessible">' +
+        escapeHtml(t("storeFlowStaffTitle")) +
+        '</span><input id="storeStaffSearchInput" class="text-input store-flow-search-input" type="search" value="' +
+        escapeHtml(state.storeStaffSearch || "") +
+        '" placeholder="' +
+        escapeHtml(t("storeFlowStaffSearchPlaceholder")) +
+        '"' +
+        (isBusy ? " disabled" : "") +
+        " /></label><div class=\"store-flow-choice-list\">" +
+        (staffOptionsHtml ||
+          '<p class="store-flow-empty">' + escapeHtml(t("storeFlowStaffEmpty")) + "</p>") +
+        '</div><div class="store-flow-actions store-flow-actions--triple">' +
+        buildStoreFlowBackBtn("staff", isBusy) +
+        '<button type="button" class="ghost compact store-flow-nav-btn store-flow-nav-skip" data-store-flow-skip-staff="1"' +
+        (isBusy ? " disabled" : "") +
+        ">" +
+        escapeHtml(t("storeFlowStaffSkipBtn")) +
+        "</button>" +
+        buildStoreFlowForwardBtn("storeFlowStepContinue", 'data-store-flow-next="staff"', isBusy) +
+        "</div>";
+    } else if (stage === "services") {
+      var matches = getStoreServiceMatches(state.storeServiceSearch);
+      var servicesHtml = matches
+        .map(function (item) {
+          var selected = state.recognizedDishIds.has(item.uqid);
+          return (
+            '<button type="button" class="store-flow-service-btn' +
+            (selected ? " is-selected" : "") +
+            '" data-store-service-id="' +
+            String(item.uqid) +
+            '" aria-pressed="' +
+            (selected ? "true" : "false") +
+            '"' +
+            (isBusy ? " disabled" : "") +
+            ">" +
+            escapeHtml(getDishOptionLabel(item)) +
+            "</button>"
+          );
+        })
+        .join("");
+
+      html =
+        '<div class="store-flow-head"><p class="store-flow-step">3 / 3</p><p class="store-flow-hint">' +
+        escapeHtml(t("storeFlowServicesHint")) +
+        '</p></div><label class="store-flow-search-label"><span class="hidden-accessible">' +
+        escapeHtml(t("storeFlowServicesTitle")) +
+        '</span><input id="storeServiceSearchInput" class="text-input store-flow-search-input" type="search" value="' +
+        escapeHtml(state.storeServiceSearch || "") +
+        '" placeholder="' +
+        escapeHtml(t("storeFlowServicesSearchPlaceholder")) +
+        '"' +
+        (isBusy ? " disabled" : "") +
+        " /></label>" +
+        (selectedServicesHtml
+          ? '<div class="store-flow-selected"><p class="store-flow-selected-label">' +
+            escapeHtml(t("storeFlowServicesSelected")) +
+            "</p><div class=\"store-flow-selected-chips\">" +
+            selectedServicesHtml +
+            "</div></div>"
+          : "") +
+        '<div class="store-flow-service-list">' +
+        (servicesHtml || '<p class="store-flow-empty">' + escapeHtml(t("storeFlowServicesEmpty")) + "</p>") +
+        '</div><div class="store-flow-actions">' +
+        buildStoreFlowBackBtn("services", isBusy) +
+        buildStoreFlowForwardBtn("storeFlowStepGenerate", 'data-store-flow-generate="1"', selectedServiceIds.length === 0 || isBusy) +
+        "</div>";
+    }
+
+    el.storeFlowCard.innerHTML = html;
+    el.storeFlowCard.classList.remove("hidden");
+    syncBusyControls();
+  }
+
   function renderReviewContext() {
-    const show = state.recognizedDishIds.size > 0 && !!state.visitTier;
+    const show = isStoreRoute()
+      ? state.storeReviewFlowStage === "reviews" && state.recognizedDishIds.size > 0 && !!state.visitTier
+      : state.recognizedDishIds.size > 0 && !!state.visitTier;
     el.reviewContextBar.classList.toggle("hidden", !show);
     if (!show) return;
 
     el.visitSummaryBtn.classList.toggle("hidden", !state.visitTier);
     setNodeText(el.visitSummaryText, getVisitTierLabel(state.visitTier));
-    const serviceAvailable = isServicePraiseAvailable();
+    const serviceAvailable = !isStoreRoute() && isServicePraiseAvailable();
     el.serviceModule.classList.toggle("hidden", !serviceAvailable);
 
     const payload = buildServicePraisePayload();
@@ -10897,6 +11432,14 @@ function renderServicesContent() {
     syncBusyControls();
   }
 
+  function syncStoreVisitReceiptBlock() {
+    if (!isStoreRoute() || !el.storeVisitReceiptBlock) {
+      return;
+    }
+    const has = !!state.receiptDataUrl;
+    el.storeVisitReceiptBlock.hidden = !has && !document.body.classList.contains("store-visit-ready");
+  }
+
   function syncIntakeActionButtons() {
     if (!isStoreRoute()) {
       return;
@@ -10904,11 +11447,15 @@ function renderServicesContent() {
     const has = !!state.receiptDataUrl;
     document.body.classList.toggle("store-has-receipt", has);
     if (el.uploadBtn) {
-      el.uploadBtn.classList.toggle("hidden", has);
+      el.uploadBtn.classList.add("hidden");
+    }
+    if (el.writeOwnReviewBtn) {
+      el.writeOwnReviewBtn.classList.add("hidden");
     }
     if (el.retakeBtn) {
       el.retakeBtn.classList.toggle("hidden", !has);
     }
+    syncStoreVisitReceiptBlock();
   }
 
   function renderReceiptPreview() {
@@ -10916,12 +11463,14 @@ function renderServicesContent() {
 
     if (!state.receiptDataUrl) {
       el.receiptPreview.classList.add("empty");
-      const text = document.createElement("p");
-      text.id = "previewEmptyText";
-      text.className = "empty-text";
-      text.textContent = t(!state.storeBootstrapFailure && isStoreRoute() ? "storeReceiptScanHint" : "previewEmpty");
-      el.receiptPreview.appendChild(text);
-      el.previewEmptyText = text;
+      if (!(isStoreRoute() && !state.storeBootstrapFailure)) {
+        const text = document.createElement("p");
+        text.id = "previewEmptyText";
+        text.className = "empty-text";
+        text.textContent = t("previewEmpty");
+        el.receiptPreview.appendChild(text);
+        el.previewEmptyText = text;
+      }
       syncIntakeActionButtons();
       return;
     }
@@ -11155,6 +11704,12 @@ function renderServicesContent() {
     state.isCorrectionOpen = false;
     state.hasAttemptedReviewOpen = false;
     state.storeVisitStars = 0;
+    state.storeVisitStarsHover = 0;
+    state.storeReviewFlowStage = "gate";
+    state.storeReviewSatisfaction = "";
+    state.storeServiceSearch = "";
+    state.storeStaffSearch = "";
+    state.storePrivateFeedbackMode = "private";
     closeStorePrivateFeedbackModal();
     resetStorePrivateFeedbackPanels();
     el.receiptInput.value = "";
@@ -11175,6 +11730,8 @@ function renderServicesContent() {
       setStatus(el.receiptStatus, resolveBootstrapFailureCopy(state.storeBootstrapFailure), "error");
     } else if (isStoreRoute() && state.storeCatalogIsDefault && !hasActiveResultFlow()) {
       setStatus(el.receiptStatus, t("storeCatalogDefaultHint"), "ok");
+    } else if (isStoreRoute() && document.body.classList.contains("store-visit-ready") && !hasActiveResultFlow()) {
+      clearReceiptStatus();
     } else {
       setStatus(el.receiptStatus, t("startOverDone"), "ok");
     }
@@ -11748,6 +12305,14 @@ function renderServicesContent() {
     }
 
     el.visitSummaryBtn.addEventListener("click", function () {
+      if (isStoreRoute()) {
+        state.storeReviewFlowStage = "visit";
+        renderStoreFlowCard();
+        renderFlowState();
+        renderReviewContext();
+        scrollCardIntoView(el.intakeCard, 8);
+        return;
+      }
       trackEvent("visit_sheet_opened", analyticsParams({
         source: "visit_summary_btn",
       }));
@@ -11919,6 +12484,15 @@ function renderServicesContent() {
       });
     }
 
+    if (el.reviewWriteOwnBtn) {
+      el.reviewWriteOwnBtn.addEventListener("click", function () {
+        trackEvent("write_review_clicked", analyticsParams({
+          source: "review_write_own_btn",
+        }));
+        openGoogleReviewWritePage();
+      });
+    }
+
     bindStoreVisitChromeEvents();
     bindStorePrivateFeedbackModalEvents();
   }
@@ -11926,32 +12500,167 @@ function renderServicesContent() {
   function bindStoreVisitChromeEvents() {
     if (state.storeVisitChromeBound) return;
     state.storeVisitChromeBound = true;
+
     if (el.storeVisitStars) {
-      el.storeVisitStars.addEventListener("click", function (ev) {
-        var btn = ev.target && ev.target.closest ? ev.target.closest("[data-store-star]") : null;
-        if (!btn || !el.storeVisitStars.contains(btn)) return;
-        ev.preventDefault();
-        var v = Number(btn.getAttribute("data-store-star")) || 0;
-        if (v < 1 || v > 5) return;
-        state.storeVisitStars = v;
-        syncStoreVisitStars();
+      el.storeVisitStars.addEventListener("click", function (event) {
+        var target = event.target && event.target.closest ? event.target.closest(".store-visit-star-tile") : null;
+        if (!target || !el.storeVisitStars.contains(target)) return;
+        handleStoreVisitStarSelect(target.getAttribute("data-star-value"));
+      });
+
+      el.storeVisitStars.addEventListener("mouseover", function (event) {
+        if (!canInteractWithStoreVisitStars()) return;
+        var target = event.target && event.target.closest ? event.target.closest(".store-visit-star-tile") : null;
+        if (!target || !el.storeVisitStars.contains(target)) return;
+        state.storeVisitStarsHover = Number(target.getAttribute("data-star-value")) || 0;
+        updateStoreVisitStarsVisual();
+      });
+
+      el.storeVisitStars.addEventListener("mouseleave", function () {
+        if (!state.storeVisitStarsHover) return;
+        state.storeVisitStarsHover = 0;
+        updateStoreVisitStarsVisual();
       });
     }
-    if (el.storeGoogleReviewEntryBtn && el.receiptInput) {
-      el.storeGoogleReviewEntryBtn.addEventListener("click", function () {
-        trackEvent("store_visit_receipt_cta", analyticsParams());
-        el.receiptInput.click();
+
+    if (el.storeFlowCard) {
+      el.storeFlowCard.addEventListener("click", function (event) {
+        var target = event.target && event.target.closest ? event.target.closest("button") : null;
+        if (!target || !el.storeFlowCard.contains(target)) return;
+
+        var visitKey = String(target.getAttribute("data-store-flow-visit") || "").trim();
+        if (visitKey) {
+          state.visitTier = visitKey;
+          renderStoreFlowCard();
+          return;
+        }
+
+        if (target.hasAttribute("data-store-flow-staff-index")) {
+          var staffIndex = String(target.getAttribute("data-store-flow-staff-index") || "").trim();
+          var staffOptions = getStoreFlowStaffOptions();
+          var nextStaff = staffOptions[Number(staffIndex)] || "";
+          if (nextStaff) {
+            if (String(state.serviceStaffLabel || "").trim() === nextStaff) {
+              state.serviceStaffLabel = "";
+            } else {
+              state.serviceStaffLabel = nextStaff;
+            }
+            renderStoreFlowCard();
+          }
+          return;
+        }
+
+        if (target.getAttribute("data-store-flow-skip-staff") === "1") {
+          state.serviceStaffLabel = "";
+          state.storeStaffSearch = "";
+          state.storeReviewFlowStage = "services";
+          setNodeText(el.storeVisitMood, t("storeFlowServicesHint"));
+          renderStoreFlowCard();
+          scrollCardIntoView(el.intakeCard, 8);
+          return;
+        }
+
+        var removeServiceId = Number(target.getAttribute("data-store-flow-remove-service"));
+        if (Number.isFinite(removeServiceId) && removeServiceId > 0) {
+          state.recognizedDishIds.delete(removeServiceId);
+          renderStoreFlowCard();
+          return;
+        }
+
+        var serviceId = Number(target.getAttribute("data-store-service-id"));
+        if (Number.isFinite(serviceId) && serviceId > 0) {
+          if (state.recognizedDishIds.has(serviceId)) {
+            state.recognizedDishIds.delete(serviceId);
+          } else {
+            state.recognizedDishIds.add(serviceId);
+          }
+          renderStoreFlowCard();
+          return;
+        }
+
+        var nextStage = String(target.getAttribute("data-store-flow-next") || "").trim();
+        if (nextStage) {
+          if (nextStage === "visit") {
+            if (!state.visitTier) {
+              setNodeText(el.storeVisitMood, t("storeFlowVisitRequired"));
+              return;
+            }
+            state.storeReviewFlowStage = getStoreFlowNextStageAfterVisit();
+            if (state.storeReviewFlowStage === "staff") {
+              state.storeStaffSearch = "";
+            }
+            setNodeText(
+              el.storeVisitMood,
+              state.storeReviewFlowStage === "staff" ? "" : t("storeFlowServicesHint"),
+            );
+          } else if (nextStage === "staff") {
+            state.storeStaffSearch = "";
+            state.storeReviewFlowStage = "services";
+            setNodeText(el.storeVisitMood, t("storeFlowServicesHint"));
+          }
+          renderStoreFlowCard();
+          scrollCardIntoView(el.intakeCard, 8);
+          return;
+        }
+
+        var backStage = String(target.getAttribute("data-store-flow-back") || "").trim();
+        if (backStage) {
+          state.storeReviewFlowStage = getStoreFlowPreviousStage(state.storeReviewFlowStage);
+          if (state.storeReviewFlowStage === "gate") {
+            state.storeVisitStars = 0;
+            state.storeVisitStarsHover = 0;
+            setNodeText(el.storeVisitMood, t("storeVisitMoodPick"));
+            syncStoreVisitStars();
+          }
+          renderStoreFlowCard();
+          renderFlowState();
+          return;
+        }
+
+        if (target.getAttribute("data-store-flow-generate") === "1") {
+          if (state.recognizedDishIds.size === 0) {
+            setNodeText(el.storeVisitMood, t("storeFlowServicesRequired"));
+            return;
+          }
+          state.generatedReviews = [];
+          state.lastRecognitionMode = "service_picker";
+          state.storeReviewFlowStage = "reviews";
+          renderStoreFlowCard();
+          renderFlowState();
+          renderReviews();
+          refreshReviews().catch(function (err) {
+            console.error("Store flow review generation failed", err);
+          });
+        }
       });
-    }
-    if (el.storeWriteOwnOutlineBtn && el.writeOwnReviewBtn) {
-      el.storeWriteOwnOutlineBtn.addEventListener("click", function () {
-        el.writeOwnReviewBtn.click();
-      });
-    }
-    if (el.storePrivateFeedbackBtn) {
-      el.storePrivateFeedbackBtn.addEventListener("click", function () {
-        trackEvent("store_private_feedback_open", analyticsParams());
-        openStorePrivateFeedbackModal();
+
+      el.storeFlowCard.addEventListener("input", function (event) {
+        var target = event.target;
+        if (!target) return;
+        var nextValue = String(target.value || "");
+        if (target.id === "storeServiceSearchInput") {
+          state.storeServiceSearch = nextValue;
+          renderStoreFlowCard();
+          var nextInput = el.storeFlowCard.querySelector("#storeServiceSearchInput");
+          if (nextInput) {
+            nextInput.focus();
+            if (nextInput.setSelectionRange) {
+              nextInput.setSelectionRange(nextValue.length, nextValue.length);
+            }
+          }
+          return;
+        }
+        if (target.id === "storeStaffSearchInput") {
+          state.storeStaffSearch = nextValue;
+          renderStoreFlowCard();
+          var staffInput = el.storeFlowCard.querySelector("#storeStaffSearchInput");
+          if (staffInput) {
+            staffInput.focus();
+            if (staffInput.setSelectionRange) {
+              staffInput.setSelectionRange(nextValue.length, nextValue.length);
+            }
+          }
+        }
       });
     }
   }

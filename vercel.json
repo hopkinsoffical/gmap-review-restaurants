@@ -41,7 +41,12 @@
     },
     {
       "source": "/ai-review-booster.html",
-      "destination": "/ai-review-generator.html",
+      "destination": "/ai-review-generator",
+      "permanent": true
+    },
+    {
+      "source": "/ai-review-generator.html",
+      "destination": "/ai-review-generator",
       "permanent": true
     }
   ],
@@ -181,6 +186,10 @@
     {
       "source": "/stores/:slug",
       "destination": "/index.html"
+    },
+    {
+      "source": "/ai-review-generator",
+      "destination": "/ai-review-generator.html"
     },
     {
       "source": "/ai-agents/ryan",

@@ -11977,3 +11977,344 @@ html[data-theme="light"] body .marketing-lang-option {
     margin-inline: auto !important;
   }
 }
+/* Store visit flow — appended store-flow UI (warm restaurant palette) */
+
+html.store-theme-locked {
+  color-scheme: dark;
+}
+
+html.store-theme-locked[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html.store-theme-locked body.route-store {
+  --store-surface: #1a1410;
+  --store-surface-2: #2a221c;
+  --store-surface-ink: #f5f0eb;
+  --store-muted: rgba(245, 240, 235, 0.62);
+  --store-border: rgba(201, 122, 90, 0.22);
+  --store-coral: #e8a87c;
+  --store-coral-soft: #c97a5a;
+  --store-btn: #c97a5a;
+  --store-radius-lg: 20px;
+  --store-radius-md: 14px;
+  --store-radius-pill: 999px;
+  background: var(--store-surface) !important;
+  color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store .intake-card,
+html.store-theme-locked body.route-store .reviews-card,
+html.store-theme-locked body.route-store .dishes-card {
+  background: var(--store-surface-2);
+  border: 1px solid var(--store-border);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.32);
+  border-radius: var(--store-radius-lg);
+  padding: 24px 18px;
+  backdrop-filter: none;
+  color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store .layout.single-stage {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 16px calc(24px + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+}
+
+.store-visit-shell {
+  display: grid;
+  gap: 18px;
+  max-width: 448px;
+  margin: 0 auto;
+  justify-items: center;
+  text-align: center;
+}
+
+.store-visit-brand {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+.store-visit-brand-name,
+html[data-theme="dark"] header h1.store-visit-brand-name,
+html[data-theme="light"] header h1.store-visit-brand-name {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  width: 100%;
+  font-size: clamp(1.9rem, 6vw, 2.45rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  text-align: center;
+  color: var(--store-coral-soft) !important;
+}
+
+.hidden-accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.store-visit-hero {
+  width: 100%;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.store-visit-hero-title {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--store-surface-ink);
+  line-height: 1.25;
+  text-align: center;
+}
+
+.store-visit-star-glyph {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.store-flow-card {
+  width: 100%;
+  margin-top: 4px;
+  padding: 18px;
+  border-radius: 18px;
+  background: var(--store-surface-2);
+  border: 1px solid var(--store-border);
+  text-align: left;
+  display: grid;
+  gap: 14px;
+}
+
+.store-flow-head {
+  display: grid;
+  gap: 6px;
+}
+
+.store-flow-step {
+  margin: 0;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--store-muted);
+}
+
+.store-flow-title {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.35;
+  color: var(--store-surface-ink);
+}
+
+.store-flow-hint {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--store-muted);
+}
+
+.store-flow-choice-list,
+.store-flow-service-list {
+  display: grid;
+  gap: 10px;
+}
+
+.store-flow-choice-btn,
+.store-flow-service-btn {
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--store-border);
+  background: var(--store-surface);
+  color: var(--store-surface-ink);
+  text-align: left;
+  font: inherit;
+  font-size: 0.94rem;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: border-color 0.12s ease, background 0.12s ease, color 0.12s ease;
+}
+
+.store-flow-choice-btn.is-selected,
+.store-flow-service-btn.is-selected {
+  border-color: rgba(201, 122, 90, 0.45);
+  background: rgba(201, 122, 90, 0.1);
+  color: var(--store-coral);
+}
+
+.store-flow-search-label {
+  display: block;
+}
+
+.store-flow-search-input {
+  width: 100%;
+}
+
+.store-flow-selected {
+  display: grid;
+  gap: 8px;
+}
+
+.store-flow-selected-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--store-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.store-flow-selected-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.store-flow-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(201, 122, 90, 0.12);
+  color: var(--store-coral);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.store-flow-empty {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--store-muted);
+}
+
+.store-flow-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.store-flow-actions--triple {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.store-flow-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.store-flow-nav-back {
+  justify-self: start;
+  margin-right: 0;
+}
+
+.store-flow-nav-skip {
+  justify-self: center;
+}
+
+.store-flow-nav-forward {
+  justify-self: end;
+  margin-left: auto;
+}
+
+.store-flow-actions--triple .store-flow-nav-forward {
+  margin-left: 0;
+  grid-column: 3;
+}
+
+.store-flow-nav-icon {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.review-write-own-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+body.store-visit-ready #intakeCard {
+  display: flex;
+  flex-direction: column;
+}
+
+body.store-visit-ready #storeVisitReceiptBlock {
+  order: 1;
+}
+
+body.store-visit-ready #storeVisitShell {
+  order: 2;
+}
+
+.store-private-feedback-label--placeholder-only > span:first-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body.store-visit-ready .store-private-feedback-dialog.is-callback-mode .store-private-feedback-actions {
+  justify-content: stretch;
+}
+
+body.store-visit-ready .store-private-feedback-dialog.is-callback-mode .store-private-feedback-submit-btn,
+body.store-visit-ready .store-private-feedback-continue-btn {
+  width: 100%;
+}
+
+@media (max-width: 380px) {
+  .store-flow-actions--triple {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .store-flow-nav-skip {
+    font-size: 0.84rem;
+    padding-inline: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  body.route-store .layout.single-stage {
+    padding-top: 192px;
+  }
+}
