@@ -791,6 +791,25 @@ a{color:inherit}
     },
   ];
 
+  var NATIONAL_CUISINE_KEYS = {
+    chinese: true,
+    indian: true,
+    japanese: true,
+    italian: true,
+    korean: true,
+    mexican: true,
+    thai: true,
+    vietnamese: true,
+    french: true,
+    greek: true,
+  };
+
+  function getSlideTitleLabel(slide) {
+    if (slide.titleLabel) return slide.titleLabel;
+    if (NATIONAL_CUISINE_KEYS[slide.cuisineKey]) return slide.cuisine + " Food";
+    return slide.cuisine;
+  }
+
   function medalClass(rank) {
     if (rank === 1) return "gold";
     if (rank === 2) return "silver";
@@ -844,7 +863,7 @@ a{color:inherit}
       '<div class="rail-head">' +
       '<div class="rail-kicker">EatAdvisor Rankings</div>' +
       '<h2 class="rail-title">Best <strong>' +
-      slide.cuisine +
+      getSlideTitleLabel(slide) +
       "</strong> in Edison</h2>" +
       "</div>" +
       '<ol class="rail-list">' +
@@ -870,7 +889,7 @@ a{color:inherit}
       '<button type="button" class="rail-dot' +
       (index === 0 ? " is-active" : "") +
       '" role="tab" aria-label="Best ' +
-      slide.cuisine +
+      getSlideTitleLabel(slide) +
       ' in Edison" aria-selected="' +
       (index === 0 ? "true" : "false") +
       '" data-rail-dot="' +
