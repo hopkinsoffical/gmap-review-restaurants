@@ -6339,6 +6339,31 @@ textarea.portal-input {
   color: #9ca3af;
 }
 
+/* Full report desktop: center nav + toolbar + report column */
+@media (min-width: 769px) {
+  body.route-analysis-full .marketing-page-full-report {
+    width: 100%;
+    max-width: min(760px, calc(100vw - 2rem));
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  body.route-analysis-full .full-report-root,
+  body.route-analysis-full .fr-page,
+  body.route-analysis-full .fr-page--diy {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  body.route-analysis-full .fr-page--diy .intel-brief-page,
+  body.route-analysis-full .fr-page--diy .intel-brief-report {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+
 /* ── Salon brief report (/analysis-reports/:slug) ─────────────────────────── */
 .marketing-page-intel-brief {
   background: transparent;
