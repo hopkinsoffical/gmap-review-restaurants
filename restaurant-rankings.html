@@ -3,209 +3,626 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EatAdvisor Rankings — Best Restaurants by Town</title>
-<meta name="description" content="EatAdvisor ranks every restaurant in your town by a single 0–100 score built from Google ratings, reviews, sentiment, health grades and more. Browse the best restaurants in Edison, NJ and nearby.">
+<title>Edison's Top Eats — EatAdvisor Rankings</title>
+<meta name="description" content="Real reviews. Real rankings. Real delicious. Discover the best restaurants in Edison, NJ — ranked by EatAdvisor's 0–100 score.">
 <link rel="canonical" href="https://rankmyrestaurant.ai/rankings">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
 <style>
 :root{
-  --primary-100:#efffcc;--primary-200:#d9ff80;--primary-300:#c8ff4d;--primary-400:#052005;
-  --primary-500:#052005;--primary-600:#041804;--primary-700:#021502;
-  --lime:#b0ff00;
-  --neutral-bg:#e8ffb3;--neutral-white:#ffffff;--neutral-100:#efffcc;--neutral-200:#d4f5a0;
-  --neutral-300:#b8e86a;--neutral-600:#2d6b2d;--neutral-700:#1a5c1a;--neutral-800:#052005;
-  --neutral-black:#052005;--neutral-border:rgba(5,32,5,.14);
-  --success-light:#d3f6cf;--success:#0d7a7a;--success-dark:#0f5c5c;
-  --warning-light:#ffebb7;--warning:#fcba3a;--warning-dark:#da9021;
-  --danger-light:#ffe0e0;--danger:#f15656;--info:#0a75c3;
-  --radius-md:10px;--radius-lg:14px;--radius-xl:20px;
+  --ea-green:#22c55e;
+  --ea-green-dark:#16a34a;
+  --ea-green-deep:#14532d;
+  --ea-brand:#1a3d1a;
+  --cream:#fbf8f3;
+  --cream-warm:#f5f0e8;
+  --cream-mint:#eef7f2;
+  --white:#ffffff;
+  --text:#1c1917;
+  --text-muted:#78716c;
+  --text-light:rgba(255,255,255,.88);
+  --border:rgba(28,25,23,.08);
   --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
-  --shadow-md:0 4px 16px rgba(0,0,0,.08);--shadow-lg:0 8px 32px rgba(0,0,0,.10);
+  --shadow-md:0 8px 24px rgba(0,0,0,.10);
+  --shadow-lg:0 16px 48px rgba(0,0,0,.14);
+  --radius-sm:12px;
+  --radius-md:16px;
+  --radius-lg:20px;
+  --radius-xl:28px;
+  --radius-pill:999px;
   --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-script:'Pacifico',cursive;
+  --success:#0d7a7a;
+  --success-light:#d3f6cf;
+  --warning-dark:#da9021;
+  --danger:#f15656;
+  --info:#0a75c3;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--neutral-bg)}
-body{font-family:var(--font);color:var(--neutral-800);background:var(--neutral-bg);min-height:100vh;-webkit-font-smoothing:antialiased}
+html{background:var(--cream);scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--text);background:var(--cream);min-height:100vh;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
 
-/* nav */
-.nav{background:var(--neutral-white);border-bottom:1px solid var(--neutral-border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100}
-.nav-logo{font-size:17px;font-weight:800;color:var(--primary-500);text-decoration:none;letter-spacing:-.4px;display:flex;align-items:center;gap:7px}
-.nav-logo-icon{width:28px;height:28px;background:var(--primary-400);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
-.nav-links{display:flex;gap:18px;align-items:center}
-.nav-link{font-size:13px;font-weight:600;color:var(--neutral-700);text-decoration:none}
-.nav-link.is-active{color:var(--primary-500)}
-.nav-link:hover{color:var(--primary-500)}
-.nav-cta{background:var(--primary-400);color:#fff;border:none;padding:8px 18px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;font-family:var(--font);transition:background .15s}
-.nav-cta:hover{background:var(--primary-600)}
-@media(max-width:640px){.nav-links{display:none}}
+/* ── Nav (transparent over hero) ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(16px,4vw,40px);
+  background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 100%);
+}
+.nav-logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.4px;display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:32px;height:32px;background:var(--ea-green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 8px rgba(34,197,94,.4)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-link{font-size:14px;font-weight:500;color:rgba(255,255,255,.82);text-decoration:none;transition:color .15s}
+.nav-link:hover,.nav-link.is-active{color:#fff}
+.nav-link.is-active{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-location{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,0,0,.35);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.15);
+  color:#fff;font-size:13px;font-weight:600;
+  padding:8px 14px;border-radius:var(--radius-pill);
+}
+.nav-icon-btn{
+  width:40px;height:40px;border-radius:50%;border:none;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
+  color:#fff;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.nav-icon-btn:hover{background:rgba(255,255,255,.22)}
+.nav-menu-btn{display:none}
+.nav-drawer{display:none}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .nav-menu-btn{display:flex}
+  .nav-location span.txt{display:none}
+  .nav-drawer{
+    display:block;position:fixed;top:64px;right:16px;z-index:210;
+    background:rgba(20,20,20,.92);backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-md);
+    padding:8px;min-width:180px;
+    opacity:0;visibility:hidden;transform:translateY(-8px);
+    transition:opacity .2s,transform .2s,visibility .2s;
+  }
+  .nav-drawer.is-open{opacity:1;visibility:visible;transform:translateY(0)}
+  .nav-drawer a{
+    display:block;padding:12px 16px;color:#fff;text-decoration:none;
+    font-size:14px;font-weight:600;border-radius:var(--radius-sm);
+  }
+  .nav-drawer a:hover{background:rgba(255,255,255,.1)}
+  .nav-drawer a.is-active{text-decoration:underline}
+}
 
-.page{max-width:980px;margin:0 auto;padding:28px 16px 80px}
+/* ── Hero ── */
+.hero{
+  position:relative;min-height:92vh;min-height:92dvh;
+  display:flex;align-items:center;
+  padding:100px clamp(16px,4vw,40px) 140px;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=1600&q=80') center/cover no-repeat;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.45) 50%,rgba(0,0,0,.55) 100%);
+}
+.hero-inner{
+  position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:center;
+}
+.hero-copy{color:#fff}
+.hero-eyebrow{font-size:clamp(42px,6vw,64px);font-weight:800;line-height:1.05;letter-spacing:-.03em}
+.hero-script{
+  font-family:var(--font-script);font-size:clamp(48px,7vw,80px);
+  color:var(--ea-green);line-height:1.1;margin:-4px 0 16px;
+  text-shadow:0 2px 20px rgba(34,197,94,.35);
+}
+.hero-tagline{font-size:clamp(15px,2vw,18px);color:var(--text-light);margin-bottom:28px;font-weight:400}
+.hero-trust{display:flex;flex-wrap:wrap;gap:20px}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;color:rgba(255,255,255,.9)}
+.trust-icon{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.12);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;
+}
 
-/* hero */
-.hero{background:var(--lime);border-radius:var(--radius-xl);padding:34px 28px;color:var(--primary-400);position:relative;overflow:hidden;margin-bottom:24px}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(5,32,5,.04) 0%,transparent 60%);pointer-events:none}
-.hero-kicker{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:10px}
-.hero-title{font-size:30px;font-weight:800;line-height:1.2;letter-spacing:-.5px;margin-bottom:12px}
-.hero-title .accent{color:var(--primary-400)}
-.hero-body{font-size:14px;line-height:1.65;opacity:.88;max-width:640px}
-.hero-town{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:rgba(5,32,5,.08);border:1px solid rgba(5,32,5,.18);padding:8px 14px;border-radius:30px;font-size:13px;font-weight:600}
+/* Featured card */
+.featured-card{
+  background:rgba(20,20,20,.75);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-xl);
+  padding:24px;display:flex;gap:16px;box-shadow:var(--shadow-lg);
+}
+.featured-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:#fbbf24;margin-bottom:12px;
+}
+.featured-body{flex:1;min-width:0}
+.featured-name{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px}
+.featured-meta{font-size:13px;color:rgba(255,255,255,.65);margin-bottom:12px}
+.featured-rating{font-size:14px;color:#fbbf24;font-weight:600;margin-bottom:8px}
+.featured-score{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:18px}
+.featured-score strong{font-size:28px;font-weight:800;color:var(--ea-green)}
+.featured-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ea-green);color:#fff;
+  padding:12px 20px;border-radius:var(--radius-pill);
+  font-size:14px;font-weight:700;text-decoration:none;
+  transition:background .15s,transform .15s;
+}
+.featured-cta:hover{background:var(--ea-green-dark);transform:translateY(-1px)}
+.featured-img{
+  width:110px;height:110px;border-radius:var(--radius-md);
+  object-fit:cover;flex-shrink:0;
+}
 
-.demo-note{font-size:11px;color:var(--neutral-600);text-align:center;margin:-12px 0 22px;letter-spacing:.02em}
+/* ── Search (floats over hero bottom) ── */
+.search-wrap{
+  position:relative;z-index:10;margin-top:-72px;
+  padding:0 clamp(16px,4vw,40px) 0;
+}
+.search-inner{max-width:720px;margin:0 auto}
+.search-bar{
+  display:flex;align-items:center;
+  background:var(--white);border-radius:var(--radius-pill);
+  box-shadow:var(--shadow-lg);padding:6px 6px 6px 24px;
+  border:1px solid var(--border);
+}
+.search-input{
+  flex:1;border:none;outline:none;font-size:15px;
+  font-family:var(--font);color:var(--text);background:transparent;
+  min-width:0;
+}
+.search-input::placeholder{color:#a8a29e}
+.search-btn{
+  width:48px;height:48px;border-radius:50%;border:none;
+  background:var(--ea-green);color:#fff;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:background .15s,transform .15s;
+}
+.search-btn:hover{background:var(--ea-green-dark);transform:scale(1.04)}
+.popular-tags{
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+  margin-top:14px;justify-content:center;
+}
+.popular-label{font-size:13px;color:var(--text-muted);font-weight:500}
+.popular-tag{
+  font-size:13px;font-weight:600;color:var(--text);
+  text-decoration:none;padding:4px 0;
+  transition:color .15s;
+}
+.popular-tag:hover{color:var(--ea-green-dark)}
+.popular-tag::after{content:' ·';color:var(--text-muted);margin-left:4px}
+.popular-tag:last-child::after{content:''}
 
-/* leaderboard cards */
-.board-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:880px){.board-grid{grid-template-columns:1fr}}
-.board{background:var(--neutral-white);border:1px solid var(--neutral-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,border-color .2s}
-.board:hover{box-shadow:var(--shadow-md);border-color:var(--primary-300)}
-.board-head{padding:18px 18px 14px;border-bottom:1px solid var(--neutral-100)}
-.board-icon{font-size:24px;margin-bottom:8px;display:block}
-.board-title{font-size:15px;font-weight:800;letter-spacing:-.2px;color:var(--neutral-black);line-height:1.3}
-.board-sub{font-size:12px;color:var(--neutral-600);margin-top:4px;line-height:1.4}
-.board-list{flex:1;padding:6px 8px}
-.rank-row{display:flex;align-items:center;gap:11px;padding:10px 10px;border-radius:var(--radius-md);text-decoration:none;color:inherit;transition:background .15s}
-.rank-row:hover{background:var(--primary-100)}
-.rank-num{width:24px;height:24px;border-radius:7px;background:var(--neutral-100);color:var(--neutral-700);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.rank-row:nth-child(1) .rank-num{background:#fdebc4;color:#9a6b04}
-.rank-row:nth-child(2) .rank-num{background:#e7eaec;color:#5a6266}
-.rank-row:nth-child(3) .rank-num{background:#f6e2d2;color:#8a5326}
-.rank-body{flex:1;min-width:0}
-.rank-name{font-size:13px;font-weight:700;color:var(--neutral-800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rank-meta{font-size:11px;color:var(--neutral-600);margin-top:1px;display:flex;gap:7px;flex-wrap:wrap}
-.rank-meta .nearby-tag{color:var(--primary-500);font-weight:600}
-.score-pill{flex-shrink:0;width:38px;height:38px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;line-height:1}
-.score-pill .n{font-size:15px}
-.score-pill .l{font-size:7px;font-weight:700;letter-spacing:.04em;opacity:.8;margin-top:1px}
-.board-foot{padding:13px 18px;border-top:1px solid var(--neutral-100)}
-.board-cta{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;color:var(--primary-500);text-decoration:none}
-.board-cta:hover{color:var(--primary-600)}
+/* ── Quick entry icons ── */
+.quick-wrap{
+  max-width:1200px;margin:36px auto 0;
+  padding:0 clamp(16px,4vw,40px);
+}
+.quick-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:12px;
+}
+.quick-item{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  text-decoration:none;color:var(--text);
+  padding:16px 8px;border-radius:var(--radius-md);
+  transition:transform .15s,background .15s;
+}
+.quick-item:hover{transform:translateY(-2px);background:rgba(255,255,255,.6)}
+.quick-icon{
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;box-shadow:var(--shadow-sm);
+}
+.quick-icon.nearby{background:#fff3e6}
+.quick-icon.trending{background:#ffe8e8}
+.quick-icon.value{background:#fff8e1}
+.quick-icon.healthy{background:#e8f5e9}
+.quick-icon.new{background:#fce4ec}
+.quick-icon.open{background:#efebe9}
+.quick-label{font-size:12px;font-weight:600;text-align:center}
 
-/* how scored strip */
-.scored-strip{margin-top:26px;background:var(--neutral-white);border:1px solid var(--neutral-border);border-radius:var(--radius-lg);padding:18px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.scored-strip h3{font-size:13px;font-weight:800;color:var(--neutral-black)}
-.scored-strip p{font-size:12px;color:var(--neutral-600);line-height:1.5;flex:1;min-width:240px}
-.scored-dims{display:flex;gap:6px;flex-wrap:wrap}
-.scored-dims span{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;background:var(--primary-100);color:var(--primary-500)}
+/* ── Cuisine section ── */
+.section{
+  max-width:1200px;margin:0 auto;
+  padding:56px clamp(16px,4vw,40px);
+}
+.section-kicker{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:#ea580c;
+  background:#fff7ed;border:1px solid #fed7aa;
+  padding:6px 14px;border-radius:var(--radius-pill);margin-bottom:12px;
+}
+.section-title{font-size:clamp(28px,4vw,36px);font-weight:800;letter-spacing:-.03em;margin-bottom:28px}
+.section-title .script{font-family:var(--font-script);color:#ea580c;font-weight:400}
 
-/* bottom cta */
-.cta-section{background:var(--neutral-white);border:1px solid var(--neutral-border);border-radius:var(--radius-xl);padding:30px 28px;text-align:center;margin-top:26px;box-shadow:var(--shadow-sm)}
-.cta-title{font-size:20px;font-weight:800;letter-spacing:-.3px;margin-bottom:8px}
-.cta-sub{font-size:13px;color:var(--neutral-600);margin-bottom:18px;line-height:1.6;max-width:460px;margin-left:auto;margin-right:auto}
-.cta-btn{display:inline-flex;align-items:center;gap:6px;background:var(--primary-400);color:#fff;padding:12px 26px;border-radius:999px;font-size:14px;font-weight:700;text-decoration:none;transition:background .2s}
-.cta-btn:hover{background:var(--primary-600)}
+.cuisine-scroll{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:16px;
+}
+.cuisine-card{
+  position:relative;border-radius:var(--radius-lg);overflow:hidden;
+  aspect-ratio:3/4;min-height:220px;
+  text-decoration:none;color:#fff;
+  box-shadow:var(--shadow-md);
+  transition:transform .2s,box-shadow .2s;
+}
+.cuisine-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.cuisine-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.cuisine-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.75) 100%);
+}
+.cuisine-card-body{
+  position:absolute;inset:0;z-index:1;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:18px;
+}
+.cuisine-icon{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.2);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;margin-bottom:auto;
+}
+.cuisine-name{font-size:18px;font-weight:800;margin-bottom:2px}
+.cuisine-count{font-size:12px;opacity:.85;margin-bottom:10px}
+.cuisine-cta{font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px}
+
+/* ── Trending ── */
+.trending-section{
+  background:var(--cream-mint);
+  padding:56px 0 72px;
+}
+.trending-inner{
+  max-width:1200px;margin:0 auto;
+  padding:0 clamp(16px,4vw,40px);
+  display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;
+}
+.trending-header{margin-bottom:24px}
+.trending-kicker{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:#dc2626;margin-bottom:10px;
+}
+.trending-title{font-size:clamp(24px,3.5vw,32px);font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+.trending-desc{font-size:14px;color:var(--text-muted);line-height:1.6;max-width:360px}
+.trending-row{
+  display:flex;gap:16px;flex-wrap:wrap;
+}
+.trend-card{
+  flex:1;min-width:200px;max-width:280px;
+  background:var(--white);border-radius:var(--radius-lg);
+  border:1px solid var(--border);box-shadow:var(--shadow-sm);
+  overflow:hidden;text-decoration:none;color:inherit;
+  transition:transform .2s,box-shadow .2s;
+}
+.trend-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.trend-img-wrap{position:relative;height:120px;overflow:hidden}
+.trend-img{width:100%;height:100%;object-fit:cover}
+.trend-badge{
+  position:absolute;top:10px;left:10px;
+  font-size:10px;font-weight:800;letter-spacing:.06em;
+  padding:4px 10px;border-radius:var(--radius-pill);
+}
+.trend-badge.hot{background:#fef2f2;color:#dc2626}
+.trend-badge.trending{background:#eff6ff;color:#2563eb}
+.trend-badge.popular{background:#f0fdf4;color:#16a34a}
+.trend-body{padding:14px 16px 16px}
+.trend-name{font-size:15px;font-weight:800;margin-bottom:4px}
+.trend-meta{font-size:12px;color:var(--text-muted);margin-bottom:10px}
+.trend-footer{display:flex;align-items:center;justify-content:space-between}
+.trend-rating{font-size:12px;font-weight:600;color:#ca8a04}
+.trend-score{
+  background:var(--success-light);color:var(--success);
+  font-size:13px;font-weight:800;padding:6px 12px;border-radius:var(--radius-sm);
+}
+.trend-score span{color:var(--ea-green-deep)}
+
+.trending-cta-card{
+  background:var(--ea-green);border-radius:var(--radius-xl);
+  padding:28px 24px;color:#fff;min-width:220px;max-width:260px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:0 8px 32px rgba(34,197,94,.3);
+  text-decoration:none;
+  transition:transform .2s,background .15s;
+}
+.trending-cta-card:hover{background:var(--ea-green-dark);transform:translateY(-2px)}
+.trending-cta-title{font-size:20px;font-weight:800;margin-bottom:8px;line-height:1.25}
+.trending-cta-desc{font-size:13px;opacity:.9;line-height:1.5;margin-bottom:20px}
+.trending-cta-btn{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;
+  font-size:20px;align-self:flex-end;
+}
+
+/* ── Footer strip ── */
+.demo-note{
+  text-align:center;font-size:12px;color:var(--text-muted);
+  padding:0 16px 32px;
+}
+.footer-cta{
+  max-width:1200px;margin:0 auto 48px;
+  padding:32px clamp(16px,4vw,40px);
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius-xl);text-align:center;
+  box-shadow:var(--shadow-sm);
+}
+.footer-cta h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.footer-cta p{font-size:14px;color:var(--text-muted);margin-bottom:18px;line-height:1.6}
+.footer-cta a{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--ea-brand);color:#fff;
+  padding:12px 24px;border-radius:var(--radius-pill);
+  font-size:14px;font-weight:700;text-decoration:none;
+  transition:background .15s;
+}
+.footer-cta a:hover{background:var(--ea-green-deep)}
+
+/* ── Responsive ── */
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr;gap:32px}
+  .featured-card{max-width:480px}
+  .cuisine-scroll{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    gap:14px;padding-bottom:8px;-webkit-overflow-scrolling:touch;
+  }
+  .cuisine-card{flex:0 0 160px;scroll-snap-align:start;min-height:200px}
+  .quick-grid{grid-template-columns:repeat(3,1fr)}
+  .trending-inner{grid-template-columns:1fr}
+  .trending-cta-card{max-width:none}
+}
+@media(max-width:600px){
+  .hero{min-height:auto;padding-bottom:120px;padding-top:88px}
+  .search-wrap{margin-top:-56px}
+  .search-bar{padding-left:18px}
+  .search-input{font-size:14px}
+  .hero-trust{gap:14px}
+  .trust-item{font-size:12px}
+  .quick-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .quick-icon{width:48px;height:48px;font-size:20px}
+  .trending-row{flex-direction:column}
+  .trend-card{max-width:none}
+  .featured-img{width:90px;height:90px}
+}
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <a href="/" class="nav-logo"><span class="nav-logo-icon">🍽</span> EatAdvisor</a>
+  <a href="/rankings" class="nav-logo"><span class="nav-logo-icon">🍽</span> EatAdvisor</a>
   <div class="nav-links">
     <a class="nav-link" href="/">Overview</a>
     <a class="nav-link" href="/leaderboard">Leaderboard</a>
     <a class="nav-link is-active" href="/rankings">Rankings</a>
     <a class="nav-link" href="/services.html">Services</a>
   </div>
-  <a href="/services.html" class="nav-cta">Get Free Analysis</a>
+  <div class="nav-right">
+    <div class="nav-location">📍 <span class="txt">Edison, NJ</span></div>
+    <button class="nav-icon-btn" type="button" aria-label="Favorites">♡</button>
+    <button class="nav-icon-btn nav-menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navDrawer">☰</button>
+  </div>
+  <div class="nav-drawer" id="navDrawer" hidden>
+    <a href="/">Overview</a>
+    <a href="/leaderboard">Leaderboard</a>
+    <a class="is-active" href="/rankings">Rankings</a>
+    <a href="/services.html">Services</a>
+  </div>
 </nav>
 
-<div class="page">
-  <header class="hero">
-    <div class="hero-kicker">EatAdvisor Rankings</div>
-    <h1 class="hero-title">The best restaurants in <span class="accent" id="heroTown">Edison, NJ</span> — ranked, not just listed.</h1>
-    <p class="hero-body" id="heroBody"></p>
-    <div class="hero-town">📍 <span id="heroTownPill">Edison, New Jersey</span> · <span id="heroCount">22</span> restaurants scored</div>
-  </header>
-
-  <p class="demo-note" id="demoNote"></p>
-
-  <div class="board-grid" id="boardGrid"></div>
-
-  <div class="scored-strip">
-    <div>
-      <h3>How the EatAdvisor score works</h3>
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1>
+        <span class="hero-eyebrow">Edison's</span>
+        <div class="hero-script">Top Eats</div>
+      </h1>
+      <p class="hero-tagline">Real reviews. Real rankings. Real delicious.</p>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-icon">✓</span> 100% Real Data</div>
+        <div class="trust-item"><span class="trust-icon">🥗</span> Health-Conscious</div>
+        <div class="trust-item"><span class="trust-icon">↻</span> Always Updated</div>
+      </div>
     </div>
-    <p>Every restaurant gets one 0–100 score blended from six signals. We rank strictly by score, high to low — so the order is earned, not paid.</p>
-    <div class="scored-dims">
-      <span>⭐ Reputation</span><span>💬 Review Power</span><span>🏥 Health</span>
-      <span>📍 Visibility</span><span>🍽 Dining Appeal</span><span>📞 Booking</span>
-    </div>
+    <article class="featured-card">
+      <div class="featured-body">
+        <div class="featured-badge">👑 The #1 Spot Right Now</div>
+        <h2 class="featured-name">Moghul</h2>
+        <p class="featured-meta">Indian · Edison</p>
+        <p class="featured-rating">⭐ 4.6 (3,120 reviews)</p>
+        <p class="featured-score">Score <strong>94</strong>/100</p>
+        <a class="featured-cta" href="/town/edison-nj?cuisine=indian">View Full Ranking →</a>
+      </div>
+      <img class="featured-img" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80" alt="Moghul — Indian cuisine" loading="lazy">
+    </article>
   </div>
+</section>
 
-  <div class="cta-section">
-    <div class="cta-title">Want your restaurant ranked higher?</div>
-    <div class="cta-sub">Get a free EatAdvisor scorecard for your restaurant and a step-by-step plan to climb the local rankings.</div>
-    <a class="cta-btn" href="/services.html">Get my free scorecard →</a>
+<div class="search-wrap">
+  <div class="search-inner">
+    <form class="search-bar" role="search" action="/town/edison-nj" method="get">
+      <input class="search-input" name="q" type="search" autocomplete="off"
+        placeholder="Search for restaurants, cuisines, or neighborhoods...">
+      <button class="search-btn" type="submit" aria-label="Search">🔍</button>
+    </form>
+    <div class="popular-tags">
+      <span class="popular-label">Popular:</span>
+      <a class="popular-tag" href="/town/edison-nj?cuisine=indian">Indian</a>
+      <a class="popular-tag" href="/town/edison-nj?cuisine=chinese">Chinese</a>
+      <a class="popular-tag" href="/town/edison-nj?cuisine=japanese">Sushi</a>
+      <a class="popular-tag" href="/town/edison-nj?cuisine=japanese">Ramen</a>
+      <a class="popular-tag" href="/town/edison-nj?cuisine=italian">Pizza</a>
+      <a class="popular-tag" href="/town/edison-nj">Healthy</a>
+    </div>
   </div>
 </div>
 
-<script src="/assets/eatadvisor-edison.js"></script>
+<div class="quick-wrap">
+  <div class="quick-grid">
+    <a class="quick-item" href="/town/edison-nj"><span class="quick-icon nearby">📍</span><span class="quick-label">Nearby</span></a>
+    <a class="quick-item" href="#trending"><span class="quick-icon trending">🔥</span><span class="quick-label">Trending</span></a>
+    <a class="quick-item" href="/town/edison-nj"><span class="quick-icon value">💰</span><span class="quick-label">Best Value</span></a>
+    <a class="quick-item" href="/town/edison-nj"><span class="quick-icon healthy">🥗</span><span class="quick-label">Healthy</span></a>
+    <a class="quick-item" href="/town/edison-nj"><span class="quick-icon new">✨</span><span class="quick-label">New</span></a>
+    <a class="quick-item" href="/town/edison-nj"><span class="quick-icon open">🕐</span><span class="quick-label">Open Now</span></a>
+  </div>
+</div>
+
+<section class="section" id="cuisines">
+  <span class="section-kicker">Explore by Cuisine</span>
+  <h2 class="section-title">Find Your <span class="script">Flavor</span></h2>
+  <div class="cuisine-scroll">
+    <a class="cuisine-card" href="/town/edison-nj?cuisine=indian">
+      <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" alt="Indian cuisine" loading="lazy">
+      <div class="cuisine-card-body">
+        <span class="cuisine-icon">🍛</span>
+        <div class="cuisine-name">Indian</div>
+        <div class="cuisine-count">23 restaurants</div>
+        <div class="cuisine-cta">View Ranking →</div>
+      </div>
+    </a>
+    <a class="cuisine-card" href="/town/edison-nj?cuisine=chinese">
+      <img src="https://images.unsplash.com/photo-1525755662778-989d25616066?w=600&q=80" alt="Chinese cuisine" loading="lazy">
+      <div class="cuisine-card-body">
+        <span class="cuisine-icon">🥟</span>
+        <div class="cuisine-name">Chinese</div>
+        <div class="cuisine-count">18 restaurants</div>
+        <div class="cuisine-cta">View Ranking →</div>
+      </div>
+    </a>
+    <a class="cuisine-card" href="/town/edison-nj?cuisine=japanese">
+      <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=600&q=80" alt="Sushi and Japanese cuisine" loading="lazy">
+      <div class="cuisine-card-body">
+        <span class="cuisine-icon">🍣</span>
+        <div class="cuisine-name">Sushi &amp; Japanese</div>
+        <div class="cuisine-count">15 restaurants</div>
+        <div class="cuisine-cta">View Ranking →</div>
+      </div>
+    </a>
+    <a class="cuisine-card" href="/town/edison-nj?cuisine=japanese">
+      <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80" alt="Ramen" loading="lazy">
+      <div class="cuisine-card-body">
+        <span class="cuisine-icon">🍜</span>
+        <div class="cuisine-name">Ramen</div>
+        <div class="cuisine-count">12 restaurants</div>
+        <div class="cuisine-cta">View Ranking →</div>
+      </div>
+    </a>
+    <a class="cuisine-card" href="/town/edison-nj">
+      <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" alt="Healthy food" loading="lazy">
+      <div class="cuisine-card-body">
+        <span class="cuisine-icon">🥗</span>
+        <div class="cuisine-name">Healthy</div>
+        <div class="cuisine-count">9 restaurants</div>
+        <div class="cuisine-cta">View Ranking →</div>
+      </div>
+    </a>
+    <a class="cuisine-card" href="/town/edison-nj?cuisine=italian">
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="Italian cuisine" loading="lazy">
+      <div class="cuisine-card-body">
+        <span class="cuisine-icon">🍝</span>
+        <div class="cuisine-name">Italian</div>
+        <div class="cuisine-count">11 restaurants</div>
+        <div class="cuisine-cta">View Ranking →</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="trending-section" id="trending">
+  <div class="trending-inner">
+    <div>
+      <div class="trending-header">
+        <div class="trending-kicker">🔥 Trending Now</div>
+        <h2 class="trending-title">What's Hot in Edison</h2>
+        <p class="trending-desc">The restaurants everyone's talking about — ranked by real EatAdvisor scores, updated weekly.</p>
+      </div>
+      <div class="trending-row">
+        <a class="trend-card" href="/restaurant-local-ranking.html?slug=xiebao-edison">
+          <div class="trend-img-wrap">
+            <img class="trend-img" src="https://images.unsplash.com/photo-1525755662778-989d25616066?w=500&q=80" alt="Xiebao Crab House" loading="lazy">
+            <span class="trend-badge hot">HOT</span>
+          </div>
+          <div class="trend-body">
+            <div class="trend-name">Xiebao Crab House</div>
+            <div class="trend-meta">Chinese · Edison</div>
+            <div class="trend-footer">
+              <span class="trend-rating">⭐ 4.6</span>
+              <span class="trend-score">Score <span>91</span></span>
+            </div>
+          </div>
+        </a>
+        <a class="trend-card" href="/restaurant-local-ranking.html?slug=sapporo-edison">
+          <div class="trend-img-wrap">
+            <img class="trend-img" src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=500&q=80" alt="Sapporo Sushi &amp; Ramen" loading="lazy">
+            <span class="trend-badge trending">TRENDING</span>
+          </div>
+          <div class="trend-body">
+            <div class="trend-name">Sapporo Sushi &amp; Ramen</div>
+            <div class="trend-meta">Sushi · Metuchen</div>
+            <div class="trend-footer">
+              <span class="trend-rating">⭐ 4.5</span>
+              <span class="trend-score">Score <span>88</span></span>
+            </div>
+          </div>
+        </a>
+        <a class="trend-card" href="/restaurant-local-ranking.html?slug=spice-grill-iselin">
+          <div class="trend-img-wrap">
+            <img class="trend-img" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500&q=80" alt="Spice Grill" loading="lazy">
+            <span class="trend-badge popular">POPULAR</span>
+          </div>
+          <div class="trend-body">
+            <div class="trend-name">Spice Grill</div>
+            <div class="trend-meta">Indian · Iselin</div>
+            <div class="trend-footer">
+              <span class="trend-rating">⭐ 4.2</span>
+              <span class="trend-score">Score <span>78</span></span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <a class="trending-cta-card" href="/town/edison-nj">
+      <div>
+        <div class="trending-cta-title">See All Rankings</div>
+        <div class="trending-cta-desc">Browse every restaurant in Edison, scored and ranked high to low.</div>
+      </div>
+      <span class="trending-cta-btn">→</span>
+    </a>
+  </div>
+</section>
+
+<div class="footer-cta">
+  <h3>Want your restaurant ranked higher?</h3>
+  <p>Get a free EatAdvisor scorecard and a step-by-step plan to climb the local rankings.</p>
+  <a href="/services.html">Get my free scorecard →</a>
+</div>
+
+<!-- TODO: Phase 2 — hydrate cards from EATADVISOR_DATASET / restaurant_leaderboard API -->
 <script>
 (function(){
-"use strict";
-var DS = window.EATADVISOR_DATASET || { town:{}, restaurants:[], leaderboards:[] };
-var town = DS.town || {};
-
-/* ── subdomain-style link to the town ranking page ──────────────────────────
- * Path-based today: /town/edison-nj  (rewritten to /town-ranking.html).
- * To go to a real subdomain later (e.g. edison.rankmyrestaurant.ai), set
- * SUBDOMAIN_HOST and the helper switches to an absolute https URL.            */
-var SUBDOMAIN_HOST = ""; // e.g. "rankmyrestaurant.ai" → "https://edison.rankmyrestaurant.ai/"
-function townUrl(cuisine){
-  var qs = cuisine ? ("?cuisine="+encodeURIComponent(cuisine)) : "";
-  if (SUBDOMAIN_HOST) return "https://"+town.slug.replace(/-/g,".")+"."+SUBDOMAIN_HOST+"/"+qs;
-  return "/town/"+town.slug+qs;
-}
-
-function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
-function scoreColor(s){return s>=85?"var(--success)":s>=70?"var(--info)":s>=55?"var(--warning-dark)":"var(--danger)"}
-function scoreBg(s){return s>=85?"var(--success-light)":s>=70?"#d6ecfb":s>=55?"var(--warning-light)":"var(--danger-light)"}
-function levelLabel(s){return s>=85?"TOP":s>=70?"GOOD":s>=55?"OK":"LOW"}
-
-function topByCuisine(cuisine,n){
-  return DS.restaurants
-    .filter(function(r){return r.cuisine===cuisine})
-    .sort(function(a,b){return b.score-a.score})
-    .slice(0,n||5);
-}
-
-/* hero text */
-var townLabel = (town.name||"")+", "+(town.stateAbbr||"");
-document.getElementById("heroTown").textContent = townLabel;
-document.getElementById("heroTownPill").textContent = (town.name||"")+", "+(town.state||"");
-document.getElementById("heroBody").textContent = town.blurb||"";
-document.getElementById("heroCount").textContent = DS.restaurants.length;
-document.title = "Best Restaurants in "+townLabel+" — EatAdvisor Rankings";
-if (DS.isDemo){
-  document.getElementById("demoNote").textContent =
-    "Demo dataset for "+townLabel+" · live Google + health-grade data rolls out as each market is ingested.";
-}
-
-/* render the 3 default leaderboards */
-var grid = document.getElementById("boardGrid");
-grid.innerHTML = DS.leaderboards.map(function(board){
-  var rows = topByCuisine(board.cuisine, 5);
-  var listHtml = rows.map(function(r,i){
-    var c = scoreColor(r.score);
-    return '<a class="rank-row" href="/restaurant-local-ranking.html?slug='+encodeURIComponent(r.slug)+'">'
-      + '<div class="rank-num">'+(i+1)+'</div>'
-      + '<div class="rank-body">'
-      +   '<div class="rank-name">'+esc(r.name)+'</div>'
-      +   '<div class="rank-meta"><span>★ '+r.rating.toFixed(1)+'</span><span>'+r.reviews.toLocaleString()+' reviews</span><span>'+esc(r.price)+'</span>'
-      +     (r.nearby ? '<span class="nearby-tag">'+esc(r.town)+'</span>' : '')
-      +   '</div>'
-      + '</div>'
-      + '<div class="score-pill" style="background:'+scoreBg(r.score)+';color:'+c+'"><span class="n">'+r.score+'</span><span class="l">'+levelLabel(r.score)+'</span></div>'
-      + '</a>';
-  }).join("");
-  return '<div class="board">'
-    + '<div class="board-head"><span class="board-icon">'+board.icon+'</span>'
-    +   '<div class="board-title">'+esc(board.title)+'</div>'
-    +   '<div class="board-sub">'+esc(board.subtitle)+'</div></div>'
-    + '<div class="board-list">'+listHtml+'</div>'
-    + '<div class="board-foot"><a class="board-cta" href="'+townUrl(board.cuisine)+'"><span>View full '+esc(board.title.replace(/^Best\s+/,"").replace(/\s+in .*$/,""))+' ranking</span><span>→</span></a></div>'
-    + '</div>';
-}).join("");
+  var btn = document.querySelector(".nav-menu-btn");
+  var drawer = document.getElementById("navDrawer");
+  if (!btn || !drawer) return;
+  btn.addEventListener("click", function(){
+    var open = drawer.classList.toggle("is-open");
+    drawer.hidden = !open;
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.addEventListener("click", function(e){
+    if (!drawer.classList.contains("is-open")) return;
+    if (btn.contains(e.target) || drawer.contains(e.target)) return;
+    drawer.classList.remove("is-open");
+    drawer.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+  });
 })();
 </script>
 </body>
