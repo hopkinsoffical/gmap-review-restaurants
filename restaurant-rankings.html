@@ -166,27 +166,44 @@ a{color:inherit}
   color:var(--ea-green);margin-top:auto;
 }
 
-/* Right rail — cuisine top 3 */
+/* Right rail — cuisine carousel (6 restaurants per slide) */
 .leaderboard-rail{
   background:rgba(255,255,255,.1);backdrop-filter:blur(20px);
   border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-xl);
-  padding:18px 16px;display:flex;flex-direction:column;
-  box-shadow:var(--shadow-lg);
+  padding:18px 16px 14px;display:flex;flex-direction:column;
+  box-shadow:var(--shadow-lg);min-height:0;
 }
-.rail-head{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.12)}
+.rail-carousel-viewport{position:relative;flex:1;min-height:420px}
+.rail-carousel-track{position:relative;width:100%;height:100%}
+.rail-slide{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateY(6px);
+  transition:opacity .45s ease,transform .45s ease,visibility .45s;
+}
+.rail-slide.is-active{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0);
+}
+.rail-head{margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.12);flex-shrink:0}
 .rail-kicker{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:6px}
 .rail-title{font-size:15px;font-weight:700;color:#fff;line-height:1.35}
 .rail-title strong{color:var(--ea-green);font-weight:800}
-.rail-list{list-style:none;display:flex;flex-direction:column;gap:10px;flex:1}
+.rail-list{
+  list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;
+  margin:0;padding:0;overflow-y:auto;scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.2) transparent;
+}
+.rail-list::-webkit-scrollbar{width:4px}
+.rail-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:4px}
 .rail-item{
   display:flex;align-items:center;gap:10px;
-  padding:10px 10px;border-radius:var(--radius-md);
+  padding:8px 10px;border-radius:var(--radius-md);
   background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.08);
   text-decoration:none;color:#fff;transition:background .15s,transform .15s;
 }
 .rail-item:hover{background:rgba(0,0,0,.36);transform:translateX(2px)}
 .rail-medal{
-  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
   font-size:9px;font-weight:900;letter-spacing:.02em;line-height:1;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 2px 6px rgba(0,0,0,.25);
@@ -194,21 +211,35 @@ a{color:inherit}
 .rail-medal.gold{background:linear-gradient(145deg,#ffe566,var(--medal-gold) 45%,var(--medal-gold-dark));color:#5c4200}
 .rail-medal.silver{background:linear-gradient(145deg,#eef1f4,var(--medal-silver) 45%,var(--medal-silver-dark));color:#3d4349}
 .rail-medal.bronze{background:linear-gradient(145deg,#e8b88a,var(--medal-bronze) 45%,var(--medal-bronze-dark));color:#4a2f14}
+.rail-medal.rank{background:rgba(255,255,255,.14);color:rgba(255,255,255,.92);font-size:11px;font-weight:800}
 .rail-body{flex:1;min-width:0}
-.rail-name{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rail-meta{font-size:11px;color:rgba(255,255,255,.58);margin-top:2px}
+.rail-name{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rail-meta{font-size:10px;color:rgba(255,255,255,.58);margin-top:2px}
 .rail-score{
-  flex-shrink:0;font-size:14px;font-weight:800;color:var(--ea-green);
-  background:rgba(34,197,94,.15);padding:4px 8px;border-radius:8px;
+  flex-shrink:0;font-size:13px;font-weight:800;color:var(--ea-green);
+  background:rgba(34,197,94,.15);padding:3px 7px;border-radius:8px;
 }
 .rail-more{
   display:flex;align-items:center;justify-content:center;gap:6px;
-  margin-top:14px;padding:11px 12px;border-radius:var(--radius-pill);
+  margin-top:12px;padding:10px 12px;border-radius:var(--radius-pill);
   background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);
   color:#fff;font-size:12px;font-weight:700;text-decoration:none;
-  transition:background .15s;
+  transition:background .15s;flex-shrink:0;
 }
 .rail-more:hover{background:rgba(255,255,255,.2)}
+.rail-dots{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:12px;padding-top:4px;flex-shrink:0;
+}
+.rail-dot{
+  width:8px;height:8px;border-radius:50%;border:none;padding:0;cursor:pointer;
+  background:rgba(255,255,255,.28);transition:transform .2s,background .2s,width .2s;
+}
+.rail-dot:hover{background:rgba(255,255,255,.5)}
+.rail-dot.is-active{
+  width:22px;border-radius:999px;background:var(--ea-green);
+}
+.rail-dot:focus-visible{outline:2px solid var(--ea-green);outline-offset:2px}
 
 /* ── Search (floats over hero bottom) ── */
 .search-wrap{
@@ -419,6 +450,7 @@ a{color:inherit}
   .spotlight-card{grid-template-columns:1fr}
   .spotlight-img{min-height:180px;max-height:220px}
   .leaderboard-rail{order:3}
+  .rail-carousel-viewport{min-height:380px}
   .cuisine-scroll{
     display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
     gap:14px;padding-bottom:8px;-webkit-overflow-scrolling:touch;
@@ -496,44 +528,11 @@ a{color:inherit}
         </div>
       </a>
     </div>
-    <aside class="leaderboard-rail" aria-label="Best Chinese in Edison">
-      <div class="rail-head">
-        <div class="rail-kicker">EatAdvisor Rankings</div>
-        <h2 class="rail-title">Best <strong>Chinese</strong> in Edison</h2>
+    <aside class="leaderboard-rail" id="railCarousel" aria-label="Best restaurants in Edison by cuisine">
+      <div class="rail-carousel-viewport">
+        <div class="rail-carousel-track" id="railCarouselTrack" aria-live="polite"></div>
       </div>
-      <ol class="rail-list">
-        <li>
-          <a class="rail-item" href="/restaurant-local-ranking.html?slug=xiebao-edison">
-            <span class="rail-medal gold">TOP<br>1</span>
-            <span class="rail-body">
-              <span class="rail-name">Xiebao Crab House</span>
-              <span class="rail-meta">Edison · $$$</span>
-            </span>
-            <span class="rail-score">91</span>
-          </a>
-        </li>
-        <li>
-          <a class="rail-item" href="/restaurant-local-ranking.html?slug=shanghai-bun-edison">
-            <span class="rail-medal silver">TOP<br>2</span>
-            <span class="rail-body">
-              <span class="rail-name">Shanghai Bun</span>
-              <span class="rail-meta">Edison · $$</span>
-            </span>
-            <span class="rail-score">85</span>
-          </a>
-        </li>
-        <li>
-          <a class="rail-item" href="/restaurant-local-ranking.html?slug=hot-pot-king-edison">
-            <span class="rail-medal bronze">TOP<br>3</span>
-            <span class="rail-body">
-              <span class="rail-name">Hot Pot King</span>
-              <span class="rail-meta">Edison · $$$</span>
-            </span>
-            <span class="rail-score">81</span>
-          </a>
-        </li>
-      </ol>
-      <a class="rail-more" href="/town/edison-nj?cuisine=chinese">More Chinese rankings →</a>
+      <div class="rail-dots" id="railCarouselDots" role="tablist" aria-label="Cuisine ranking slides"></div>
     </aside>
   </div>
 </section>
@@ -703,19 +702,219 @@ a{color:inherit}
 (function(){
   var btn = document.querySelector(".nav-menu-btn");
   var drawer = document.getElementById("navDrawer");
-  if (!btn || !drawer) return;
-  btn.addEventListener("click", function(){
-    var open = drawer.classList.toggle("is-open");
-    drawer.hidden = !open;
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  if (btn && drawer) {
+    btn.addEventListener("click", function(){
+      var open = drawer.classList.toggle("is-open");
+      drawer.hidden = !open;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click", function(e){
+      if (!drawer.classList.contains("is-open")) return;
+      if (btn.contains(e.target) || drawer.contains(e.target)) return;
+      drawer.classList.remove("is-open");
+      drawer.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  var RAIL_INTERVAL_MS = 10000;
+  var RAIL_SLIDES = [
+    {
+      cuisine: "Chinese",
+      cuisineKey: "chinese",
+      restaurants: [
+        { slug: "xiebao-edison", name: "Xiebao Crab House", meta: "Edison · $$$", score: 91 },
+        { slug: "shanghai-bun-edison", name: "Shanghai Bun", meta: "Edison · $$", score: 85 },
+        { slug: "hot-pot-king-edison", name: "Hot Pot King", meta: "Edison · $$$", score: 81 },
+        { slug: "sichuan-garden-edison", name: "Sichuan Garden", meta: "Edison · $$", score: 78 },
+        { slug: "golden-dragon-edison", name: "Golden Dragon", meta: "Edison · $$", score: 76 },
+        { slug: "hunan-wok-edison", name: "Hunan Wok", meta: "Edison · $", score: 74 },
+      ],
+    },
+    {
+      cuisine: "Indian",
+      cuisineKey: "indian",
+      restaurants: [
+        { slug: "moghul-express-edison", name: "Moghul Express", meta: "Edison · $$", score: 89 },
+        { slug: "spice-grill-iselin", name: "Spice Grill", meta: "Iselin · $$", score: 85 },
+        { slug: "saravana-bhavan-edison", name: "Saravana Bhavan", meta: "Edison · $$", score: 83 },
+        { slug: "akbar-restaurant-edison", name: "Akbar Restaurant", meta: "Edison · $$$", score: 80 },
+        { slug: "swagath-edison", name: "Swagath", meta: "Edison · $$", score: 77 },
+        { slug: "udipi-cafe-edison", name: "Udipi Cafe", meta: "Edison · $", score: 75 },
+      ],
+    },
+    {
+      cuisine: "Japanese",
+      cuisineKey: "japanese",
+      restaurants: [
+        { slug: "sapporo-edison", name: "Sapporo Sushi & Ramen", meta: "Metuchen · $$$", score: 88 },
+        { slug: "wasabi-house-edison", name: "Wasabi House", meta: "Edison · $$", score: 84 },
+        { slug: "tokyo-hibachi-edison", name: "Tokyo Hibachi", meta: "Edison · $$$", score: 82 },
+        { slug: "ramen-lab-edison", name: "Ramen Lab", meta: "Edison · $$", score: 79 },
+        { slug: "sakura-bistro-edison", name: "Sakura Bistro", meta: "Edison · $$", score: 77 },
+        { slug: "ichiban-edison", name: "Ichiban", meta: "Edison · $$", score: 74 },
+      ],
+    },
+    {
+      cuisine: "Italian",
+      cuisineKey: "italian",
+      restaurants: [
+        { slug: "casa-di-pizza-edison", name: "Casa di Pizza", meta: "Edison · $$", score: 86 },
+        { slug: "trattoria-mulino-edison", name: "Trattoria Il Mulino", meta: "Edison · $$$", score: 83 },
+        { slug: "villa-russo-edison", name: "Villa Russo", meta: "Edison · $$", score: 80 },
+        { slug: "napoli-express-edison", name: "Napoli Express", meta: "Edison · $", score: 78 },
+        { slug: "roma-kitchen-edison", name: "Roma Kitchen", meta: "Edison · $$", score: 75 },
+        { slug: "cucina-fresca-edison", name: "Cucina Fresca", meta: "Edison · $$", score: 73 },
+      ],
+    },
+    {
+      cuisine: "Korean",
+      cuisineKey: "korean",
+      restaurants: [
+        { slug: "sojubar-edison", name: "Sojubar BBQ", meta: "Edison · $$$", score: 87 },
+        { slug: "kimchi-house-edison", name: "Kimchi House", meta: "Edison · $$", score: 84 },
+        { slug: "seoul-garden-edison", name: "Seoul Garden", meta: "Edison · $$", score: 81 },
+        { slug: "bibimbap-bar-edison", name: "Bibimbap Bar", meta: "Edison · $", score: 78 },
+        { slug: "k-town-edison", name: "K-Town Kitchen", meta: "Edison · $$", score: 76 },
+        { slug: "hansang-edison", name: "Hansang", meta: "Edison · $$", score: 73 },
+      ],
+    },
+  ];
+
+  function medalClass(rank) {
+    if (rank === 1) return "gold";
+    if (rank === 2) return "silver";
+    if (rank === 3) return "bronze";
+    return "rank";
+  }
+
+  function medalMarkup(rank) {
+    var cls = medalClass(rank);
+    if (rank <= 3) {
+      return '<span class="rail-medal ' + cls + '">TOP<br>' + rank + "</span>";
+    }
+    return '<span class="rail-medal rank">' + rank + "</span>";
+  }
+
+  function buildSlide(slide, index) {
+    var list = slide.restaurants
+      .map(function (r, i) {
+        var rank = i + 1;
+        return (
+          "<li>" +
+          '<a class="rail-item" href="/restaurant-local-ranking.html?slug=' +
+          encodeURIComponent(r.slug) +
+          '">' +
+          medalMarkup(rank) +
+          '<span class="rail-body">' +
+          '<span class="rail-name">' +
+          r.name +
+          "</span>" +
+          '<span class="rail-meta">' +
+          r.meta +
+          "</span>" +
+          "</span>" +
+          '<span class="rail-score">' +
+          r.score +
+          "</span>" +
+          "</a>" +
+          "</li>"
+        );
+      })
+      .join("");
+
+    return (
+      '<div class="rail-slide' +
+      (index === 0 ? " is-active" : "") +
+      '" role="tabpanel" data-rail-index="' +
+      index +
+      '" aria-hidden="' +
+      (index === 0 ? "false" : "true") +
+      '">' +
+      '<div class="rail-head">' +
+      '<div class="rail-kicker">EatAdvisor Rankings</div>' +
+      '<h2 class="rail-title">Best <strong>' +
+      slide.cuisine +
+      "</strong> in Edison</h2>" +
+      "</div>" +
+      '<ol class="rail-list">' +
+      list +
+      "</ol>" +
+      '<a class="rail-more" href="/town/edison-nj?cuisine=' +
+      encodeURIComponent(slide.cuisineKey) +
+      '">More ' +
+      slide.cuisine +
+      " rankings →</a>" +
+      "</div>"
+    );
+  }
+
+  var track = document.getElementById("railCarouselTrack");
+  var dotsWrap = document.getElementById("railCarouselDots");
+  var railRoot = document.getElementById("railCarousel");
+  if (!track || !dotsWrap || !RAIL_SLIDES.length) return;
+
+  track.innerHTML = RAIL_SLIDES.map(buildSlide).join("");
+  dotsWrap.innerHTML = RAIL_SLIDES.map(function (slide, index) {
+    return (
+      '<button type="button" class="rail-dot' +
+      (index === 0 ? " is-active" : "") +
+      '" role="tab" aria-label="Best ' +
+      slide.cuisine +
+      ' in Edison" aria-selected="' +
+      (index === 0 ? "true" : "false") +
+      '" data-rail-dot="' +
+      index +
+      '"></button>'
+    );
+  }).join("");
+
+  var slides = Array.prototype.slice.call(track.querySelectorAll(".rail-slide"));
+  var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".rail-dot"));
+  var activeIndex = 0;
+  var timerId = null;
+
+  function showSlide(index) {
+    activeIndex = (index + RAIL_SLIDES.length) % RAIL_SLIDES.length;
+    slides.forEach(function (slide, i) {
+      var on = i === activeIndex;
+      slide.classList.toggle("is-active", on);
+      slide.setAttribute("aria-hidden", on ? "false" : "true");
+    });
+    dots.forEach(function (dot, i) {
+      var on = i === activeIndex;
+      dot.classList.toggle("is-active", on);
+      dot.setAttribute("aria-selected", on ? "true" : "false");
+    });
+  }
+
+  function nextSlide() {
+    showSlide(activeIndex + 1);
+  }
+
+  function startTimer() {
+    if (timerId) clearInterval(timerId);
+    timerId = setInterval(nextSlide, RAIL_INTERVAL_MS);
+  }
+
+  dotsWrap.addEventListener("click", function (event) {
+    var dot = event.target.closest("[data-rail-dot]");
+    if (!dot) return;
+    var index = Number(dot.getAttribute("data-rail-dot"));
+    if (!Number.isFinite(index)) return;
+    showSlide(index);
+    startTimer();
   });
-  document.addEventListener("click", function(e){
-    if (!drawer.classList.contains("is-open")) return;
-    if (btn.contains(e.target) || drawer.contains(e.target)) return;
-    drawer.classList.remove("is-open");
-    drawer.hidden = true;
-    btn.setAttribute("aria-expanded", "false");
-  });
+
+  if (railRoot) {
+    railRoot.addEventListener("mouseenter", function () {
+      if (timerId) clearInterval(timerId);
+      timerId = null;
+    });
+    railRoot.addEventListener("mouseleave", startTimer);
+  }
+
+  startTimer();
 })();
 </script>
 </body>
