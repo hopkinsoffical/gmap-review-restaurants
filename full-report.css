@@ -820,3 +820,30 @@ html.fr-pdf-export .fr-pdf-page-break {
     page-break-inside: avoid;
   }
 }
+
+/* Desktop: center full report shell in viewport (overrides full-width .app layouts) */
+@media (min-width: 769px) {
+  body.route-marketing.route-analysis-full #appShell.app.landing-mode {
+    width: min(760px, calc(100vw - 2rem)) !important;
+    max-width: min(760px, calc(100vw - 2rem)) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  body.route-marketing.route-analysis-full .marketing-page-full-report,
+  body.route-marketing.route-analysis-full .full-report-root,
+  body.route-marketing.route-analysis-full .fr-page,
+  body.route-marketing.route-analysis-full .fr-page--diy {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  body.route-marketing.route-analysis-full .fr-page--diy .intel-brief-page,
+  body.route-marketing.route-analysis-full .fr-page--diy .intel-brief-report {
+    max-width: 100% !important;
+    margin-inline: auto !important;
+  }
+}

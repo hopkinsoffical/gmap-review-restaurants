@@ -6339,26 +6339,33 @@ textarea.portal-input {
   color: #9ca3af;
 }
 
-/* Full report desktop: center nav + toolbar + report column */
+/* Full report desktop: center nav + toolbar + report column (see end of file for !important overrides) */
 @media (min-width: 769px) {
-  body.route-analysis-full .marketing-page-full-report {
-    width: 100%;
+  body.route-marketing.route-analysis-full #appShell.app.landing-mode {
+    width: min(760px, calc(100vw - 2rem));
     max-width: min(760px, calc(100vw - 2rem));
     margin-inline: auto;
     box-sizing: border-box;
   }
 
-  body.route-analysis-full .full-report-root,
-  body.route-analysis-full .fr-page,
-  body.route-analysis-full .fr-page--diy {
+  body.route-marketing.route-analysis-full .marketing-page-full-report {
     width: 100%;
     max-width: 100%;
     margin-inline: auto;
     box-sizing: border-box;
   }
 
-  body.route-analysis-full .fr-page--diy .intel-brief-page,
-  body.route-analysis-full .fr-page--diy .intel-brief-report {
+  body.route-marketing.route-analysis-full .full-report-root,
+  body.route-marketing.route-analysis-full .fr-page,
+  body.route-marketing.route-analysis-full .fr-page--diy {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  body.route-marketing.route-analysis-full .fr-page--diy .intel-brief-page,
+  body.route-marketing.route-analysis-full .fr-page--diy .intel-brief-report {
     max-width: 100%;
     margin-inline: auto;
   }
@@ -11910,4 +11917,63 @@ html[data-theme="light"] body .marketing-lang-option {
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.04em;
+}
+
+/* ── Full report (/analysis-reports/:slug/full) desktop centering ─────────── */
+@media (min-width: 769px) {
+  body.route-marketing.route-analysis-full #appShell.app.landing-mode {
+    width: min(760px, calc(100vw - 2rem)) !important;
+    max-width: min(760px, calc(100vw - 2rem)) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: clamp(1rem, 3vw, 1.5rem) !important;
+    padding-right: clamp(1rem, 3vw, 1.5rem) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.route-marketing.route-analysis-full .landing-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+  }
+
+  body.route-marketing.route-analysis-full .marketing-page-full-report {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  body.route-marketing.route-analysis-full .marketing-page-full-report > .marketing-nav-shell,
+  body.route-marketing.route-analysis-full .marketing-page-full-report > .marketing-footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  body.route-marketing.route-analysis-full .full-report-root,
+  body.route-marketing.route-analysis-full .fr-page,
+  body.route-marketing.route-analysis-full .fr-page--diy {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  body.route-marketing.route-analysis-full .fr-page--diy .intel-brief-page,
+  body.route-marketing.route-analysis-full .fr-page--diy .intel-brief-report {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    padding-inline: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  body.route-marketing.route-analysis-full .fr-toolbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+  }
 }
