@@ -9,24 +9,25 @@
 <style>
 /* ── Zoca Design Tokens ── */
 :root {
-  --primary-100: #fde8ec;
-  --primary-200: #fccdd5;
-  --primary-300: #f48a9a;
-  --primary-400: #e60023;
-  --primary-500: #c9001e;
-  --primary-600: #b3001b;
-  --primary-700: #7a0012;
+  --primary-100: #efffcc;
+  --primary-200: #d9ff80;
+  --primary-300: #c8ff4d;
+  --primary-400: #052005;
+  --primary-500: #052005;
+  --primary-600: #041804;
+  --primary-700: #021502;
+  --lime: #b0ff00;
 
-  --neutral-bg:     #f4f5f5;
-  --neutral-white:  #fcfdfd;
-  --neutral-100:    #f4f5f5;
-  --neutral-200:    #dcdfe0;
-  --neutral-300:    #bcc1c2;
-  --neutral-600:    #687173;
-  --neutral-700:    #505758;
-  --neutral-800:    #272a2b;
-  --neutral-black:  #232323;
-  --neutral-border: #dcdfe0;
+  --neutral-bg:     #e8ffb3;
+  --neutral-white:  #ffffff;
+  --neutral-100:    #efffcc;
+  --neutral-200:    #d4f5a0;
+  --neutral-300:    #b8e86a;
+  --neutral-600:    #2d6b2d;
+  --neutral-700:    #1a5c1a;
+  --neutral-800:    #052005;
+  --neutral-black:  #052005;
+  --neutral-border: rgba(5, 32, 5, 0.14);
 
   --success-light:  #d3f6cf;
   --success:        #0d7a7a;
@@ -100,7 +101,7 @@ body {
   color: #fff;
   border: none;
   padding: 8px 18px;
-  border-radius: 8px;
+  border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -108,7 +109,7 @@ body {
   font-family: var(--font);
   transition: background .15s;
 }
-.nav-cta:hover { background: var(--primary-500); }
+.nav-cta:hover { background: var(--primary-600); }
 
 /* ── Page shell ── */
 .page {
@@ -490,11 +491,11 @@ body {
 
 /* ── Bottom CTA ── */
 .cta-section {
-  background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-500) 50%, var(--primary-400) 100%);
+  background: var(--lime);
   border-radius: var(--radius-xl);
   padding: 36px 28px;
   text-align: center;
-  color: #fff;
+  color: var(--primary-400);
   margin-top: 28px;
   position: relative;
   overflow: hidden;
@@ -503,7 +504,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,.1) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 70% 50%, rgba(5, 32, 5, 0.04) 0%, transparent 60%);
   pointer-events: none;
 }
 .cta-eyebrow {
@@ -534,18 +535,18 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #fff;
-  color: var(--primary-600);
+  background: var(--primary-400);
+  color: #fff;
   padding: 13px 28px;
-  border-radius: 10px;
+  border-radius: 999px;
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
-  transition: opacity .2s, transform .2s;
+  transition: background .2s, transform .2s;
   letter-spacing: -.1px;
 }
-.cta-btn:hover { opacity: .92; transform: translateY(-1px); }
-.cta-note { font-size: 11px; opacity: .55; margin-top: 12px; }
+.cta-btn:hover { background: var(--primary-600); transform: translateY(-1px); }
+.cta-note { font-size: 11px; opacity: .65; margin-top: 12px; }
 
 /* ── Loading / Error ── */
 .loading-wrap {
