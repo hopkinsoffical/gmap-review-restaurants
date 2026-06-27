@@ -12318,3 +12318,79 @@ body.store-visit-ready .store-private-feedback-continue-btn {
     padding-top: 192px;
   }
 }
+
+/* Store review cards — dark warm palette (overrides light default review-card styles) */
+html.store-theme-locked body.route-store .review-card,
+html.store-theme-locked body.route-store .reviews-grid .review-card {
+  background: linear-gradient(180deg, #1a1410 0%, #2a221c 100%) !important;
+  border: 1px solid rgba(201, 122, 90, 0.28) !important;
+  border-radius: var(--store-radius-md) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important;
+  color: var(--store-surface-ink) !important;
+}
+
+html.store-theme-locked body.route-store .review-card h3 {
+  color: var(--store-coral) !important;
+}
+
+html.store-theme-locked body.route-store .review-card .review-note,
+html.store-theme-locked body.route-store .review-card-head .review-note {
+  color: var(--store-muted) !important;
+}
+
+html.store-theme-locked body.route-store .review-body,
+html.store-theme-locked body.route-store .review-card .review-body,
+html.store-theme-locked body.route-store .reviews-grid .review-body {
+  border: 1px solid rgba(201, 122, 90, 0.2) !important;
+  border-radius: 12px !important;
+  background: rgba(12, 10, 8, 0.72) !important;
+  color: var(--store-surface-ink) !important;
+}
+
+html.store-theme-locked body.route-store .review-card:hover {
+  border-color: rgba(232, 168, 124, 0.48) !important;
+  box-shadow: 0 12px 28px rgba(201, 122, 90, 0.16) !important;
+  transform: translateY(-1px);
+}
+
+html.store-theme-locked body.route-store .review-card:focus-visible {
+  outline: 2px solid rgba(232, 168, 124, 0.55) !important;
+  outline-offset: 3px;
+}
+
+html.store-theme-locked body.route-store .review-card-skeleton {
+  background: linear-gradient(180deg, #1a1410 0%, #252018 100%) !important;
+  border-color: rgba(201, 122, 90, 0.18) !important;
+}
+
+html.store-theme-locked body.route-store .review-card-skeleton .review-body {
+  background: rgba(12, 10, 8, 0.55) !important;
+  border-color: rgba(201, 122, 90, 0.12) !important;
+}
+
+html.store-theme-locked body.route-store .review-card-skeleton .skeleton-line {
+  background: linear-gradient(
+    90deg,
+    rgba(201, 122, 90, 0.08) 0%,
+    rgba(232, 168, 124, 0.18) 50%,
+    rgba(201, 122, 90, 0.08) 100%
+  ) !important;
+}
+
+html.store-theme-locked body.route-store .reviews-card :is(h2, h3),
+html.store-theme-locked body.route-store .reviews-card .hint,
+html.store-theme-locked body.route-store .reviews-card .empty-text,
+html.store-theme-locked body.route-store .reviews-card .status {
+  color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store .reviews-card .hint,
+html.store-theme-locked body.route-store .reviews-card .empty-text {
+  color: var(--store-muted) !important;
+}
+
+html.store-theme-locked body.route-store .focus-pill {
+  color: var(--store-surface-ink) !important;
+  background: rgba(201, 122, 90, 0.22) !important;
+  border: 1px solid rgba(201, 122, 90, 0.28);
+}
