@@ -11053,6 +11053,84 @@ body.store-visit-ready.body.has-results .receipt-preview:not(.empty) img {
   padding-top: 4px;
 }
 
+.store-private-feedback-dialog.is-callback-mode {
+  max-height: none;
+  width: min(420px, 100%);
+  padding: 16px 16px 14px;
+}
+
+.store-private-feedback-dialog.is-callback-mode .store-private-feedback-title {
+  font-size: 1.08rem;
+  margin-bottom: 6px;
+}
+
+.store-private-feedback-dialog.is-callback-mode .store-private-feedback-intro {
+  font-size: 0.84rem;
+  margin-bottom: 12px;
+}
+
+.store-private-feedback-dialog.is-callback-mode .store-private-feedback-form {
+  gap: 10px;
+}
+
+.store-private-feedback-label--placeholder-only span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.store-private-feedback-dialog.is-callback-mode .store-private-feedback-form input.text-input {
+  min-height: 40px;
+  height: 40px;
+  max-height: 40px;
+  padding: 0 12px;
+  line-height: 1.2;
+}
+
+.store-private-feedback-dialog.is-callback-mode .store-private-feedback-form .store-private-feedback-textarea {
+  min-height: 88px;
+  max-height: min(22dvh, 120px);
+  height: auto;
+  padding: 10px 12px;
+  line-height: 1.45;
+}
+
+.store-private-feedback-dialog.is-callback-mode .store-private-feedback-form input.text-input::placeholder,
+.store-private-feedback-dialog.is-callback-mode .store-private-feedback-form .store-private-feedback-textarea::placeholder {
+  color: rgba(45, 41, 38, 0.45);
+  opacity: 1;
+}
+
+.store-private-feedback-dialog.is-callback-mode .store-private-feedback-actions {
+  margin-top: 4px;
+}
+
+.store-private-feedback-dialog.is-callback-mode .store-private-feedback-actions .cta {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.store-private-feedback-dialog.is-callback-thanks .store-private-feedback-close {
+  display: none;
+}
+
+.store-private-feedback-dialog.is-callback-thanks .store-private-feedback-thanks .store-private-feedback-title {
+  font-size: 1.15rem;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+
+.store-private-feedback-dialog.is-callback-thanks .store-private-feedback-thanks .store-private-feedback-intro {
+  text-transform: none !important;
+  margin-bottom: 0 !important;
+}
+
 /* Admin portal: private feedback inbox */
 .portal-private-feedback-table-wrap {
   overflow-x: auto;
@@ -11900,9 +11978,54 @@ html[data-theme="light"] body .marketing-lang-option {
   background: rgba(125, 130, 255, 0.06);
 }
 .loyalty-promo-panel.hidden { display: none; }
-.loyalty-promo-intro { margin: 0 0 12px; font-weight: 600; line-height: 1.4; }
+.loyalty-promo-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.loyalty-promo-phone-icon {
+  flex: 0 0 auto;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+.loyalty-promo-intro {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+}
 .loyalty-promo-form { display: flex; flex-direction: column; gap: 10px; }
 .loyalty-promo-form.hidden { display: none; }
+.loyalty-promo-phone-input {
+  flex: none;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px;
+  height: 40px;
+  max-height: 40px;
+  padding: 0 12px;
+  line-height: 1.2;
+  font-size: 0.92rem;
+  border-radius: 10px;
+}
+.loyalty-promo-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 100%;
+}
+.loyalty-promo-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 10px 16px;
+  margin-top: 0;
+  flex: 0 0 auto;
+  width: auto;
+}
 .loyalty-promo-consent {
   display: flex;
   gap: 8px;
@@ -12337,6 +12460,80 @@ body.store-visit-ready #storeVisitShell {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+body.route-store .store-private-feedback-dialog.is-callback-mode .store-private-feedback-form input.text-input {
+  min-height: 40px !important;
+  height: 40px !important;
+  max-height: 40px !important;
+  padding: 0 12px !important;
+  line-height: 1.2 !important;
+}
+
+body.route-store .store-private-feedback-dialog.is-callback-mode .store-private-feedback-form .store-private-feedback-textarea {
+  min-height: 88px !important;
+  max-height: min(20dvh, 120px) !important;
+  height: auto !important;
+  padding: 10px 12px !important;
+  line-height: 1.45 !important;
+}
+
+body.route-store .store-private-feedback-dialog.is-callback-mode .store-private-feedback-form input.text-input::placeholder,
+body.route-store .store-private-feedback-dialog.is-callback-mode .store-private-feedback-form .store-private-feedback-textarea::placeholder {
+  color: rgba(45, 41, 38, 0.45) !important;
+  opacity: 1 !important;
+}
+
+body.route-store .loyalty-promo-phone-input {
+  flex: none !important;
+  width: 100% !important;
+  min-height: 40px !important;
+  height: 40px !important;
+  max-height: 40px !important;
+  padding: 0 12px !important;
+  line-height: 1.2 !important;
+  font-size: 0.92rem !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(45, 41, 38, 0.14) !important;
+  background: #fff !important;
+  color: var(--store-surface-ink, #2d2926) !important;
+}
+
+body.route-store .store-private-feedback-dialog .store-private-feedback-form .text-input {
+  flex: none !important;
+  width: 100% !important;
+  min-height: 38px !important;
+  height: auto !important;
+  padding: 9px 11px !important;
+  font-size: 0.88rem !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(45, 41, 38, 0.14) !important;
+  background: #fff !important;
+  color: var(--store-surface-ink, #2d2926) !important;
+}
+
+body.route-store .store-private-feedback-dialog .store-private-feedback-textarea {
+  min-height: 64px !important;
+  max-height: min(20dvh, 96px) !important;
+  height: auto !important;
+}
+
+body.route-store .store-private-feedback-dialog .store-private-feedback-actions {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+}
+
+body.route-store .store-private-feedback-dialog.is-callback-mode .store-private-feedback-actions .ghost,
+body.route-store .store-private-feedback-dialog.is-callback-mode .store-private-feedback-actions .cta {
+  width: 100% !important;
+  flex: 1 1 auto !important;
+}
+
+body.route-store .store-private-feedback-dialog .store-private-feedback-actions .ghost,
+body.route-store .store-private-feedback-dialog .store-private-feedback-actions .cta {
+  width: auto !important;
 }
 
 body.store-visit-ready .store-private-feedback-dialog.is-callback-mode .store-private-feedback-actions {

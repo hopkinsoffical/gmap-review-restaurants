@@ -1977,7 +1977,6 @@ if (isStoreVisitPathname(location.pathname)) {
     loyaltyPromoPhone: document.getElementById("loyaltyPromoPhone"),
     loyaltyPromoConsent: document.getElementById("loyaltyPromoConsent"),
     loyaltyPromoConsentText: document.getElementById("loyaltyPromoConsentText"),
-    loyaltyPromoSkipBtn: document.getElementById("loyaltyPromoSkipBtn"),
     loyaltyPromoSubmitBtn: document.getElementById("loyaltyPromoSubmitBtn"),
     loyaltyPromoResult: document.getElementById("loyaltyPromoResult"),
     loyaltyPromoCodeText: document.getElementById("loyaltyPromoCodeText"),
@@ -12067,12 +12066,10 @@ function renderServicesContent() {
 
   var LOYALTY_PROMO_COPY = {
     en: {
-      intro: "✅ Review copied! Leave your number and we’ll text you a promo code for your next visit.",
+      intro: "Leave your number and we’ll text you a promo code for your next visit.",
       phonePlaceholder: "Your mobile number",
       consent:
         "Text me a one-time promo code and occasional offers. Msg & data rates may apply. Reply STOP to opt out.",
-      skip: "No thanks — continue to Google",
-      submit: "Get my promo code",
       sending: "Sending your code…",
       invalidPhone: "Enter a mobile number with at least 7 digits.",
       needConsent: "Please check the box so we can text your code.",
@@ -12081,11 +12078,9 @@ function renderServicesContent() {
       continueGoogle: "Continue to Google review",
     },
     zh: {
-      intro: "✅ 评价已复制！留下手机号，我们会把下次到店的优惠码发短信给你。",
+      intro: "留下手机号，我们会把下次到店的优惠码发短信给你。",
       phonePlaceholder: "你的手机号",
       consent: "同意接收一次性优惠码及不定期优惠短信。可能产生信息费。回复 STOP 退订。",
-      skip: "暂不需要 — 继续前往 Google",
-      submit: "获取我的优惠码",
       sending: "正在发送优惠码…",
       invalidPhone: "请输入至少 7 位的手机号。",
       needConsent: "请勾选同意，我们才能把优惠码发给你。",
@@ -12104,6 +12099,19 @@ function renderServicesContent() {
     if (url) window.location.href = url;
   }
 
+  function syncLoyaltyPromoSubmitBtn(isSubmitting) {
+    if (!el.loyaltyPromoSubmitBtn) return;
+    el.loyaltyPromoSubmitBtn.disabled = !!isSubmitting;
+    if (isSubmitting) {
+      el.loyaltyPromoSubmitBtn.textContent = loyaltyCopy().sending;
+      return;
+    }
+    el.loyaltyPromoSubmitBtn.innerHTML =
+      "<span>" +
+      escapeHtml(t("storeFlowStepContinue")) +
+      '</span><span class="store-flow-nav-icon" aria-hidden="true">→</span>';
+  }
+
   function revealLoyaltyPromo() {
     if (!el.loyaltyPromoPanel) {
       goToPendingReview();
@@ -12113,8 +12121,7 @@ function renderServicesContent() {
     if (el.loyaltyPromoIntro) el.loyaltyPromoIntro.textContent = c.intro;
     if (el.loyaltyPromoPhone) el.loyaltyPromoPhone.placeholder = c.phonePlaceholder;
     if (el.loyaltyPromoConsentText) el.loyaltyPromoConsentText.textContent = c.consent;
-    if (el.loyaltyPromoSkipBtn) el.loyaltyPromoSkipBtn.textContent = c.skip;
-    if (el.loyaltyPromoSubmitBtn) el.loyaltyPromoSubmitBtn.textContent = c.submit;
+    syncLoyaltyPromoSubmitBtn(false);
     if (el.loyaltyPromoForm) el.loyaltyPromoForm.classList.remove("hidden");
     if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.add("hidden");
     setStatus(el.loyaltyPromoStatus, "", "", "");
@@ -12140,7 +12147,7 @@ function renderServicesContent() {
       setStatus(el.loyaltyPromoStatus, c.needConsent, "error");
       return;
     }
-    if (el.loyaltyPromoSubmitBtn) el.loyaltyPromoSubmitBtn.disabled = true;
+    syncLoyaltyPromoSubmitBtn(true);
     setStatus(el.loyaltyPromoStatus, c.sending, "working");
     try {
       var data = await fetchJson("/api/loyalty-signup", {
@@ -12164,7 +12171,7 @@ function renderServicesContent() {
     } catch (err) {
       setStatus(el.loyaltyPromoStatus, c.failed, "error");
     } finally {
-      if (el.loyaltyPromoSubmitBtn) el.loyaltyPromoSubmitBtn.disabled = false;
+      syncLoyaltyPromoSubmitBtn(false);
     }
   }
 
@@ -12289,12 +12296,6 @@ function renderServicesContent() {
         submitLoyaltyPromo().catch(function (err) {
           console.error("Loyalty promo signup failed", err);
         });
-      });
-    }
-    if (el.loyaltyPromoSkipBtn) {
-      el.loyaltyPromoSkipBtn.addEventListener("click", function () {
-        trackEvent("loyalty_promo_skipped", analyticsParams());
-        goToPendingReview();
       });
     }
     if (el.loyaltyPromoContinueBtn) {
