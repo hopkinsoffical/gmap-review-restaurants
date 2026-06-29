@@ -10652,6 +10652,11 @@ body.store-visit-ready.store-has-receipt #intakePillRow #writeOwnReviewBtn {
   text-align: center;
 }
 
+.store-visit-mood:empty {
+  display: none;
+  min-height: 0;
+}
+
 .store-visit-low-star-hint {
   margin: 0;
   font-size: 0.82rem;
@@ -12432,23 +12437,29 @@ html[data-theme="light"] header h1.store-visit-brand-name {
   line-height: 1;
 }
 
-/* Store route — primary Continue + Back nav */
-body.route-store .cta,
-html.store-theme-locked body.route-store .cta {
+/* Store route — Continue (no fill) + Back nav */
+html.store-theme-locked body.route-store .store-flow-nav-forward.cta,
+html.store-theme-locked body.route-store .loyalty-promo-continue-btn.cta,
+html.store-theme-locked body.route-store .store-private-feedback-continue-btn.cta {
   border-radius: var(--store-radius-pill, 999px);
-  border-color: transparent;
-  background: var(--store-btn, #c97a5a);
-  color: #faf8f6;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  border: 1px solid var(--store-border);
+  background: transparent;
+  color: var(--store-coral);
+  box-shadow: none;
   font-weight: 700;
 }
 
-body.route-store .cta:hover:not(:disabled),
-html.store-theme-locked body.route-store .cta:hover:not(:disabled) {
-  border-color: transparent;
-  background: color-mix(in srgb, var(--store-btn, #c97a5a) 86%, #ffffff);
-  color: #fff;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
+html.store-theme-locked body.route-store .store-flow-nav-forward.cta:hover:not(:disabled),
+html.store-theme-locked body.route-store .loyalty-promo-continue-btn.cta:hover:not(:disabled),
+html.store-theme-locked body.route-store .store-private-feedback-continue-btn.cta:hover:not(:disabled) {
+  border-color: rgba(232, 168, 124, 0.45);
+  background: rgba(201, 122, 90, 0.1);
+  color: var(--store-coral);
+  box-shadow: none;
+}
+
+body.route-store .cta {
+  border-radius: var(--store-radius-pill, 999px);
 }
 
 html.store-theme-locked body.route-store .store-flow-nav-back.ghost,

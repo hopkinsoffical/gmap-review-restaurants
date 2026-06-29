@@ -2366,12 +2366,11 @@ if (isStoreVisitPathname(location.pathname)) {
   }
 
   function getStoreFlowNextStageAfterVisit() {
-    return getStoreFlowStaffOptions().length ? "staff" : "services";
+    return "services";
   }
 
   function getStoreFlowPreviousStage(stage) {
-    if (stage === "staff") return "visit";
-    if (stage === "services") return getStoreFlowStaffOptions().length ? "staff" : "visit";
+    if (stage === "services") return "visit";
     if (stage === "visit") return "gate";
     return "gate";
   }
@@ -9275,6 +9274,7 @@ function renderServicesContent() {
     if (n === 5) {
       state.storeReviewSatisfaction = "yes";
       state.storeReviewFlowStage = "visit";
+      setNodeText(el.storeVisitMood, "");
       renderStoreFlowCard();
       renderFlowState();
       scrollCardIntoView(el.intakeCard, 8);
@@ -11240,7 +11240,7 @@ function renderServicesContent() {
       return;
     }
 
-    if (state.storeReviewFlowStage === "staff" && getStoreFlowStaffOptions().length === 0) {
+    if (state.storeReviewFlowStage === "staff") {
       state.storeReviewFlowStage = "services";
     }
 
@@ -11252,7 +11252,6 @@ function renderServicesContent() {
     }
 
     var isBusy = state.isRecognizing || state.isGenerating;
-    var staffOptions = getStoreFlowStaffOptions();
     var selectedServiceIds = Array.from(state.recognizedDishIds).sort(function (a, b) {
       return a - b;
     });
@@ -11270,7 +11269,6 @@ function renderServicesContent() {
         );
       })
       .join("");
-    var selectedStaff = String(state.serviceStaffLabel || "").trim();
     var html = "";
 
     if (stage === "visit") {
@@ -11292,59 +11290,13 @@ function renderServicesContent() {
       }).join("");
 
       html =
-        '<div class="store-flow-head"><p class="store-flow-step">1 / 3</p><h3 class="store-flow-title">' +
+        '<div class="store-flow-head"><p class="store-flow-step">1 / 2</p><h3 class="store-flow-title">' +
         escapeHtml(t("storeFlowVisitTitle")) +
         '</h3></div><div class="store-flow-choice-list">' +
         visitOptionsHtml +
         '</div><div class="store-flow-actions">' +
         buildStoreFlowBackBtn("visit", isBusy) +
         buildStoreFlowForwardBtn("storeFlowStepContinue", 'data-store-flow-next="visit"', !state.visitTier || isBusy) +
-        "</div>";
-    } else if (stage === "staff") {
-      var staffMatches = getStoreStaffMatches(state.storeStaffSearch, staffOptions);
-      var staffOptionsHtml = staffMatches
-        .map(function (name) {
-          var idx = staffOptions.indexOf(name);
-          if (idx < 0) return "";
-          var selected = selectedStaff === name;
-          return (
-            '<button type="button" class="store-flow-choice-btn' +
-            (selected ? " is-selected" : "") +
-            '" data-store-flow-staff-index="' +
-            String(idx) +
-            '" aria-pressed="' +
-            (selected ? "true" : "false") +
-            '"' +
-            (isBusy ? " disabled" : "") +
-            ">" +
-            escapeHtml(name) +
-            "</button>"
-          );
-        })
-        .join("");
-
-      html =
-        '<div class="store-flow-head"><p class="store-flow-step">2 / 3</p><h3 class="store-flow-title">' +
-        escapeHtml(t("storeFlowStaffTitle")) +
-        '</h3></div><label class="store-flow-search-label"><span class="hidden-accessible">' +
-        escapeHtml(t("storeFlowStaffTitle")) +
-        '</span><input id="storeStaffSearchInput" class="text-input store-flow-search-input" type="search" value="' +
-        escapeHtml(state.storeStaffSearch || "") +
-        '" placeholder="' +
-        escapeHtml(t("storeFlowStaffSearchPlaceholder")) +
-        '"' +
-        (isBusy ? " disabled" : "") +
-        " /></label><div class=\"store-flow-choice-list\">" +
-        (staffOptionsHtml ||
-          '<p class="store-flow-empty">' + escapeHtml(t("storeFlowStaffEmpty")) + "</p>") +
-        '</div><div class="store-flow-actions store-flow-actions--triple">' +
-        buildStoreFlowBackBtn("staff", isBusy) +
-        '<button type="button" class="ghost compact store-flow-nav-btn store-flow-nav-skip" data-store-flow-skip-staff="1"' +
-        (isBusy ? " disabled" : "") +
-        ">" +
-        escapeHtml(t("storeFlowStaffSkipBtn")) +
-        "</button>" +
-        buildStoreFlowForwardBtn("storeFlowStepContinue", 'data-store-flow-next="staff"', isBusy) +
         "</div>";
     } else if (stage === "services") {
       var matches = getStoreServiceMatches(state.storeServiceSearch);
@@ -11368,7 +11320,7 @@ function renderServicesContent() {
         .join("");
 
       html =
-        '<div class="store-flow-head"><p class="store-flow-step">3 / 3</p><p class="store-flow-hint">' +
+        '<div class="store-flow-head"><p class="store-flow-step">2 / 2</p><p class="store-flow-hint">' +
         escapeHtml(t("storeFlowServicesHint")) +
         '</p></div><label class="store-flow-search-label"><span class="hidden-accessible">' +
         escapeHtml(t("storeFlowServicesTitle")) +
@@ -12555,7 +12507,7 @@ function renderServicesContent() {
           state.serviceStaffLabel = "";
           state.storeStaffSearch = "";
           state.storeReviewFlowStage = "services";
-          setNodeText(el.storeVisitMood, t("storeFlowServicesHint"));
+          setNodeText(el.storeVisitMood, "");
           renderStoreFlowCard();
           scrollCardIntoView(el.intakeCard, 8);
           return;
@@ -12587,17 +12539,11 @@ function renderServicesContent() {
               return;
             }
             state.storeReviewFlowStage = getStoreFlowNextStageAfterVisit();
-            if (state.storeReviewFlowStage === "staff") {
-              state.storeStaffSearch = "";
-            }
-            setNodeText(
-              el.storeVisitMood,
-              state.storeReviewFlowStage === "staff" ? "" : t("storeFlowServicesHint"),
-            );
+            setNodeText(el.storeVisitMood, "");
           } else if (nextStage === "staff") {
             state.storeStaffSearch = "";
             state.storeReviewFlowStage = "services";
-            setNodeText(el.storeVisitMood, t("storeFlowServicesHint"));
+            setNodeText(el.storeVisitMood, "");
           }
           renderStoreFlowCard();
           scrollCardIntoView(el.intakeCard, 8);
