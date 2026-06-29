@@ -1300,8 +1300,8 @@ if (isStoreVisitPathname(location.pathname)) {
   const STYLE_VARIANTS = [
     {
       key: "review_a",
-      zhLabel: "随手好发",
-      enLabel: "Easy pick",
+      zhLabel: "简洁",
+      enLabel: "Simple",
       zhSubLabel: "",
       enSubLabel: "",
       zhRule: "语气最朴实、最自然，像顾客刚吃完或刚离店随手写下来的评价。",
@@ -1309,8 +1309,8 @@ if (isStoreVisitPathname(location.pathname)) {
     },
     {
       key: "review_b",
-      zhLabel: "精致一点",
-      enLabel: "Polished",
+      zhLabel: "详细",
+      enLabel: "Detailed",
       zhSubLabel: "",
       enSubLabel: "",
       zhRule: "语气更精致、更讲究一点，但还是像真人，不要像广告。",
@@ -1318,8 +1318,8 @@ if (isStoreVisitPathname(location.pathname)) {
     },
     {
       key: "review_c",
-      zhLabel: "让人记住",
-      enLabel: "Memorable",
+      zhLabel: "出彩",
+      enLabel: "Standout",
       zhSubLabel: "",
       enSubLabel: "",
       zhRule: "最有记忆点，允许略微夸张一点点，但仍然要像真实顾客，不要浮夸到像广告。",
@@ -1488,7 +1488,7 @@ if (isStoreVisitPathname(location.pathname)) {
       dishSearchPlaceholder: "选择要补加的菜品",
       addDishBtn: "补加菜品",
       resetBtn: "清空重来",
-      reviewsTitle: "点你喜欢的文字",
+      reviewsTitle: "选一条你喜欢的评价",
       reviewsHint: "挑一句顺手的，就能去 Google Maps 发出。",
       visitSheetTitle: "再加一点小信息",
       visitSheetHint: "选一个最像今天的情况，让评论更真实。",
@@ -1637,7 +1637,7 @@ if (isStoreVisitPathname(location.pathname)) {
       dishSearchPlaceholder: "Choose a dish to add",
       addDishBtn: "Add dish",
       resetBtn: "Clear all",
-      reviewsTitle: "Tap a line you like",
+      reviewsTitle: "Select a review you like",
       reviewsHint: "Pick one that feels right, and post it on Google Maps.",
       visitSheetTitle: "One quick detail",
       visitSheetHint: "Pick what fits today so the review feels more believable.",
@@ -10533,7 +10533,7 @@ function renderServicesContent() {
           "\n\n" +
           "硬性要求：\n" +
           "1. 必须输出 3 条评论，并严格使用这 3 个 style_key：review_a、review_b、review_c。\n" +
-          "2. review_a 对应卡片“随手好发”，review_b 对应“精致一点”，review_c 对应“让人记住”。\n" +
+          "2. review_a 对应卡片“简洁”，review_b 对应“详细”，review_c 对应“出彩”。\n" +
           "3. 本轮三条评论里，必须刚好一条只写菜品/饮品，刚好一条提staff/服务，刚好一条提环境；但哪张卡对应哪种焦点，以本轮上面的分配为准。\n" +
           "4. 不要把staff/服务和环境同时写进同一条。\n" +
           "5. 优先点出 1 到 2 个最有记忆点的菜品或饮品；遇到很长的菜单名时，用食客会顺口说的短叫法，不要把整串菜单名全塞进去。\n" +
@@ -10582,12 +10582,12 @@ function renderServicesContent() {
         "\n\n" +
         "Hard rules:\n" +
         "1. Output exactly 3 reviews and use these exact style_key values: review_a, review_b, review_c.\n" +
-        "2. review_a is the Easy pick card, review_b is the Polished card, and review_c is the Memorable card.\n" +
+        "2. review_a is the Simple card, review_b is the Detailed card, and review_c is the Standout card.\n" +
         "3. Across the three reviews, there must be exactly one results-only review, exactly one staff review, and exactly one atmosphere review, but the card-to-focus mapping must follow this round's assignment above.\n" +
         "4. Never mention staff/service and atmosphere in the same review.\n" +
         "5. Mention 1 or 2 memorable dishes or drinks at most. If a menu item name is long, shorten it the way a diner naturally would instead of pasting the full title.\n" +
         "6. Keep every review conversational, short, and easy to post. A little appealing is good, but it still has to feel personal rather than ad copy.\n" +
-        "7. Overall length must increase: review_a is the shortest, review_b is clearly longer than review_a, and review_c is the longest, but review_c (Memorable) must stay at 50 words or below—count full words. Follow each card's length target above and do not make all three feel the same length.\n" +
+        "7. Overall length must increase: review_a is the shortest, review_b is clearly longer than review_a, and review_c is the longest, but review_c (Standout) must stay at 50 words or below—count full words. Follow each card's length target above and do not make all three feel the same length.\n" +
         "8. Use light real-person filler only when it helps. Do not make all three follow the same sentence pattern.\n" +
         "9. No emoji, quotes, hashtags, or bullet points.\n" +
         "10. Do not reuse the same opening or closing across the three reviews.\n" +
