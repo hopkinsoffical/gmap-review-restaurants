@@ -10,6 +10,8 @@
     "playwright:install": ".venv/bin/playwright install chromium",
     "dev:vercel": "vercel dev",
     "seed:menu": "node scripts/seed-menu-snapshot.js",
+    "build:xiebao-flushing-menu": "node scripts/build-xiebao-flushing-menu.js",
+    "seed:xiebao-flushing-menu": "npm run build:xiebao-flushing-menu && STORE_SLUG=xiebao-flushing MENU_VERSION=1 MENU_FILE=./data/menus/xiebao-flushing-menu.json SOURCE_NOTE=\"Xiebao Flushing crab-roe menu\" node scripts/seed-menu-snapshot.js",
     "generate:qr": "node scripts/generate-qr.js",
     "generate:leaderboard-seed": "node scripts/generate-leaderboard-seed-sql.js",
     "ingest:leaderboard": "node scripts/ingest-salon-ai-leaderboard.js",
