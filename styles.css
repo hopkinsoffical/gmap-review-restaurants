@@ -12432,6 +12432,106 @@ html[data-theme="light"] header h1.store-visit-brand-name {
   line-height: 1;
 }
 
+/* Store route — primary Continue + Back nav */
+body.route-store .cta,
+html.store-theme-locked body.route-store .cta {
+  border-radius: var(--store-radius-pill, 999px);
+  border-color: transparent;
+  background: var(--store-btn, #c97a5a);
+  color: #faf8f6;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  font-weight: 700;
+}
+
+body.route-store .cta:hover:not(:disabled),
+html.store-theme-locked body.route-store .cta:hover:not(:disabled) {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--store-btn, #c97a5a) 86%, #ffffff);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
+}
+
+html.store-theme-locked body.route-store .store-flow-nav-back.ghost,
+html.store-theme-locked body.route-store .store-flow-nav-skip.ghost {
+  border: 1px solid var(--store-border);
+  background: rgba(42, 34, 28, 0.55);
+  color: var(--store-surface-ink);
+  box-shadow: none;
+}
+
+html.store-theme-locked body.route-store .store-flow-nav-back.ghost:hover:not(:disabled),
+html.store-theme-locked body.route-store .store-flow-nav-skip.ghost:hover:not(:disabled) {
+  border-color: rgba(232, 168, 124, 0.45);
+  background: rgba(201, 122, 90, 0.14);
+  color: var(--store-coral);
+}
+
+body.route-store .store-flow-nav-forward,
+body.route-store .loyalty-promo-continue-btn,
+body.route-store .store-private-feedback-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 11px 18px;
+}
+
+body.route-store .store-flow-nav-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 11px 16px;
+}
+
+body.route-store .store-flow-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+}
+
+body.route-store .store-flow-actions--triple {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+}
+
+body.route-store .store-flow-actions .store-flow-nav-btn {
+  width: auto !important;
+  flex: 0 0 auto !important;
+}
+
+body.route-store .store-flow-nav-forward {
+  margin-left: auto !important;
+}
+
+body.route-store .store-flow-actions--triple .store-flow-nav-forward {
+  margin-left: 0 !important;
+  grid-column: 3 !important;
+  justify-self: end !important;
+}
+
+body.route-store .store-flow-nav-back {
+  justify-self: start !important;
+}
+
+body.route-store .store-flow-nav-icon {
+  font-size: 1.12em;
+  line-height: 1;
+  font-weight: 700;
+  opacity: 0.95;
+}
+
+body.route-store .loyalty-promo-actions .loyalty-promo-continue-btn {
+  width: 100%;
+}
+
+body.route-store .store-private-feedback-dialog .store-private-feedback-continue-btn.cta {
+  width: 100%;
+}
+
 .review-write-own-btn {
   width: 100%;
   margin-top: 10px;
