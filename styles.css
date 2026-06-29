@@ -10438,9 +10438,11 @@ body.route-store .intake-card {
 
 body.route-store .hero {
   box-shadow: none;
-  margin-bottom: 10px;
-  padding: 12px 16px 10px;
-  border-radius: 12px;
+  margin-bottom: 8px;
+  padding: 10px 4px 6px;
+  border: none;
+  border-radius: var(--store-radius-md, 12px);
+  background: transparent;
   backdrop-filter: none;
 }
 
@@ -12013,6 +12015,51 @@ html.store-theme-locked body.route-store .dishes-card {
   padding: 24px 18px;
   backdrop-filter: none;
   color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store #pageHero.hero,
+html.store-theme-locked body.route-store .hero {
+  margin: 0;
+  padding: 8px 0 6px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+html.store-theme-locked body.route-store .lang-globe-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--store-border) !important;
+  background: rgba(42, 34, 28, 0.72) !important;
+  color: var(--store-surface-ink) !important;
+  opacity: 1;
+  box-shadow: none;
+}
+
+html.store-theme-locked body.route-store .lang-globe-btn:hover:not(:disabled) {
+  background: rgba(201, 122, 90, 0.16) !important;
+  border-color: rgba(201, 122, 90, 0.34) !important;
+}
+
+html.store-theme-locked body.route-store .lang-menu-popover {
+  border: 1px solid var(--store-border);
+  background: var(--store-surface-2);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
+}
+
+html.store-theme-locked body.route-store .lang-option-btn {
+  color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store .lang-option-btn:hover:not(:disabled) {
+  background: rgba(201, 122, 90, 0.14);
+}
+
+html.store-theme-locked body.route-store .lang-option-btn.is-active {
+  background: rgba(201, 122, 90, 0.22);
+  border-color: rgba(201, 122, 90, 0.32);
+  color: var(--store-coral);
 }
 
 html.store-theme-locked body.route-store .layout.single-stage {
