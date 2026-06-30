@@ -1828,7 +1828,9 @@ if (isStoreVisitPathname(location.pathname)) {
   };
 
   const STORE_LOGO_URLS = {
+    "xiebao-edison": "/assets/stores/xiebao-edison-logo.png",
     "xiebao-flushing": "/assets/stores/xiebao-flushing-logo.jpg",
+    "xiebao-manhattan": "/assets/stores/xiebao-manhattan-logo.png",
   };
 
   const STORE_PRIVATE_FEEDBACK_OPEN_GUARD_MS = 500;
