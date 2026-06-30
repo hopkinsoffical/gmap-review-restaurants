@@ -7863,9 +7863,7 @@ if (isStoreVisitPathname(location.pathname)) {
     );
   }
 
-  function getLandingHeroSectionHtml(options) {
-    var opts = options || {};
-    var leadAnchor = opts.leadAnchor || "landing-lead";
+  function getLandingHeroSectionHtml() {
     return (
       '<section class="landing-hero landing-reveal" aria-label="Hero">' +
       '<div class="landing-hero-grid">' +
@@ -7890,9 +7888,7 @@ if (isStoreVisitPathname(location.pathname)) {
       "</li>" +
       "</ul>" +
       '<div class="landing-hero-ctas">' +
-      '<a class="landing-cta-primary" href="#' +
-      escapeHtml(leadAnchor) +
-      '">' +
+      '<a class="landing-cta-primary" href="/analysis-reports">' +
       escapeHtml(MARKETING_COPY.landingCtaPrimary) +
       "</a>" +
       '<a class="landing-cta-secondary" href="#landing-ryan">' +
@@ -7948,25 +7944,6 @@ if (isStoreVisitPathname(location.pathname)) {
       '<div class="landing-stat-label">' +
       escapeHtml(MARKETING_COPY.landingStatTrafficLabel) +
       "</div></div>" +
-      "</div></section>"
-    );
-  }
-
-  function getLandingLeadSectionHtml(options) {
-    var opts = options || {};
-    var sectionId = opts.sectionId || "landing-lead";
-    return (
-      '<section id="' +
-      escapeHtml(sectionId) +
-      '" class="landing-lead landing-reveal" aria-label="Free report">' +
-      '<div class="landing-lead-card">' +
-      (opts.hideTitle
-        ? ""
-        : '<h2 class="landing-lead-title">' + escapeHtml(MARKETING_COPY.landingLeadTitle) + "</h2>") +
-      getHeroBriefFormHtml({
-        formId: opts.formId,
-        feedbackId: opts.feedbackId,
-      }) +
       "</div></section>"
     );
   }
@@ -8091,7 +8068,6 @@ if (isStoreVisitPathname(location.pathname)) {
       '<div class="rms-overview-desktop rms-desktop-only">' +
       getLandingHeroSectionHtml() +
       getLandingStatsSectionHtml() +
-      getLandingLeadSectionHtml() +
       getLandingTrustSectionHtml() +
       getLandingRyanSectionHtml(digitalHumanPoints) +
       getMarketingFooterHtml() +
@@ -8100,7 +8076,7 @@ if (isStoreVisitPathname(location.pathname)) {
       '<div class="rms-mobile-scroll" data-rms-mobile-scroll>' +
       '<section class="rms-mobile-panel rms-mobile-panel--hero" data-rms-panel="hero">' +
       '<div class="rms-mobile-panel-inner">' +
-      getLandingHeroSectionHtml({ leadAnchor: "landing-lead-mobile" }) +
+      getLandingHeroSectionHtml() +
       getRmsMobileScrollCueHtml("stats") +
       "</div></section>" +
       '<section class="rms-mobile-panel rms-mobile-panel--stats" data-rms-panel="stats">' +
@@ -8109,27 +8085,6 @@ if (isStoreVisitPathname(location.pathname)) {
       escapeHtml(MARKETING_UI.mobilePanelStory) +
       "</p>" +
       getLandingStatsSectionHtml() +
-      getRmsMobileScrollCueHtml("lead") +
-      "</div></section>" +
-      '<section class="rms-mobile-panel rms-mobile-panel--lead" data-rms-panel="lead">' +
-      '<div class="rms-mobile-panel-inner">' +
-      '<p class="rms-mobile-panel-lead-kicker">' +
-      escapeHtml(MARKETING_COPY.landingTrustFree) +
-      " · " +
-      escapeHtml(MARKETING_COPY.landingTrustFast) +
-      "</p>" +
-      '<h2 class="rms-mobile-panel-lead-title">' +
-      escapeHtml(MARKETING_UI.mobilePanelLeadTitle) +
-      "</h2>" +
-      '<p class="rms-mobile-panel-lead-sub">' +
-      escapeHtml(MARKETING_UI.mobilePanelLeadSub) +
-      "</p>" +
-      getLandingLeadSectionHtml({
-        sectionId: "landing-lead-mobile",
-        formId: "heroBriefFormMobile",
-        feedbackId: "heroBriefFeedbackMobile",
-        hideTitle: true,
-      }) +
       getRmsMobileScrollCueHtml("trust") +
       "</div></section>" +
       '<section class="rms-mobile-panel rms-mobile-panel--trust" data-rms-panel="trust">' +
@@ -8152,7 +8107,7 @@ if (isStoreVisitPathname(location.pathname)) {
       '<div class="rms-mobile-panel-inner">' +
       getMarketingFooterHtml() +
       "</div></section></div>" +
-      getRmsMobileDotsHtml(["hero", "stats", "lead", "trust", "digital", "footer"], "hero") +
+      getRmsMobileDotsHtml(["hero", "stats", "trust", "digital", "footer"], "hero") +
       "</div></div>"
     );
   }
