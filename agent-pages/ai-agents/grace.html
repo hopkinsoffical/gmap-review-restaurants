@@ -53,43 +53,6 @@
       color: #f5f5f1 !important;
     }
 
-    /* Static dropdown (no JS) — inline list of children under the label */
-    .agent-page .marketing-nav-dropdown-static {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .agent-page .marketing-nav-dropdown-static-label {
-      cursor: default;
-      opacity: 0.85;
-    }
-
-    .agent-page .marketing-nav-dropdown-static-menu {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-left: 12px;
-      padding-left: 14px;
-      border-left: 1px solid rgba(230, 0, 35, 0.18);
-    }
-
-    .agent-page .marketing-nav-dropdown-static-item {
-      color: #cbd5e1;
-      font-size: 0.85rem;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 4px 8px;
-      border-radius: 8px;
-      transition: background 0.12s ease, color 0.12s ease;
-    }
-
-    .agent-page .marketing-nav-dropdown-static-item:hover {
-      background: rgba(230, 0, 35, 0.16);
-      color: #f5f5f1;
-    }
-
     .agent-page .marketing-auth-link,
     .agent-page .marketing-lang-toggle {
       background: rgba(255, 255, 255, 0.04) !important;
@@ -312,9 +275,6 @@
       .agent-video {
         padding: 32px 20px;
       }
-      .agent-page .marketing-nav-dropdown-static-menu {
-        display: none;
-      }
     }
   </style>
 </head>
@@ -332,35 +292,30 @@
     </a>
 
     <nav class="marketing-nav" aria-label="Primary">
-      <a class="marketing-nav-link" href="/">
-        Overview
-      </a>      <a class="marketing-nav-link is-active" href="#">
-        AI Agent
-      </a>      <a class="marketing-nav-link" href="/analysis-reports">
-        Local Ranking
-      </a>      <a class="marketing-nav-link" href="#">
-        Tools
-      </a>      <a class="marketing-nav-link" href="/services.html">
-        Services
-      </a>
-      <div class="marketing-nav-dropdown-static">
-        <span class="marketing-nav-link marketing-nav-dropdown-static-label">AI Agent</span>
-        <div class="marketing-nav-dropdown-static-menu">
-          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/ryan">Ryan — AI Growth Advisor</a>
-          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/hannah">Hannah — AI Front Desk Manager</a>
-          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/andrew">Andrew — Customer Acquisition Manager</a>
-          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/sarah">Sarah — Reputation Manager</a>
-          <a class="marketing-nav-dropdown-static-item" href="/ai-agents/grace">Grace — Client Success Manager</a>
+      <a class="marketing-nav-link" href="/">Overview</a>
+      <div class="marketing-dropdown">
+        <button type="button" class="marketing-nav-link marketing-dropdown-toggle is-active" id="marketingNavAiBtn" aria-haspopup="true" aria-expanded="false">
+          AI Agent<span class="marketing-dropdown-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="marketing-dropdown-menu" id="marketingNavAiMenu" role="menu" hidden>
+          <a class="marketing-dropdown-item" href="/ai-agents/ryan" role="menuitem">Ryan — AI Growth Advisor</a>
+          <a class="marketing-dropdown-item" href="/ai-agents/hannah" role="menuitem">Hannah — AI Front Desk Manager</a>
+          <a class="marketing-dropdown-item" href="/ai-agents/andrew" role="menuitem">Andrew — Customer Acquisition Manager</a>
+          <a class="marketing-dropdown-item" href="/ai-agents/sarah" role="menuitem">Sarah — Reputation Manager</a>
+          <a class="marketing-dropdown-item" href="/ai-agents/grace" role="menuitem">Grace — Client Success Manager</a>
         </div>
       </div>
-
-      <div class="marketing-nav-dropdown-static">
-        <span class="marketing-nav-link marketing-nav-dropdown-static-label">Tools</span>
-        <div class="marketing-nav-dropdown-static-menu">
-          <a class="marketing-nav-dropdown-static-item" href="/ai-review-generator.html">AI Review Booster Tool</a>
-          <a class="marketing-nav-dropdown-static-item" href="/leaderboard">Leaderboard</a>
+      <a class="marketing-nav-link" href="/analysis-reports">Local Ranking</a>
+      <div class="marketing-dropdown">
+        <button type="button" class="marketing-nav-link marketing-dropdown-toggle" id="marketingNavToolsBtn" aria-haspopup="true" aria-expanded="false">
+          Tools<span class="marketing-dropdown-caret" aria-hidden="true">▾</span>
+        </button>
+        <div class="marketing-dropdown-menu" id="marketingNavToolsMenu" role="menu" hidden>
+          <a class="marketing-dropdown-item" href="/ai-review-generator.html" role="menuitem">AI Review Booster Tool</a>
+          <a class="marketing-dropdown-item" href="/leaderboard" role="menuitem">Leaderboard</a>
         </div>
       </div>
+      <a class="marketing-nav-link" href="/services.html">Services</a>
     </nav>
 
   </div>

@@ -1475,6 +1475,27 @@ h1 {
   color: var(--gold-strong, #b3001b);
 }
 
+/* Agent pages — dark nav dropdowns */
+.agent-page .marketing-dropdown-menu {
+  background: linear-gradient(180deg, #0f1828 0%, #1a2438 100%);
+  border: 1px solid rgba(230, 0, 35, 0.22);
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.5);
+}
+
+.agent-page .marketing-dropdown-item {
+  color: #cbd5e1;
+}
+
+.agent-page .marketing-dropdown-item:hover,
+.agent-page .marketing-dropdown-item:focus-visible {
+  background: rgba(230, 0, 35, 0.16);
+  color: #f5f5f1;
+}
+
+.agent-page .marketing-dropdown-toggle.is-active {
+  color: #f5f5f1 !important;
+}
+
 .marketing-hero-section,
 .marketing-digital-human,
 .marketing-insights,
