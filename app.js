@@ -11228,6 +11228,9 @@ function renderServicesContent() {
       if (el.loyaltyPromoIntro) el.loyaltyPromoIntro.textContent = loyaltyC.intro;
       if (el.loyaltyPromoPhone) el.loyaltyPromoPhone.placeholder = loyaltyC.phonePlaceholder;
       syncLoyaltyPromoConsent();
+      if (el.loyaltyPromoResult && !el.loyaltyPromoResult.classList.contains("hidden") && el.loyaltyPromoCodeText) {
+        el.loyaltyPromoCodeText.textContent = loyaltyC.sentSuccess;
+      }
     }
     setNodeText(el.visitSheetTitle, t("visitSheetTitle"));
     setNodeText(el.visitSheetHint, t("visitSheetHint"));
@@ -12153,7 +12156,7 @@ function renderServicesContent() {
       invalidPhone: "Enter a mobile number with at least 7 digits.",
       needConsent: "Please check the box so we can text your code.",
       failed: "Could not save right now — you can still continue to Google.",
-      codePrefix: "Your next-visit promo code:",
+      sentSuccess: "We texted your promo code — check your messages.",
       continueGoogle: "Continue to Google review",
     },
     zh: {
@@ -12163,7 +12166,7 @@ function renderServicesContent() {
       invalidPhone: "请输入至少 7 位的手机号。",
       needConsent: "请勾选同意，我们才能把优惠码发给你。",
       failed: "暂时无法保存 — 你仍可继续前往 Google。",
-      codePrefix: "你的下次到店优惠码：",
+      sentSuccess: "优惠码已发短信，请查收。",
       continueGoogle: "继续前往 Google 评价",
     },
   };
@@ -12259,9 +12262,8 @@ function renderServicesContent() {
         }),
       });
       state.loyaltyPromoDone = true;
-      var code = (data && data.promoCode) || "";
       if (el.loyaltyPromoForm) el.loyaltyPromoForm.classList.add("hidden");
-      if (el.loyaltyPromoCodeText) el.loyaltyPromoCodeText.textContent = c.codePrefix + " " + code;
+      if (el.loyaltyPromoCodeText) el.loyaltyPromoCodeText.textContent = c.sentSuccess;
       if (el.loyaltyPromoContinueBtn) el.loyaltyPromoContinueBtn.textContent = c.continueGoogle;
       if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.remove("hidden");
       setStatus(el.loyaltyPromoStatus, "", "", "");

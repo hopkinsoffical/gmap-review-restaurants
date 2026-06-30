@@ -11,6 +11,9 @@ const crypto = require("crypto");
 const { getSupabaseAdmin } = require("../lib/server/supabase");
 const { createAppError } = require("../lib/server/shared");
 const { handleApiError, methodNotAllowed, readJsonBody, sendJson } = require("../lib/server/http");
+const { normalizePhoneE164 } = require("../lib/server/sms-pipeline");
+const { sendCampaignSms } = require("../lib/server/twilio-sms");
+const { getActiveStoreBySlug } = require("../lib/server/store-repo");
 
 const LIMITS = { phone: 64, storeSlug: 200, placeId: 256 };
 
@@ -179,6 +182,71 @@ async function saveLoyaltySignupToSupabase(payload) {
   return { promoCode: code, visitStatus: "new", status: 201 };
 }
 
+function buildPromoSmsBody(promoCode, storeName, lang) {
+  const code = String(promoCode || "").trim();
+  const name = String(storeName || "").trim();
+  if (lang === "zh") {
+    return name
+      ? name + "：您的下次到店优惠码是 " + code + "。到店结账时出示即可。回复 STOP 退订。"
+      : "您的下次到店优惠码是 " + code + "。到店结账时出示即可。回复 STOP 退订。";
+  }
+  return name
+    ? name + ": Your next-visit promo code is " + code + ". Show this text at checkout. Reply STOP to opt out."
+    : "Your next-visit promo code is " + code + ". Show this text at checkout. Reply STOP to opt out.";
+}
+
+async function resolveStoreDisplayName(storeSlug, lang) {
+  try {
+    const store = await getActiveStoreBySlug(storeSlug);
+    if (!store) return "";
+    if (lang === "zh") return String(store.nameZh || store.nameEn || "").trim();
+    return String(store.nameEn || store.nameZh || "").trim();
+  } catch (err) {
+    console.warn("[loyalty-signup] store name lookup skipped:", err && err.message ? err.message : err);
+    return "";
+  }
+}
+
+async function textPromoCode(payload) {
+  const to = normalizePhoneE164(payload.phone);
+  if (!to) {
+    throw createAppError(
+      "INVALID_INPUT",
+      "Enter a valid mobile number so we can text your promo code.",
+      400,
+    );
+  }
+
+  const storeName = await resolveStoreDisplayName(payload.storeSlug, payload.lang);
+  try {
+    await sendCampaignSms({
+      to: to,
+      body: buildPromoSmsBody(payload.promoCode, storeName, payload.lang),
+    });
+  } catch (err) {
+    console.error("[loyalty-signup] promo SMS failed:", err);
+    throw createAppError(
+      "LOYALTY_SMS_FAILED",
+      "Could not send your promo code by text. Please try again.",
+      502,
+    );
+  }
+}
+
+async function completeLoyaltySignup(res, payload, result) {
+  await textPromoCode({
+    phone: payload.phone,
+    storeSlug: payload.storeSlug,
+    lang: payload.lang,
+    promoCode: result.promoCode,
+  });
+  return sendJson(res, result.status, {
+    ok: true,
+    visitStatus: result.visitStatus,
+    smsSent: true,
+  });
+}
+
 async function saveLoyaltySignupToVforce(payload) {
   const base = String(process.env.VFORCE_PUBLIC_URL || "https://52.207.187.219")
     .trim()
@@ -269,18 +337,10 @@ module.exports = async function handler(req, res) {
         upstreamMessage(vforceResult.data) || vforceResult.upstream.status,
       );
       const saved = await saveLoyaltySignupToSupabase(payload);
-      return sendJson(res, saved.status, {
-        ok: true,
-        promoCode: saved.promoCode,
-        visitStatus: saved.visitStatus,
-      });
+      return completeLoyaltySignup(res, payload, saved);
     }
 
-    return sendJson(res, vforceResult.status, {
-      ok: true,
-      promoCode: vforceResult.promoCode,
-      visitStatus: vforceResult.visitStatus,
-    });
+    return completeLoyaltySignup(res, payload, vforceResult);
   } catch (error) {
     return handleApiError(res, error);
   }
