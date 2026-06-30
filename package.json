@@ -46,7 +46,9 @@
     "recompute:leaderboard": "node scripts/recompute-leaderboard-scores.js",
     "recompute:leaderboard:dry": "node scripts/recompute-leaderboard-scores.js --dry-run",
     "twilio:lookup": "node scripts/twilio-lookup-line-type.js",
-    "test:landing": "node scripts/test-landing-page.js"
+    "test:landing": "node scripts/test-landing-page.js",
+    "test:store-review": "node scripts/test-store-review-flow.js",
+    "test:stores": "npm run test:store-review"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.50.0",

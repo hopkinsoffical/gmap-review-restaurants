@@ -1886,6 +1886,14 @@ if (isStoreVisitPathname(location.pathname)) {
     "xiebao-manhattan": "/assets/stores/xiebao-manhattan-logo.png",
   };
 
+  const STORE_GOOGLE_REVIEW_URLS = {
+    "xiebao-manhattan": {
+      googleReviewUrl:
+        "https://www.google.com/maps/place/Xie+Bao+%E8%9F%B9%E5%AE%9D/@40.7606451,-73.9933645,747m/data=!3m1!1e3!4m8!3m7!1s0x89c25900533f308d:0x955c81afe0a5c325!8m2!3d40.7606411!4d-73.9907896!9m1!1b1!16s%2Fg%2F11wy40txdp?entry=ttu&g_ep=EgoyMDI2MDYyOC4wIKXMDSoASAFQAw%3D%3D",
+      googlePlaceId: "0x89c25900533f308d:0x955c81afe0a5c325",
+    },
+  };
+
   const STORE_PRIVATE_FEEDBACK_OPEN_GUARD_MS = 500;
 
   const HISTORY_STORAGE_KEY = "gmap-faster-review-history-v1";
@@ -2737,6 +2745,11 @@ if (isStoreVisitPathname(location.pathname)) {
     const label = slugToStorePlaceholderLabel(slug);
     config.restaurantNameZh = label;
     config.restaurantNameEn = label;
+    const storeGoogleFallback = STORE_GOOGLE_REVIEW_URLS[String(slug || "").trim()];
+    if (storeGoogleFallback && storeGoogleFallback.googleReviewUrl) {
+      config.googleReviewUrl = storeGoogleFallback.googleReviewUrl;
+      config.googleReviewFallbackUrl = storeGoogleFallback.googleReviewUrl;
+    }
   }
 
   function resolveBootstrapFailureCopy(failure) {
@@ -10047,9 +10060,27 @@ function renderServicesContent() {
       state.storeReviewCount = grc != null && Number.isFinite(Number(grc)) ? Number(grc) : null;
       var gr = data.store.googleRating;
       state.storeGoogleRating = gr != null && Number.isFinite(Number(gr)) ? Number(gr) : null;
+      state.store = data.store;
     } else {
       state.storeReviewCount = null;
       state.storeGoogleRating = null;
+      state.store = null;
+    }
+
+    var storeGoogleFallback = STORE_GOOGLE_REVIEW_URLS[slug];
+    if (storeGoogleFallback) {
+      if (!String(config.googleReviewUrl || "").trim()) {
+        config.googleReviewUrl = storeGoogleFallback.googleReviewUrl;
+      }
+      if (!String(config.googleReviewFallbackUrl || "").trim()) {
+        config.googleReviewFallbackUrl = storeGoogleFallback.googleReviewUrl;
+      }
+      if (state.store && storeGoogleFallback.googlePlaceId) {
+        if (!String(state.store.placeId || state.store.googlePlaceId || "").trim()) {
+          state.store.googlePlaceId = storeGoogleFallback.googlePlaceId;
+          state.store.placeId = storeGoogleFallback.googlePlaceId;
+        }
+      }
     }
     state.serviceSpotlight = data && data.serviceSpotlight && data.serviceSpotlight.name ? data.serviceSpotlight : null;
   }
@@ -10078,8 +10109,11 @@ function renderServicesContent() {
     return window.matchMedia("(max-width: 640px)").matches;
   }
 
-  function scrollCardIntoView(target, topOffset) {
-    if (!target || !isCompactMobile()) return;
+  function scrollCardIntoView(target, topOffset, maxWidth) {
+    if (!target) return;
+
+    const breakpoint = Number.isFinite(Number(maxWidth)) ? Number(maxWidth) : 640;
+    if (!window.matchMedia("(max-width: " + breakpoint + "px)").matches) return;
 
     const offset = Number.isFinite(Number(topOffset)) ? Number(topOffset) : 12;
     window.requestAnimationFrame(function () {
@@ -10091,6 +10125,19 @@ function renderServicesContent() {
         });
       });
     });
+  }
+
+  function syncStoreReviewStageChrome() {
+    if (!isStoreRoute()) {
+      document.body.classList.remove("store-reviews-stage", "store-review-selected", "store-loyalty-open");
+      return;
+    }
+
+    const reviewsStage = state.storeReviewFlowStage === "reviews";
+    const loyaltyOpen = !!(el.loyaltyPromoPanel && !el.loyaltyPromoPanel.classList.contains("hidden"));
+    document.body.classList.toggle("store-reviews-stage", reviewsStage);
+    document.body.classList.toggle("store-review-selected", reviewsStage && !!state.selectedReviewStyleKey);
+    document.body.classList.toggle("store-loyalty-open", loyaltyOpen);
   }
 
   function syncAnotherSetBtn() {
@@ -10124,6 +10171,7 @@ function renderServicesContent() {
       );
     }
     el.visitSheetBackdrop.classList.toggle("is-open", state.isVisitSheetOpen);
+    syncStoreReviewStageChrome();
   }
 
   function syncBusyControls() {
@@ -12051,6 +12099,7 @@ function renderServicesContent() {
     if (el.loyaltyPromoForm) el.loyaltyPromoForm.classList.remove("hidden");
     if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.add("hidden");
     setStatus(el.loyaltyPromoStatus, "", "", "");
+    syncStoreReviewStageChrome();
   }
 
   function clearSelectedReview() {
@@ -12082,13 +12131,14 @@ function renderServicesContent() {
     state.pendingReviewUrl = targetUrl;
     state.hasAttemptedReviewOpen = true;
     renderReviews();
-    void copySelectedReviewText(review.text, fallbackUrl);
 
     if (el.loyaltyPromoPanel && !state.loyaltyPromoDone) {
       revealLoyaltyPromo();
+      void copySelectedReviewText(review.text, fallbackUrl);
       return;
     }
 
+    void copySelectedReviewText(review.text, fallbackUrl);
     updateManualOpenLink(targetUrl, true);
   }
 
@@ -12573,12 +12623,9 @@ function renderServicesContent() {
     if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.add("hidden");
     setStatus(el.loyaltyPromoStatus, "", "", "");
     el.loyaltyPromoPanel.classList.remove("hidden");
+    syncStoreReviewStageChrome();
     updateManualOpenLink(state.pendingReviewUrl, true);
-    try {
-      el.loyaltyPromoPanel.scrollIntoView({ behavior: "smooth", block: "center" });
-    } catch (e) {
-      /* ignore */
-    }
+    scrollCardIntoView(el.loyaltyPromoPanel, 16, 980);
   }
 
   async function submitLoyaltyPromo() {

@@ -4956,6 +4956,21 @@ textarea.portal-input {
     align-items: flex-start;
   }
 
+  .review-card-radio {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+  }
+
+  .review-card-select {
+    flex: 0 0 auto;
+    align-self: flex-start;
+  }
+
   .review-card {
     padding: 12px;
   }
@@ -13355,7 +13370,48 @@ html.store-theme-locked body.route-store .loyalty-promo-panel {
   }
 }
 
+@media (max-width: 980px) {
+  body.route-store.store-reviews-stage .layout {
+    grid-template-areas:
+      "reviews"
+      "intake"
+      "dishes";
+  }
+
+  body.route-store.store-review-selected #intakeCard,
+  body.route-store.store-loyalty-open #intakeCard {
+    display: none;
+  }
+
+  body.route-store.store-loyalty-open .reviews-card,
+  body.route-store.store-review-selected .reviews-card {
+    overflow: visible;
+  }
+
+  body.route-store .loyalty-promo-panel:not(.hidden) {
+    display: block;
+    scroll-margin-top: 16px;
+  }
+}
+
 @media (max-width: 640px) {
+  body.route-store .review-card-head {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  html.store-theme-locked body.route-store .review-card-radio {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+
   html.store-theme-locked body.route-store .layout.single-stage {
     padding-top: 8px;
   }
