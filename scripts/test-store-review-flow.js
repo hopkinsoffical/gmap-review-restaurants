@@ -73,6 +73,7 @@ function main() {
   assertMatch("native review radio input rendered", appJs, /review-card-radio-input/);
   assertMatch("store reviews-only layout class", stylesCss, /layout\.store-reviews-only/);
   assertMatch("review card row layout styles", stylesCss, /\.review-card-row/);
+  assertMatch("mobile form rule excludes review radio", stylesCss, /input:not\(\.review-card-radio-input\)/);
 
   assertNoMatch(
     "no per-store slug branching in review selection flow",

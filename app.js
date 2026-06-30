@@ -12096,7 +12096,7 @@ function renderServicesContent() {
       const row = document.createElement("div");
       row.className = "review-card-row";
 
-      const selectWrap = document.createElement("label");
+      const selectWrap = document.createElement("div");
       selectWrap.className = "review-card-select";
 
       const radioInput = document.createElement("input");

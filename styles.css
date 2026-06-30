@@ -1137,16 +1137,17 @@ h1 {
 }
 
 .review-card-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: start;
   width: 100%;
 }
 
 .review-card-content {
-  flex: 1 1 auto;
+  grid-column: 2;
   min-width: 0;
+  width: auto;
 }
 
 .review-card-head {
@@ -1155,24 +1156,30 @@ h1 {
 }
 
 .review-card-select {
-  flex: 0 0 30px;
-  width: 30px;
-  min-width: 30px;
+  grid-column: 1;
+  width: 30px !important;
+  max-width: 30px !important;
+  min-width: 30px !important;
   min-height: 30px;
   padding: 4px 0 0;
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: flex-start;
   justify-content: center;
   cursor: pointer;
-  align-self: flex-start;
+  justify-self: start;
+  flex: none;
+  overflow: hidden;
 }
 
 .review-card-radio-input {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
+  width: 30px !important;
+  max-width: 30px !important;
+  min-width: 30px !important;
+  height: 30px !important;
   margin: 0;
   opacity: 0;
   cursor: pointer;
@@ -5010,37 +5017,19 @@ textarea.portal-input {
   }
 
   .review-card-row {
-    gap: 10px;
+    grid-template-columns: 30px minmax(0, 1fr);
+    column-gap: 10px;
   }
 
   .review-card-select {
-    flex: 0 0 30px;
-    width: 30px;
-    min-width: 30px;
+    width: 30px !important;
+    max-width: 30px !important;
+    min-width: 30px !important;
     min-height: 30px;
     padding-top: 2px;
     align-items: center;
     justify-content: center;
-  }
-
-  .review-card-radio {
-    flex: 0 0 22px;
-    width: 22px;
-    height: 22px;
-    min-width: 22px;
-    min-height: 22px;
-    aspect-ratio: 1;
-    box-sizing: border-box;
-  }
-
-  .review-card-select {
-    flex: 0 0 auto;
-    align-self: flex-start;
-    min-width: 30px;
-    min-height: 30px;
-    padding-top: 0;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
   }
 
   .review-card {
@@ -11749,7 +11738,7 @@ html[data-theme="light"] body .marketing-lang-option {
     max-width: 100% !important;
   }
 
-  input,
+  input:not(.review-card-radio-input),
   textarea,
   select {
     width: 100% !important;
@@ -13386,11 +13375,32 @@ html.store-theme-locked body.route-store .review-card h3 {
   color: var(--store-coral) !important;
 }
 
+html.store-theme-locked body.route-store .review-card-radio-input {
+  width: 30px !important;
+  max-width: 30px !important;
+  min-width: 30px !important;
+  height: 30px !important;
+}
+
+html.store-theme-locked body.route-store .review-card-select {
+  width: 30px !important;
+  max-width: 30px !important;
+  min-width: 30px !important;
+  overflow: hidden;
+}
+
+html.store-theme-locked body.route-store .review-card-content {
+  min-width: 0;
+  width: auto;
+  color: var(--store-surface-ink);
+}
+
 html.store-theme-locked body.route-store .review-body,
 html.store-theme-locked body.route-store .review-card .review-body {
   border: 1px solid var(--store-border) !important;
   border-radius: 14px !important;
   background: rgba(15, 17, 21, 0.72) !important;
+  color: var(--store-surface-ink) !important;
 }
 
 html.store-theme-locked body.route-store .reviews-card .section-head h2 {
@@ -13490,16 +13500,14 @@ body.route-store.store-reviews-stage .reviews-card {
 }
 
 body.route-store.store-reviews-stage .review-card-row {
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 10px;
+  grid-template-columns: 30px minmax(0, 1fr);
+  column-gap: 10px;
 }
 
 @media (max-width: 640px) {
   body.route-store .review-card-row {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 10px;
+    grid-template-columns: 30px minmax(0, 1fr);
+    column-gap: 10px;
   }
 
   html.store-theme-locked body.route-store .review-card-radio {
