@@ -12273,7 +12273,7 @@ function renderServicesContent() {
   }
 
   function goToPendingReview() {
-    var url = state.pendingReviewUrl;
+    var url = String(state.pendingReviewUrl || getFallbackReviewUrl() || "").trim();
     if (url) window.location.href = url;
   }
 
@@ -12333,12 +12333,17 @@ function renderServicesContent() {
     var phone = String(el.loyaltyPromoPhone.value || "").trim();
     var digits = phone.replace(/\D/g, "");
     var consent = !!(el.loyaltyPromoConsent && el.loyaltyPromoConsent.checked);
-    if (digits.length < 7) {
-      setStatus(el.loyaltyPromoStatus, c.invalidPhone, "error");
-      return;
-    }
     if (!consent) {
       setStatus(el.loyaltyPromoStatus, c.needConsent, "error");
+      return;
+    }
+    if (digits.length === 0) {
+      state.loyaltyPromoDone = true;
+      goToPendingReview();
+      return;
+    }
+    if (digits.length < 7) {
+      setStatus(el.loyaltyPromoStatus, c.invalidPhone, "error");
       return;
     }
     syncLoyaltyPromoSubmitBtn(true);
