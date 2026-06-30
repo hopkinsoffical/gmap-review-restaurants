@@ -10927,10 +10927,18 @@ body.store-visit-ready.body.has-results .receipt-preview:not(.empty) img {
 }
 
 /* Private feedback modal (store page) */
+.store-private-feedback-backdrop[hidden] {
+  display: none !important;
+}
+
+body.store-private-feedback-open {
+  overflow: hidden;
+}
+
 .store-private-feedback-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 46;
+  z-index: 120;
   display: grid;
   place-items: center;
   padding: 24px 16px;
@@ -12063,6 +12071,10 @@ html[data-theme="light"] body .marketing-lang-option {
   color: var(--store-surface-ink, #fff);
 }
 
+.loyalty-promo-sent.loyalty-promo-sent--error {
+  color: var(--store-coral-soft, #e79a6c);
+}
+
 /* ── Full report (/analysis-reports/:slug/full) desktop centering ─────────── */
 @media (min-width: 769px) {
   body.route-marketing.route-analysis-full #appShell.app.landing-mode {
@@ -12135,6 +12147,8 @@ html.store-theme-locked body.route-store {
   --store-surface: #0f1115;
   --store-surface-2: #171a20;
   --store-surface-ink: #ffffff;
+  --store-field-ink: #2d2926;
+  --store-field-placeholder: rgba(45, 41, 38, 0.45);
   --store-muted: #b7bdc7;
   --store-border: rgba(255, 255, 255, 0.08);
   --store-coral: #e79a6c;
@@ -12688,8 +12702,15 @@ body.route-store .store-private-feedback-dialog.is-callback-mode .store-private-
 
 body.route-store .store-private-feedback-dialog.is-callback-mode .store-private-feedback-form input.text-input::placeholder,
 body.route-store .store-private-feedback-dialog.is-callback-mode .store-private-feedback-form .store-private-feedback-textarea::placeholder {
-  color: rgba(45, 41, 38, 0.45) !important;
+  color: var(--store-field-placeholder, rgba(45, 41, 38, 0.45)) !important;
   opacity: 1 !important;
+  -webkit-text-fill-color: var(--store-field-placeholder, rgba(45, 41, 38, 0.45)) !important;
+}
+
+body.route-store .loyalty-promo-phone-input::placeholder {
+  color: var(--store-field-placeholder, rgba(45, 41, 38, 0.45)) !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: var(--store-field-placeholder, rgba(45, 41, 38, 0.45)) !important;
 }
 
 body.route-store .loyalty-promo-phone-input {
@@ -12704,7 +12725,9 @@ body.route-store .loyalty-promo-phone-input {
   border-radius: 10px !important;
   border: 1px solid rgba(45, 41, 38, 0.14) !important;
   background: #fff !important;
-  color: var(--store-surface-ink, #2d2926) !important;
+  color: var(--store-field-ink, #2d2926) !important;
+  -webkit-text-fill-color: var(--store-field-ink, #2d2926) !important;
+  caret-color: var(--store-field-ink, #2d2926) !important;
 }
 
 body.route-store .store-private-feedback-dialog .store-private-feedback-form .text-input {
@@ -12717,13 +12740,18 @@ body.route-store .store-private-feedback-dialog .store-private-feedback-form .te
   border-radius: 10px !important;
   border: 1px solid rgba(45, 41, 38, 0.14) !important;
   background: #fff !important;
-  color: var(--store-surface-ink, #2d2926) !important;
+  color: var(--store-field-ink, #2d2926) !important;
+  -webkit-text-fill-color: var(--store-field-ink, #2d2926) !important;
+  caret-color: var(--store-field-ink, #2d2926) !important;
 }
 
 body.route-store .store-private-feedback-dialog .store-private-feedback-textarea {
   min-height: 64px !important;
   max-height: min(20dvh, 96px) !important;
   height: auto !important;
+  color: var(--store-field-ink, #2d2926) !important;
+  -webkit-text-fill-color: var(--store-field-ink, #2d2926) !important;
+  caret-color: var(--store-field-ink, #2d2926) !important;
 }
 
 body.route-store .store-private-feedback-dialog .store-private-feedback-actions {
@@ -12858,6 +12886,32 @@ html.store-theme-locked body.route-store .focus-pill {
 }
 
 /* ── Store review page — premium UX layer ─────────────────────────────────── */
+
+html.store-theme-locked body.route-store .store-private-feedback-backdrop.is-open {
+  background: rgba(8, 10, 14, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+html.store-theme-locked body.route-store .store-private-feedback-dialog {
+  background: rgba(23, 26, 32, 0.98);
+  border: 1px solid var(--store-border);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store .store-private-feedback-title {
+  color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store .store-private-feedback-intro {
+  color: var(--store-coral-soft);
+}
+
+html.store-theme-locked body.route-store .store-private-feedback-close {
+  background: rgba(42, 34, 28, 0.72);
+  border-color: var(--store-border);
+  color: var(--store-surface-ink);
+}
 
 html.store-theme-locked body.route-store .store-visit-shell {
   gap: 32px;

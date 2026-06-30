@@ -1810,6 +1810,8 @@ if (isStoreVisitPathname(location.pathname)) {
     "xiebao-flushing": "/assets/stores/xiebao-flushing-logo.jpg",
   };
 
+  const STORE_PRIVATE_FEEDBACK_OPEN_GUARD_MS = 500;
+
   const HISTORY_STORAGE_KEY = "gmap-faster-review-history-v1";
   const RECEIPT_SCHEMA_NAME = "receipt_detection";
   const IMAGE_ANALYSIS_SCHEMA_NAME = "upload_image_analysis";
@@ -1920,6 +1922,7 @@ if (isStoreVisitPathname(location.pathname)) {
     storeStaffSearch: "",
     storePrivateFeedbackMode: "private",
     storePrivateFeedbackModalBound: false,
+    storePrivateFeedbackOpenedAt: 0,
     storeVisitChromeBound: false,
   };
 
@@ -9429,7 +9432,9 @@ function renderServicesContent() {
 
     state.storeReviewSatisfaction = "no";
     setNodeText(el.storeVisitMood, t("storeCallbackIntro"));
-    openStorePrivateFeedbackModal("callback");
+    window.setTimeout(function () {
+      openStorePrivateFeedbackModal("callback");
+    }, 0);
     trackEvent("store_flow_no_clicked", analyticsParams({ rating: n }));
   }
 
@@ -9622,19 +9627,19 @@ function renderServicesContent() {
   function openStorePrivateFeedbackModal(mode) {
     if (!el.storePrivateFeedbackBackdrop || !isStoreRoute() || state.storeBootstrapFailure || state.storeBootstrapPending) return;
     state.storePrivateFeedbackMode = mode === "callback" ? "callback" : "private";
+    state.storePrivateFeedbackOpenedAt = Date.now();
     resetStorePrivateFeedbackPanels();
     syncStorePrivateFeedbackModalCopy();
     el.storePrivateFeedbackBackdrop.removeAttribute("hidden");
     el.storePrivateFeedbackBackdrop.setAttribute("aria-hidden", "false");
     document.body.classList.add("store-private-feedback-open");
-    window.requestAnimationFrame(function () {
-      if (el.storePrivateFeedbackBackdrop) {
-        el.storePrivateFeedbackBackdrop.classList.add("is-open");
-      }
+    window.setTimeout(function () {
+      if (!el.storePrivateFeedbackBackdrop || el.storePrivateFeedbackBackdrop.hasAttribute("hidden")) return;
+      el.storePrivateFeedbackBackdrop.classList.add("is-open");
       if (state.storePrivateFeedbackMode === "callback" && el.storePrivateInputName) {
         el.storePrivateInputName.focus();
       }
-    });
+    }, 20);
   }
 
   function closeStorePrivateFeedbackModal() {
@@ -9775,9 +9780,9 @@ function renderServicesContent() {
     }
     if (el.storePrivateFeedbackBackdrop) {
       el.storePrivateFeedbackBackdrop.addEventListener("click", function (e) {
-        if (e.target === el.storePrivateFeedbackBackdrop) {
-          closeFlow();
-        }
+        if (e.target !== el.storePrivateFeedbackBackdrop) return;
+        if (Date.now() - state.storePrivateFeedbackOpenedAt < STORE_PRIVATE_FEEDBACK_OPEN_GUARD_MS) return;
+        closeFlow();
       });
     }
     document.addEventListener("keydown", function storePrivateModalEsc(ev) {
@@ -11263,7 +11268,16 @@ function renderServicesContent() {
       if (el.loyaltyPromoPhone) el.loyaltyPromoPhone.placeholder = loyaltyC.phonePlaceholder;
       syncLoyaltyPromoConsent();
       if (el.loyaltyPromoResult && !el.loyaltyPromoResult.classList.contains("hidden") && el.loyaltyPromoCodeText) {
-        el.loyaltyPromoCodeText.textContent = loyaltyC.sentSuccess;
+        el.loyaltyPromoCodeText.textContent = el.loyaltyPromoCodeText.classList.contains("loyalty-promo-sent--error")
+          ? loyaltyC.failed
+          : loyaltyC.sentSuccess;
+      }
+      if (
+        el.loyaltyPromoContinueBtn &&
+        el.loyaltyPromoResult &&
+        !el.loyaltyPromoResult.classList.contains("hidden")
+      ) {
+        el.loyaltyPromoContinueBtn.textContent = loyaltyC.continueGoogle;
       }
     }
     setNodeText(el.visitSheetTitle, t("visitSheetTitle"));
@@ -12245,6 +12259,20 @@ function renderServicesContent() {
       '</span><span class="store-flow-nav-icon" aria-hidden="true">→</span>';
   }
 
+  function showLoyaltyPromoContinueState(message, options) {
+    var opts = options || {};
+    var c = loyaltyCopy();
+    if (el.loyaltyPromoForm) el.loyaltyPromoForm.classList.add("hidden");
+    if (el.loyaltyPromoCodeText) {
+      el.loyaltyPromoCodeText.textContent = message;
+      el.loyaltyPromoCodeText.classList.toggle("loyalty-promo-sent--error", !!opts.isError);
+    }
+    if (el.loyaltyPromoContinueBtn) el.loyaltyPromoContinueBtn.textContent = c.continueGoogle;
+    if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.remove("hidden");
+    setStatus(el.loyaltyPromoStatus, "", "", "");
+    updateManualOpenLink(state.pendingReviewUrl, true);
+  }
+
   function revealLoyaltyPromo() {
     if (!el.loyaltyPromoPanel) {
       goToPendingReview();
@@ -12260,6 +12288,7 @@ function renderServicesContent() {
     if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.add("hidden");
     setStatus(el.loyaltyPromoStatus, "", "", "");
     el.loyaltyPromoPanel.classList.remove("hidden");
+    updateManualOpenLink(state.pendingReviewUrl, true);
     try {
       el.loyaltyPromoPanel.scrollIntoView({ behavior: "smooth", block: "center" });
     } catch (e) {
@@ -12296,13 +12325,9 @@ function renderServicesContent() {
         }),
       });
       state.loyaltyPromoDone = true;
-      if (el.loyaltyPromoForm) el.loyaltyPromoForm.classList.add("hidden");
-      if (el.loyaltyPromoCodeText) el.loyaltyPromoCodeText.textContent = c.sentSuccess;
-      if (el.loyaltyPromoContinueBtn) el.loyaltyPromoContinueBtn.textContent = c.continueGoogle;
-      if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.remove("hidden");
-      setStatus(el.loyaltyPromoStatus, "", "", "");
+      showLoyaltyPromoContinueState(c.sentSuccess);
     } catch (err) {
-      setStatus(el.loyaltyPromoStatus, c.failed, "error");
+      showLoyaltyPromoContinueState(c.failed, { isError: true });
     } finally {
       syncLoyaltyPromoSubmitBtn(false);
     }
@@ -12434,6 +12459,7 @@ function renderServicesContent() {
     if (el.loyaltyPromoContinueBtn) {
       el.loyaltyPromoContinueBtn.addEventListener("click", function () {
         trackEvent("loyalty_promo_continue_clicked", analyticsParams());
+        state.loyaltyPromoDone = true;
         goToPendingReview();
       });
     }
@@ -12639,8 +12665,22 @@ function renderServicesContent() {
       el.storeVisitStars.addEventListener("click", function (event) {
         var target = event.target && event.target.closest ? event.target.closest(".store-visit-star-tile") : null;
         if (!target || !el.storeVisitStars.contains(target)) return;
+        if (event.pointerType === "touch") return;
+        event.stopPropagation();
         handleStoreVisitStarSelect(target.getAttribute("data-star-value"));
       });
+
+      el.storeVisitStars.addEventListener(
+        "touchend",
+        function (event) {
+          var target = event.target && event.target.closest ? event.target.closest(".store-visit-star-tile") : null;
+          if (!target || !el.storeVisitStars.contains(target)) return;
+          event.preventDefault();
+          event.stopPropagation();
+          handleStoreVisitStarSelect(target.getAttribute("data-star-value"));
+        },
+        { passive: false },
+      );
 
       el.storeVisitStars.addEventListener("mouseover", function (event) {
         if (!canInteractWithStoreVisitStars()) return;
