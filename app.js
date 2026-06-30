@@ -1806,6 +1806,10 @@ if (isStoreVisitPathname(location.pathname)) {
     ],
   };
 
+  const STORE_LOGO_URLS = {
+    "xiebao-flushing": "/assets/stores/xiebao-flushing-logo.jpg",
+  };
+
   const HISTORY_STORAGE_KEY = "gmap-faster-review-history-v1";
   const RECEIPT_SCHEMA_NAME = "receipt_detection";
   const IMAGE_ANALYSIS_SCHEMA_NAME = "upload_image_analysis";
@@ -9336,11 +9340,38 @@ function renderServicesContent() {
     return text.charAt(0).toUpperCase();
   }
 
+  function getStoreLogoUrl(slug) {
+    return STORE_LOGO_URLS[String(slug || "").trim()] || "";
+  }
+
+  function syncStoreVisitLogoMark() {
+    if (!el.storeVisitLogoMark) return;
+    var logoUrl = getStoreLogoUrl(state.storeSlug);
+    if (logoUrl) {
+      el.storeVisitLogoMark.classList.add("store-visit-logo--image");
+      el.storeVisitLogoMark.textContent = "";
+      var img = el.storeVisitLogoMark.querySelector("img");
+      if (!img) {
+        img = document.createElement("img");
+        img.className = "store-visit-logo-img";
+        img.alt = "";
+        el.storeVisitLogoMark.appendChild(img);
+      }
+      if (img.getAttribute("src") !== logoUrl) {
+        img.setAttribute("src", logoUrl);
+      }
+      return;
+    }
+
+    el.storeVisitLogoMark.classList.remove("store-visit-logo--image");
+    var existingImg = el.storeVisitLogoMark.querySelector("img");
+    if (existingImg) existingImg.remove();
+    el.storeVisitLogoMark.textContent = getStoreLogoInitial(getRestaurantName());
+  }
+
   function syncStoreVisitPresentation() {
     var name = getRestaurantName();
-    if (el.storeVisitLogoMark) {
-      el.storeVisitLogoMark.textContent = getStoreLogoInitial(name);
-    }
+    syncStoreVisitLogoMark();
     setNodeText(el.storeVisitBrandName, name);
     setNodeText(el.storeVisitHeroTitle, t("storeVisitHeroTitle"));
     setNodeText(el.storeVisitHeroLead, t("storeVisitHeroLead"));
@@ -9859,7 +9890,10 @@ function renderServicesContent() {
     el.layout.classList.toggle("single-stage", !resultStageVisible);
     el.correctionToggle.classList.toggle("hidden", !shouldShowCorrectionToggle());
     el.correctionPanel.classList.toggle("hidden", !resultStageVisible || !state.isCorrectionOpen);
-    el.anotherSetBtn.classList.toggle("hidden", state.generatedReviews.length === 0 && !state.isGenerating);
+    el.anotherSetBtn.classList.toggle(
+      "hidden",
+      isStoreRoute() || (state.generatedReviews.length === 0 && !state.isGenerating),
+    );
     el.anotherSetBtn.classList.toggle("is-loading", state.isGenerating);
     syncAnotherSetBtn();
     if (el.reviewWriteOwnBtn) {

@@ -12861,7 +12861,13 @@ html.store-theme-locked body.route-store .focus-pill {
 
 html.store-theme-locked body.route-store .store-visit-shell {
   gap: 32px;
-  max-width: 420px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: stretch;
+  overflow-x: clip;
   padding: 8px 0 0;
   animation: storeVisitFadeIn 240ms ease both;
 }
@@ -12883,6 +12889,15 @@ html.store-theme-locked body.route-store .store-visit-brand {
   align-items: center;
   gap: 12px;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
 }
 
 html.store-theme-locked body.route-store .store-visit-logo {
@@ -12891,6 +12906,9 @@ html.store-theme-locked body.route-store .store-visit-logo {
   border-radius: 16px;
   display: grid;
   place-items: center;
+  margin-inline: auto;
+  align-self: center;
+  flex-shrink: 0;
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -12898,6 +12916,22 @@ html.store-theme-locked body.route-store .store-visit-logo {
   background: linear-gradient(145deg, rgba(231, 154, 108, 0.22), rgba(255, 255, 255, 0.04));
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+html.store-theme-locked body.route-store .store-visit-logo--image {
+  width: 80px;
+  height: 80px;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+html.store-theme-locked body.route-store .store-visit-logo-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
 }
 
 html.store-theme-locked body.route-store .store-visit-brand-name {
@@ -12957,7 +12991,12 @@ html.store-theme-locked body.route-store .store-visit-hero-lead {
 
 html.store-theme-locked body.route-store .store-visit-stars-block {
   gap: 16px;
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  justify-self: stretch;
+  justify-items: stretch;
+  box-sizing: border-box;
   padding: 8px 0 4px;
 }
 
@@ -12989,8 +13028,10 @@ html.store-theme-locked body.route-store .store-visit-stars {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(6px, 2vw, 12px);
-  width: 100%;
-  max-width: min(360px, 100%);
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  justify-self: stretch;
   flex-wrap: nowrap;
 }
 
@@ -13054,7 +13095,11 @@ html.store-theme-locked body.route-store .store-visit-benefits {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  width: 100%;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  justify-self: stretch;
+  box-sizing: border-box;
 }
 
 html.store-theme-locked body.route-store .store-visit-benefit-pill {
@@ -13156,5 +13201,74 @@ html.store-theme-locked body.route-store .loyalty-promo-panel {
 
   html.store-theme-locked body.route-store .intake-card {
     padding: 24px 16px;
+  }
+}
+
+/* Store visit — undo global 100vw card sizing so the frame stays centered on mobile */
+@media (max-width: 768px) {
+  html.store-theme-locked body.route-store .app {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  html.store-theme-locked body.route-store .layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: auto !important;
+    padding-inline: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  html.store-theme-locked body.route-store .hero,
+  html.store-theme-locked body.route-store .intake-card,
+  html.store-theme-locked body.route-store .reviews-card,
+  html.store-theme-locked body.route-store .dishes-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  html.store-theme-locked body.route-store header.store-visit-brand,
+  html.store-theme-locked body.route-store .store-visit-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-inline: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    gap: 12px !important;
+  }
+
+  html.store-theme-locked body.route-store .store-visit-logo,
+  html.store-theme-locked body.route-store .store-visit-logo--image {
+    margin-inline: auto !important;
+    align-self: center !important;
+  }
+
+  html.store-theme-locked body.route-store .store-visit-shell,
+  html.store-theme-locked body.route-store .store-visit-stars-block,
+  html.store-theme-locked body.route-store .store-visit-stars,
+  html.store-theme-locked body.route-store .store-visit-benefits,
+  html.store-theme-locked body.route-store .store-flow-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  html.store-theme-locked body.route-store .store-visit-stars {
+    max-width: 100% !important;
+  }
+
+  html.store-theme-locked body.route-store #anotherSetBtn {
+    display: none !important;
   }
 }
