@@ -12030,9 +12030,19 @@ function renderServicesContent() {
         const card = document.createElement("article");
         card.className = "review-card review-card-skeleton";
 
+        const row = document.createElement("div");
+        row.className = "review-card-row";
+
+        const radioStub = document.createElement("span");
+        radioStub.className = "review-card-radio review-card-radio--stub";
+        radioStub.setAttribute("aria-hidden", "true");
+
+        const content = document.createElement("div");
+        content.className = "review-card-content";
+
         const titleLine = document.createElement("div");
         titleLine.className = "skeleton-line skeleton-line-title";
-        card.appendChild(titleLine);
+        content.appendChild(titleLine);
 
         const body = document.createElement("div");
         body.className = "review-body skeleton-block";
@@ -12041,7 +12051,10 @@ function renderServicesContent() {
           line.className = "skeleton-line";
           body.appendChild(line);
         }
-        card.appendChild(body);
+        content.appendChild(body);
+        row.appendChild(radioStub);
+        row.appendChild(content);
+        card.appendChild(row);
         el.reviewsGrid.appendChild(card);
       }
       return;
@@ -12080,8 +12093,8 @@ function renderServicesContent() {
         }
       });
 
-      const head = document.createElement("div");
-      head.className = "review-card-head";
+      const row = document.createElement("div");
+      row.className = "review-card-row";
 
       const selectWrap = document.createElement("label");
       selectWrap.className = "review-card-select";
@@ -12102,7 +12115,13 @@ function renderServicesContent() {
       radio.setAttribute("aria-hidden", "true");
       selectWrap.appendChild(radioInput);
       selectWrap.appendChild(radio);
-      head.appendChild(selectWrap);
+      row.appendChild(selectWrap);
+
+      const content = document.createElement("div");
+      content.className = "review-card-content";
+
+      const head = document.createElement("div");
+      head.className = "review-card-head";
 
       const titleWrap = document.createElement("div");
       titleWrap.className = "review-card-title-wrap";
@@ -12120,13 +12139,15 @@ function renderServicesContent() {
       }
 
       head.appendChild(titleWrap);
-
-      card.appendChild(head);
+      content.appendChild(head);
 
       const body = document.createElement("p");
       body.className = "review-body";
       body.textContent = review.text;
-      card.appendChild(body);
+      content.appendChild(body);
+
+      row.appendChild(content);
+      card.appendChild(row);
 
       el.reviewsGrid.appendChild(card);
     });

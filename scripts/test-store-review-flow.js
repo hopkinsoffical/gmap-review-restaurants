@@ -51,6 +51,7 @@ function main() {
   assertMatch("review cards use selectReview (not store-specific)", appJs, /function selectReview\(review\)/);
   assertMatch("review selection tracks style key globally", appJs, /selectedReviewStyleKey/);
   assertMatch("review cards render radio control", appJs, /review-card-radio/);
+  assertMatch("review cards use horizontal row layout", appJs, /review-card-row/);
   assertMatch("loyalty panel reveals after selection", appJs, /revealLoyaltyPromo\(\)/);
   assertMatch("clipboard failure does not block loyalty reveal", appJs, /copySelectedReviewText/);
   assertMatch("selectReview reveals loyalty promo", appJs, /function selectReview\(review\)[\s\S]*revealLoyaltyPromo\(\)/);
@@ -71,6 +72,7 @@ function main() {
   assertMatch("review selection uses store google url fallback", appJs, /function getReviewTargetUrl\(\)/);
   assertMatch("native review radio input rendered", appJs, /review-card-radio-input/);
   assertMatch("store reviews-only layout class", stylesCss, /layout\.store-reviews-only/);
+  assertMatch("review card row layout styles", stylesCss, /\.review-card-row/);
 
   assertNoMatch(
     "no per-store slug branching in review selection flow",
