@@ -12032,14 +12032,28 @@ html[data-theme="light"] body .marketing-lang-option {
   width: auto;
 }
 .loyalty-promo-consent {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr);
+  column-gap: 0;
+  row-gap: 0;
+  width: 100%;
+  align-items: start;
   font-size: 0.82rem;
   line-height: 1.4;
   opacity: 0.85;
 }
-.loyalty-promo-consent input { margin-top: 3px; }
+.loyalty-promo-consent input {
+  margin: 0;
+  padding: 0;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.15em;
+}
+.loyalty-promo-consent span {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
 .loyalty-promo-result { display: flex; flex-direction: column; gap: 12px; }
 .loyalty-promo-result.hidden { display: none; }
 .loyalty-promo-code {
@@ -12118,30 +12132,54 @@ html.store-theme-locked[data-theme="dark"] {
 }
 
 html.store-theme-locked body.route-store {
-  --store-surface: #1a1410;
-  --store-surface-2: #2a221c;
-  --store-surface-ink: #f5f0eb;
-  --store-muted: rgba(245, 240, 235, 0.62);
-  --store-border: rgba(201, 122, 90, 0.22);
-  --store-coral: #e8a87c;
-  --store-coral-soft: #c97a5a;
-  --store-btn: #c97a5a;
-  --store-radius-lg: 20px;
-  --store-radius-md: 14px;
+  --store-surface: #0f1115;
+  --store-surface-2: #171a20;
+  --store-surface-ink: #ffffff;
+  --store-muted: #b7bdc7;
+  --store-border: rgba(255, 255, 255, 0.08);
+  --store-coral: #e79a6c;
+  --store-coral-soft: #e79a6c;
+  --store-star: #ffc83d;
+  --store-btn: #e79a6c;
+  --store-radius-lg: 24px;
+  --store-radius-md: 16px;
   --store-radius-pill: 999px;
   background: var(--store-surface) !important;
   color: var(--store-surface-ink);
 }
 
+html.store-theme-locked body.route-store::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(231, 154, 108, 0.12), transparent 55%),
+    linear-gradient(180deg, rgba(15, 17, 21, 0.72) 0%, rgba(15, 17, 21, 0.94) 100%);
+}
+
+html.store-theme-locked body.route-store .bg-glow {
+  opacity: 0.08;
+  filter: blur(120px);
+}
+
+html.store-theme-locked body.route-store .app {
+  position: relative;
+  z-index: 1;
+}
+
 html.store-theme-locked body.route-store .intake-card,
 html.store-theme-locked body.route-store .reviews-card,
 html.store-theme-locked body.route-store .dishes-card {
-  background: var(--store-surface-2);
+  background: rgba(23, 26, 32, 0.92);
   border: 1px solid var(--store-border);
-  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.32);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
   border-radius: var(--store-radius-lg);
-  padding: 24px 18px;
-  backdrop-filter: none;
+  padding: 32px 24px;
+  backdrop-filter: blur(16px);
   color: var(--store-surface-ink);
 }
 
@@ -12304,6 +12342,35 @@ html[data-theme="light"] header h1.store-visit-brand-name {
   color: var(--store-surface-ink);
 }
 
+.store-flow-title--with-icon {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.store-flow-title-icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  margin-top: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid rgba(231, 154, 108, 0.22);
+  background: rgba(231, 154, 108, 0.1);
+  color: var(--store-coral, #e79a6c);
+}
+
+.store-flow-title-icon svg {
+  display: block;
+}
+
+.store-flow-title-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .store-flow-hint {
   margin: 0;
   font-size: 0.88rem;
@@ -12346,6 +12413,25 @@ html[data-theme="light"] header h1.store-visit-brand-name {
 
 .store-flow-search-input {
   width: 100%;
+}
+
+html.store-theme-locked body.route-store .store-flow-search-input,
+html.store-theme-locked body.route-store .store-flow-card .text-input {
+  color: var(--store-surface-ink) !important;
+  -webkit-text-fill-color: var(--store-surface-ink);
+  caret-color: var(--store-surface-ink);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--store-border);
+}
+
+html.store-theme-locked body.route-store .store-flow-search-input::placeholder {
+  color: var(--store-muted);
+  opacity: 1;
+}
+
+html.store-theme-locked body.route-store .store-flow-search-input:focus {
+  border-color: rgba(231, 154, 108, 0.45);
+  box-shadow: 0 0 0 3px rgba(231, 154, 108, 0.1);
 }
 
 .store-flow-selected {
@@ -12442,20 +12528,31 @@ html.store-theme-locked body.route-store .store-flow-nav-forward.cta,
 html.store-theme-locked body.route-store .loyalty-promo-continue-btn.cta,
 html.store-theme-locked body.route-store .store-private-feedback-continue-btn.cta {
   border-radius: var(--store-radius-pill, 999px);
-  border: 1px solid var(--store-border);
-  background: transparent;
-  color: var(--store-coral);
-  box-shadow: none;
+  border: 1px solid rgba(231, 154, 108, 0.55) !important;
+  background: transparent !important;
+  color: var(--store-coral) !important;
+  box-shadow: none !important;
   font-weight: 700;
+  transform: none;
+}
+
+html.store-theme-locked body.route-store .store-flow-nav-forward.cta:disabled,
+html.store-theme-locked body.route-store .loyalty-promo-continue-btn.cta:disabled,
+html.store-theme-locked body.route-store .store-private-feedback-continue-btn.cta:disabled {
+  border-color: var(--store-border) !important;
+  background: transparent !important;
+  color: var(--store-muted) !important;
+  opacity: 0.72;
 }
 
 html.store-theme-locked body.route-store .store-flow-nav-forward.cta:hover:not(:disabled),
 html.store-theme-locked body.route-store .loyalty-promo-continue-btn.cta:hover:not(:disabled),
 html.store-theme-locked body.route-store .store-private-feedback-continue-btn.cta:hover:not(:disabled) {
-  border-color: rgba(232, 168, 124, 0.45);
-  background: rgba(201, 122, 90, 0.1);
-  color: var(--store-coral);
-  box-shadow: none;
+  border-color: var(--store-coral) !important;
+  background: rgba(231, 154, 108, 0.1) !important;
+  color: var(--store-coral) !important;
+  box-shadow: none !important;
+  transform: none;
 }
 
 body.route-store .cta {
@@ -12744,8 +12841,320 @@ html.store-theme-locked body.route-store .reviews-card .empty-text {
   color: var(--store-muted) !important;
 }
 
+body.route-store #storeVisitReceiptBlock {
+  display: none !important;
+}
+
+html.store-theme-locked body.route-store .reviews-grid.empty {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
 html.store-theme-locked body.route-store .focus-pill {
   color: var(--store-surface-ink) !important;
-  background: rgba(201, 122, 90, 0.22) !important;
-  border: 1px solid rgba(201, 122, 90, 0.28);
+  background: rgba(231, 154, 108, 0.16) !important;
+  border: 1px solid rgba(231, 154, 108, 0.24);
+}
+
+/* ── Store review page — premium UX layer ─────────────────────────────────── */
+
+html.store-theme-locked body.route-store .store-visit-shell {
+  gap: 32px;
+  max-width: 420px;
+  padding: 8px 0 0;
+  animation: storeVisitFadeIn 240ms ease both;
+}
+
+@keyframes storeVisitFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html.store-theme-locked body.route-store .store-visit-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+html.store-theme-locked body.route-store .store-visit-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--store-surface-ink);
+  background: linear-gradient(145deg, rgba(231, 154, 108, 0.22), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+html.store-theme-locked body.route-store .store-visit-brand-name {
+  font-size: clamp(1.5rem, 5vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--store-surface-ink) !important;
+}
+
+html.store-theme-locked body.route-store .store-visit-google-trust {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: var(--store-muted);
+}
+
+html.store-theme-locked body.route-store .store-visit-google-trust.hidden {
+  display: none;
+}
+
+html.store-theme-locked body.route-store .store-visit-google-trust-stars {
+  color: var(--store-star);
+  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+}
+
+html.store-theme-locked body.route-store .store-visit-google-rating {
+  font-weight: 700;
+  color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store .store-visit-hero {
+  gap: 16px;
+  max-width: 34ch;
+}
+
+html.store-theme-locked body.route-store .store-visit-hero-title {
+  font-size: clamp(1.625rem, 5.5vw, 2.125rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store .store-visit-hero-lead {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--store-muted);
+  max-width: 36ch;
+}
+
+html.store-theme-locked body.route-store .store-visit-stars-block {
+  gap: 16px;
+  width: 100%;
+  padding: 8px 0 4px;
+}
+
+html.store-theme-locked body.route-store .store-visit-google-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--store-radius-pill);
+  border: 1px solid var(--store-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+html.store-theme-locked body.route-store .store-visit-google-g {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+html.store-theme-locked body.route-store .store-visit-google-badge-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--store-muted);
+}
+
+html.store-theme-locked body.route-store .store-visit-stars {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(6px, 2vw, 12px);
+  width: 100%;
+  max-width: min(360px, 100%);
+  flex-wrap: nowrap;
+}
+
+html.store-theme-locked body.route-store .store-visit-star-tile {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  min-width: 0;
+  min-height: 0;
+  max-width: 64px;
+  justify-self: center;
+  border-radius: 16px;
+  border: 1px solid var(--store-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(183, 189, 199, 0.55);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+  transition:
+    transform 220ms ease,
+    color 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+html.store-theme-locked body.route-store .store-visit-star-glyph {
+  font-size: clamp(1.15rem, 4.8vw, 1.75rem);
+  line-height: 1;
+}
+
+html.store-theme-locked body.route-store .store-visit-star-tile:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.06);
+  border-color: rgba(255, 200, 61, 0.45);
+  color: var(--store-star);
+  box-shadow: 0 12px 28px rgba(255, 200, 61, 0.14);
+}
+
+html.store-theme-locked body.route-store .store-visit-star-tile:focus-visible {
+  outline: 2px solid rgba(231, 154, 108, 0.65);
+  outline-offset: 3px;
+}
+
+html.store-theme-locked body.route-store .store-visit-star-tile.is-filled {
+  color: var(--store-star);
+  background: rgba(255, 200, 61, 0.12);
+  border-color: rgba(255, 200, 61, 0.35);
+  box-shadow: 0 10px 24px rgba(255, 200, 61, 0.12);
+}
+
+html.store-theme-locked body.route-store .store-visit-star-tile.is-active {
+  transform: scale(1.04);
+  border-color: var(--store-star);
+}
+
+html.store-theme-locked body.route-store .store-visit-mood {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffb4a2;
+}
+
+html.store-theme-locked body.route-store .store-visit-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+html.store-theme-locked body.route-store .store-visit-benefit-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 12px;
+  border-radius: 16px;
+  border: 1px solid var(--store-border);
+  background: rgba(255, 255, 255, 0.03);
+  text-align: left;
+  transition: border-color 220ms ease, background 220ms ease;
+}
+
+html.store-theme-locked body.route-store .store-visit-benefit-pill:hover {
+  border-color: rgba(231, 154, 108, 0.28);
+  background: rgba(231, 154, 108, 0.06);
+}
+
+html.store-theme-locked body.route-store .store-visit-benefit-icon {
+  flex: 0 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+html.store-theme-locked body.route-store .store-visit-benefit-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--store-surface-ink);
+}
+
+html.store-theme-locked body.route-store .store-visit-benefit-body {
+  margin: 4px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--store-muted);
+}
+
+html.store-theme-locked body.route-store .store-flow-card {
+  padding: 24px;
+  border-radius: var(--store-radius-lg);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--store-border);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.24);
+}
+
+html.store-theme-locked body.route-store .review-card,
+html.store-theme-locked body.route-store .reviews-grid .review-card {
+  background: rgba(23, 26, 32, 0.96) !important;
+  border: 1px solid var(--store-border) !important;
+  border-radius: var(--store-radius-lg) !important;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28) !important;
+}
+
+html.store-theme-locked body.route-store .review-card h3 {
+  color: var(--store-coral) !important;
+}
+
+html.store-theme-locked body.route-store .review-body,
+html.store-theme-locked body.route-store .review-card .review-body {
+  border: 1px solid var(--store-border) !important;
+  border-radius: 14px !important;
+  background: rgba(15, 17, 21, 0.72) !important;
+}
+
+html.store-theme-locked body.route-store .reviews-card .section-head h2 {
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+html.store-theme-locked body.route-store .loyalty-promo-panel {
+  border-radius: var(--store-radius-lg);
+  border: 1px solid var(--store-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+@media (max-width: 380px) {
+  html.store-theme-locked body.route-store .store-visit-benefits {
+    grid-template-columns: 1fr;
+  }
+
+  html.store-theme-locked body.route-store .store-visit-stars {
+    gap: 6px;
+  }
+
+  html.store-theme-locked body.route-store .store-visit-star-tile {
+    max-width: none;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  html.store-theme-locked body.route-store .layout.single-stage {
+    padding-top: 8px;
+  }
+
+  html.store-theme-locked body.route-store .intake-card {
+    padding: 24px 16px;
+  }
 }

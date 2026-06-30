@@ -84,7 +84,7 @@
         }
       })();
     </script>
-    <link rel="stylesheet" href="/styles.css?v=20260626-10" />
+    <link rel="stylesheet" href="/styles.css?v=20260626-19" />
     <link rel="stylesheet" href="/marketing-surfaces.css?v=20260519-1" />
     <link rel="stylesheet" href="/mobile-scroll.css?v=20260519-2" />
     <link rel="stylesheet" href="/full-report.css?v=20260626-2" />
@@ -180,7 +180,13 @@
 
           <div id="storeVisitShell" class="store-visit-shell">
             <header class="store-visit-brand" aria-label="Store">
+              <div id="storeVisitLogoMark" class="store-visit-logo" aria-hidden="true"></div>
               <h1 id="storeVisitBrandName" class="store-visit-brand-name"></h1>
+              <div id="storeVisitGoogleTrust" class="store-visit-google-trust hidden" aria-label="Google rating">
+                <span id="storeVisitGoogleTrustStars" class="store-visit-google-trust-stars" aria-hidden="true"></span>
+                <span id="storeVisitGoogleRating" class="store-visit-google-rating"></span>
+                <span id="storeVisitGoogleReviewCount" class="store-visit-google-reviews"></span>
+              </div>
             </header>
 
             <div id="storeVisitServiceCard" class="store-visit-service-card hidden" aria-live="polite">
@@ -193,12 +199,38 @@
 
             <section class="store-visit-hero" aria-labelledby="storeVisitHeroTitle">
               <h2 id="storeVisitHeroTitle" class="store-visit-hero-title"></h2>
+              <p id="storeVisitHeroLead" class="store-visit-hero-lead"></p>
             </section>
 
             <div class="store-visit-stars-block">
+              <div class="store-visit-google-badge" aria-hidden="true">
+                <svg class="store-visit-google-g" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                <span id="storeVisitGoogleBadgeLabel" class="store-visit-google-badge-label"></span>
+              </div>
               <div id="storeVisitStars" class="store-visit-stars" role="radiogroup" aria-label="Rating"></div>
               <p id="storeVisitMood" class="store-visit-mood" aria-live="polite"></p>
-              <p id="storeVisitHeroLead" class="store-visit-hero-lead"></p>
+            </div>
+
+            <div class="store-visit-benefits" aria-label="Review benefits">
+              <div class="store-visit-benefit-pill">
+                <span class="store-visit-benefit-icon" aria-hidden="true">✨</span>
+                <div class="store-visit-benefit-copy">
+                  <p id="storeVisitBenefitOneTitle" class="store-visit-benefit-title"></p>
+                  <p id="storeVisitBenefitOneBody" class="store-visit-benefit-body"></p>
+                </div>
+              </div>
+              <div class="store-visit-benefit-pill">
+                <span class="store-visit-benefit-icon" aria-hidden="true">⏱</span>
+                <div class="store-visit-benefit-copy">
+                  <p id="storeVisitBenefitTwoTitle" class="store-visit-benefit-title"></p>
+                  <p id="storeVisitBenefitTwoBody" class="store-visit-benefit-body"></p>
+                </div>
+              </div>
             </div>
 
             <div id="storeFlowCard" class="store-flow-card hidden" aria-live="polite"></div>
@@ -239,7 +271,6 @@
         <section id="reviewsCard" class="card reviews-card hidden">
           <div class="section-head">
             <h2 id="reviewsTitle"></h2>
-            <p id="reviewsHint" class="hint"></p>
           </div>
 
           <div id="reviewContextBar" class="review-context-bar hidden">
@@ -284,9 +315,7 @@
             rel="noopener noreferrer"
           ></a>
 
-          <div id="reviewsGrid" class="reviews-grid empty">
-            <p id="reviewsEmptyText" class="empty-text"></p>
-          </div>
+          <div id="reviewsGrid" class="reviews-grid"></div>
 
           <div id="loyaltyPromoPanel" class="loyalty-promo-panel hidden">
             <div class="loyalty-promo-head">
@@ -301,10 +330,7 @@
                 inputmode="tel"
                 autocomplete="tel"
               />
-              <label class="loyalty-promo-consent">
-                <input id="loyaltyPromoConsent" type="checkbox" />
-                <span id="loyaltyPromoConsentText"></span>
-              </label>
+              <label class="loyalty-promo-consent"><input id="loyaltyPromoConsent" type="checkbox" checked /><span id="loyaltyPromoConsentText"></span></label>
               <div class="loyalty-promo-actions">
                 <button id="loyaltyPromoSubmitBtn" class="cta loyalty-promo-continue-btn" type="button"></button>
               </div>
@@ -458,7 +484,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="/app.js?v=20260626-5"></script>
+    <script src="/app.js?v=20260626-11"></script>
     <script src="/portal.js?v=20260511-1"></script>
   </body>
 </html>

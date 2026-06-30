@@ -1489,7 +1489,6 @@ if (isStoreVisitPathname(location.pathname)) {
       addDishBtn: "补加菜品",
       resetBtn: "清空重来",
       reviewsTitle: "选一条你喜欢的评价",
-      reviewsHint: "挑一句顺手的，就能去 Google Maps 发出。",
       visitSheetTitle: "再加一点小信息",
       visitSheetHint: "选一个最像今天的情况，让评论更真实。",
       visitContinueBtn: "帮我写个评论",
@@ -1555,10 +1554,16 @@ if (isStoreVisitPathname(location.pathname)) {
       storeBootstrapGeneric: "门店页面加载失败，请稍后重试。",
       storeVisitServiceLabel: "今日菜品",
       storeVisitHeading: "给 {store} 留个点评",
-      storeVisitHeroTitle: "今天满意吗？",
-      storeVisitHeroLead: "回答几个简短问题，我们来帮你整理一条 Google 点评。",
+      storeVisitHeroTitle: "今天体验怎么样？",
+      storeVisitHeroLead: "你的反馈帮助我们做得更好，也帮助其他食客发现我们。",
       storeVisitMoodPick: "请点击星星继续。",
       storeVisitStarsLabel: "为本次体验评分",
+      storeVisitGoogleBadgeLabel: "Google 评价",
+      storeVisitGoogleReviewsLabel: "条 Google 评价",
+      storeVisitBenefitOneTitle: "AI 帮你写评价",
+      storeVisitBenefitOneBody: "我们帮你整理可直接发布的文案。",
+      storeVisitBenefitTwoTitle: "不到 30 秒",
+      storeVisitBenefitTwoBody: "几步就能完成。",
       storeFlowVisitTitle: "这是你第几次来？",
       storeFlowVisitHint: "选择最接近今天情况的一项。",
       storeFlowStaffTitle: "今天是哪位服务员接待你？",
@@ -1638,7 +1643,6 @@ if (isStoreVisitPathname(location.pathname)) {
       addDishBtn: "Add dish",
       resetBtn: "Clear all",
       reviewsTitle: "Select a review you like",
-      reviewsHint: "Pick one that feels right, and post it on Google Maps.",
       visitSheetTitle: "One quick detail",
       visitSheetHint: "Pick what fits today so the review feels more believable.",
       visitContinueBtn: "Write one for me",
@@ -1704,10 +1708,16 @@ if (isStoreVisitPathname(location.pathname)) {
       storeBootstrapGeneric: "Could not load this store. Please try again.",
       storeVisitServiceLabel: "Today's dish",
       storeVisitHeading: "Review for {store}",
-      storeVisitHeroTitle: "Are you happy with today's visit?",
-      storeVisitHeroLead: "Answer a few quick questions and we will help draft a Google review.",
+      storeVisitHeroTitle: "How was your experience today?",
+      storeVisitHeroLead: "Your feedback helps us improve and helps other guests discover us.",
       storeVisitMoodPick: "Tap a star to continue.",
       storeVisitStarsLabel: "Rate your visit",
+      storeVisitGoogleBadgeLabel: "Google Reviews",
+      storeVisitGoogleReviewsLabel: "Google Reviews",
+      storeVisitBenefitOneTitle: "AI Review Draft",
+      storeVisitBenefitOneBody: "We'll help write your review.",
+      storeVisitBenefitTwoTitle: "Less than 30 seconds",
+      storeVisitBenefitTwoBody: "Quick and easy to post.",
       storeFlowVisitTitle: "How many times have you visited us?",
       storeFlowVisitHint: "Pick the option that fits today best.",
       storeFlowStaffTitle: "Who was your server today?",
@@ -1781,6 +1791,19 @@ if (isStoreVisitPathname(location.pathname)) {
   const DISH_PROFILE_FALLBACK = {
     zh: ["味道很稳", "出品不错", "整体很满意"],
     en: ["solid flavor", "good execution", "really happy with the meal"],
+  };
+
+  const STORE_FEATURED_DISH_ORDER = {
+    "xiebao-flushing": [
+      /蟹黄盖饭（体验版）/,
+      /蟹黄盖饭（至尊版）/,
+      /蟹黄捞面（体验版）/,
+      /蟹黄捞面（至尊版）/,
+      /^红烧肉包$/,
+      /^海虎蟹肉包$/,
+      /^纯蟹黄小笼包$/,
+      /蟹黄鸡汤肉皮煲/,
+    ],
   };
 
   const HISTORY_STORAGE_KEY = "gmap-faster-review-history-v1";
@@ -1883,6 +1906,7 @@ if (isStoreVisitPathname(location.pathname)) {
     storeCatalogIsDefault: false,
     serviceSpotlight: null,
     storeReviewCount: null,
+    storeGoogleRating: null,
     storeVisitStars: 0,
     storeVisitStarsHover: 0,
     storeVisitStarsBound: false,
@@ -1905,6 +1929,16 @@ if (isStoreVisitPathname(location.pathname)) {
     storeVisitReceiptBlock: document.getElementById("storeVisitReceiptBlock"),
     storeVisitShell: document.getElementById("storeVisitShell"),
     storeVisitBrandName: document.getElementById("storeVisitBrandName"),
+    storeVisitLogoMark: document.getElementById("storeVisitLogoMark"),
+    storeVisitGoogleTrust: document.getElementById("storeVisitGoogleTrust"),
+    storeVisitGoogleTrustStars: document.getElementById("storeVisitGoogleTrustStars"),
+    storeVisitGoogleRating: document.getElementById("storeVisitGoogleRating"),
+    storeVisitGoogleReviewCount: document.getElementById("storeVisitGoogleReviewCount"),
+    storeVisitGoogleBadgeLabel: document.getElementById("storeVisitGoogleBadgeLabel"),
+    storeVisitBenefitOneTitle: document.getElementById("storeVisitBenefitOneTitle"),
+    storeVisitBenefitOneBody: document.getElementById("storeVisitBenefitOneBody"),
+    storeVisitBenefitTwoTitle: document.getElementById("storeVisitBenefitTwoTitle"),
+    storeVisitBenefitTwoBody: document.getElementById("storeVisitBenefitTwoBody"),
     storeVisitServiceCard: document.getElementById("storeVisitServiceCard"),
     storeVisitServiceLabel: document.getElementById("storeVisitServiceLabel"),
     storeVisitServiceName: document.getElementById("storeVisitServiceName"),
@@ -1949,7 +1983,6 @@ if (isStoreVisitPathname(location.pathname)) {
     retakeInlineBtn: document.getElementById("retakeInlineBtn"),
     resetBtn: document.getElementById("resetBtn"),
     reviewsTitle: document.getElementById("reviewsTitle"),
-    reviewsHint: document.getElementById("reviewsHint"),
     reviewContextBar: document.getElementById("reviewContextBar"),
     visitSummaryBtn: document.getElementById("visitSummaryBtn"),
     visitSummaryLabel: document.getElementById("visitSummaryLabel"),
@@ -1970,7 +2003,6 @@ if (isStoreVisitPathname(location.pathname)) {
     reviewsStatus: document.getElementById("reviewsStatus"),
     manualOpenLink: document.getElementById("manualOpenLink"),
     reviewsGrid: document.getElementById("reviewsGrid"),
-    reviewsEmptyText: document.getElementById("reviewsEmptyText"),
     loyaltyPromoPanel: document.getElementById("loyaltyPromoPanel"),
     loyaltyPromoIntro: document.getElementById("loyaltyPromoIntro"),
     loyaltyPromoForm: document.getElementById("loyaltyPromoForm"),
@@ -2375,13 +2407,29 @@ if (isStoreVisitPathname(location.pathname)) {
     return "gate";
   }
 
+  function getStoreFeaturedDishRank(item) {
+    const patterns = STORE_FEATURED_DISH_ORDER[String(state.storeSlug || "").trim()];
+    if (!patterns || !patterns.length || !item) return Number.MAX_SAFE_INTEGER;
+
+    const zh = String(item.zh || "");
+    const en = String(item.en || item.n || "");
+    for (let i = 0; i < patterns.length; i += 1) {
+      if (patterns[i].test(zh) || patterns[i].test(en)) return i;
+    }
+    return Number.MAX_SAFE_INTEGER;
+  }
+
+  function sortDishesForBrowse(a, b) {
+    const featuredDiff = getStoreFeaturedDishRank(a) - getStoreFeaturedDishRank(b);
+    if (featuredDiff !== 0) return featuredDiff;
+    return getDishName(a).localeCompare(getDishName(b), state.lang === "zh" ? "zh-Hans" : "en", {
+      sensitivity: "base",
+    });
+  }
+
   function getStoreServiceMatches(query) {
     const normalizedQuery = normalizeText(query || "");
-    const sorted = state.flatDishes.slice().sort(function (a, b) {
-      return getDishName(a).localeCompare(getDishName(b), state.lang === "zh" ? "zh-Hans" : "en", {
-        sensitivity: "base",
-      });
-    });
+    const sorted = state.flatDishes.slice().sort(sortDishesForBrowse);
 
     const browseLimit = 5;
     const searchLimit = 36;
@@ -9262,6 +9310,72 @@ function renderServicesContent() {
     }
   }
 
+  function formatReviewCount(value) {
+    if (value == null || !Number.isFinite(Number(value))) return "";
+    try {
+      return Number(value).toLocaleString(state.lang === "zh" ? "zh-CN" : "en-US");
+    } catch (e) {
+      return String(Math.round(Number(value)));
+    }
+  }
+
+  function formatGoogleTrustStars(rating) {
+    var r = Math.max(0, Math.min(5, Number(rating) || 0));
+    var full = Math.floor(r + 0.25);
+    if (full < 1 && r > 0) full = 1;
+    var stars = "";
+    for (var i = 1; i <= 5; i += 1) {
+      stars += i <= full ? "★" : "☆";
+    }
+    return stars;
+  }
+
+  function getStoreLogoInitial(name) {
+    var text = String(name || "").trim();
+    if (!text) return "R";
+    return text.charAt(0).toUpperCase();
+  }
+
+  function syncStoreVisitPresentation() {
+    var name = getRestaurantName();
+    if (el.storeVisitLogoMark) {
+      el.storeVisitLogoMark.textContent = getStoreLogoInitial(name);
+    }
+    setNodeText(el.storeVisitBrandName, name);
+    setNodeText(el.storeVisitHeroTitle, t("storeVisitHeroTitle"));
+    setNodeText(el.storeVisitHeroLead, t("storeVisitHeroLead"));
+    setNodeText(el.storeVisitGoogleBadgeLabel, t("storeVisitGoogleBadgeLabel"));
+    setNodeText(el.storeVisitBenefitOneTitle, t("storeVisitBenefitOneTitle"));
+    setNodeText(el.storeVisitBenefitOneBody, t("storeVisitBenefitOneBody"));
+    setNodeText(el.storeVisitBenefitTwoTitle, t("storeVisitBenefitTwoTitle"));
+    setNodeText(el.storeVisitBenefitTwoBody, t("storeVisitBenefitTwoBody"));
+
+    var rating = state.storeGoogleRating;
+    var reviewCount = state.storeReviewCount;
+    var hasRating = rating != null && Number.isFinite(Number(rating));
+    var hasReviews = reviewCount != null && Number.isFinite(Number(reviewCount)) && Number(reviewCount) > 0;
+    if (el.storeVisitGoogleTrust) {
+      el.storeVisitGoogleTrust.classList.toggle("hidden", !hasRating && !hasReviews);
+    }
+    if (hasRating && el.storeVisitGoogleTrustStars) {
+      el.storeVisitGoogleTrustStars.textContent = formatGoogleTrustStars(rating);
+    }
+    if (el.storeVisitGoogleRating) {
+      el.storeVisitGoogleRating.textContent = hasRating ? formatDashNumber(rating, 1) : "";
+    }
+    if (el.storeVisitGoogleReviewCount) {
+      if (hasReviews) {
+        var countText = formatReviewCount(reviewCount);
+        el.storeVisitGoogleReviewCount.textContent =
+          state.lang === "zh"
+            ? "（" + countText + " " + t("storeVisitGoogleReviewsLabel") + "）"
+            : "(" + countText + " " + t("storeVisitGoogleReviewsLabel") + ")";
+      } else {
+        el.storeVisitGoogleReviewCount.textContent = "";
+      }
+    }
+  }
+
   function handleStoreVisitStarSelect(starValue) {
     var n = Number(starValue);
     if (!Number.isFinite(n) || n < 1 || n > 5 || !canInteractWithStoreVisitStars()) return;
@@ -9294,7 +9408,7 @@ function renderServicesContent() {
     el.storeVisitStars.setAttribute("aria-label", t("storeVisitStarsLabel"));
     updateStoreVisitStarsVisual();
     if (state.storeReviewFlowStage === "gate" && !(Number(state.storeVisitStars) || 0)) {
-      setNodeText(el.storeVisitMood, t("storeVisitMoodPick"));
+      setNodeText(el.storeVisitMood, "");
     }
   }
 
@@ -9318,10 +9432,9 @@ function renderServicesContent() {
         var failLabel = getRestaurantName() || slugToStorePlaceholderLabel(state.storeSlug);
         setNodeText(
           el.storeVisitBrandName,
-          formatText(t("storeVisitHeading"), { store: String(failLabel || "") }),
+          String(failLabel || ""),
         );
-        setNodeText(el.storeVisitHeroTitle, t("storeVisitHeroTitle"));
-        setNodeText(el.storeVisitHeroLead, t("storeVisitHeroLead"));
+        syncStoreVisitPresentation();
         setNodeText(el.storeVisitMood, resolveBootstrapFailureCopy(state.storeBootstrapFailure));
       }
       return;
@@ -9332,12 +9445,7 @@ function renderServicesContent() {
     el.storeVisitShell.hidden = false;
 
     var name = getRestaurantName();
-    setNodeText(
-      el.storeVisitBrandName,
-      formatText(t("storeVisitHeading"), { store: String(name || "") }),
-    );
-    setNodeText(el.storeVisitHeroTitle, t("storeVisitHeroTitle"));
-    setNodeText(el.storeVisitHeroLead, t("storeVisitHeroLead"));
+    syncStoreVisitPresentation();
 
     if (el.storeVisitServiceCard) {
       el.storeVisitServiceCard.classList.add("hidden");
@@ -9685,8 +9793,11 @@ function renderServicesContent() {
       });
       var grc = data.store.googleReviewCount;
       state.storeReviewCount = grc != null && Number.isFinite(Number(grc)) ? Number(grc) : null;
+      var gr = data.store.googleRating;
+      state.storeGoogleRating = gr != null && Number.isFinite(Number(gr)) ? Number(gr) : null;
     } else {
       state.storeReviewCount = null;
+      state.storeGoogleRating = null;
     }
     state.serviceSpotlight = data && data.serviceSpotlight && data.serviceSpotlight.name ? data.serviceSpotlight : null;
   }
@@ -11112,7 +11223,12 @@ function renderServicesContent() {
     setNodeText(el.correctionToggle, state.isCorrectionOpen ? t("correctionToggleOpen") : t("correctionToggleClosed"));
     setNodeText(el.resetBtn, t("resetBtn"));
     setNodeText(el.reviewsTitle, t("reviewsTitle"));
-    setNodeText(el.reviewsHint, t("reviewsHint"));
+    if (el.loyaltyPromoPanel && !el.loyaltyPromoPanel.classList.contains("hidden")) {
+      var loyaltyC = loyaltyCopy();
+      if (el.loyaltyPromoIntro) el.loyaltyPromoIntro.textContent = loyaltyC.intro;
+      if (el.loyaltyPromoPhone) el.loyaltyPromoPhone.placeholder = loyaltyC.phonePlaceholder;
+      syncLoyaltyPromoConsent();
+    }
     setNodeText(el.visitSheetTitle, t("visitSheetTitle"));
     setNodeText(el.visitSheetHint, t("visitSheetHint"));
     setNodeText(el.visitSummaryLabel, t("visitSummaryLabel"));
@@ -11122,7 +11238,6 @@ function renderServicesContent() {
     setNodeText(el.servicePraiseLabel, t("servicePraiseLabel"));
     setNodeText(el.serviceApplyBtn, t("serviceApplyBtn"));
     setNodeText(el.serviceClearBtn, t("serviceClearBtn"));
-    setNodeText(el.reviewsEmptyText, t("reviewsEmpty"));
     setNodeText(el.recognizedEmptyText, t("recognizedEmpty"));
     setNodeText(el.uncertainTitle, t("uncertainTitle"));
     syncAnotherSetBtn();
@@ -11137,6 +11252,7 @@ function renderServicesContent() {
     renderReviews();
     syncStoreVisitChrome();
     syncStorePrivateFeedbackModalCopy();
+    syncStoreVisitPresentation();
 
     if (state.storeBootstrapFailure) {
       setStatus(el.receiptStatus, resolveBootstrapFailureCopy(state.storeBootstrapFailure), "error");
@@ -11290,9 +11406,15 @@ function renderServicesContent() {
       }).join("");
 
       html =
-        '<div class="store-flow-head"><p class="store-flow-step">1 / 2</p><h3 class="store-flow-title">' +
+        '<div class="store-flow-head"><p class="store-flow-step">1 / 2</p><h3 class="store-flow-title store-flow-title--with-icon">' +
+        '<span class="store-flow-title-icon" aria-hidden="true">' +
+        '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<path d="M13.25 6.5V3.75H10.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<path d="M2.75 9.5v2.75h2.75" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<path d="M3.6 6.2a5 5 0 0 1 8.4-1.8l1 .98M12.4 9.8a5 5 0 0 1-8.4 1.8l-1-.98" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>' +
+        "</svg></span><span class=\"store-flow-title-text\">" +
         escapeHtml(t("storeFlowVisitTitle")) +
-        '</h3></div><div class="store-flow-choice-list">' +
+        '</span></h3></div><div class="store-flow-choice-list">' +
         visitOptionsHtml +
         '</div><div class="store-flow-actions">' +
         buildStoreFlowBackBtn("visit", isBusy) +
@@ -11384,7 +11506,11 @@ function renderServicesContent() {
   }
 
   function syncStoreVisitReceiptBlock() {
-    if (!isStoreRoute() || !el.storeVisitReceiptBlock) {
+    if (!el.storeVisitReceiptBlock) {
+      return;
+    }
+    if (isStoreRoute()) {
+      el.storeVisitReceiptBlock.hidden = true;
       return;
     }
     const has = !!state.receiptDataUrl;
@@ -11442,7 +11568,7 @@ function renderServicesContent() {
     placeholder.textContent = t("dishSearchPlaceholder");
     el.dishSearch.appendChild(placeholder);
 
-    const sorted = state.flatDishes.slice().sort(function (a, b) {
+    const sorted = state.flatDishes.slice().sort(isStoreRoute() ? sortDishesForBrowse : function (a, b) {
       return getDishName(a).localeCompare(getDishName(b), state.lang === "zh" ? "zh-Hans" : "en", {
         sensitivity: "base",
       });
@@ -11542,7 +11668,8 @@ function renderServicesContent() {
 
   function renderReviews() {
     el.reviewsGrid.innerHTML = "";
-    el.reviewsGrid.classList.toggle("empty", state.generatedReviews.length === 0);
+    const reviewsEmpty = state.generatedReviews.length === 0;
+    el.reviewsGrid.classList.toggle("empty", reviewsEmpty && !isStoreRoute());
     renderFlowState();
     renderReviewContext();
     syncBusyControls();
@@ -11573,10 +11700,12 @@ function renderServicesContent() {
     }
 
     if (state.generatedReviews.length === 0) {
-      const empty = document.createElement("p");
-      empty.className = "empty-text";
-      empty.textContent = t("reviewsEmpty");
-      el.reviewsGrid.appendChild(empty);
+      if (!isStoreRoute()) {
+        const empty = document.createElement("p");
+        empty.className = "empty-text";
+        empty.textContent = t("reviewsEmpty");
+        el.reviewsGrid.appendChild(empty);
+      }
       return;
     }
 
@@ -12020,8 +12149,6 @@ function renderServicesContent() {
     en: {
       intro: "Leave your number and we’ll text you a promo code for your next visit.",
       phonePlaceholder: "Your mobile number",
-      consent:
-        "Text me a one-time promo code and occasional offers. Msg & data rates may apply. Reply STOP to opt out.",
       sending: "Sending your code…",
       invalidPhone: "Enter a mobile number with at least 7 digits.",
       needConsent: "Please check the box so we can text your code.",
@@ -12032,7 +12159,6 @@ function renderServicesContent() {
     zh: {
       intro: "留下手机号，我们会把下次到店的优惠码发短信给你。",
       phonePlaceholder: "你的手机号",
-      consent: "同意接收一次性优惠码及不定期优惠短信。可能产生信息费。回复 STOP 退订。",
       sending: "正在发送优惠码…",
       invalidPhone: "请输入至少 7 位的手机号。",
       needConsent: "请勾选同意，我们才能把优惠码发给你。",
@@ -12044,6 +12170,24 @@ function renderServicesContent() {
 
   function loyaltyCopy() {
     return LOYALTY_PROMO_COPY[state.lang === "zh" ? "zh" : "en"];
+  }
+
+  function getLoyaltyBusinessName() {
+    return String(getRestaurantName() || getBrandDisplayName() || "this business").trim();
+  }
+
+  function getLoyaltyConsentText() {
+    var businessName = getLoyaltyBusinessName();
+    if (state.lang === "zh") {
+      return "我同意接收来自" + businessName + "的短信。回复 STOP 退订。";
+    }
+    return "I agree to receive text messages from " + businessName + ". Reply STOP to opt out.";
+  }
+
+  function syncLoyaltyPromoConsent() {
+    if (el.loyaltyPromoConsentText) {
+      el.loyaltyPromoConsentText.textContent = getLoyaltyConsentText();
+    }
   }
 
   function goToPendingReview() {
@@ -12072,7 +12216,8 @@ function renderServicesContent() {
     var c = loyaltyCopy();
     if (el.loyaltyPromoIntro) el.loyaltyPromoIntro.textContent = c.intro;
     if (el.loyaltyPromoPhone) el.loyaltyPromoPhone.placeholder = c.phonePlaceholder;
-    if (el.loyaltyPromoConsentText) el.loyaltyPromoConsentText.textContent = c.consent;
+    if (el.loyaltyPromoConsent) el.loyaltyPromoConsent.checked = true;
+    syncLoyaltyPromoConsent();
     syncLoyaltyPromoSubmitBtn(false);
     if (el.loyaltyPromoForm) el.loyaltyPromoForm.classList.remove("hidden");
     if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.add("hidden");
@@ -12556,7 +12701,7 @@ function renderServicesContent() {
           if (state.storeReviewFlowStage === "gate") {
             state.storeVisitStars = 0;
             state.storeVisitStarsHover = 0;
-            setNodeText(el.storeVisitMood, t("storeVisitMoodPick"));
+            setNodeText(el.storeVisitMood, "");
             syncStoreVisitStars();
           }
           renderStoreFlowCard();
