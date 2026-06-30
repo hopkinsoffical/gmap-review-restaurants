@@ -9707,7 +9707,7 @@ function renderServicesContent() {
 
     document.body.classList.add("store-visit-ready");
     if (!el.storeVisitShell) return;
-    el.storeVisitShell.hidden = false;
+    el.storeVisitShell.hidden = state.storeReviewFlowStage === "reviews";
 
     var name = getRestaurantName();
     syncStoreVisitPresentation();
@@ -10130,6 +10130,8 @@ function renderServicesContent() {
   function syncStoreReviewStageChrome() {
     if (!isStoreRoute()) {
       document.body.classList.remove("store-reviews-stage", "store-review-selected", "store-loyalty-open");
+      if (el.intakeCard) el.intakeCard.removeAttribute("hidden");
+      if (el.layout) el.layout.classList.remove("store-reviews-only");
       return;
     }
 
@@ -10138,6 +10140,29 @@ function renderServicesContent() {
     document.body.classList.toggle("store-reviews-stage", reviewsStage);
     document.body.classList.toggle("store-review-selected", reviewsStage && !!state.selectedReviewStyleKey);
     document.body.classList.toggle("store-loyalty-open", loyaltyOpen);
+    if (el.intakeCard) {
+      el.intakeCard.toggleAttribute("hidden", reviewsStage);
+    }
+    if (el.layout) {
+      el.layout.classList.toggle("store-reviews-only", reviewsStage);
+    }
+    if (el.storeVisitShell) {
+      el.storeVisitShell.hidden = reviewsStage;
+    }
+  }
+
+  function getReviewTargetUrl() {
+    const routes = getReviewRouteSet();
+    const targetUrl = routes.primaryUrl || routes.secondaryUrl;
+    if (targetUrl) return targetUrl;
+    const slugFallback = STORE_GOOGLE_REVIEW_URLS[String(state.storeSlug || "").trim()];
+    return slugFallback && slugFallback.googleReviewUrl ? String(slugFallback.googleReviewUrl).trim() : "";
+  }
+
+  function focusStoreReviewsStage() {
+    if (!isStoreRoute() || state.storeReviewFlowStage !== "reviews") return;
+    syncStoreReviewStageChrome();
+    scrollCardIntoView(el.reviewsCard, 12, 2000);
   }
 
   function syncAnotherSetBtn() {
@@ -12058,11 +12083,24 @@ function renderServicesContent() {
       const head = document.createElement("div");
       head.className = "review-card-head";
 
-      const selectWrap = document.createElement("div");
+      const selectWrap = document.createElement("label");
       selectWrap.className = "review-card-select";
+
+      const radioInput = document.createElement("input");
+      radioInput.type = "radio";
+      radioInput.name = "review-pick";
+      radioInput.className = "review-card-radio-input";
+      radioInput.checked = isSelected;
+      radioInput.setAttribute("aria-label", state.lang === "zh" ? variant.zhLabel : variant.enLabel);
+      radioInput.addEventListener("click", function (event) {
+        event.stopPropagation();
+        selectReview(review);
+      });
+
       const radio = document.createElement("span");
       radio.className = "review-card-radio";
       radio.setAttribute("aria-hidden", "true");
+      selectWrap.appendChild(radioInput);
       selectWrap.appendChild(radio);
       head.appendChild(selectWrap);
 
@@ -12119,8 +12157,8 @@ function renderServicesContent() {
   function selectReview(review) {
     if (!review || !review.text) return;
     const routes = getReviewRouteSet();
-    const targetUrl = routes.primaryUrl || routes.secondaryUrl;
-    const fallbackUrl = routes.secondaryUrl || targetUrl;
+    const targetUrl = getReviewTargetUrl();
+    const fallbackUrl = routes.secondaryUrl || routes.browserUrl || routes.mapsUrl || targetUrl;
     if (!targetUrl) {
       setStatus(el.reviewsStatus, t("noUrl"), "error", fallbackUrl);
       return;
@@ -12421,7 +12459,7 @@ function renderServicesContent() {
       renderReviewContext();
       setStatus(el.reviewsStatus, t("reviewDone"), "ok");
       if (!state.isCorrectionOpen) {
-        scrollCardIntoView(el.reviewsCard);
+        focusStoreReviewsStage();
       }
     } catch (err) {
       console.error("Review generation failed", err);
@@ -12433,6 +12471,9 @@ function renderServicesContent() {
       renderRecognizedDishes();
       renderReviewContext();
       renderReviews();
+      if (isStoreRoute() && state.storeReviewFlowStage === "reviews") {
+        focusStoreReviewsStage();
+      }
     }
   }
 
@@ -13133,6 +13174,7 @@ function renderServicesContent() {
           renderStoreFlowCard();
           renderFlowState();
           renderReviews();
+          focusStoreReviewsStage();
           refreshReviews().catch(function (err) {
             console.error("Store flow review generation failed", err);
           });

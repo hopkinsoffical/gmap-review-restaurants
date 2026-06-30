@@ -65,8 +65,12 @@ function main() {
   assertMatch("store theme review radio styles exist", stylesCss, "html.store-theme-locked body.route-store .review-card-radio");
   assertMatch("store theme loyalty panel styles exist", stylesCss, /body\.route-store .loyalty-promo-panel/);
   assertMatch("mobile store review radio keeps circular shape", stylesCss, /body\.route-store .review-card-radio[\s\S]*aspect-ratio: 1/);
-  assertMatch("store loyalty panel visible after review selection", stylesCss, /body\.route-store\.store-review-selected #intakeCard/);
+  assertMatch("store intake hidden during reviews stage", stylesCss, /body\.route-store\.store-reviews-stage #intakeCard/);
   assertMatch("syncStoreReviewStageChrome toggles loyalty body class", appJs, /function syncStoreReviewStageChrome\(\)/);
+  assertMatch("store reviews stage focuses reviews panel", appJs, /function focusStoreReviewsStage\(\)/);
+  assertMatch("review selection uses store google url fallback", appJs, /function getReviewTargetUrl\(\)/);
+  assertMatch("native review radio input rendered", appJs, /review-card-radio-input/);
+  assertMatch("store reviews-only layout class", stylesCss, /layout\.store-reviews-only/);
 
   assertNoMatch(
     "no per-store slug branching in review selection flow",

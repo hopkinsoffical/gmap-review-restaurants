@@ -1146,6 +1146,21 @@ h1 {
 .review-card-select {
   flex: 0 0 auto;
   padding-top: 2px;
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.review-card-radio-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .review-card-title-wrap {
@@ -1156,12 +1171,18 @@ h1 {
 .review-card-radio {
   width: 22px;
   height: 22px;
+  min-width: 22px;
+  min-height: 22px;
+  flex: 0 0 22px;
   border-radius: 50%;
   border: 2px solid rgba(132, 88, 78, 0.35);
   background: rgba(255, 255, 255, 0.65);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  aspect-ratio: 1;
+  pointer-events: none;
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease,
@@ -1174,6 +1195,19 @@ h1 {
 }
 
 .review-card.is-selected .review-card-radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e8a87c, #c97a5a);
+}
+
+.review-card-radio-input:checked + .review-card-radio {
+  border-color: rgba(201, 122, 90, 0.95);
+  box-shadow: 0 0 0 3px rgba(201, 122, 90, 0.18);
+}
+
+.review-card-radio-input:checked + .review-card-radio::after {
   content: "";
   width: 10px;
   height: 10px;
@@ -4952,8 +4986,9 @@ textarea.portal-input {
   }
 
   .review-card-head {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    gap: 10px;
   }
 
   .review-card-radio {
@@ -4969,6 +5004,11 @@ textarea.portal-input {
   .review-card-select {
     flex: 0 0 auto;
     align-self: flex-start;
+    min-width: 30px;
+    min-height: 30px;
+    padding-top: 0;
+    align-items: center;
+    justify-content: center;
   }
 
   .review-card {
@@ -13349,6 +13389,15 @@ html.store-theme-locked body.route-store .review-card.is-selected .review-card-r
   background: linear-gradient(135deg, #f0b48a, #e8a87c);
 }
 
+html.store-theme-locked body.route-store .review-card-radio-input:checked + .review-card-radio {
+  border-color: var(--store-coral, #e8a87c);
+  box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.2);
+}
+
+html.store-theme-locked body.route-store .review-card-radio-input:checked + .review-card-radio::after {
+  background: linear-gradient(135deg, #f0b48a, #e8a87c);
+}
+
 html.store-theme-locked body.route-store .loyalty-promo-panel {
   border-radius: var(--store-radius-lg);
   border: 1px solid var(--store-border);
@@ -13378,11 +13427,6 @@ html.store-theme-locked body.route-store .loyalty-promo-panel {
       "dishes";
   }
 
-  body.route-store.store-review-selected #intakeCard,
-  body.route-store.store-loyalty-open #intakeCard {
-    display: none;
-  }
-
   body.route-store.store-loyalty-open .reviews-card,
   body.route-store.store-review-selected .reviews-card {
     overflow: visible;
@@ -13392,6 +13436,31 @@ html.store-theme-locked body.route-store .loyalty-promo-panel {
     display: block;
     scroll-margin-top: 16px;
   }
+}
+
+body.route-store.store-reviews-stage #intakeCard,
+body.route-store.store-reviews-stage #intakeCard[hidden] {
+  display: none !important;
+}
+
+body.route-store .layout.store-reviews-only {
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-areas: "reviews" !important;
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+body.route-store.store-reviews-stage .reviews-card {
+  grid-area: reviews;
+  width: 100%;
+  overflow: visible;
+}
+
+body.route-store.store-reviews-stage .review-card-head {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 @media (max-width: 640px) {
