@@ -179,10 +179,34 @@
     en: {
       navBrand: SITE_NAME,
       rating: "4.9 out of 5",
-      heroTitleLead: "50% to 70% New Diners",
-      heroTitleMiddle: "Find You Through",
-      heroTitleAccent: "Google Maps.",
-      heroBody: "You Might Be Losing Diners on Google Right Now",
+      heroTitleLead: "Get More Diners.",
+      heroTitleMiddle: "",
+      heroTitleAccent: "Rank Higher.",
+      heroBody:
+        "We help restaurants rank #1 on Google Maps and turn every search into reservations, calls, and loyal diners.",
+      landingBenefitRank: "Rank Higher",
+      landingBenefitCalls: "More Calls",
+      landingBenefitReviews: "Better Reviews",
+      landingCtaPrimary: "Get My Free Report",
+      landingCtaSecondary: "See How It Works",
+      landingTrustFree: "100% Free",
+      landingTrustNoObligation: "No obligation",
+      landingTrustFast: "60 seconds",
+      landingStatGrowth: "247%",
+      landingStatGrowthLabel: "Ranking Growth",
+      landingStatBookings: "3.2x",
+      landingStatBookingsLabel: "Bookings",
+      landingStatReviews: "4.9★",
+      landingStatReviewsLabel: "Reviews",
+      landingStatTraffic: "89%",
+      landingStatTrafficLabel: "Foot Traffic",
+      landingLeadTitle: "See How You Appear on Google",
+      landingSocialProof: "4.9 / 5",
+      landingSocialCount: "1200+ restaurants",
+      landingPhoneRestaurant: "Bella Trattoria",
+      landingPhoneRankBadge: "#1",
+      landingPhoneRankLabel: "Local ranking",
+      landingPhoneNotif: "New 5-star review",
       primaryCtaLabel: "Get your restaurant rank",
       trustTitle: "We Help Restaurants Get",
       trustPoints: [
@@ -239,10 +263,33 @@
     zh: {
       navBrand: SITE_NAME,
       rating: "4.9 / 5",
-      heroTitleLead: "50% 到 70% 的新食客",
-      heroTitleMiddle: "通过",
-      heroTitleAccent: "Google Maps 找到你。",
-      heroBody: "你现在可能正在 Google 上流失食客",
+      heroTitleLead: "带来更多食客。",
+      heroTitleMiddle: "",
+      heroTitleAccent: "排名更高。",
+      heroBody: "我们帮助餐厅在 Google Maps 上排名第一，把每次搜索变成订位、来电和回头客。",
+      landingBenefitRank: "排名更高",
+      landingBenefitCalls: "更多来电",
+      landingBenefitReviews: "更好评论",
+      landingCtaPrimary: "获取免费报告",
+      landingCtaSecondary: "了解如何运作",
+      landingTrustFree: "100% 免费",
+      landingTrustNoObligation: "无强制义务",
+      landingTrustFast: "60 秒完成",
+      landingStatGrowth: "247%",
+      landingStatGrowthLabel: "排名增长",
+      landingStatBookings: "3.2x",
+      landingStatBookingsLabel: "订位增长",
+      landingStatReviews: "4.9★",
+      landingStatReviewsLabel: "评论表现",
+      landingStatTraffic: "89%",
+      landingStatTrafficLabel: "到店客流",
+      landingLeadTitle: "看看你在 Google 上的呈现",
+      landingSocialProof: "4.9 / 5",
+      landingSocialCount: "1200+ 家餐厅",
+      landingPhoneRestaurant: "Bella Trattoria",
+      landingPhoneRankBadge: "#1",
+      landingPhoneRankLabel: "本地排名",
+      landingPhoneNotif: "新的五星好评",
       primaryCtaLabel: "查看餐厅排名",
       trustTitle: "我们帮助餐厅获得",
       trustPoints: [
@@ -776,7 +823,7 @@ if (isStoreVisitPathname(location.pathname)) {
       heroBriefSalonPlaceholder: "As shown on Google Maps",
       heroBriefContactLabel: "Mobile or email *",
       heroBriefContactPlaceholder: "(555) 123-4567 or owner@restaurant.com",
-      heroBriefSubmit: "Send my restaurant brief",
+      heroBriefSubmit: "Get My Free Report",
       heroBriefSmsConsentCheckbox:
         "If you entered a mobile number, I agree to receive SMS with my brief report and related updates from RankMyRestaurant.",
       heroBriefFieldsRequired: "Please enter your restaurant name and a valid mobile number or email.",
@@ -993,9 +1040,10 @@ if (isStoreVisitPathname(location.pathname)) {
       briefPotentialMedium: "Medium potential",
       briefPotentialLow: "Competitive",
       mobileScrollCue: "Scroll to explore",
-      mobilePanelLeadTitle: "Free restaurant brief report",
-      mobilePanelLeadSub: "Enter your restaurant — we’ll email or text your Google Maps snapshot.",
-      mobilePanelStory: "Why it matters",
+      mobilePanelLeadTitle: "Get More Diners. Rank Higher.",
+      mobilePanelLeadSub: "See how you appear on Google — free report in 60 seconds.",
+      mobilePanelStory: "Results",
+      mobilePanelTrust: "Trusted by restaurants",
       mobilePanelDigital: "Meet Ryan",
       mobilePanelInsights: "Insights",
     },
@@ -1080,7 +1128,7 @@ if (isStoreVisitPathname(location.pathname)) {
       heroBriefSalonPlaceholder: "与 Google Maps 上显示一致",
       heroBriefContactLabel: "手机或邮箱 *",
       heroBriefContactPlaceholder: "(555) 123-4567 或 owner@restaurant.com",
-      heroBriefSubmit: "发送餐厅简报",
+      heroBriefSubmit: "获取免费报告",
       heroBriefSmsConsentCheckbox:
         "若填写了手机号，我同意接收 RankMyRestaurant 发来的简报短信及相关服务短信。",
       heroBriefFieldsRequired: "请填写餐厅名称，以及可用的手机号或邮箱。",
@@ -1288,9 +1336,10 @@ if (isStoreVisitPathname(location.pathname)) {
       briefPotentialMedium: "中等潜力",
       briefPotentialLow: "竞争激烈",
       mobileScrollCue: "向下滑动浏览",
-      mobilePanelLeadTitle: "免费餐厅简报",
-      mobilePanelLeadSub: "填写餐厅信息，我们将通过短信或邮件发送 Google 地图快照。",
-      mobilePanelStory: "为什么重要",
+      mobilePanelLeadTitle: "带来更多食客，排名更高。",
+      mobilePanelLeadSub: "看看你在 Google 上的呈现 — 60 秒获取免费报告。",
+      mobilePanelStory: "成果数据",
+      mobilePanelTrust: "餐厅信赖之选",
       mobilePanelDigital: "认识 Ryan",
       mobilePanelInsights: "精选洞察",
     },
@@ -7099,9 +7148,14 @@ if (isStoreVisitPathname(location.pathname)) {
     );
   }
 
-  function getHeroBriefFormHtml() {
+  function getHeroBriefFormHtml(options) {
+    var opts = options || {};
+    var formId = opts.formId || "heroBriefForm";
+    var feedbackId = opts.feedbackId || "heroBriefFeedback";
     return (
-      '<form id="heroBriefForm" class="marketing-hero-brief-form" data-marketing-lead-form novalidate>' +
+      '<form id="' +
+      escapeHtml(formId) +
+      '" class="marketing-hero-brief-form" data-marketing-lead-form novalidate>' +
       '<div class="marketing-hero-brief-fields">' +
       '<label class="marketing-hero-brief-field">' +
       '<span class="marketing-hero-brief-label">' +
@@ -7143,7 +7197,9 @@ if (isStoreVisitPathname(location.pathname)) {
       '<button type="submit" class="marketing-hero-brief-submit">' +
       escapeHtml(MARKETING_UI.heroBriefSubmit) +
       "</button>" +
-      '<p id="heroBriefFeedback" data-lead-feedback data-feedback-class="marketing-hero-brief-feedback" aria-live="polite"></p>' +
+      '<p id="' +
+      escapeHtml(feedbackId) +
+      '" data-lead-feedback data-feedback-class="marketing-hero-brief-feedback" aria-live="polite"></p>' +
       "</form>"
     );
   }
@@ -7750,59 +7806,178 @@ if (isStoreVisitPathname(location.pathname)) {
     );
   }
 
-  function renderOverviewContent() {
-    var digitalHumanPoints = (MARKETING_COPY.digitalHumanOverviewPoints || [])
-      .map(function (item) {
-        return '<span class="marketing-digital-point">' + escapeHtml(item) + "</span>";
-      })
-      .join("");
+  function getLandingPhoneMockupHtml() {
     return (
-      '<div class="marketing-page marketing-page-overview">' +
-      getMarketingNavHtml() +
-      '<div class="rms-overview-desktop rms-desktop-only">' +
-      '<section class="marketing-hero-section marketing-hero-section--brief card">' +
-      '<div class="marketing-hero-brief-layout">' +
-      '<div class="marketing-hero-brief-copy">' +
-      '<div class="marketing-rating-row marketing-rating-row--brief">' +
-      '<span class="marketing-rating-score">4.9</span>' +
-      '<span class="marketing-rating-stars" aria-hidden="true">★★★★★</span>' +
-      '<span class="marketing-rating-caption">' +
-      escapeHtml(MARKETING_COPY.rating) +
+      '<div class="landing-phone-stage" aria-hidden="true">' +
+      '<div class="landing-phone-glow"></div>' +
+      '<div class="landing-phone-device">' +
+      '<div class="landing-phone-notch"></div>' +
+      '<div class="landing-phone-screen">' +
+      '<div class="landing-phone-maps-bar">' +
+      '<span class="landing-phone-maps-dot"></span>' +
+      '<span class="landing-phone-maps-dot"></span>' +
+      '<span class="landing-phone-maps-dot"></span>' +
+      "<span>Google Maps</span>" +
+      "</div>" +
+      '<div class="landing-phone-restaurant">' +
+      '<div class="landing-phone-restaurant-name">' +
+      escapeHtml(MARKETING_COPY.landingPhoneRestaurant) +
+      "</div>" +
+      '<div class="landing-phone-restaurant-meta">4.8 ★★★★★ (324)</div>' +
+      '<div class="landing-phone-restaurant-tags">Italian · $$ · Open now</div>' +
+      "</div>" +
+      '<div class="landing-phone-map-preview"><span class="landing-phone-map-pin"></span></div>' +
+      "</div>" +
+      '<div class="landing-phone-rank-card">' +
+      '<span class="landing-phone-rank-badge">' +
+      escapeHtml(MARKETING_COPY.landingPhoneRankBadge) +
+      "</span>" +
+      '<span class="landing-phone-rank-label">' +
+      escapeHtml(MARKETING_COPY.landingPhoneRankLabel) +
       "</span>" +
       "</div>" +
-      '<div class="marketing-hero-headline">' +
-      '<h1 class="marketing-title-hero-brief">' +
-      '<span class="marketing-hero-line marketing-hero-line--stat">' +
+      '<div class="landing-phone-notif">' +
+      '<span class="landing-phone-notif-star">★</span>' +
+      escapeHtml(MARKETING_COPY.landingPhoneNotif) +
+      "</div>" +
+      "</div></div>"
+    );
+  }
+
+  function getLandingHeroSectionHtml(options) {
+    var opts = options || {};
+    var leadAnchor = opts.leadAnchor || "landing-lead";
+    return (
+      '<section class="landing-hero landing-reveal" aria-label="Hero">' +
+      '<div class="landing-hero-grid">' +
+      '<div class="landing-hero-copy">' +
+      "<h1 class=\"landing-hero-title\">" +
       escapeHtml(MARKETING_COPY.heroTitleLead) +
-      "</span>" +
-      '<span class="marketing-hero-line marketing-hero-line--bridge">' +
-      escapeHtml(MARKETING_COPY.heroTitleMiddle) +
-      "</span>" +
-      '<span class="marketing-hero-line marketing-hero-line--maps">' +
+      ' <span class="landing-hero-title-accent">' +
       escapeHtml(MARKETING_COPY.heroTitleAccent) +
-      "</span>" +
-      "</h1>" +
-      '<p class="marketing-hero-urgency">' +
+      "</span></h1>" +
+      '<p class="landing-hero-sub">' +
       escapeHtml(MARKETING_COPY.heroBody) +
       "</p>" +
+      '<ul class="landing-hero-benefits">' +
+      '<li class="landing-hero-benefit"><span class="landing-hero-benefit-icon" aria-hidden="true">✓</span>' +
+      escapeHtml(MARKETING_COPY.landingBenefitRank) +
+      "</li>" +
+      '<li class="landing-hero-benefit"><span class="landing-hero-benefit-icon" aria-hidden="true">✓</span>' +
+      escapeHtml(MARKETING_COPY.landingBenefitCalls) +
+      "</li>" +
+      '<li class="landing-hero-benefit"><span class="landing-hero-benefit-icon" aria-hidden="true">✓</span>' +
+      escapeHtml(MARKETING_COPY.landingBenefitReviews) +
+      "</li>" +
+      "</ul>" +
+      '<div class="landing-hero-ctas">' +
+      '<a class="landing-cta-primary" href="#' +
+      escapeHtml(leadAnchor) +
+      '">' +
+      escapeHtml(MARKETING_COPY.landingCtaPrimary) +
+      "</a>" +
+      '<a class="landing-cta-secondary" href="#landing-ryan">' +
+      escapeHtml(MARKETING_COPY.landingCtaSecondary) +
+      "</a>" +
       "</div>" +
-      "</div>" +
-      getHeroBriefFormHtml() +
-      '<div class="marketing-hero-brief-trust">' +
-      '<p class="marketing-trust-title">' +
-      escapeHtml(MARKETING_COPY.trustTitle) +
-      "</p>" +
-      '<ul class="marketing-trust-list marketing-trust-list--brief">' +
-      MARKETING_COPY.trustPoints
-        .map(function (item) {
-          return '<li class="marketing-trust-item">' + escapeHtml(item) + "</li>";
-        })
-        .join("") +
+      '<ul class="landing-hero-trust-row">' +
+      "<li>" +
+      escapeHtml(MARKETING_COPY.landingTrustFree) +
+      "</li>" +
+      "<li>" +
+      escapeHtml(MARKETING_COPY.landingTrustNoObligation) +
+      "</li>" +
+      "<li>" +
+      escapeHtml(MARKETING_COPY.landingTrustFast) +
+      "</li>" +
       "</ul>" +
       "</div>" +
+      getLandingPhoneMockupHtml() +
+      "</div></section>"
+    );
+  }
+
+  function getLandingStatsSectionHtml() {
+    return (
+      '<section class="landing-stats landing-reveal" aria-label="Results">' +
+      '<div class="landing-stats-card">' +
+      '<div class="landing-stat">' +
+      '<div class="landing-stat-value landing-stat-value--accent">' +
+      escapeHtml(MARKETING_COPY.landingStatGrowth) +
       "</div>" +
-      "</section>" +
-      '<section class="marketing-section marketing-digital-human card">' +
+      '<div class="landing-stat-label">' +
+      escapeHtml(MARKETING_COPY.landingStatGrowthLabel) +
+      "</div></div>" +
+      '<div class="landing-stat">' +
+      '<div class="landing-stat-value">' +
+      escapeHtml(MARKETING_COPY.landingStatBookings) +
+      "</div>" +
+      '<div class="landing-stat-label">' +
+      escapeHtml(MARKETING_COPY.landingStatBookingsLabel) +
+      "</div></div>" +
+      '<div class="landing-stat">' +
+      '<div class="landing-stat-value landing-stat-value--green">' +
+      escapeHtml(MARKETING_COPY.landingStatReviews) +
+      "</div>" +
+      '<div class="landing-stat-label">' +
+      escapeHtml(MARKETING_COPY.landingStatReviewsLabel) +
+      "</div></div>" +
+      '<div class="landing-stat">' +
+      '<div class="landing-stat-value">' +
+      escapeHtml(MARKETING_COPY.landingStatTraffic) +
+      "</div>" +
+      '<div class="landing-stat-label">' +
+      escapeHtml(MARKETING_COPY.landingStatTrafficLabel) +
+      "</div></div>" +
+      "</div></section>"
+    );
+  }
+
+  function getLandingLeadSectionHtml(options) {
+    var opts = options || {};
+    var sectionId = opts.sectionId || "landing-lead";
+    return (
+      '<section id="' +
+      escapeHtml(sectionId) +
+      '" class="landing-lead landing-reveal" aria-label="Free report">' +
+      '<div class="landing-lead-card">' +
+      (opts.hideTitle
+        ? ""
+        : '<h2 class="landing-lead-title">' + escapeHtml(MARKETING_COPY.landingLeadTitle) + "</h2>") +
+      getHeroBriefFormHtml({
+        formId: opts.formId,
+        feedbackId: opts.feedbackId,
+      }) +
+      "</div></section>"
+    );
+  }
+
+  function getLandingTrustSectionHtml() {
+    return (
+      '<section class="landing-trust landing-reveal" aria-label="Trusted by restaurants">' +
+      '<div class="landing-trust-logos">' +
+      '<span class="landing-trust-logo">Restaurants</span>' +
+      '<span class="landing-trust-logo landing-trust-logo--google">Google</span>' +
+      '<span class="landing-trust-logo landing-trust-logo--yelp">Yelp</span>' +
+      '<span class="landing-trust-logo landing-trust-logo--trip">TripAdvisor</span>' +
+      "<span class=\"landing-trust-logo\">Facebook</span>" +
+      "<span class=\"landing-trust-logo\">Instagram</span>" +
+      "</div>" +
+      '<div class="landing-trust-rating">' +
+      '<span class="landing-trust-stars" aria-hidden="true">★★★★☆</span>' +
+      '<span class="landing-trust-score">' +
+      escapeHtml(MARKETING_COPY.landingSocialProof) +
+      "</span>" +
+      '<span class="landing-trust-count">' +
+      escapeHtml(MARKETING_COPY.landingSocialCount) +
+      "</span>" +
+      "</div></section>"
+    );
+  }
+
+  function getLandingRyanSectionHtml(digitalHumanPoints) {
+    return (
+      '<section id="landing-ryan" class="marketing-section marketing-digital-human card landing-reveal">' +
       '<div class="marketing-digital-grid">' +
       '<div class="marketing-digital-copy">' +
       '<div class="marketing-section-head marketing-section-head-compact">' +
@@ -7856,15 +8031,73 @@ if (isStoreVisitPathname(location.pathname)) {
       "</div>" +
       "</div>" +
       "</div>" +
-      "</section>" +
+      "</section>"
+    );
+  }
+
+  function initLandingPageMotion() {
+    if (!isLandingRoute() || !el.landingContent) return;
+    var nodes = el.landingContent.querySelectorAll(".landing-reveal");
+    if (!nodes.length) return;
+    if (!("IntersectionObserver" in window)) {
+      nodes.forEach(function (node) {
+        node.classList.add("is-visible");
+      });
+      return;
+    }
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+    );
+    nodes.forEach(function (node) {
+      observer.observe(node);
+    });
+  }
+
+  function renderOverviewContent() {
+    var digitalHumanPoints = (MARKETING_COPY.digitalHumanOverviewPoints || [])
+      .map(function (item) {
+        return '<span class="marketing-digital-point">' + escapeHtml(item) + "</span>";
+      })
+      .join("");
+    return (
+      '<div class="marketing-page marketing-page-overview">' +
+      getMarketingNavHtml() +
+      '<div class="rms-overview-desktop rms-desktop-only">' +
+      getLandingHeroSectionHtml() +
+      getLandingStatsSectionHtml() +
+      getLandingLeadSectionHtml() +
+      getLandingTrustSectionHtml() +
+      getLandingRyanSectionHtml(digitalHumanPoints) +
       getMarketingFooterHtml() +
       "</div>" +
       '<div class="rms-overview-mobile rms-mobile-only rms-snap-wrap">' +
       '<div class="rms-mobile-scroll" data-rms-mobile-scroll>' +
-      '<section class="rms-mobile-panel rms-mobile-panel--lead marketing-hero-section marketing-hero-section--brief card" data-rms-panel="lead">' +
+      '<section class="rms-mobile-panel rms-mobile-panel--hero" data-rms-panel="hero">' +
+      '<div class="rms-mobile-panel-inner">' +
+      getLandingHeroSectionHtml({ leadAnchor: "landing-lead-mobile" }) +
+      getRmsMobileScrollCueHtml("stats") +
+      "</div></section>" +
+      '<section class="rms-mobile-panel rms-mobile-panel--stats" data-rms-panel="stats">' +
+      '<div class="rms-mobile-panel-inner">' +
+      '<p class="rms-mobile-panel-label">' +
+      escapeHtml(MARKETING_UI.mobilePanelStory) +
+      "</p>" +
+      getLandingStatsSectionHtml() +
+      getRmsMobileScrollCueHtml("lead") +
+      "</div></section>" +
+      '<section class="rms-mobile-panel rms-mobile-panel--lead" data-rms-panel="lead">' +
       '<div class="rms-mobile-panel-inner">' +
       '<p class="rms-mobile-panel-lead-kicker">' +
-      escapeHtml(MARKETING_COPY.rating) +
+      escapeHtml(MARKETING_COPY.landingTrustFree) +
+      " · " +
+      escapeHtml(MARKETING_COPY.landingTrustFast) +
       "</p>" +
       '<h2 class="rms-mobile-panel-lead-title">' +
       escapeHtml(MARKETING_UI.mobilePanelLeadTitle) +
@@ -7872,37 +8105,20 @@ if (isStoreVisitPathname(location.pathname)) {
       '<p class="rms-mobile-panel-lead-sub">' +
       escapeHtml(MARKETING_UI.mobilePanelLeadSub) +
       "</p>" +
-      getHeroBriefFormHtml() +
-      getRmsMobileScrollCueHtml("story") +
+      getLandingLeadSectionHtml({
+        sectionId: "landing-lead-mobile",
+        formId: "heroBriefFormMobile",
+        feedbackId: "heroBriefFeedbackMobile",
+        hideTitle: true,
+      }) +
+      getRmsMobileScrollCueHtml("trust") +
       "</div></section>" +
-      '<section class="rms-mobile-panel rms-mobile-panel--story marketing-hero-section marketing-hero-section--brief card" data-rms-panel="story">' +
+      '<section class="rms-mobile-panel rms-mobile-panel--trust" data-rms-panel="trust">' +
       '<div class="rms-mobile-panel-inner">' +
       '<p class="rms-mobile-panel-label">' +
-      escapeHtml(MARKETING_UI.mobilePanelStory) +
+      escapeHtml(MARKETING_UI.mobilePanelTrust) +
       "</p>" +
-      '<div class="marketing-hero-brief-layout"><div class="marketing-hero-brief-copy">' +
-      '<div class="marketing-rating-row marketing-rating-row--brief">' +
-      '<span class="marketing-rating-score">4.9</span><span class="marketing-rating-stars" aria-hidden="true">★★★★★</span>' +
-      '<span class="marketing-rating-caption">' +
-      escapeHtml(MARKETING_COPY.rating) +
-      '</span></div><div class="marketing-hero-headline"><h1 class="marketing-title-hero-brief">' +
-      '<span class="marketing-hero-line marketing-hero-line--stat">' +
-      escapeHtml(MARKETING_COPY.heroTitleLead) +
-      '</span><span class="marketing-hero-line marketing-hero-line--bridge">' +
-      escapeHtml(MARKETING_COPY.heroTitleMiddle) +
-      '</span><span class="marketing-hero-line marketing-hero-line--maps">' +
-      escapeHtml(MARKETING_COPY.heroTitleAccent) +
-      '</span></h1><p class="marketing-hero-urgency">' +
-      escapeHtml(MARKETING_COPY.heroBody) +
-      '</p></div></div><div class="marketing-hero-brief-trust"><p class="marketing-trust-title">' +
-      escapeHtml(MARKETING_COPY.trustTitle) +
-      '</p><ul class="marketing-trust-list marketing-trust-list--brief">' +
-      MARKETING_COPY.trustPoints
-        .map(function (item) {
-          return '<li class="marketing-trust-item">' + escapeHtml(item) + "</li>";
-        })
-        .join("") +
-      "</ul></div></div>" +
+      getLandingTrustSectionHtml() +
       getRmsMobileScrollCueHtml("digital") +
       "</div></section>" +
       '<section class="rms-mobile-panel rms-mobile-panel--digital" data-rms-panel="digital">' +
@@ -7910,44 +8126,14 @@ if (isStoreVisitPathname(location.pathname)) {
       '<p class="rms-mobile-panel-label">' +
       escapeHtml(MARKETING_UI.mobilePanelDigital) +
       "</p>" +
-      '<section class="marketing-section marketing-digital-human card"><div class="marketing-digital-grid">' +
-      '<div class="marketing-digital-copy"><div class="marketing-section-head marketing-section-head-compact">' +
-      '<p class="marketing-section-kicker">' +
-      escapeHtml(MARKETING_COPY.digitalHumanOverviewKicker || "") +
-      '</p><h2 class="marketing-section-title">' +
-      escapeHtml(MARKETING_COPY.digitalHumanOverviewTitle) +
-      '</h2></div><h3 class="marketing-digital-heading">' +
-      escapeHtml(MARKETING_COPY.digitalHumanOverviewHeading) +
-      '</h3><p class="marketing-digital-body">' +
-      escapeHtml(MARKETING_COPY.digitalHumanOverviewBody) +
-      '</p><div class="marketing-digital-points">' +
-      digitalHumanPoints +
-      '</div><div class="marketing-digital-actions"><a class="cta landing-link" href="' +
-      getPagePath(ROUTE_TALK) +
-      '">' +
-      escapeHtml(MARKETING_COPY.digitalHumanCtaLabel) +
-      '</a><a class="marketing-digital-alt-link" href="' +
-      escapeHtml(MARKETING_COPY.digitalHumanPhoneHref) +
-      '">' +
-      escapeHtml(MARKETING_COPY.digitalHumanPhoneLabel) +
-      '</a></div></div><div class="marketing-digital-media"><video class="marketing-digital-video" src="' +
-      DIGITAL_HUMAN_VIDEO_PATH +
-      '" autoplay muted loop playsinline preload="auto" poster="' +
-      DIGITAL_HUMAN_POSTER_PATH +
-      '"></video><div class="marketing-digital-overlay"><span class="marketing-digital-badge">' +
-      escapeHtml(MARKETING_COPY.digitalHumanOverviewStageLabel || "") +
-      '</span><div class="marketing-digital-overlay-card"><strong>' +
-      escapeHtml(MARKETING_COPY.digitalHumanOverviewStageTitle || "") +
-      "</strong><p>" +
-      escapeHtml(MARKETING_COPY.digitalHumanOverviewStageBody || "") +
-      "</p></div></div></div></div></section>" +
+      getLandingRyanSectionHtml(digitalHumanPoints) +
       getRmsMobileScrollCueHtml("footer") +
       "</div></section>" +
       '<section class="rms-mobile-panel rms-mobile-panel--footer" data-rms-panel="footer">' +
       '<div class="rms-mobile-panel-inner">' +
       getMarketingFooterHtml() +
       "</div></section></div>" +
-      getRmsMobileDotsHtml(["lead", "story", "digital", "footer"], "lead") +
+      getRmsMobileDotsHtml(["hero", "stats", "lead", "trust", "digital", "footer"], "hero") +
       "</div></div>"
     );
   }
@@ -8698,7 +8884,7 @@ function renderServicesContent() {
 
     var formData = new FormData(form);
 
-    if (form.id === "heroBriefForm") {
+    if (form.classList.contains("marketing-hero-brief-form")) {
       var salonName = String(formData.get("salon_name") || "").trim();
       var contactRaw = String(formData.get("contact") || "").trim();
       var smsConsent = String(formData.get("sms_consent") || "").toLowerCase() === "on";
@@ -8936,6 +9122,7 @@ function renderServicesContent() {
         updateMobileSnapLayout();
         var scroller = el.landingContent && el.landingContent.querySelector("[data-rms-mobile-scroll]");
         if (scroller) syncMobileSnapDots(scroller);
+        initLandingPageMotion();
       });
       return;
     }

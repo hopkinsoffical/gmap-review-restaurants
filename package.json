@@ -45,7 +45,8 @@
     "leaderboard:recalc:csv": ".venv/bin/python3 scripts/leaderboard_assessment_csv_tool.py recalc -i data/leaderboard_for_levels.csv --mode strict -o data/leaderboard_levels_preview.csv --sql data/leaderboard_levels_updates.sql",
     "recompute:leaderboard": "node scripts/recompute-leaderboard-scores.js",
     "recompute:leaderboard:dry": "node scripts/recompute-leaderboard-scores.js --dry-run",
-    "twilio:lookup": "node scripts/twilio-lookup-line-type.js"
+    "twilio:lookup": "node scripts/twilio-lookup-line-type.js",
+    "test:landing": "node scripts/test-landing-page.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.50.0",
