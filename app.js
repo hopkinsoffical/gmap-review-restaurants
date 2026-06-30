@@ -1599,6 +1599,8 @@ if (isStoreVisitPathname(location.pathname)) {
       noUrl: "未配置 Google 跳转链接。",
       copiedAndGoing: "已复制评价，正在打开 Google...",
       copyFail: "复制失败，请手动复制后再打开 Google。",
+      reviewSelected: "已选中并复制评价。",
+      reviewSelectedCopyFail: "已选中评价。如需请手动复制，然后继续。",
       manualOpen: "没打开？换个入口",
       manualOpenMaps: "优先试 Google Maps",
       manualOpenBrowser: "改用浏览器评论页",
@@ -1753,6 +1755,8 @@ if (isStoreVisitPathname(location.pathname)) {
       noUrl: "Google link is not configured.",
       copiedAndGoing: "Review copied. Opening Google...",
       copyFail: "Copy failed. Please copy manually, then open Google.",
+      reviewSelected: "Review selected and copied.",
+      reviewSelectedCopyFail: "Review selected. Copy manually if needed, then continue.",
       manualOpen: "Didn't open? Try the other route",
       manualOpenMaps: "Try Google Maps",
       manualOpenBrowser: "Open browser review page",
@@ -1936,6 +1940,8 @@ if (isStoreVisitPathname(location.pathname)) {
     hasAttemptedReviewOpen: false,
     loyaltyPromoDone: false,
     pendingReviewUrl: null,
+    selectedReviewStyleKey: "",
+    selectedReviewText: "",
     assistant: {
       initialized: false,
     },
@@ -11984,25 +11990,36 @@ function renderServicesContent() {
       });
       if (!variant) return;
 
+      const isSelected = state.selectedReviewStyleKey === review.styleKey;
       const card = document.createElement("article");
-      card.className = "review-card";
+      card.className = "review-card" + (isSelected ? " is-selected" : "");
       card.tabIndex = 0;
       card.setAttribute("role", "button");
+      card.setAttribute("aria-pressed", isSelected ? "true" : "false");
       card.setAttribute("aria-label", state.lang === "zh" ? variant.zhLabel : variant.enLabel);
       card.addEventListener("click", function () {
-        copyReviewAndGo(review.text);
+        selectReview(review);
       });
       card.addEventListener("keydown", function (event) {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          copyReviewAndGo(review.text);
+          selectReview(review);
         }
       });
 
       const head = document.createElement("div");
       head.className = "review-card-head";
 
+      const selectWrap = document.createElement("div");
+      selectWrap.className = "review-card-select";
+      const radio = document.createElement("span");
+      radio.className = "review-card-radio";
+      radio.setAttribute("aria-hidden", "true");
+      selectWrap.appendChild(radio);
+      head.appendChild(selectWrap);
+
       const titleWrap = document.createElement("div");
+      titleWrap.className = "review-card-title-wrap";
 
       const title = document.createElement("h3");
       title.textContent = state.lang === "zh" ? variant.zhLabel : variant.enLabel;
@@ -12029,6 +12046,52 @@ function renderServicesContent() {
     });
   }
 
+  function hideLoyaltyPromoPanel() {
+    if (el.loyaltyPromoPanel) el.loyaltyPromoPanel.classList.add("hidden");
+    if (el.loyaltyPromoForm) el.loyaltyPromoForm.classList.remove("hidden");
+    if (el.loyaltyPromoResult) el.loyaltyPromoResult.classList.add("hidden");
+    setStatus(el.loyaltyPromoStatus, "", "", "");
+  }
+
+  function clearSelectedReview() {
+    state.selectedReviewStyleKey = "";
+    state.selectedReviewText = "";
+  }
+
+  async function copySelectedReviewText(text, fallbackUrl) {
+    try {
+      await navigator.clipboard.writeText(String(text || "").trim());
+      setStatus(el.reviewsStatus, t("reviewSelected"), "ok", fallbackUrl);
+    } catch (err) {
+      setStatus(el.reviewsStatus, t("reviewSelectedCopyFail"), "error", fallbackUrl);
+    }
+  }
+
+  function selectReview(review) {
+    if (!review || !review.text) return;
+    const routes = getReviewRouteSet();
+    const targetUrl = routes.primaryUrl || routes.secondaryUrl;
+    const fallbackUrl = routes.secondaryUrl || targetUrl;
+    if (!targetUrl) {
+      setStatus(el.reviewsStatus, t("noUrl"), "error", fallbackUrl);
+      return;
+    }
+
+    state.selectedReviewStyleKey = review.styleKey;
+    state.selectedReviewText = review.text;
+    state.pendingReviewUrl = targetUrl;
+    state.hasAttemptedReviewOpen = true;
+    renderReviews();
+    void copySelectedReviewText(review.text, fallbackUrl);
+
+    if (el.loyaltyPromoPanel && !state.loyaltyPromoDone) {
+      revealLoyaltyPromo();
+      return;
+    }
+
+    updateManualOpenLink(targetUrl, true);
+  }
+
   function resetSession(keepLang) {
     const nextLang = keepLang ? state.lang : "en";
     state.lang = nextLang;
@@ -12052,6 +12115,10 @@ function renderServicesContent() {
     state.isGenerating = false;
     state.isCorrectionOpen = false;
     state.hasAttemptedReviewOpen = false;
+    state.loyaltyPromoDone = false;
+    state.pendingReviewUrl = null;
+    clearSelectedReview();
+    hideLoyaltyPromoPanel();
     state.storeVisitStars = 0;
     state.storeVisitStarsHover = 0;
     state.storeReviewFlowStage = "gate";
@@ -12286,6 +12353,8 @@ function renderServicesContent() {
 
     state.isGenerating = true;
     state.hasAttemptedReviewOpen = false;
+    clearSelectedReview();
+    hideLoyaltyPromoPanel();
     renderRecognizedDishes();
     renderReviewContext();
     renderReviews();
@@ -12394,24 +12463,22 @@ function renderServicesContent() {
       return;
     }
 
+    state.pendingReviewUrl = targetUrl;
     try {
       await navigator.clipboard.writeText(String(text || "").trim());
       state.hasAttemptedReviewOpen = true;
       setStatus(el.reviewsStatus, t("copiedAndGoing"), "working", fallbackUrl);
-      // New post-review step: offer a next-visit promo code in exchange for a
-      // phone number (+ SMS consent), then continue to Google. Falls back to the
-      // original redirect if the loyalty panel is absent or already completed.
-      if (el.loyaltyPromoPanel && !state.loyaltyPromoDone) {
-        state.pendingReviewUrl = targetUrl;
-        revealLoyaltyPromo();
-        return;
-      }
-      setTimeout(function () {
-        window.location.href = targetUrl;
-      }, 320);
     } catch (err) {
       setStatus(el.reviewsStatus, t("copyFail"), "error", fallbackUrl);
     }
+
+    if (el.loyaltyPromoPanel && !state.loyaltyPromoDone) {
+      revealLoyaltyPromo();
+      return;
+    }
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 320);
   }
 
   var LOYALTY_PROMO_COPY = {
@@ -12422,7 +12489,7 @@ function renderServicesContent() {
       invalidPhone: "Enter a mobile number with at least 7 digits.",
       needConsent: "Please check the box so we can text your code.",
       failed: "Could not save right now — you can still continue to Google.",
-      sentSuccess: "We texted your promo code — check your messages.",
+      sentSuccess: "We've saved your number — we'll send your promo code via text soon.",
       continueGoogle: "Continue to Google review",
     },
     zh: {
@@ -12432,7 +12499,7 @@ function renderServicesContent() {
       invalidPhone: "请输入至少 7 位的手机号。",
       needConsent: "请勾选同意，我们才能把优惠码发给你。",
       failed: "暂时无法保存 — 你仍可继续前往 Google。",
-      sentSuccess: "优惠码已发短信，请查收。",
+      sentSuccess: "已保存手机号 — 优惠码会通过短信发给你。",
       continueGoogle: "继续前往 Google 评价",
     },
   };

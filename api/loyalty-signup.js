@@ -234,16 +234,22 @@ async function textPromoCode(payload) {
 }
 
 async function completeLoyaltySignup(res, payload, result) {
-  await textPromoCode({
-    phone: payload.phone,
-    storeSlug: payload.storeSlug,
-    lang: payload.lang,
-    promoCode: result.promoCode,
-  });
+  let smsSent = false;
+  try {
+    await textPromoCode({
+      phone: payload.phone,
+      storeSlug: payload.storeSlug,
+      lang: payload.lang,
+      promoCode: result.promoCode,
+    });
+    smsSent = true;
+  } catch (err) {
+    console.warn("[loyalty-signup] promo SMS send skipped:", err && err.message ? err.message : err);
+  }
   return sendJson(res, result.status, {
     ok: true,
     visitStatus: result.visitStatus,
-    smsSent: true,
+    smsSent: smsSent,
   });
 }
 
@@ -259,19 +265,28 @@ async function saveLoyaltySignupToVforce(payload) {
     );
   }
 
-  const upstream = await fetch(base + "/api/portal/loyalty-signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      phone: payload.phone,
-      smsConsent: true,
-      storeSlug: payload.storeSlug,
-      placeId: payload.placeId,
-      consentIp: payload.consentIp,
-      userAgent: payload.userAgent,
-      lang: payload.lang || null,
-    }),
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(function () { controller.abort(); }, 6000);
+
+  var upstream;
+  try {
+    upstream = await fetch(base + "/api/portal/loyalty-signup", {
+      method: "POST",
+      signal: controller.signal,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        phone: payload.phone,
+        smsConsent: true,
+        storeSlug: payload.storeSlug,
+        placeId: payload.placeId,
+        consentIp: payload.consentIp,
+        userAgent: payload.userAgent,
+        lang: payload.lang || null,
+      }),
+    });
+  } finally {
+    clearTimeout(timeoutId);
+  }
 
   const data = await upstream.json().catch(() => ({}));
   if (!upstream.ok || !data || data.ok !== true) {
@@ -329,12 +344,21 @@ module.exports = async function handler(req, res) {
       lang: body.lang || null,
     };
 
-    const vforceResult = await saveLoyaltySignupToVforce(payload);
-    if (vforceResult.fallback) {
+    let vforceResult = null;
+    try {
+      vforceResult = await saveLoyaltySignupToVforce(payload);
+    } catch (err) {
+      console.warn(
+        "[loyalty-signup] vForce call failed:",
+        err && err.message ? err.message : err,
+        "— falling back to Supabase",
+      );
+    }
+    if (!vforceResult || vforceResult.fallback) {
       console.warn(
         "[loyalty-signup] vForce unavailable for store slug; falling back to Supabase:",
         storeSlug,
-        upstreamMessage(vforceResult.data) || vforceResult.upstream.status,
+        vforceResult ? upstreamMessage(vforceResult.data) || vforceResult.upstream.status : "no response",
       );
       const saved = await saveLoyaltySignupToSupabase(payload);
       return completeLoyaltySignup(res, payload, saved);

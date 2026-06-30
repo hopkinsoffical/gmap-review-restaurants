@@ -21,3 +21,4 @@ data/
 edison_scrape_checkpoint.json
 scripts/edison_scrape_checkpoint.json
 scripts/data/
+.env*.local

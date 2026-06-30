@@ -1138,10 +1138,52 @@ h1 {
 
 .review-card-head {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 10px;
+}
+
+.review-card-select {
+  flex: 0 0 auto;
+  padding-top: 2px;
+}
+
+.review-card-title-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.review-card-radio {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(132, 88, 78, 0.35);
+  background: rgba(255, 255, 255, 0.65);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.review-card.is-selected .review-card-radio {
+  border-color: rgba(201, 122, 90, 0.95);
+  box-shadow: 0 0 0 3px rgba(201, 122, 90, 0.18);
+}
+
+.review-card.is-selected .review-card-radio::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e8a87c, #c97a5a);
+}
+
+.review-card.is-selected {
+  border-color: rgba(201, 122, 90, 0.42);
+  box-shadow: 0 18px 32px rgba(104, 75, 67, 0.16);
 }
 
 .review-card h3 {
@@ -13268,6 +13310,28 @@ html.store-theme-locked body.route-store .reviews-card .section-head h2 {
   font-size: 1.125rem;
   letter-spacing: -0.02em;
   line-height: 1.3;
+}
+
+html.store-theme-locked body.route-store .review-card.is-selected,
+html.store-theme-locked body.route-store .reviews-grid .review-card.is-selected {
+  border-color: rgba(232, 168, 124, 0.48);
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html.store-theme-locked body.route-store .review-card-radio {
+  border-color: rgba(232, 168, 124, 0.35);
+  background: rgba(12, 10, 9, 0.55);
+}
+
+html.store-theme-locked body.route-store .review-card.is-selected .review-card-radio {
+  border-color: var(--store-coral, #e8a87c);
+  box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.2);
+}
+
+html.store-theme-locked body.route-store .review-card.is-selected .review-card-radio::after {
+  background: linear-gradient(135deg, #f0b48a, #e8a87c);
 }
 
 html.store-theme-locked body.route-store .loyalty-promo-panel {
