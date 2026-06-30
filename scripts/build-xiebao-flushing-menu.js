@@ -70,7 +70,6 @@ const RAW_ITEMS = [
   ["Mooncakes & Zongzi 月饼粽子", "Frozen Rose Red Bean Mooncake", "速冻玫瑰豆沙月饼"],
   ["Mooncakes & Zongzi 月饼粽子", "Frozen Salted Egg Pork Floss Mooncake", "速冻咸蛋黄肉松月饼"],
   ["Mooncakes & Zongzi 月饼粽子", "Fresh Pork Mooncake", "鲜肉月饼"],
-  ["Mooncakes & Zongzi 月饼粽子", "Mooncake Gift Box", "月饼打包盒"],
   ["Small Plates 小菜", "Spicy Shredded Chicken", "麻辣鸡丝"],
   ["Small Plates 小菜", "Stewed Beef Short Ribs w. Radish", "牛仔骨清炖萝卜煲"],
   ["Small Plates 小菜", "Braised Razor Clams w. Radish", "萝卜烧蛏子"],

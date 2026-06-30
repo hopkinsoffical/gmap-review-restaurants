@@ -1304,8 +1304,8 @@ if (isStoreVisitPathname(location.pathname)) {
       enLabel: "Simple",
       zhSubLabel: "",
       enSubLabel: "",
-      zhRule: "语气最朴实、最自然，像顾客刚吃完或刚离店随手写下来的评价。",
-      enRule: "Keep it the most plainspoken and natural, like a real diner writing right after the visit.",
+      zhRule: "最口语、最随手，像刚吃完掏出手机就打两行字，别端着。",
+      enRule: "Keep it the most casual and off-the-cuff, like someone typing right after the meal without overthinking.",
     },
     {
       key: "review_b",
@@ -1313,8 +1313,8 @@ if (isStoreVisitPathname(location.pathname)) {
       enLabel: "Detailed",
       zhSubLabel: "",
       enSubLabel: "",
-      zhRule: "语气更精致、更讲究一点，但还是像真人，不要像广告。",
-      enRule: "Make it a little more refined and polished, but still believable and not ad-like.",
+      zhRule: "多说一两个具体细节，但还是聊天口吻，别写成探店文案。",
+      enRule: "Add one or two concrete details, but keep it chatty and personal, not like a food blogger script.",
     },
     {
       key: "review_c",
@@ -1322,8 +1322,8 @@ if (isStoreVisitPathname(location.pathname)) {
       enLabel: "Standout",
       zhSubLabel: "",
       enSubLabel: "",
-      zhRule: "最有记忆点，允许略微夸张一点点，但仍然要像真实顾客，不要浮夸到像广告。",
-      enRule: "Make it the most memorable. A touch more amplified is fine, but it still has to sound like a real diner, not an ad.",
+      zhRule: "可以稍微夸张一点、更有记忆点，用当下流行的夸法，但得像真食客，不像网红通稿。",
+      enRule: "Make it the most memorable with a touch of hype, but still sound like a real diner, not influencer copy.",
     },
   ];
 
@@ -1358,10 +1358,10 @@ if (isStoreVisitPathname(location.pathname)) {
       key: "first_time",
       zhLabel: "第一次来",
       enLabel: "First time here",
-      zhPrompt: "三条都要自然带出是第一次来，但说法别一样，像刚吃完或刚离店顺手发出去的短评。",
-      enPrompt: "All three should naturally sound like a first visit, but vary the wording so they read like quick post-meal reactions.",
-      zhPrefixes: ["第一次来，感觉不错。", "头回来吃，印象很好。", "第一次来，比想的更满意。"],
-      enPrefixes: ["First time here, and I liked it right away.", "My first visit here was an easy yes.", "New here, but the result left a strong first impression."],
+      zhPrompt: "三条都要自然带出是第一次来，说法别撞车，像刚吃完顺手发出去的那种。",
+      enPrompt: "All three should sound like a first visit, with varied wording like quick post-meal reactions.",
+      zhPrefixes: ["头回来就被香到了", "第一次来，比想象中好吃", "初次打卡，整体很能打"],
+      enPrefixes: ["First time here and it hit right away.", "Didn't expect it to be this good on visit one.", "First visit and I'm already planning round two."],
       zhPattern: /第一次|头一回|头一次/,
       enPattern: /\bfirst time\b|\bfirst visit\b|\bnew here\b/i,
     },
@@ -1369,10 +1369,10 @@ if (isStoreVisitPathname(location.pathname)) {
       key: "few_times",
       zhLabel: "之前来过",
       enLabel: "Been back before",
-      zhPrompt: "三条都要带出不是第一次来，这次也还是愿意继续来吃，语气要轻松。",
-      enPrompt: "All three should make it clear this is a return visit, while still sounding casual and current.",
-      zhPrefixes: ["之前来过，这次也很满意。", "不是头回来了，还是很稳。", "又来吃了，结果还是很喜欢。"],
-      enPrefixes: ["I've been back before, and it still lands well.", "Not my first time here, and it still feels worth it.", "I've come by before, and this visit still came out great."],
+      zhPrompt: "三条都要带出不是第一次来，这次也还想继续吃，语气轻松口语。",
+      enPrompt: "All three should read like a return visit, casual and current.",
+      zhPrefixes: ["来过几次了，还是很稳", "不是头回来了，味道依旧在线", "又来吃了，还是没踩雷"],
+      enPrefixes: ["Been back a few times and it still hits.", "Not my first visit and it still delivers.", "Came back again and still no regrets."],
       zhPattern: /来过|不是第一次|之前来过|又来/,
       enPattern: /\bbeen back\b|\bnot my first time\b|\bcome by before\b|\bback before\b/i,
     },
@@ -1380,10 +1380,10 @@ if (isStoreVisitPathname(location.pathname)) {
       key: "regular",
       zhLabel: "这家我常来",
       enLabel: "One of my regular spots",
-      zhPrompt: "三条都要带出这家已经是常来的店，但语气还是像真人随手说一句，不要端着。",
-      enPrompt: "All three should feel like they're from someone who comes here often, but still sound quick and personal.",
-      zhPrefixes: ["这家我常来，还是放心。", "算常客了，还是很稳。", "平时就会来，这次也满意。"],
-      enPrefixes: ["This is one of my regular spots, and it still lands every time.", "I come here pretty often, and it still feels worth it.", "I'm here a lot, and this place still keeps me coming back."],
+      zhPrompt: "三条都要带出是常来的店，但别端着，像老客随口夸一句。",
+      enPrompt: "All three should feel like a regular talking casually, not a formal endorsement.",
+      zhPrefixes: ["老客了，每次来都不踩雷", "常来的店，出品一直很稳", "算是回头客了，味道还是能打"],
+      enPrefixes: ["Regular here and it never misses.", "One of my go-to spots, always solid.", "I keep coming back because it stays consistent."],
       zhPattern: /常来|常客|来了很多次|每次来|回头客/,
       enPattern: /\bregular\b|\bcome here often\b|\bkeep me coming back\b|\bpretty often\b|\bregular spots\b/i,
     },
@@ -1428,16 +1428,37 @@ if (isStoreVisitPathname(location.pathname)) {
   ];
 
   const REVIEW_SPICE_BANK = {
-    zh: ["这次吃得值", "会想再来", "味道很在线", "出品很稳", "朋友也夸", "比预期更好", "吃完整个人都舒服", "看着就很有食欲"],
+    zh: [
+      "真的绝",
+      "超预期",
+      "香迷糊了",
+      "很能打",
+      "味道在线",
+      "没踩雷",
+      "会回购",
+      "一口沦陷",
+      "扎实",
+      "性价比拉满",
+      "被香到了",
+      "吃完还想再来",
+      "朋友看了也想点",
+      "比预期好吃",
+    ],
     en: [
-      "would come back for this",
-      "glad I tried this",
-      "the result really worked for me",
-      "better than I expected",
-      "easy one to recommend",
-      "already want to come back",
-      "felt like a good find",
-      "worth coming back for",
+      "lowkey fire",
+      "hits different",
+      "better than expected",
+      "no notes",
+      "solid spot",
+      "definitely coming back",
+      "worth the hype",
+      "so good",
+      "crushed it",
+      "easy recommend",
+      "already planning round two",
+      "did not disappoint",
+      "flavor was on point",
+      "portion was right",
     ],
   };
 
@@ -10057,8 +10078,16 @@ function renderServicesContent() {
         if (!item || !profile) return null;
         const praise = (lang === "zh" ? profile.zh : profile.en).join(lang === "zh" ? "、" : ", ");
         return lang === "zh"
-          ? "- " + item.zh + "：固定夸赞点围绕「" + praise + "」"
-          : "- " + item.en + ': keep the praise anchored on "' + praise + '"';
+          ? "- " +
+              item.zh +
+              "：评论里必须自然点到这道菜（菜名太长就用食客会说的简称），夸赞可围绕「" +
+              praise +
+              "」"
+          : '- "' +
+              item.en +
+              '": name this dish naturally (shorten long menu titles); anchor praise on "' +
+              praise +
+              '"';
       })
       .filter(Boolean)
       .join("\n");
@@ -10656,7 +10685,7 @@ function renderServicesContent() {
     if (state.lang === "zh") {
       return {
         system:
-          "你在帮顾客写可直接发出的 Google Maps 短评。严格遵守风格与聚焦规则，只返回 JSON，不要加任何额外说明。",
+          "你在帮顾客写可直接发出的 Google Maps 短评。口语、真实、像刚吃完顺手发出去，可用流行夸法（很绝、很能打、超预期）。必须点到具体菜名。严格遵守风格与聚焦规则，只返回 JSON。",
         user:
           "店铺：" +
           config.restaurantNameZh +
@@ -10686,14 +10715,14 @@ function renderServicesContent() {
           "2. review_a 对应卡片“简洁”，review_b 对应“详细”，review_c 对应“出彩”。\n" +
           "3. 本轮三条评论里，必须刚好一条只写菜品/饮品，刚好一条提staff/服务，刚好一条提环境；但哪张卡对应哪种焦点，以本轮上面的分配为准。\n" +
           "4. 不要把staff/服务和环境同时写进同一条。\n" +
-          "5. 优先点出 1 到 2 个最有记忆点的菜品或饮品；遇到很长的菜单名时，用食客会顺口说的短叫法，不要把整串菜单名全塞进去。\n" +
+          "5. 必须自然写出至少 1 个具体菜名，最多提 1 到 2 个菜；遇到很长的菜单名时，用食客会顺口说的短叫法。\n" +
           "6. 每条都要口语、简短、像刚吃完或刚离店顺手发出去的话，允许稍微带一点吸引力，但不能像广告。\n" +
           "7. 三条正文的总体长度必须递增：review_a 最短，review_b 比 review_a 明显更长，review_c 最长；每条遵守上面卡片里的长度目标，不要把三条写得差不多长。\n" +
-          "8. 可以带一点真人会说的小碎句，但不要三条都一个套路。\n" +
+          "8. 可以带一点真人会说的小碎句或流行夸法，但不要三条都一个套路。\n" +
           "9. 禁止使用冒号、破折号，不要加 emoji、引号、井号。\n" +
           "10. 三条的开头和结尾都不要太像。\n" +
           (retryLevel > 0
-            ? "11. 上一轮结果不够贴合规则，这一轮务必更短、更口语，并严格遵守风格卡片与本轮焦点分配。\n"
+            ? "11. 上一轮结果不够口语，这一轮务必更短、更真实，并严格遵守风格卡片与本轮焦点分配。\n"
             : "") +
           "\n" +
           flavorBlock +
@@ -10705,7 +10734,7 @@ function renderServicesContent() {
 
     return {
       system:
-        "You write short Google Maps reviews that feel like something a real restaurant diner would post. Follow every style and focus rule exactly and return JSON only.",
+        "You write short Google Maps reviews that feel like a real diner typing right after the meal—casual, specific, a little trendy when it fits. Name the actual dish. Follow every style and focus rule exactly and return JSON only.",
       user:
         "Restaurant: " +
         config.restaurantNameEn +
@@ -10735,8 +10764,8 @@ function renderServicesContent() {
         "2. review_a is the Simple card, review_b is the Detailed card, and review_c is the Standout card.\n" +
         "3. Across the three reviews, there must be exactly one results-only review, exactly one staff review, and exactly one atmosphere review, but the card-to-focus mapping must follow this round's assignment above.\n" +
         "4. Never mention staff/service and atmosphere in the same review.\n" +
-        "5. Mention 1 or 2 memorable dishes or drinks at most. If a menu item name is long, shorten it the way a diner naturally would instead of pasting the full title.\n" +
-        "6. Keep every review conversational, short, and easy to post. A little appealing is good, but it still has to feel personal rather than ad copy.\n" +
+        "5. Name at least one specific dish naturally; mention 1 or 2 memorable dishes or drinks at most. Shorten long menu titles the way diners talk.\n" +
+        "6. Keep every review conversational, short, and easy to post. A little trendy hype is fine, but it still has to feel personal rather than ad copy.\n" +
         "7. Overall length must increase: review_a is the shortest, review_b is clearly longer than review_a, and review_c is the longest, but review_c (Standout) must stay at 50 words or below—count full words. Follow each card's length target above and do not make all three feel the same length.\n" +
         "8. Use light real-person filler only when it helps. Do not make all three follow the same sentence pattern.\n" +
         "9. No emoji, quotes, hashtags, or bullet points.\n" +
