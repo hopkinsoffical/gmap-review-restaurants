@@ -12655,8 +12655,30 @@ body.route-store .store-private-feedback-dialog .store-private-feedback-continue
 }
 
 .review-write-own-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   width: 100%;
+  max-width: 100%;
   margin-top: 10px;
+  margin-inline: auto;
+}
+
+html.store-theme-locked body.route-store .review-write-own-btn {
+  border: 1px dashed var(--store-border);
+  background: transparent;
+  color: var(--store-muted);
+  box-shadow: none;
+  transform: none;
+}
+
+html.store-theme-locked body.route-store .review-write-own-btn:hover:not(:disabled) {
+  border-color: var(--store-coral-soft);
+  color: var(--store-surface-ink);
+  background: transparent;
+  box-shadow: none;
+  transform: none;
 }
 
 body.store-visit-ready #intakeCard {
@@ -13324,5 +13346,15 @@ html.store-theme-locked body.route-store .loyalty-promo-panel {
 
   html.store-theme-locked body.route-store #anotherSetBtn {
     display: none !important;
+  }
+
+  html.store-theme-locked body.route-store .review-write-own-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin-inline: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
